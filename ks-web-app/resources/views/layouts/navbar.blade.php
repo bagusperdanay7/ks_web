@@ -1,4 +1,4 @@
-<nav class="navbar fixed-top navbar-expand-lg bg-white shadow-sm">
+<nav class="navbar fixed-top navbar-expand-lg bg-color-secondary shadow-sm">
     <div class="container">
         <div class="col-auto mr-auto">
             <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px">

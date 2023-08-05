@@ -61,7 +61,7 @@
     --success-30: #c4e7d5;
     --success-20: #d7efe3;
     --success-10: #ebf7f1;
-    --black-100: #1f1f1f;
+    --text-color: #1f1f1f;
     --black-90: #353535;
     --black-80: #4b4b4b;
     --black-70: #626262;
@@ -71,11 +71,19 @@
     --black-30: #bbb;
     --black-20: #d2d2d2;
     --black-10: #e8e8e8;
-    --background-light: #f1f5f9;
-    --background-dark: #2a2438;
+    --background-color: #f1f5f9;
+    /* --background-color-dark: #2a2438; */
     --white: #ffffff;
+    --background-color-secondary: #fff;
     --special-color: #a1f5ff;
+    --main-font: "Poppins", sans-serif;
 }
+/* Add data-theme="dark" into body html */
+/* [data-theme="dark"] {
+    --background-color: #2a2438;
+    --text-color: #ffffff;
+    --background-color-secondary: var(--black-30);
+} */
 
 ::-moz-selection {
     /* Code for Firefox */
@@ -123,28 +131,36 @@ h3,
 h4,
 h5,
 h6 {
-    color: var(--black-100);
+    color: var(--text-color);
     font-weight: 700;
 }
 
 /* Penutup Heading */
 
 /* Typography */
+
+/* Text Color */
+.text-black-90 {
+    color: var(--black-90);
+}
+
+/* Poppins */
 .text-sb-18 {
     font-size: 18px;
     font-weight: 600;
+    color: var(--text-color);
 }
 
 .text-mdm-14 {
     font-size: 14px;
     font-weight: 500;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .text-sb-14 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .text-regular-14 {
@@ -152,7 +168,7 @@ h6 {
     font-weight: 400;
 }
 
-/* Penutup Typography */
+/* Inter */
 .inter-regular-14 {
     font-family: "Inter", sans-serif;
     font-size: 14px;
@@ -160,6 +176,19 @@ h6 {
     color: var(--black-80);
     margin: 0px;
 }
+
+.inter-medium-18 {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--black-90);
+}
+
+.text-color-tertiary {
+    color: var(--tertiary);
+}
+
+/* Penutup Typography */
 
 /* Margin Custom */
 .m-vertical-10 {
@@ -170,12 +199,47 @@ h6 {
     margin-bottom: 30px;
 }
 
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.mb-10 {
+    margin-bottom: 10px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
 .mt-30 {
     margin-top: 30px;
 }
 
+.mr-15 {
+    margin-right: 15px;
+}
+
+.py-80 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
 .body-light {
-    background-color: var(--background-light);
+    background-color: var(--background-color);
+}
+
+.bg-color-secondary {
+    background-color: var(--background-color-secondary);
+}
+
+/* Box icon extra large manual */
+.bx-xlg {
+    font-size: 72px;
+    color: var(--black-80);
 }
 
 /* Navbar */
@@ -198,7 +262,7 @@ h6 {
 }
 
 .navbar a {
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .nav-item a:hover {
@@ -264,31 +328,49 @@ h6 {
 
 #socmed-landing-page a {
     text-decoration: none;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .content-card-lp {
     border-radius: 5px;
     border: 1px solid var(--black-30);
-    background: var(--background-light);
+    background: var(--background-color);
     padding: 15px;
-}
-
-/* Box icon extra large manual */
-.bx-xlg {
-    font-size: 72px;
-    color: var(--black-80);
 }
 
 .upcoming-schedule-card-lp {
     border-radius: 5px;
     border: 1px solid var(--black-30);
-    background: var(--background-light);
+    background: var(--background-color);
     padding: 15px;
+}
+
+.link-show-all-lp:hover {
+    color: var(--primary);
+}
+
+#upcoming-display-mobile {
+    display: none;
 }
 
 /* Penutup Home */
 
+/* Footer */
+
+/* Penutup Footer */
+#footer {
+    margin-top: 100px;
+    background-color: var(--primary-10);
+}
+
+#footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#footer ul li a {
+    color: var(--black-80);
+}
 /* Projects */
 
 .project-header {
@@ -423,7 +505,7 @@ h6 {
     text-decoration: none;
     font-weight: 600;
     font-size: 14px;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .projects-section-href a:hover {
@@ -466,7 +548,7 @@ h6 {
 }
 
 .breadcumb-active {
-    color: var(--black-100);
+    color: var(--text-color);
     font-weight: 500;
 }
 
@@ -558,7 +640,7 @@ h6 {
 
 .non-pro-hero {
     background-color: var(--black-10);
-    border: 1px solid var(--background-dark);
+    border: 1px solid var(--background-color-dark);
     border-radius: 5px;
     margin: 0 0 30px 0;
     padding: 25px 13px;
@@ -575,17 +657,17 @@ h6 {
 .non-pro-hero h2 {
     font-weight: 700;
     font-size: 36px;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .btn-non-project {
-    border: 1px solid var(--black-100);
-    color: var(--black-100);
+    border: 1px solid var(--text-color);
+    color: var(--text-color);
     font-weight: 700;
 }
 
 .btn-non-project:hover {
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 /* Penutup Projects */
@@ -634,7 +716,7 @@ h6 {
 .card-info h2 {
     margin-top: 5px;
     font-size: 36px;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .card-head span {
@@ -749,7 +831,7 @@ h6 {
 
 .gallery-cards-head a {
     text-decoration: none;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .gallery-cards-head a:hover {
@@ -808,12 +890,12 @@ h6 {
 }
 
 .artist-card a {
-    color: var(--black-100);
+    color: var(--text-color);
     text-decoration: none;
 }
 
 .artist-card a:hover {
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .video-description-card {
@@ -834,7 +916,7 @@ h6 {
     font-family: "Poppins", sans-serif;
     font-size: 18px;
     font-weight: 600;
-    color: var(--black-100);
+    color: var(--text-color);
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 2; /* number of lines to show */
@@ -859,7 +941,7 @@ h6 {
 
 .category-card a {
     text-decoration: none;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .gallery-cards-head h2 {
@@ -869,6 +951,10 @@ h6 {
 
 .bg-black-80 {
     background-color: var(--black-80);
+}
+
+.text-black {
+    color: var(--text-color);
 }
 
 /* Artist Page */
@@ -883,7 +969,7 @@ img.image-hero-artist {
     font-family: "Inter", sans-serif;
     font-weight: 400;
     font-size: 14px;
-    color: var(--black-100);
+    color: var(--text-color);
 }
 
 .heading-info-artist {
@@ -930,3 +1016,74 @@ img.image-hero-artist {
     visibility: visible;
     height: max-content;
 } */
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 576px) {
+    /* Home */
+    .hero-welcome {
+        font-size: 36px;
+        text-align: center;
+        margin-top: 30px;
+        letter-spacing: normal;
+    }
+
+    .hero-h2 {
+        font-size: 24px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .welcome-text {
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .mb-sm-30 {
+        margin-bottom: 30px;
+    }
+
+    .header-table-upcoming {
+        display: none;
+    }
+
+    .btn-onprocess {
+        margin: 15px 0 5px 0;
+    }
+
+    /* Penutup Home */
+}
+
+/* Responsive untuk Mobile dan Tablet */
+/* Medium devices (landscape tablets, 768px kebawah) */
+@media only screen and (max-width: 768px) {
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (max-width: 992px) {
+    .hero-welcome {
+        text-align: center;
+        margin-top: 30px;
+    }
+
+    .hero-h2,
+    .welcome-text {
+        text-align: center;
+    }
+
+    .btn-main {
+        display: grid;
+    }
+
+    #upcoming-display-mobile {
+        display: grid;
+    }
+
+    #upcoming-display-desktop {
+        visibility: hidden;
+        height: 0;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+}
