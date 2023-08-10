@@ -552,6 +552,11 @@ h6 {
     font-weight: 500;
 }
 
+#huge-project-vol1 {
+    scroll-behavior: smooth;
+    scroll-margin: 90px;
+}
+
 .huge-pro-hero {
     background-color: #e1d7f2;
     border-radius: 5px;

@@ -11,7 +11,7 @@
     </nav>
 
     <div class="row huge-pro-hero">
-        <div class="col-sm-12 mb-3 col-md-6">
+        <div class="col-12 mb-3 col-md-6 align-self-center">
             <h2 class="mb-3">Huge Project Vol.#01</h2>
             <p class="huge-pro-text">Huge Project Vol.#01 is a project based on Google Forms requests, where the
                 content
@@ -21,7 +21,7 @@
             <a href="#huge-project-vol1" class="btn btn-huge-project-vol1">View Details</a>
         </div>
 
-        <div class="col-sm-12 col-md-6">
+        <div class="col-12 col-md-6">
             <img src="{{ asset('img/huge-pro-hero.png') }}" alt="" class="float-end" width="100%">
         </div>
     </div>
