@@ -18,16 +18,16 @@ class ProjectFactory extends Factory
     {
         return [
             'project_title' => $this->faker->lexify('?????? - ??????'),
-            'content_category_id' => mt_rand(1, 5),
-            'project_requester' => $this->faker->name(),
-            'project_status' => implode($this->faker->randomElements(['Completed', 'On Process', 'Pending', 'Rejected'])),
-            'url' => $this->faker->url(),
-            'project_date' => $this->faker->dateTime(),
+            'category_id' => mt_rand(1, 5),
             'artist_id' => mt_rand(1, 20),
-            'project_class' => implode($this->faker->randomElements(['Huge Project Vol.#01', 'Nostalgic Vibes', 'Youtube Comments', 'Non-Project'])),
+            'type_id' => mt_rand(1, 3),
+            'requester' => $this->faker->name(),
+            'date' => $this->faker->dateTime(),
+            'status' => implode($this->faker->randomElements(['Completed', 'On Process', 'Pending', 'Rejected'])),
+            'url' => $this->faker->url(),
             'progress' => $this->faker->numberBetween(0, 100),
-            'votes' => $this->faker->numberBetween(1, 10),
             'notes' => $this->faker->sentence(),
+            'votes' => $this->faker->numberBetween(1, 10),
         ];
     }
 }

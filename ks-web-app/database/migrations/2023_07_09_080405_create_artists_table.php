@@ -15,12 +15,12 @@ return new class extends Migration
             $table->id();
             $table->string('artist_name');
             $table->string('codename')->unique();
-            $table->date('artist_birthday');
-            $table->string('artist_birthplace');
+            $table->date('debut');
+            $table->string('origin');
             $table->string('artist_pict')->nullable();
-            $table->string('fandom_name');
-            $table->string('company_name');
-            $table->text('about');
+            $table->string('fandom');
+            $table->string('company');
+            $table->text('about')->nullable();
             $table->timestamps();
         });
     }

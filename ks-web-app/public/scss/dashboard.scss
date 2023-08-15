@@ -1,0 +1,96 @@
+// Variables
+$primary: #6528f7;
+$primary-90: #743df7;
+$primary-80: #8352f8;
+$primary-70: #9368f9;
+$primary-60: #a27efa;
+$primary-50: #b293fb;
+$primary-40: #c1a9fb;
+$primary-30: #d0befc;
+$primary-20: #e0d4fd;
+$primary-10: #efe9fe;
+$secondary: #0c96f8;
+$secondary-90: #24a0f8;
+$secondary-80: #3cabf9;
+$secondary-70: #54b5fa;
+$secondary-60: #6dc0fa;
+$secondary-50: #85cafb;
+$secondary-40: #9dd5fc;
+$secondary-30: #b6dffc;
+$secondary-20: #ceeafd;
+$secondary-10: #e6f4fe;
+$tertiary: #b93160;
+$tertiary-90: #c0456f;
+$tertiary-80: #c75a7f;
+$tertiary-70: #ce6e8f;
+$tertiary-60: #d5839f;
+$tertiary-50: #dc98af;
+$tertiary-40: #e3acbf;
+$tertiary-30: #eac1cf;
+$tertiary-20: #f1d5df;
+$tertiary-10: #f8eaef;
+$alert: #e15554;
+$alert-90: #e46665;
+$alert-80: #e77676;
+$alert-70: #ea8887;
+$alert-60: #ed9998;
+$alert-50: #f0aaa9;
+$alert-40: #f3bbba;
+$alert-30: #f6cccb;
+$alert-20: #f9dddc;
+$alert-10: #fceeed;
+$warning: #e1bc29;
+$warning-90: #e4c23e;
+$warning-80: #e7c953;
+$warning-70: #ead069;
+$warning-60: #edd67e;
+$warning-50: #f0dd94;
+$warning-40: #f3e4a9;
+$warning-30: #f6eabe;
+$warning-20: #f9f1d4;
+$warning-10: #fcf8e9;
+$success: #3bb273;
+$success-90: #4eb981;
+$success-80: #62c18f;
+$success-70: #75c99d;
+$success-60: #89d0ab;
+$success-50: #9dd8b9;
+$success-40: #b0e0c7;
+$success-30: #c4e7d5;
+$success-20: #d7efe3;
+$success-10: #ebf7f1;
+$text-color: #1f1f1f;
+$black-90: #353535;
+$black-80: #4b4b4b;
+$black-70: #626262;
+$black-60: #787878;
+$black-50: #8f8f8f;
+$black-40: #a5a5a5;
+$black-30: #bbb;
+$black-20: #d2d2d2;
+$black-10: #e8e8e8;
+$background-color: #f1f5f9;
+/* $background-color-dark: #2a2438; */
+$white: #ffffff;
+$background-color-secondary: #fff;
+$special-color: #a1f5ff;
+
+// Typography
+$main-font: "Poppins", sans-serif;
+$secondary-font: "Inter", sans-serif;
+
+// Mixin
+
+@mixin button-shape($color: $primary) {
+    padding: 20px;
+    text-align: center;
+    background-color: $color;
+}
+
+body {
+    background-color: $primary;
+}
+
+.button-alert {
+    @include button-shape(#4444);
+}
