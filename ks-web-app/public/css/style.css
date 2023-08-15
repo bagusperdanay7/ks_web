@@ -77,7 +77,10 @@
     --background-color-secondary: #fff;
     --special-color: #a1f5ff;
     --main-font: "Poppins", sans-serif;
+    --secondary-font: "Inter", sans-serif;
 }
+
+/* Dark Mode
 /* Add data-theme="dark" into body html */
 /* [data-theme="dark"] {
     --background-color: #2a2438;
@@ -85,6 +88,7 @@
     --background-color-secondary: var(--black-30);
 } */
 
+/* Blok Text Selection */
 ::-moz-selection {
     /* Code for Firefox */
     color: var(--white);
@@ -96,8 +100,10 @@
     background: var(--primary);
 }
 
+/* End of Blok Text Selection */
+
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: var(--main-font);
 }
 
 /* Heading */
@@ -137,11 +143,41 @@ h6 {
 
 /* Penutup Heading */
 
-/* Typography */
-
+/* Color */
 /* Text Color */
+.text-black-100 {
+    color: var(--text-color);
+}
+
 .text-black-90 {
     color: var(--black-90);
+}
+
+.text-black-80 {
+    color: var(--black-80);
+}
+
+.text-tertiary {
+    color: var(--tertiary);
+}
+
+/* Background Color */
+.body-light {
+    background-color: var(--background-color);
+}
+
+.bg-color-secondary {
+    background-color: var(--background-color-secondary);
+}
+
+/* Penutup Color */
+
+/* Typography */
+
+/* Box icon extra large manual */
+.bx-xlg {
+    font-size: 72px;
+    color: var(--black-80);
 }
 
 /* Poppins */
@@ -151,15 +187,15 @@ h6 {
     color: var(--text-color);
 }
 
-.text-mdm-14 {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-color);
-}
-
 .text-sb-14 {
     font-size: 14px;
     font-weight: 600;
+    color: var(--text-color);
+}
+
+.text-mdm-14 {
+    font-size: 14px;
+    font-weight: 500;
     color: var(--text-color);
 }
 
@@ -184,10 +220,6 @@ h6 {
     color: var(--black-90);
 }
 
-.text-color-tertiary {
-    color: var(--tertiary);
-}
-
 /* Penutup Typography */
 
 /* Margin Custom */
@@ -195,8 +227,24 @@ h6 {
     margin: 10px 0;
 }
 
+/* Margin Top */
+
+.mt-30 {
+    margin-top: 30px;
+}
+
+.mt-10 {
+    margin-top: 10px;
+}
+
+/* Margin Bottom */
+
 .mb-30 {
     margin-bottom: 30px;
+}
+
+.mb-24 {
+    margin-bottom: 24px;
 }
 
 .mb-15 {
@@ -207,39 +255,19 @@ h6 {
     margin-bottom: 10px;
 }
 
-.mb-24 {
-    margin-bottom: 24px;
-}
-
-.mt-10 {
-    margin-top: 10px;
-}
-
-.mt-30 {
-    margin-top: 30px;
-}
-
+/* Margin Right */
 .mr-15 {
     margin-right: 15px;
 }
 
+/* Margin Left */
+
+/* Penutup Margin */
+
+/* Padding */
 .py-80 {
     padding-top: 80px;
     padding-bottom: 80px;
-}
-
-.body-light {
-    background-color: var(--background-color);
-}
-
-.bg-color-secondary {
-    background-color: var(--background-color-secondary);
-}
-
-/* Box icon extra large manual */
-.bx-xlg {
-    font-size: 72px;
-    color: var(--black-80);
 }
 
 /* Navbar */
@@ -271,7 +299,30 @@ h6 {
 
 /* Penutup Navbar */
 
-/* Home */
+/* Footer */
+
+#footer {
+    margin-top: 100px;
+    background-color: var(--primary-10);
+}
+
+#footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+#footer ul li a {
+    color: var(--black-80);
+    /* transition: all 100ms; */
+}
+
+#footer ul li a:hover {
+    color: var(--text-color);
+}
+
+/* Penutup Footer */
+
+/* Home Page */
 
 #hero-landing-page {
     margin: 152px 0;
@@ -336,6 +387,12 @@ h6 {
     border: 1px solid var(--black-30);
     background: var(--background-color);
     padding: 15px;
+    transition: all 300ms;
+}
+
+.content-card-lp:hover {
+    /* cursor: pointer; */
+    box-shadow: 1px 1px 10px var(--primary-30);
 }
 
 .upcoming-schedule-card-lp {
@@ -353,25 +410,9 @@ h6 {
     display: none;
 }
 
-/* Penutup Home */
+/* Penutup Home Page */
 
-/* Footer */
-
-/* Penutup Footer */
-#footer {
-    margin-top: 100px;
-    background-color: var(--primary-10);
-}
-
-#footer ul {
-    list-style: none;
-    padding: 0;
-}
-
-#footer ul li a {
-    color: var(--black-80);
-}
-/* Projects */
+/* Projects Page */
 
 .project-header {
     margin-top: 125px;

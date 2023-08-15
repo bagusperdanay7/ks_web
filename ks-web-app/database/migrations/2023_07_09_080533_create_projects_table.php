@@ -13,18 +13,18 @@ return new class extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('project_title');
-            $table->foreignId('content_category_id');
-            $table->string('project_requester');
-            $table->string('project_status')->default('Pending');
-            $table->text('url')->nullable();
-            $table->date('project_date')->nullable();
-            $table->string('project_thumbnail')->nullable();
             $table->foreignId('artist_id');
-            $table->string('project_class')->default('Non-Project');
-            $table->integer('progress')->nullable();
-            $table->integer('votes')->nullable();
+            $table->foreignId('category_id');
+            $table->foreignId('type_id');
+            $table->string('project_title');
+            $table->string('requester')->default("Unknown Google Forms Requester");
+            $table->date('date')->nullable();
+            $table->string('status')->default('Pending');
+            $table->string('url')->nullable();
+            $table->string('thumbnail')->nullable();
+            $table->integer('progress')->nullable()->default(0);
             $table->text('notes')->nullable();
+            $table->integer('votes')->nullable()->default(0);
             $table->timestamps();
         });
     }

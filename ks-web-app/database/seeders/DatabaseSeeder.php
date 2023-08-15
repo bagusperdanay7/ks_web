@@ -3,12 +3,15 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\AIModel;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Album;
 use App\Models\Artist;
 use App\Models\Project;
-use App\Models\ContentCategory;
+use App\Models\Category;
+use App\Models\ProjectType;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,34 +24,58 @@ class DatabaseSeeder extends Seeder
         User::factory(3)->create();
 
         // Membuat Category
-        ContentCategory::create([
-            'name' => 'Line Distribution',
+        Category::create([
+            'category_name' => 'Line Distribution',
             'slug' => 'line-distribution',
             'icon_class' => 'las la-chart-pie'
         ]);
 
-        ContentCategory::create([
-            'name' => 'Line Evolution',
+        Category::create([
+            'category_name' => 'Line Evolution',
             'slug' => 'line-evolution',
             'icon_class' => 'las la-chart-bar'
         ]);
 
-        ContentCategory::create([
-            'name' => 'Album Distribution',
+        Category::create([
+            'category_name' => 'Album Distribution',
             'slug' => 'album-distribution',
             'icon_class' => 'las la-compact-disc'
         ]);
 
-        ContentCategory::create([
-            'name' => 'All Title Tracks Distribution',
+        Category::create([
+            'category_name' => 'All Title Tracks Distribution',
             'slug' => 'all-title-tracks-distribution',
             'icon_class' => 'las la-music'
         ]);
 
-        ContentCategory::create([
-            'name' => 'All Songs Distribution',
+        Category::create([
+            'category_name' => 'All Songs Distribution',
             'slug' => 'all-songs-distribution',
             'icon_class' => 'las la-file-audio'
+        ]);
+
+        ProjectType::create([
+            "type_name" => "Non-Project",
+            "slug" => "non-project",
+            "about" => "Non project",
+        ]);
+
+        ProjectType::create([
+            "type_name" => "Huge Project Vol.#01",
+            "slug" => "huge-project-vol-1",
+            "about" => "lorem ipsum et al",
+        ]);
+
+        ProjectType::create([
+            "type_name" => "Nostalgic Vibes",
+            "slug" => "nostalgic-vibes",
+            "about" => "lorem ipsum nostalgic",
+        ]);
+
+        ProjectType::create([
+            "type_name" => "Youtube Comment",
+            "slug" => "youtube-comment",
+            "about" => "lorem ipsum youtube",
         ]);
 
         // Seeder Manual //
@@ -60,34 +87,55 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('password')
         ]);
 
+        // Artist
         Artist::create([
             'artist_name' => 'OH MY GIRL',
             'codename' => 'oh-my-girl',
-            'artist_birthday' => date('2015-04-21'),
-            'artist_birthplace' => 'Seoul',
+            'debut' => date('2015-04-21'),
+            'origin' => 'Seoul',
             'artist_pict' => 'ohmygirl.jpg',
-            'fandom_name' => 'Miracle',
-            'company_name' => 'WM Entertainment',
+            'fandom' => 'Miracle',
+            'company' => 'WM Entertainment',
             'about' => 'OH MY GIRL is a South Korean group of eight members, consisting of Hyojung, JinE, Mimi, YooA, Seunghee, Jiho, Yubin (Binnie), and Arin. Unfortunately, JinE left the group in October 2017, followed by Jiho leaving the group on May 9, 2022. So that the members now consist of 6 members.',
+        ]);
+
+        // // Album
+        Album::create([
+            'artist_id' => 1,
+            'album_name' => 'Fall In Love',
+            'release' => date('2019-07-01'),
+        ]);
+
+        // // Album
+        Song::create([
+            'album_id' => 1,
+            'title' => 'Bungee',
+            'genre' => 'Dance Pop',
+            'category' => 'Title Track',
+            'author' => '서지음, 미미(오마이걸)',
+            'composer' => 'Hyuk Shin @ 153/Joombas, 정윤 @ 153/Joombas, Ashley
+            Alisha(153/Joombas), JJ Evans(153/Joombas), MooF(153/Joombas)',
+            'arranger' => '정윤 @ 153/Joombas, MooF(153/Joombas)',
         ]);
 
         Project::create([
             'project_title' => 'OH MY GIRL - Jine',
-            'content_category_id' => 2,
-            'project_requester' => 'Unknown Google Form Requester',
-            'project_status' => 'Completed',
             'artist_id' => 1,
+            'category_id' => 2,
+            'type_id' => 2,
+            'date' => date('2023-06-02'),
+            'requester' => 'Unknown Google Form Requester',
+            'status' => 'Completed',
             'url' => 'https://www.youtube.com/embed/L-Hh_aQq6CE',
-            'project_date' => date('2023-06-02'),
-            'project_thumbnail' => 'https://i3.ytimg.com/vi/L-Hh_aQq6CE/maxresdefault.jpg',
-            'project_class' => 'Huge Project Vol.#01',
+            'thumbnail' => 'https://i3.ytimg.com/vi/L-Hh_aQq6CE/maxresdefault.jpg',
             'progress' => 100,
             'votes' => 3,
         ]);
 
-        Album::factory(50)->create();
         Artist::factory(50)->create();
-        Project::factory(50)->create();
+        Album::factory(50)->create();
         Song::factory(50)->create();
+        Project::factory(50)->create();
+        AIModel::factory(50)->create();
     }
 }

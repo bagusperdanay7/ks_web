@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Album>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AIModel>
  */
-class AlbumFactory extends Factory
+class AIModelFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,9 +17,8 @@ class AlbumFactory extends Factory
     public function definition(): array
     {
         return [
-            'artist_id' => mt_rand(1, 20),
-            'album_name' => $this->faker->word(),
-            'release' => $this->faker->dateTime(),
+            'model_name' => $this->faker->sentence(3),
+            'description' => $this->faker->paragraph(2),
         ];
     }
 }

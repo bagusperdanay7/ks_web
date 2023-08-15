@@ -12,7 +12,7 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // Eager loading menangani masalah n+1
-    protected $with = ['artist', 'content_category'];
+    protected $with = ['artist', 'category'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -27,9 +27,9 @@ class Project extends Model
 
 
         // callback
-        $query->when($filters['content_category'] ?? false, function ($query, $content_category) {
-            return $query->whereHas('content_category', function ($query) use ($content_category) {
-                $query->where('slug', $content_category);
+        $query->when($filters['category'] ?? false, function ($query, $category) {
+            return $query->whereHas('category', function ($query) use ($category) {
+                $query->where('slug', $category);
             });
         });
 
@@ -42,8 +42,13 @@ class Project extends Model
         return $this->belongsTo(Artist::class);
     }
 
-    public function content_category()
+    public function category()
     {
-        return $this->belongsTo(ContentCategory::class);
+        return $this->belongsTo(Category::class);
+    }
+
+    public function type()
+    {
+        return $this->belongsTo(ProjectType::class);
     }
 }

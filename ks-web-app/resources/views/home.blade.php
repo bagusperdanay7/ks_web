@@ -134,7 +134,7 @@
                                         style="width: {{ $schedule_items->progress }}%;"></div>
                                 </div>
                             </div>
-                            <div class="col align-self-center text-mdm-14 text-color-tertiary">
+                            <div class="col align-self-center text-mdm-14 text-tertiary">
                                 {{ $schedule_items->content_category->name }}</div>
                             <div class="col align-self-center text-regular-14"><i class="lar la-calendar"></i>
                                 {{ \Carbon\Carbon::createFromFormat('Y-m-d', $schedule_items->project_date)->format('d F Y') }}
@@ -192,7 +192,7 @@
                                     <p class="text-sb-14 m-0">{{ $schedule_items->project_title }}</p>
                                 </div>
                                 <div class="text-mdm-14 mb-1">
-                                    <span class="text-color-tertiary">
+                                    <span class="text-tertiary">
                                         {{ $schedule_items->content_category->name }}
                                     </span> •
                                     <span class="text-black">{{ $schedule_items->project_class }}</span>

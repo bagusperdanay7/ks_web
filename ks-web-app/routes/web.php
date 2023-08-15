@@ -34,7 +34,7 @@ Route::get('/request-list', [ProjectController::class, 'request_list'])->name('r
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
 
-Route::get('/gallery/content-categories', [GalleryController::class, 'all_content_categories'])->name('categories');
+Route::get('/gallery/categories', [GalleryController::class, 'all_categories'])->name('categories');
 
 Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists')->name('artists');
 
@@ -42,7 +42,7 @@ Route::get('gallery/artists/{artist:codename}', function (Artist $artist) {
     return view('artist', [
         'title' => $artist->artist_name . " Gallery",
         'active' => 'gallery',
-        'artists' => $artist->projects->load('content_category', 'artist')
+        'artists' => $artist->projects->load('category', 'artist')
     ]);
 });
 

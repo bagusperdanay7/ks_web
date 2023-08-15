@@ -18,7 +18,7 @@
                     <i class="las la-search form-control-feedback icon-transform"></i>
                     <input type="search" class="form-control search-form shadow-none"
                         placeholder="Search title, artist, or project class (Press /)" aria-label="Search"
-                        id="searchGallery" name="search" value="{{ request('search') }}">
+                        id="searchGallery" name="search" value="{{ request('search') }}" autofocus>
                 </div>
             </form>
 

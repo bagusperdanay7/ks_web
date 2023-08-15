@@ -1,0 +1,12 @@
+/* $background-color-dark: #2a2438; */
+body {
+  background-color: #6528f7;
+}
+
+.button-alert {
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(68, 68, 68, 0.2666666667);
+}
+
+/*# sourceMappingURL=dashboard.css.map */
