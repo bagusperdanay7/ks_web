@@ -6,15 +6,15 @@
             <h2 class="">Content Category</h2>
         </div>
 
-        @foreach ($content_categories as $category)
+        @foreach ($categories as $category)
             <div class="col-3 category-card mb-4">
-                <a href="/gallery?content_category={{ $category->slug }}">
+                <a href="/gallery?category={{ $category->slug }}">
                     <div class="d-flex align-items-center gallery-card">
                         <div class="">
                             <i class="{{ $category->icon_class }}"></i>
                         </div>
                         <div class="space-card">
-                            <h5>{{ $category->name }}</h5>
+                            <h5>{{ $category->category_name }}</h5>
                             <p>{{ $category->total }} videos</p>
                         </div>
                     </div>

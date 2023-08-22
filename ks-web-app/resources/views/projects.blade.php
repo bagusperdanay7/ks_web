@@ -16,67 +16,98 @@
                     <table class="table table-hover projects-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Project Name</th>
-                                <th>Project Class</th>
+                                <th>Project Title</th>
                                 <th>Category</th>
+                                <th>Date</th>
+                                <th>Project Type</th>
                                 <th>Requester</th>
                                 <th>Status</th>
-                                <th>Progress</th>
                                 <th>Votes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($projects_upcoming as $project)
+                            @forelse ($projectsUpcoming as $project)
                                 <tr>
-                                    <td class="align-middle"><i class="lar la-calendar"></i>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->project_date)->format('d F Y') }}
+                                    <td class="align-middle title-with-progress">
+                                        <div>
+                                            <div class="d-flex justify-content-between text-sb-14">
+                                                <p class="p-0 m-0">
+                                                    {{ $project->project_title }}
+                                                </p>
+                                                <span class="p-0 m-0 ">
+                                                    {{ $project->progress }}%
+                                                </span>
+                                            </div>
+                                            <div class="progress">
+                                                <div class="progress-bar bg-second rounded-pill" role="progressbar"
+                                                    style="width: {{ $project->progress }}%;"
+                                                    aria-valuenow="{{ $project->progress }}" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
-                                    <td class="align-middle">{{ $project->project_title }}</td>
-                                    <td class="align-middle">{{ $project->project_class }}</td>
-                                    <td class="align-middle">{{ $project->content_category->name }}</td>
-                                    <td class="align-middle">{{ $project->project_requester }}</td>
-                                    @if ($project->project_status == 'Completed')
+                                    @if ($project->category->category_name === 'Line Distribution')
+                                        <td class="align-middle category-text-ld">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'Line Evolution')
+                                        <td class="align-middle category-text-le">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'Album Distribution')
+                                        <td class="align-middle category-text-ad">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'Album Evolution')
+                                        <td class="align-middle category-text-ae">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'Ranking Battle')
+                                        <td class="align-middle category-text-rb">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'How Should')
+                                        <td class="align-middle category-text-hs">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'How Would')
+                                        <td class="align-middle category-text-hw">{{ $project->category->category_name }}
+                                        </td>
+                                    @elseif ($project->category->category_name === 'Center Distribution')
+                                        <td class="align-middle category-text-cd">{{ $project->category->category_name }}
+                                        </td>
+                                    @endif
+                                    <td class="align-middle"><i class="lar la-calendar"></i>
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->date)->format('d F Y') }}
+                                    </td>
+                                    <td class="align-middle">{{ $project->type->type_name }}</td>
+                                    <td class="align-middle">{{ $project->requester }}</td>
+                                    @if ($project->status == 'Completed')
                                         <td class="align-middle">
                                             <span class="btn btn-complete">
-                                                {{ $project->project_status }}
+                                                {{ $project->status }}
                                             </span>
                                         </td>
-                                    @elseif ($project->project_status == 'On Process')
+                                    @elseif ($project->status == 'On Process')
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $project->project_status }}
+                                                {{ $project->status }}
                                             </span>
                                         </td>
-                                    @elseif ($project->project_status == 'Pending')
+                                    @elseif ($project->status == 'Pending')
                                         <td class="align-middle">
                                             <span class="btn btn-pending">
-                                                {{ $project->project_status }}
+                                                {{ $project->status }}
                                             </span>
                                         </td>
-                                    @elseif ($project->project_status == 'Rejected')
+                                    @elseif ($project->status == 'Rejected')
                                         <td class="align-middle">
                                             <span class="btn btn-rejected">
-                                                {{ $project->project_status }}
+                                                {{ $project->status }}
                                             </span>
                                         </td>
                                     @else
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $project->project_status }}
+                                                {{ $project->status }}
                                             </span>
                                         </td>
                                     @endif
-
-                                    <td class="align-middle">{{ $project->progress }}%
-                                        <div class="progress">
-                                            <div class="progress-bar bg-second rounded-pill" role="progressbar"
-                                                style="width: {{ $project->progress }}%;"
-                                                aria-valuenow="{{ $project->progress }}" aria-valuemin="0"
-                                                aria-valuemax="100">
-                                            </div>
-                                        </div>
-                                    </td>
                                     <td class="align-middle text-center">{{ $project->votes }}</td>
                                 </tr>
                             @empty
@@ -97,69 +128,95 @@
         <div class="col">
             <div class="project-section">
                 <div class="d-flex justify-content-between">
-                    <h3>Huge Project Vol.#01</h3>
-                    <a href="{{ route('huge-project-vol1') }}">
-                        <span>Show All
-                            <i class="las la-angle-right"></i>
-                        </span>
-                    </a>
+                    <h3>{{ $nonProjectType->type_name }}</h3>
                 </div>
-                <p>Huge Project Vol.#01 is a project based on Google Forms requests, where the content will be the line
-                    evolution of
-                    the female group of your choice.</p>
-                <div class="table-responsive">
+                <p>{{ $nonProjectType->about }}</p>
+
+                <div class="table-responsive mb-2">
                     <table class="table table-hover projects-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Project Name</th>
+                                <th>Project Title</th>
                                 <th>Category</th>
+                                <th>Date</th>
                                 <th>Requester</th>
                                 <th>Status</th>
                                 <th>Votes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($huge_projects as $huge_proj)
+                            @forelse ($nonProjects as $nonProject)
                                 <tr>
+                                    <td class="align-middle">{{ $nonProject->project_title }}</td>
+                                    @if ($nonProject->category->category_name === 'Line Distribution')
+                                        <td class="align-middle category-text-ld">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'Line Evolution')
+                                        <td class="align-middle category-text-le">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'Album Distribution')
+                                        <td class="align-middle category-text-ad">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'Album Evolution')
+                                        <td class="align-middle category-text-ae">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'Ranking Battle')
+                                        <td class="align-middle category-text-rb">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'How Should')
+                                        <td class="align-middle category-text-hs">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'How Would')
+                                        <td class="align-middle category-text-hw">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @elseif ($nonProject->category->category_name === 'Center Distribution')
+                                        <td class="align-middle category-text-cd">
+                                            {{ $nonProject->category->category_name }}
+                                        </td>
+                                    @endif
                                     <td class="align-middle"><i class="lar la-calendar"></i>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $huge_proj->project_date)->format('d F Y') }}
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $nonProject->date)->format('d F Y') }}
                                     </td>
-                                    <td class="align-middle">{{ $huge_proj->project_title }}</td>
-                                    <td class="align-middle">{{ $huge_proj->content_category->name }}</td>
-                                    <td class="align-middle">{{ $huge_proj->project_requester }}</td>
-                                    @if ($huge_proj->project_status == 'Completed')
+                                    <td class="align-middle">{{ $nonProject->requester }}</td>
+                                    @if ($nonProject->status == 'Completed')
                                         <td class="align-middle">
                                             <span class="btn btn-complete">
-                                                {{ $huge_proj->project_status }}
+                                                {{ $nonProject->status }}
                                             </span>
                                         </td>
-                                    @elseif ($huge_proj->project_status == 'On Process')
+                                    @elseif ($nonProject->status == 'On Process')
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $huge_proj->project_status }}
+                                                {{ $nonProject->status }}
                                             </span>
                                         </td>
-                                    @elseif ($huge_proj->project_status == 'Pending')
+                                    @elseif ($nonProject->status == 'Pending')
                                         <td class="align-middle">
                                             <span class="btn btn-pending">
-                                                {{ $huge_proj->project_status }}
+                                                {{ $nonProject->status }}
                                             </span>
                                         </td>
-                                    @elseif ($huge_proj->project_status == 'Rejected')
+                                    @elseif ($nonProject->status == 'Rejected')
                                         <td class="align-middle">
                                             <span class="btn btn-rejected">
-                                                {{ $huge_proj->project_status }}
+                                                {{ $nonProject->status }}
                                             </span>
                                         </td>
                                     @else
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $huge_proj->project_status }}
+                                                {{ $nonProject->status }}
                                             </span>
                                         </td>
                                     @endif
-                                    <td class="align-middle">{{ $huge_proj->votes }}</td>
+                                    <td class="align-middle">{{ $nonProject->votes }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -170,6 +227,11 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('non-project') }}" class="link-show-all text-decoration-none text-mdm-14">Show
+                        All <i class="las la-arrow-right"> </i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -179,69 +241,86 @@
         <div class="col">
             <div class="project-section">
                 <div class="d-flex justify-content-between">
-                    <h3>Nostalgic Vibes</h3>
-                    <a href="{{ route('nostalgic-vibes') }}">
-                        <span>Show All
-                            <i class="las la-angle-right"></i>
-                        </span>
-                    </a>
+                    <h3>{{ $hugeProjectType->type_name }}</h3>
                 </div>
-                <p>Nostalgic Vibes is a project that is planned to be uploaded every weekend. Where the video contains the
-                    line
-                    distribution of old songs.</p>
+                <p>{{ $hugeProjectType->about }}</p>
                 <div class="table-responsive">
                     <table class="table table-hover projects-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Project Name</th>
+                                <th>Project Title</th>
                                 <th>Category</th>
+                                <th>Date</th>
                                 <th>Requester</th>
                                 <th>Status</th>
                                 <th>Votes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($nv_projects as $nv_pro)
+                            @forelse ($hugeProjects as $hugeProj)
                                 <tr>
+                                    <td class="align-middle">{{ $hugeProj->project_title }}</td>
+                                    @if ($hugeProj->category->category_name === 'Line Distribution')
+                                        <td class="align-middle category-text-ld">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'Line Evolution')
+                                        <td class="align-middle category-text-le">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'Album Distribution')
+                                        <td class="align-middle category-text-ad">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'Album Evolution')
+                                        <td class="align-middle category-text-ae">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'Ranking Battle')
+                                        <td class="align-middle category-text-rb">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'How Should')
+                                        <td class="align-middle category-text-hs">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'How Would')
+                                        <td class="align-middle category-text-hw">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @elseif ($hugeProj->category->category_name === 'Center Distribution')
+                                        <td class="align-middle category-text-cd">{{ $hugeProj->category->category_name }}
+                                        </td>
+                                    @endif
                                     <td class="align-middle"><i class="lar la-calendar"></i>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $nv_pro->project_date)->format('d F Y') }}
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $hugeProj->date)->format('d F Y') }}
                                     </td>
-                                    <td class="align-middle">{{ $nv_pro->project_title }}</td>
-                                    <td class="align-middle">{{ $nv_pro->content_category->name }}</td>
-                                    <td class="align-middle">{{ $nv_pro->project_requester }}</td>
-                                    @if ($nv_pro->project_status == 'Completed')
+                                    <td class="align-middle">{{ $hugeProj->requester }}</td>
+                                    @if ($hugeProj->status == 'Completed')
                                         <td class="align-middle">
                                             <span class="btn btn-complete">
-                                                {{ $nv_pro->project_status }}
+                                                {{ $hugeProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($nv_pro->project_status == 'On Process')
+                                    @elseif ($hugeProj->status == 'On Process')
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $nv_pro->project_status }}
+                                                {{ $hugeProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($nv_pro->project_status == 'Pending')
+                                    @elseif ($hugeProj->status == 'Pending')
                                         <td class="align-middle">
                                             <span class="btn btn-pending">
-                                                {{ $nv_pro->project_status }}
+                                                {{ $hugeProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($nv_pro->project_status == 'Rejected')
+                                    @elseif ($hugeProj->status == 'Rejected')
                                         <td class="align-middle">
                                             <span class="btn btn-rejected">
-                                                {{ $nv_pro->project_status }}
+                                                {{ $hugeProj->status }}
                                             </span>
                                         </td>
                                     @else
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $nv_pro->project_status }}
+                                                {{ $hugeProj->status }}
                                             </span>
                                         </td>
                                     @endif
-                                    <td class="align-middle">{{ $nv_pro->votes }}</td>
+                                    <td class="align-middle">{{ $hugeProj->votes }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -252,6 +331,12 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('huge-project-vol1') }}"
+                        class="link-show-all text-decoration-none text-mdm-14">Show
+                        All <i class="las la-arrow-right"> </i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -261,67 +346,94 @@
         <div class="col">
             <div class="project-section">
                 <div class="d-flex justify-content-between">
-                    <h3>Youtube Comments</h3>
-                    <a href="{{ route('youtube-comment') }}">
-                        <span>Show All
-                            <i class="las la-angle-right"></i>
-                        </span>
-                    </a>
+                    <h3>{{ $nostalgicVibesType->type_name }}</h3>
                 </div>
-                <p>This project is retrieved from youtube comments.</p>
+                <p>{{ $nostalgicVibesType->about }}</p>
                 <div class="table-responsive">
                     <table class="table table-hover projects-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Project Name</th>
+                                <th>Project Title</th>
                                 <th>Category</th>
+                                <th>Date</th>
                                 <th>Requester</th>
                                 <th>Status</th>
                                 <th>Votes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($youtube_com_projects as $you_com_pro)
+                            @forelse ($nostalgicVibesProjects as $nostalgicVibesProj)
                                 <tr>
+                                    <td class="align-middle">{{ $nostalgicVibesProj->project_title }}</td>
+                                    @if ($nostalgicVibesProj->category->category_name === 'Line Distribution')
+                                        <td class="align-middle category-text-ld">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'Line Evolution')
+                                        <td class="align-middle category-text-le">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'Album Distribution')
+                                        <td class="align-middle category-text-ad">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'Album Evolution')
+                                        <td class="align-middle category-text-ae">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'Ranking Battle')
+                                        <td class="align-middle category-text-rb">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'How Should')
+                                        <td class="align-middle category-text-hs">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'How Would')
+                                        <td class="align-middle category-text-hw">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @elseif ($nostalgicVibesProj->category->category_name === 'Center Distribution')
+                                        <td class="align-middle category-text-cd">
+                                            {{ $nostalgicVibesProj->category->category_name }}
+                                        </td>
+                                    @endif
                                     <td class="align-middle"><i class="lar la-calendar"></i>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $you_com_pro->project_date)->format('d F Y') }}
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $nostalgicVibesProj->date)->format('d F Y') }}
                                     </td>
-                                    <td class="align-middle">{{ $you_com_pro->project_title }}</td>
-                                    <td class="align-middle">{{ $you_com_pro->content_category->name }}</td>
-                                    <td class="align-middle">{{ $you_com_pro->project_requester }}</td>
-                                    @if ($you_com_pro->project_status == 'Completed')
+                                    <td class="align-middle">{{ $nostalgicVibesProj->requester }}</td>
+                                    @if ($nostalgicVibesProj->status == 'Completed')
                                         <td class="align-middle">
                                             <span class="btn btn-complete">
-                                                {{ $you_com_pro->project_status }}
+                                                {{ $nostalgicVibesProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($you_com_pro->project_status == 'On Process')
+                                    @elseif ($nostalgicVibesProj->status == 'On Process')
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $you_com_pro->project_status }}
+                                                {{ $nostalgicVibesProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($you_com_pro->project_status == 'Pending')
+                                    @elseif ($nostalgicVibesProj->status == 'Pending')
                                         <td class="align-middle">
                                             <span class="btn btn-pending">
-                                                {{ $you_com_pro->project_status }}
+                                                {{ $nostalgicVibesProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($you_com_pro->project_status == 'Rejected')
+                                    @elseif ($nostalgicVibesProj->status == 'Rejected')
                                         <td class="align-middle">
                                             <span class="btn btn-rejected">
-                                                {{ $you_com_pro->project_status }}
+                                                {{ $nostalgicVibesProj->status }}
                                             </span>
                                         </td>
                                     @else
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $you_com_pro->project_status }}
+                                                {{ $nostalgicVibesProj->status }}
                                             </span>
                                         </td>
                                     @endif
-                                    <td class="align-middle">{{ $you_com_pro->votes }}</td>
+                                    <td class="align-middle">{{ $nostalgicVibesProj->votes }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -332,6 +444,11 @@
                             @endforelse
                         </tbody>
                     </table>
+                </div>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('nostalgic-vibes') }}" class="link-show-all text-decoration-none text-mdm-14">Show
+                        All <i class="las la-arrow-right"> </i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -341,66 +458,94 @@
         <div class="col">
             <div class="project-section">
                 <div class="d-flex justify-content-between">
-                    <h3>Non-Project</h3>
-                    <a href="{{ route('non-project') }}">
-                        <span>Show All
-                            <i class="las la-angle-right"></i>
-                        </span>
-                    </a>
+                    <h3>{{ $youtubeCommentType->type_name }}</h3>
                 </div>
-                <p>Non-project Isn't based on your requests. Instead, it's based on our own desires and upcoming new
-                    comeback songs from particular artists. </p>
+                <p>{{ $youtubeCommentType->about }}</p>
                 <div class="table-responsive">
                     <table class="table table-hover projects-table">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Project Name</th>
+                                <th>Project Title</th>
                                 <th>Category</th>
+                                <th>Date</th>
                                 <th>Requester</th>
                                 <th>Status</th>
+                                <th>Votes</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($non_projects as $non_pro)
+                            @forelse ($youtubeCommentProjects as $youtubeCommentProj)
                                 <tr>
+                                    <td class="align-middle">{{ $youtubeCommentProj->project_title }}</td>
+                                    @if ($youtubeCommentProj->category->category_name === 'Line Distribution')
+                                        <td class="align-middle category-text-ld">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'Line Evolution')
+                                        <td class="align-middle category-text-le">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'Album Distribution')
+                                        <td class="align-middle category-text-ad">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'Album Evolution')
+                                        <td class="align-middle category-text-ae">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'Ranking Battle')
+                                        <td class="align-middle category-text-rb">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'How Should')
+                                        <td class="align-middle category-text-hs">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'How Would')
+                                        <td class="align-middle category-text-hw">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @elseif ($youtubeCommentProj->category->category_name === 'Center Distribution')
+                                        <td class="align-middle category-text-cd">
+                                            {{ $youtubeCommentProj->category->category_name }}
+                                        </td>
+                                    @endif
                                     <td class="align-middle"><i class="lar la-calendar"></i>
-                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $non_pro->project_date)->format('d F Y') }}
+                                        {{ \Carbon\Carbon::createFromFormat('Y-m-d', $youtubeCommentProj->date)->format('d F Y') }}
                                     </td>
-                                    <td class="align-middle">{{ $non_pro->project_title }}</td>
-                                    <td class="align-middle">{{ $non_pro->content_category->name }}</td>
-                                    <td class="align-middle">{{ $non_pro->project_requester }}</td>
-                                    @if ($non_pro->project_status == 'Completed')
+                                    <td class="align-middle">{{ $youtubeCommentProj->requester }}</td>
+                                    @if ($youtubeCommentProj->status == 'Completed')
                                         <td class="align-middle">
                                             <span class="btn btn-complete">
-                                                {{ $non_pro->project_status }}
+                                                {{ $youtubeCommentProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($non_pro->project_status == 'On Process')
+                                    @elseif ($youtubeCommentProj->status == 'On Process')
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $non_pro->project_status }}
+                                                {{ $youtubeCommentProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($non_pro->project_status == 'Pending')
+                                    @elseif ($youtubeCommentProj->status == 'Pending')
                                         <td class="align-middle">
                                             <span class="btn btn-pending">
-                                                {{ $non_pro->project_status }}
+                                                {{ $youtubeCommentProj->status }}
                                             </span>
                                         </td>
-                                    @elseif ($non_pro->project_status == 'Rejected')
+                                    @elseif ($youtubeCommentProj->status == 'Rejected')
                                         <td class="align-middle">
                                             <span class="btn btn-rejected">
-                                                {{ $non_pro->project_status }}
+                                                {{ $youtubeCommentProj->status }}
                                             </span>
                                         </td>
                                     @else
                                         <td class="align-middle">
                                             <span class="btn btn-onprocess">
-                                                {{ $non_pro->project_status }}
+                                                {{ $youtubeCommentProj->status }}
                                             </span>
                                         </td>
                                     @endif
+                                    <td class="align-middle">{{ $youtubeCommentProj->votes }}</td>
                                 </tr>
                             @empty
                                 <tr>
@@ -412,14 +557,11 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mb-5">
-        <div class="col">
-            <div class="projects-section-href text-center">
-                <a href="{{ route('request-list') }}">All Request List <i class="las la-arrow-right"></i></a>
+                <div class="d-flex justify-content-center align-items-center">
+                    <a href="{{ route('youtube-comment') }}" class="link-show-all text-decoration-none text-mdm-14">Show
+                        All <i class="las la-arrow-right"> </i>
+                    </a>
+                </div>
             </div>
         </div>
     </div>

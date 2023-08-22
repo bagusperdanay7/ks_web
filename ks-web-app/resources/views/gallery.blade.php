@@ -5,8 +5,8 @@
         <h1 class="mb-3">Explore</h1>
         <div class="col mb-4">
             <form class="" action="/gallery">
-                @if (request('content_category'))
-                    <input type="hidden" name="content_category" value="{{ request('content_category') }}">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
 
                 @if (request('artist'))
@@ -26,7 +26,7 @@
     </div>
 
     {{-- TODO:tambahin juga {{ Route::current()->getName() }} jika yang diakses url artist atau bikin filter --}}
-    @if (request('search') or request('artist') or request('content_category'))
+    @if (request('search') or request('artist') or request('category'))
         <div class="row  mb-4">
             <div class="gallery-cards-head">
                 <h3>Search Results <span class="align-middle badge bg-black-80">
@@ -38,24 +38,24 @@
                 <div class="col-4 artist-card mb-3">
                     <a href="/gallery/videos/{{ $gallery->id }}">
                         <div class="video-description-card">
-                            @if ($gallery->project_thumbnail != null)
-                                <img src="{{ $gallery->project_thumbnail }}" class="rounded thumbnail m-0 p-0"
-                                    width="100%" alt="{{ $gallery->project_title }} thumbnail">
+                            @if ($gallery->thumbnail != null)
+                                <img src="{{ $gallery->thumbnail }}" class="rounded thumbnail m-0 p-0" width="100%"
+                                    alt="{{ $gallery->project_title }} thumbnail">
                             @else
                                 <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0"
                                     width="100%" alt="{{ $gallery->project_title }} thumbnail">
                             @endif
-                            <a href="gallery?content_category={{ $gallery->content_category->slug }}">
-                                <p class="category-text-video">{{ $gallery->content_category->name }}</p>
+                            <a href="gallery?category={{ $gallery->category->slug }}">
+                                <p class="category-text-video">{{ $gallery->category->category_name }}</p>
                             </a>
                             <h4>{{ $gallery->project_title }}
-                                ({{ $gallery->content_category->name }})
+                                ({{ $gallery->category->category_name }})
                             </h4>
                             <span
-                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($gallery->project_date))->diffForHumans() }}
-                                &#8226; <a href="gallery?search={{ $gallery->project_class }}"
+                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($gallery->date))->diffForHumans() }}
+                                &#8226; <a href="gallery?search={{ $gallery->type->type_name }}"
                                     class="p-0 m-0 text-decoration-none"><span
-                                        class="pro-class-text">{{ $gallery->project_class }}</span>
+                                        class="pro-class-text">{{ $gallery->type->type_name }}</span>
                                 </a>
                             </span>
                             <p class="px-3 text-primary">{{ $gallery->project_status }}</p>
@@ -90,50 +90,50 @@
                     <div class="gallery-cards-head">
                         <h3>For You</h3>
                     </div>
-                    @foreach ($recommendation_video as $rec_vids)
+                    @foreach ($recommendationVideo as $recVideo)
                         <div class="col-4 artist-card mb-3">
-                            <a href="/gallery/videos/{{ $rec_vids->id }}">
+                            <a href="/gallery/videos/{{ $recVideo->id }}">
                                 <div class="video-description-card">
-                                    @if ($rec_vids->project_thumbnail != null)
-                                        <img src="{{ $rec_vids->project_thumbnail }}" class="rounded thumbnail m-0 p-0"
-                                            width="100%" alt="{{ $rec_vids->project_title }} thumbnail">
+                                    @if ($recVideo->thumbnail != null)
+                                        <img src="{{ $recVideo->thumbnail }}" class="rounded thumbnail m-0 p-0"
+                                            width="100%" alt="{{ $recVideo->project_title }} thumbnail">
                                     @else
                                         <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0"
-                                            width="100%" alt="{{ $rec_vids->project_title }} thumbnail">
+                                            width="100%" alt="{{ $recVideo->project_title }} thumbnail">
                                     @endif
-                                    <a href="gallery?content_category={{ $rec_vids->content_category->slug }}">
-                                        <p class="category-text-video">{{ $rec_vids->content_category->name }}</p>
+                                    <a href="gallery?category={{ $recVideo->category->slug }}">
+                                        <p class="category-text-video">{{ $recVideo->category->category_name }}</p>
                                     </a>
-                                    <h4>{{ $rec_vids->project_title }}
-                                        ({{ $rec_vids->content_category->name }})
+                                    <h4>{{ $recVideo->project_title }}
+                                        ({{ $recVideo->category->category_name }})
                                     </h4>
                                     <span
-                                        class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($rec_vids->project_date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?search={{ $rec_vids->project_class }}"
+                                        class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
+                                        &#8226; <a href="gallery?search={{ $recVideo->type->type_name }}"
                                             class="p-0 m-0 text-decoration-none"><span
-                                                class="pro-class-text">{{ $rec_vids->project_class }}</span>
+                                                class="pro-class-text">{{ $recVideo->type->type_name }}</span>
                                         </a>
                                     </span>
                                     <div class="d-flex flex-row my-2 px-2 pb-2">
                                         <div>
-                                            <a href="/gallery?artist={{ $rec_vids->artist->codename }}">
-                                                @if ($rec_vids->artist->artist_pict != null)
+                                            <a href="/gallery?artist={{ $recVideo->artist->codename }}">
+                                                @if ($recVideo->artist->artist_pict != null)
                                                     <img class="rounded-circle fit-img"
-                                                        src="{{ asset('img/artist/' . $rec_vids->artist->artist_pict) }}"
-                                                        alt="{{ $rec_vids->artist->artist_name }} thumbnail" width="40px"
+                                                        src="{{ asset('img/artist/' . $recVideo->artist->artist_pict) }}"
+                                                        alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                         height="40px">
                                                 @else
                                                     <img class="rounded-circle fit-img"
                                                         src="{{ asset('img/artist/unknown_artist.jpg') }}"
-                                                        alt="{{ $rec_vids->artist->artist_name }} thumbnail" width="40px"
+                                                        alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                         height="40px">
                                                 @endif
 
                                             </a>
                                         </div>
                                         <div class="align-self-center">
-                                            <a href="/gallery?artist={{ $rec_vids->artist->codename }}">
-                                                <p class="mx-2 my-0 py-0">{{ $rec_vids->artist->artist_name }}</p>
+                                            <a href="/gallery?artist={{ $recVideo->artist->codename }}">
+                                                <p class="mx-2 my-0 py-0">{{ $recVideo->artist->artist_name }}</p>
                                             </a>
                                         </div>
                                     </div>
@@ -151,20 +151,20 @@
                     <h3>Content Category</h3>
                 </div>
                 <div class="align-self-end">
-                    <a href="/gallery/content_categories">
+                    <a href="{{ route('categories') }}">
                         <span>Show All Categories</span>
                     </a>
                 </div>
             </div>
             @foreach ($categories as $category)
                 <div class="col-3 category-card">
-                    <a href="/gallery?content_category={{ $category->content_category->slug }}">
+                    <a href="/gallery?category={{ $category->category->slug }}">
                         <div class="d-flex align-items-center gallery-card">
                             <div class="">
-                                <i class="{{ $category->content_category->icon_class }}"></i>
+                                <i class="{{ $category->category->icon_class }}"></i>
                             </div>
                             <div class="space-card">
-                                <h5>{{ $category->content_category->name }}</h5>
+                                <h5>{{ $category->category->category_name }}</h5>
                                 <p>{{ $category->total }} videos</p>
                             </div>
                         </div>
@@ -179,24 +179,24 @@
                     <h3>Artist</h3>
                 </div>
                 <div class="align-self-end">
-                    <a href="/gallery/artists">
+                    <a href="{{ route('artists') }}">
                         <span>Show All Artist</span>
                     </a>
                 </div>
             </div>
-            @foreach ($artists_total as $artist_total)
+            @foreach ($artistsTotal as $artistTotal)
                 <div class="col-2 artist-card">
-                    <a href="/gallery?artist={{ $artist_total->artist->codename }}">
-                        @if ($artist_total->artist->artist_pict != null)
-                            <img src="{{ asset('img/artist/' . $artist_total->artist->artist_pict) }}"
+                    <a href="/gallery?artist={{ $artistTotal->artist->codename }}">
+                        @if ($artistTotal->artist->artist_pict != null)
+                            <img src="{{ asset('img/artist/' . $artistTotal->artist->artist_pict) }}"
                                 class="rounded artist-image" width="195px" height="195px"
-                                alt="{{ $artist_total->artist->artist_name }}">
+                                alt="{{ $artistTotal->artist->artist_name }}">
                         @else
                             <img src="{{ asset('img/artist/unknown_artist.jpg') }}" class="rounded artist-image"
-                                width="195px" height="195px" alt="{{ $artist_total->artist->artist_name }}">
+                                width="195px" height="195px" alt="{{ $artistTotal->artist->artist_name }}">
                         @endif
-                        <p>{{ $artist_total->artist->artist_name }}</p>
-                        <span>{{ $artist_total->total }} Videos</span>
+                        <p>{{ $artistTotal->artist->artist_name }}</p>
+                        <span>{{ $artistTotal->total }} Videos</span>
                     </a>
                 </div>
             @endforeach
@@ -206,49 +206,49 @@
             <div class="gallery-cards-head">
                 <h3>Latest Video</h3>
             </div>
-            @foreach ($latest_video as $latest_vid)
+            @foreach ($latestVideo as $latestVid)
                 <div class="col-4 artist-card">
-                    <a href="/gallery/videos/{{ $latest_vid->id }}">
+                    <a href="/gallery/videos/{{ $latestVid->id }}">
                         <div class="video-description-card">
-                            @if ($latest_vid->project_thumbnail != null)
-                                <img src="{{ $latest_vid->project_thumbnail }}" class="rounded thumbnail m-0 p-0"
-                                    width="100%" alt="{{ $latest_vid->project_title }} thumbnail">
+                            @if ($latestVid->thumbnail != null)
+                                <img src="{{ $latestVid->thumbnail }}" class="rounded thumbnail m-0 p-0" width="100%"
+                                    alt="{{ $latestVid->project_title }} thumbnail">
                             @else
                                 <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0"
-                                    width="100%" alt="{{ $latest_vid->project_title }} thumbnail">
+                                    width="100%" alt="{{ $latestVid->project_title }} thumbnail">
                             @endif
-                            <a href="gallery?content_category={{ $latest_vid->content_category->slug }}">
-                                <p class="category-text-video">{{ $latest_vid->content_category->name }}</p>
+                            <a href="gallery?category={{ $latestVid->category->slug }}">
+                                <p class="category-text-video">{{ $latestVid->category->category_name }}</p>
                             </a>
-                            <h4>{{ $latest_vid->project_title }}
-                                ({{ $latest_vid->content_category->name }})
+                            <h4>{{ $latestVid->project_title }}
+                                ({{ $latestVid->category->category_name }})
                             </h4>
                             <span
-                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($latest_vid->project_date))->diffForHumans() }}
-                                &#8226; <a href="gallery?search={{ $latest_vid->project_class }}"
+                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($latestVid->date))->diffForHumans() }}
+                                &#8226; <a href="gallery?search={{ $latestVid->type->type_name }}"
                                     class="p-0 m-0 text-decoration-none"><span
-                                        class="pro-class-text">{{ $latest_vid->project_class }}</span>
+                                        class="pro-class-text">{{ $latestVid->type->type_name }}</span>
                                 </a>
                             </span>
                             <div class="d-flex flex-row my-2 px-2 pb-2">
                                 <div>
-                                    <a href="/gallery?artist={{ $latest_vid->artist->codename }}">
-                                        @if ($latest_vid->artist->artist_pict != null)
+                                    <a href="/gallery?artist={{ $latestVid->artist->codename }}">
+                                        @if ($latestVid->artist->artist_pict != null)
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/' . $latest_vid->artist->artist_pict) }}"
-                                                alt="{{ $latest_vid->artist->artist_name }} thumbnail" width="40px"
+                                                src="{{ asset('img/artist/' . $latestVid->artist->artist_pict) }}"
+                                                alt="{{ $latestVid->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @else
                                             <img class="rounded-circle fit-img"
                                                 src="{{ asset('img/artist/unknown_artist.jpg') }}"
-                                                alt="{{ $latest_vid->artist->artist_name }} thumbnail" width="40px"
+                                                alt="{{ $latestVid->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @endif
                                     </a>
                                 </div>
                                 <div class="align-self-center">
-                                    <a href="/gallery?artist={{ $latest_vid->artist->codename }}">
-                                        <p class="mx-2 my-0 py-0">{{ $latest_vid->artist->artist_name }}</p>
+                                    <a href="/gallery?artist={{ $latestVid->artist->codename }}">
+                                        <p class="mx-2 my-0 py-0">{{ $latestVid->artist->artist_name }}</p>
                                     </a>
                                 </div>
                             </div>
@@ -262,50 +262,50 @@
             <div class="gallery-cards-head">
                 <h3>Recommended For You</h3>
             </div>
-            @foreach ($recommendation_video as $rec_vids)
+            @foreach ($recommendationVideo as $recVideo)
                 <div class="col-4 artist-card mb-3">
-                    <a href="/gallery/videos/{{ $rec_vids->id }}">
+                    <a href="/gallery/videos/{{ $recVideo->id }}">
                         <div class="video-description-card">
-                            @if ($rec_vids->project_thumbnail != null)
-                                <img src="{{ $rec_vids->project_thumbnail }}" class="rounded thumbnail m-0 p-0"
-                                    width="100%" alt="{{ $rec_vids->project_title }} thumbnail">
+                            @if ($recVideo->thumbnail != null)
+                                <img src="{{ $recVideo->thumbnail }}" class="rounded thumbnail m-0 p-0" width="100%"
+                                    alt="{{ $recVideo->project_title }} thumbnail">
                             @else
                                 <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0"
-                                    width="100%" alt="{{ $rec_vids->project_title }} thumbnail">
+                                    width="100%" alt="{{ $recVideo->project_title }} thumbnail">
                             @endif
-                            <a href="gallery?content_category={{ $rec_vids->content_category->slug }}">
-                                <p class="category-text-video">{{ $rec_vids->content_category->name }}</p>
+                            <a href="gallery?category={{ $recVideo->category->slug }}">
+                                <p class="category-text-video">{{ $recVideo->category->category_name }}</p>
                             </a>
-                            <h4>{{ $rec_vids->project_title }}
-                                ({{ $rec_vids->content_category->name }})
+                            <h4>{{ $recVideo->project_title }}
+                                ({{ $recVideo->category->category_name }})
                             </h4>
                             <span
-                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($rec_vids->project_date))->diffForHumans() }}
-                                &#8226; <a href="gallery?search={{ $rec_vids->project_class }}"
+                                class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
+                                &#8226; <a href="gallery?search={{ $recVideo->type->type_name }}"
                                     class="p-0 m-0 text-decoration-none"><span
-                                        class="pro-class-text">{{ $rec_vids->project_class }}</span>
+                                        class="pro-class-text">{{ $recVideo->type->type_name }}</span>
                                 </a>
                             </span>
                             <div class="d-flex flex-row my-2 px-2 pb-2">
                                 <div>
-                                    <a href="/gallery?artist={{ $rec_vids->artist->codename }}">
-                                        @if ($rec_vids->artist->artist_pict != null)
+                                    <a href="/gallery?artist={{ $recVideo->artist->codename }}">
+                                        @if ($recVideo->artist->artist_pict != null)
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/' . $rec_vids->artist->artist_pict) }}"
-                                                alt="{{ $rec_vids->artist->artist_name }} thumbnail" width="40px"
+                                                src="{{ asset('img/artist/' . $recVideo->artist->artist_pict) }}"
+                                                alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @else
                                             <img class="rounded-circle fit-img"
                                                 src="{{ asset('img/artist/unknown_artist.jpg') }}"
-                                                alt="{{ $rec_vids->artist->artist_name }} thumbnail" width="40px"
+                                                alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @endif
 
                                     </a>
                                 </div>
                                 <div class="align-self-center">
-                                    <a href="/gallery?artist={{ $rec_vids->artist->codename }}">
-                                        <p class="mx-2 my-0 py-0">{{ $rec_vids->artist->artist_name }}</p>
+                                    <a href="/gallery?artist={{ $recVideo->artist->codename }}">
+                                        <p class="mx-2 my-0 py-0">{{ $recVideo->artist->artist_name }}</p>
                                     </a>
                                 </div>
                             </div>
