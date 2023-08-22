@@ -13,10 +13,18 @@ class ArtistController extends Controller
      */
     public function index()
     {
+        $artist = Artist::query()
+                        ->join('projects', 'projects.artist_id', '=', 'artists.id')
+                        ->select('artists.artist_name', 'artists.codename', 'artists.artist_pict')
+                        ->selectRaw('count(projects.artist_id) AS total_artist')
+                        ->groupby('artists.id')
+                        ->orderby('artists.artist_name')
+                        ->get();
+
         return view('artists', [
             'title' => 'All Artists',
             'active' => 'gallery',
-            'artists' => Artist::query()->join('projects', 'projects.artist_id', '=', 'artists.id')->select('artists.artist_name', 'artists.codename', 'artists.artist_pict')->selectRaw('count(projects.artist_id) AS total_artist')->groupby('artists.id')->orderby('artists.artist_name')->get()
+            'artists' => $artist,
         ]);
     }
 

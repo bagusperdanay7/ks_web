@@ -21,7 +21,8 @@ class Project extends Model
         // null
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return  $query->where(function ($query) use ($search) {
-                $query->where('project_title', 'like', '%' . $search . '%')->orWhere('project_class', 'like', '%' . $search . '%');
+                $query->where('project_title', 'like', '%' . $search . '%');
+                // ->orWhere('project_types.type_name', 'like', '%' . $search . '%');
             });
         });
 

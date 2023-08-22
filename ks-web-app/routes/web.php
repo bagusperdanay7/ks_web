@@ -2,10 +2,13 @@
 
 use App\Models\Artist;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\GalleryController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\RequestFormController;
+use App\Http\Controllers\SignUpController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +35,13 @@ Route::get('/projects/non-project', [ProjectController::class, 'non_project'])->
 
 Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
 
+Route::get('/request-form', [RequestFormController::class, 'index'])->name('request-form');
+
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
 
 Route::get('/gallery/categories', [GalleryController::class, 'all_categories'])->name('categories');
 
-Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists')->name('artists');
+Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists');
 
 Route::get('gallery/artists/{artist:codename}', function (Artist $artist) {
     return view('artist', [
@@ -52,7 +57,11 @@ Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
 
-// Kasih Impor Excel
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+
+Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up');
+
+// Kasih Impor Excel,
 // https://www.malasngoding.com/import-excel-laravel/
 
 // Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

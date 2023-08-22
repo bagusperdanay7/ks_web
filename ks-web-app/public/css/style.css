@@ -21,16 +21,16 @@
     --secondary-30: #b6dffc;
     --secondary-20: #ceeafd;
     --secondary-10: #e6f4fe;
-    --tertiary: #b93160;
-    --tertiary-90: #c0456f;
-    --tertiary-80: #c75a7f;
-    --tertiary-70: #ce6e8f;
-    --tertiary-60: #d5839f;
-    --tertiary-50: #dc98af;
-    --tertiary-40: #e3acbf;
-    --tertiary-30: #eac1cf;
-    --tertiary-20: #f1d5df;
-    --tertiary-10: #f8eaef;
+    --tertiary: #e60452;
+    --tertiary-90: #e81d63;
+    --tertiary-80: #eb3674;
+    --tertiary-70: #ed4f85;
+    --tertiary-60: #f06897;
+    --tertiary-50: #f281a8;
+    --tertiary-40: #f59ab9;
+    --tertiary-30: #f7b3cb;
+    --tertiary-20: #faccdc;
+    --tertiary-10: #fce5ed;
     --alert: #e15554;
     --alert-90: #e46665;
     --alert-80: #e77676;
@@ -72,21 +72,28 @@
     --black-20: #d2d2d2;
     --black-10: #e8e8e8;
     --background-color: #f1f5f9;
-    /* --background-color-dark: #2a2438; */
+    /* --background-color-dark: #2A2438; */
     --white: #ffffff;
     --background-color-secondary: #fff;
     --special-color: #a1f5ff;
+    --ranking-battle-100: #f615a5;
+    --ranking-battle-10: #fee5f5;
+    --how-would-100: #fc3a00;
+    --how-would-10: #ffeee8;
+    --center-distribution-100: #1426ff;
+    --center-distribution-10: #e7e9ff;
     --main-font: "Poppins", sans-serif;
     --secondary-font: "Inter", sans-serif;
 }
 
 /* Dark Mode
 /* Add data-theme="dark" into body html */
-/* [data-theme="dark"] {
+[data-theme="dark"] {
     --background-color: #2a2438;
     --text-color: #ffffff;
     --background-color-secondary: var(--black-30);
-} */
+    --background-color-secondary: #2e2545;
+}
 
 /* Blok Text Selection */
 ::-moz-selection {
@@ -145,7 +152,7 @@ h6 {
 
 /* Color */
 /* Text Color */
-.text-black-100 {
+.text-black {
     color: var(--text-color);
 }
 
@@ -184,7 +191,6 @@ h6 {
 .text-sb-18 {
     font-size: 18px;
     font-weight: 600;
-    color: var(--text-color);
 }
 
 .text-sb-14 {
@@ -196,7 +202,11 @@ h6 {
 .text-mdm-14 {
     font-size: 14px;
     font-weight: 500;
-    color: var(--text-color);
+}
+
+.text-mdm-18 {
+    font-size: 18px;
+    font-weight: 500;
 }
 
 .text-regular-14 {
@@ -206,7 +216,7 @@ h6 {
 
 /* Inter */
 .inter-regular-14 {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-size: 14px;
     font-weight: 400;
     color: var(--black-80);
@@ -214,10 +224,59 @@ h6 {
 }
 
 .inter-medium-18 {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-size: 18px;
     font-weight: 500;
     color: var(--black-90);
+}
+
+/* Text based on Category */
+table td.category-text-ld,
+.category-text-ld {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+table td.category-text-le,
+.category-text-le {
+    color: var(--tertiary);
+    font-weight: 500;
+}
+
+table td.category-text-ad,
+.category-text-ad {
+    color: var(--alert);
+    font-weight: 500;
+}
+
+table td.category-text-ae,
+.category-text-ae {
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+table td.category-text-rb,
+.category-text-rb {
+    color: var(--ranking-battle-100);
+    font-weight: 500;
+}
+
+table td.category-text-hs,
+.category-text-hs {
+    color: var(--success);
+    font-weight: 500;
+}
+
+table td.category-text-hw,
+.category-text-hw {
+    color: var(--how-would-100);
+    font-weight: 500;
+}
+
+table td.category-text-cd,
+.category-text-cd {
+    color: var(--center-distribution-100);
+    font-weight: 500;
 }
 
 /* Penutup Typography */
@@ -235,6 +294,10 @@ h6 {
 
 .mt-10 {
     margin-top: 10px;
+}
+
+.mt-15 {
+    margin-top: 15px;
 }
 
 /* Margin Bottom */
@@ -265,7 +328,7 @@ h6 {
 /* Penutup Margin */
 
 /* Padding */
-.py-80 {
+.py-footer {
     padding-top: 80px;
     padding-bottom: 80px;
 }
@@ -284,7 +347,8 @@ h6 {
     font-size: 18px;
 }
 
-#navbarNav li a.active {
+#navbarNav li a.active,
+.mobile-nav a.active {
     color: var(--primary);
     font-weight: 600;
 }
@@ -295,6 +359,51 @@ h6 {
 
 .nav-item a:hover {
     color: var(--primary);
+}
+
+.nav-link-mobile a:hover {
+    color: var(--primary);
+}
+
+.mobile-nav {
+    display: none;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.mobile-menu {
+    cursor: pointer;
+}
+
+.mobile-menu:hover,
+.mobile-menu:active {
+    color: var(--primary);
+}
+
+.content-mobile-menu {
+    display: none;
+    background-color: var(--white);
+    padding: 5px;
+    flex-direction: column;
+    min-width: 125px;
+    position: absolute;
+    z-index: 1;
+    bottom: 75px;
+    right: 15px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.content-mobile-menu a {
+    padding: 10px;
+}
+
+.content-mobile-menu a:hover {
+    color: var(--primary);
+}
+
+.show-mobile-menu {
+    display: flex;
 }
 
 /* Penutup Navbar */
@@ -344,7 +453,7 @@ h6 {
 }
 
 .welcome-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-size: 24px;
     color: var(--black-80);
 }
@@ -358,7 +467,9 @@ h6 {
     transition: all 0.5s ease-in;
 }
 
-.btn-main:hover {
+.btn-main:hover,
+.btn-main:active,
+.btn-main:visited {
     background-color: var(--primary);
     color: var(--white);
 }
@@ -370,7 +481,7 @@ h6 {
 }
 
 .socmed-home-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 700;
     font-size: 18px;
     line-height: 22px;
@@ -402,7 +513,11 @@ h6 {
     padding: 15px;
 }
 
-.link-show-all-lp:hover {
+.link-show-all {
+    color: var(--text-color);
+}
+
+.link-show-all:hover {
     color: var(--primary);
 }
 
@@ -425,7 +540,7 @@ h6 {
 }
 
 .project-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
@@ -434,8 +549,8 @@ h6 {
 .project-section {
     background-color: var(--white);
     padding: 25px;
-    border-radius: 5px;
-    margin-bottom: 30px;
+    border-radius: 10px;
+    margin-bottom: 36px;
 }
 
 .project-section h3 {
@@ -443,18 +558,35 @@ h6 {
 }
 
 .project-section p {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-size: 18px;
+}
+
+.project-section a {
+    text-decoration: none;
 }
 
 .projects-table th,
 .req-list-table th {
-    font-weight: 500;
+    font-weight: 600;
     font-size: 14px;
+    color: var(--black-80);
 }
 
-.projects-table td {
+table td.title-with-progress {
+    width: 280px;
+    min-width: 200px;
+    max-width: max-content;
+}
+
+.projects-table tbody td,
+.projects-table tbody td p {
     font-size: 14px;
+    font-family: var(--main-font);
+}
+
+.bg-main {
+    background-color: var(--primary);
 }
 
 .bg-second {
@@ -470,44 +602,78 @@ h6 {
     width: 100px;
 }
 
+.btn-onprocess:hover,
+.btn-onprocess:active,
+.btn-onprocess:visited {
+    color: var(--secondary);
+    background-color: var(--secondary-10);
+    cursor: default;
+}
+
 .btn-default {
     background-color: var(--primary-10);
+    color: var(--primary);
     font-weight: 600;
     font-size: 12px;
-    color: var(--primary);
     border-radius: 5px;
     width: 100px;
+}
+
+.btn-default:hover {
+    background-color: var(--primary-10);
+    color: var(--primary);
+    font-weight: 600;
+    cursor: default;
 }
 
 .btn-complete {
     background-color: var(--success-10);
+    color: var(--success);
     font-weight: 600;
     font-size: 12px;
-    color: var(--success);
     border-radius: 5px;
     width: 100px;
+}
+
+.btn-complete:hover {
+    background-color: var(--success-10);
+    color: var(--success);
+    cursor: default;
 }
 
 .btn-pending {
     background-color: var(--warning-10);
+    color: var(--warning);
     font-weight: 600;
     font-size: 12px;
-    color: var(--warning);
     border-radius: 5px;
     width: 100px;
+}
+
+.btn-pending:hover {
+    background-color: var(--warning-10);
+    color: var(--warning);
+    cursor: default;
 }
 
 .btn-rejected {
     background-color: var(--alert-10);
+    color: var(--alert);
     font-weight: 600;
     font-size: 12px;
-    color: var(--alert);
     border-radius: 5px;
     width: 100px;
 }
 
+.btn-rejected:hover {
+    background-color: var(--alert-10);
+    color: var(--alert);
+    cursor: default;
+}
+
 .btn-outline-main {
     color: var(--primary);
+    padding: 13px 15px;
     font-weight: 600;
     border: solid 1px var(--primary);
 }
@@ -515,51 +681,6 @@ h6 {
 .btn-outline-main:hover {
     background-color: var(--primary);
     color: white;
-}
-
-.btn-rejected:hover {
-    color: var(--alert);
-    cursor: default;
-}
-
-.btn-pending:hover {
-    color: var(--warning);
-    cursor: default;
-}
-
-.btn-complete:hover {
-    color: var(--success);
-    cursor: default;
-}
-
-.btn-default:hover {
-    color: var(--primary);
-    cursor: default;
-}
-
-.btn-onprocess:hover {
-    color: var(--secondary);
-    cursor: default;
-}
-
-.projects-section-href a {
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-color);
-}
-
-.projects-section-href a:hover {
-    color: var(--primary);
-}
-
-.project-section a {
-    text-decoration: none;
-    color: var(--primary-80);
-}
-
-.project-section a:hover {
-    color: var(--primary);
 }
 
 /* Huge Project Vol.#01 */
@@ -612,7 +733,7 @@ h6 {
 }
 
 .huge-pro-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -636,7 +757,7 @@ h6 {
 }
 
 .nv-pro-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -654,7 +775,7 @@ h6 {
 }
 
 .yt-pro-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -693,7 +814,7 @@ h6 {
 }
 
 .non-pro-text {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
@@ -840,10 +961,14 @@ h6 {
 
 .form-control {
     caret-color: var(--primary);
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--black-90);
 }
 
 .form-control:focus {
     border-color: var(--primary);
+    box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
 }
 
 .icon-transform {
@@ -870,7 +995,7 @@ h6 {
 }
 
 .gallery-cards-head span {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 600;
     font-size: 14px;
 }
@@ -898,7 +1023,7 @@ h6 {
 
 .gallery-card h5 {
     font-size: 16px;
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 600;
     margin-bottom: 5px;
 }
@@ -913,14 +1038,14 @@ h6 {
 }
 
 .artist-card p {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 600;
     font-size: 14px;
     margin: 5px 0 0 0;
 }
 
 .artist-card span {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 700;
     font-size: 14px;
 }
@@ -959,7 +1084,7 @@ h6 {
 .video-description-card h4 {
     padding: 0 10px;
     margin: 0;
-    font-family: "Poppins", sans-serif;
+    font-family: var(--main-font);
     font-size: 18px;
     font-weight: 600;
     color: var(--text-color);
@@ -999,10 +1124,6 @@ h6 {
     background-color: var(--black-80);
 }
 
-.text-black {
-    color: var(--text-color);
-}
-
 /* Artist Page */
 img.image-hero-artist {
     width: 415px;
@@ -1012,7 +1133,7 @@ img.image-hero-artist {
 }
 
 .text-about-artist {
-    font-family: "Inter", sans-serif;
+    font-family: var(--secondary-font);
     font-weight: 400;
     font-size: 14px;
     color: var(--text-color);
@@ -1050,6 +1171,80 @@ img.image-hero-artist {
 
 /* Penutup Gallery */
 
+/* Login & Sign Up Page */
+section#login,
+section#sign-up {
+    margin-top: 100px;
+}
+
+.btn-primary-form {
+    background-color: var(--primary);
+    font-weight: 600;
+    font-size: 18px;
+    color: var(--white);
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.btn-primary-form:hover {
+    color: var(--white);
+    background-color: var(--primary);
+}
+
+.btn-secondary-form {
+    background-color: var(--primary-10);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 18px;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.btn-secondary-form:hover {
+    background-color: var(--primary-20);
+    color: var(--primary);
+}
+
+.btn-border-form {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    font-weight: 400;
+    font-size: 18px;
+    padding: 10px 0;
+    border-radius: 5px;
+}
+
+.btn-border-form:hover {
+    background-color: transparent;
+    border: 1px solid var(--primary);
+    color: var(--primary);
+}
+
+input::placeholder {
+    color: var(--black-80);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+input.form-control {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+span.input-group-text {
+    color: var(--text-color);
+    border: 1px solid var(--black-90);
+}
+
+span.input-group-text i {
+    cursor: pointer;
+}
+
+/* Penutup Login & SIgn Up Page */
+
 /* @media (max-width: 400px) {
 } */
 
@@ -1065,7 +1260,13 @@ img.image-hero-artist {
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 576px) {
+    /* Navigation */
+
     /* Home */
+    #hero-landing-page {
+        margin: 100px 0;
+    }
+
     .hero-welcome {
         font-size: 36px;
         text-align: center;
@@ -1094,6 +1295,28 @@ img.image-hero-artist {
 
     .btn-onprocess {
         margin: 15px 0 5px 0;
+    }
+
+    .mobile-nav {
+        display: inherit;
+    }
+
+    /* Footer */
+
+    .py-footer {
+        padding-top: 50px;
+        padding-bottom: 110px;
+    }
+
+    .text-responsive {
+        font-size: 2.9vw;
+    }
+
+    .form-container {
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        padding: 30px 0;
     }
 
     /* Penutup Home */
@@ -1130,6 +1353,20 @@ img.image-hero-artist {
     }
 }
 
+/* Extra large devices (large laptops and desktops, 768px and up) */
+@media only screen and (min-width: 768px) {
+    /* Login & Sign Up Page */
+    .form-container {
+        display: grid;
+        grid-template-columns: auto;
+        margin: 0;
+        padding: 30px 0;
+        background-color: var(--white);
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px 0px rgba(0, 0, 0, 0.25);
+    }
+    /* Penutup Login & Sign Up Page */
+}
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
 }

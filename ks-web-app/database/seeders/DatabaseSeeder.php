@@ -43,39 +43,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Category::create([
-            'category_name' => 'All Title Tracks Distribution',
-            'slug' => 'all-title-tracks-distribution',
-            'icon_class' => 'las la-music'
-        ]);
-
-        Category::create([
-            'category_name' => 'All Songs Distribution',
-            'slug' => 'all-songs-distribution',
+            'category_name' => 'Album Evolution',
+            'slug' => 'all-evolution',
             'icon_class' => 'las la-file-audio'
         ]);
 
         ProjectType::create([
             "type_name" => "Non-Project",
             "slug" => "non-project",
-            "about" => "Non project",
+            "about" => "Non-project Isn't based on your requests. Instead, it's based on our own desires and upcoming new comeback songs from particular artists.",
         ]);
 
         ProjectType::create([
             "type_name" => "Huge Project Vol.#01",
             "slug" => "huge-project-vol-1",
-            "about" => "lorem ipsum et al",
+            "about" => "Huge Project Vol.#01 is a project based on Google Forms requests, where the content will be the line evolution of the female group of your choice.",
         ]);
 
         ProjectType::create([
             "type_name" => "Nostalgic Vibes",
             "slug" => "nostalgic-vibes",
-            "about" => "lorem ipsum nostalgic",
+            "about" => "Nostalgic Vibes is a project that is planned to be uploaded every weekend. Where the video contains the line distribution of old songs.",
         ]);
 
         ProjectType::create([
             "type_name" => "Youtube Comment",
             "slug" => "youtube-comment",
-            "about" => "lorem ipsum youtube",
+            "about" => "This project is retrieved from youtube comments.",
         ]);
 
         // Seeder Manual //
