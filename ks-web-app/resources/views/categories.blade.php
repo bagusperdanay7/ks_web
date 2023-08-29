@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('container')
+@section('content')
     <div class="row gallery-section justify-content-between mb-4">
         <div class="gallery-cards-head">
             <h2 class="">Content Category</h2>

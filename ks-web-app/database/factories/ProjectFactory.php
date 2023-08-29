@@ -20,7 +20,7 @@ class ProjectFactory extends Factory
             'project_title' => $this->faker->lexify('?????? - ??????'),
             'category_id' => mt_rand(1, 4),
             'artist_id' => mt_rand(1, 20),
-            'type_id' => mt_rand(1, 3),
+            'type_id' => mt_rand(1, 4),
             'requester' => $this->faker->name(),
             'date' => $this->faker->dateTime(),
             'status' => implode($this->faker->randomElements(['Completed', 'On Process', 'Pending', 'Rejected'])),

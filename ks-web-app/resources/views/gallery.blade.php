@@ -1,10 +1,10 @@
 @extends('layouts.main')
 
-@section('container')
+@section('content')
     <div class="row gallery-section">
         <h1 class="mb-3">Explore</h1>
         <div class="col mb-4">
-            <form class="" action="/gallery">
+            <form class="search-gallery-form" action="/gallery">
                 @if (request('category'))
                     <input type="hidden" name="category" value="{{ request('category') }}">
                 @endif
@@ -14,14 +14,15 @@
                 @endif
                 {{-- <button class="btn btn-primary mb-3 " type="button" onclick="toggleFilter()">Filter</button>
                 <div class="hide" id="showFilter">aDA NIH</div> --}}
-                <div class="form-group search-icon-pos">
-                    <i class="las la-search form-control-feedback icon-transform"></i>
-                    <input type="search" class="form-control search-form shadow-none"
+                <div class="input-group">
+                    <span class="input-group-text" id="basic-addon1">
+                        <i class="las la-search icon-transform icon-size-18"></i>
+                    </span>
+                    <input type="search" class="form-control shadow-none"
                         placeholder="Search title, artist, or project class (Press /)" aria-label="Search"
                         id="searchGallery" name="search" value="{{ request('search') }}" autofocus>
                 </div>
             </form>
-
         </div>
     </div>
 
@@ -85,7 +86,20 @@
                     </a>
                 </div>
             @empty
-                <h5 class="text-center"><i class="las la-search-minus icon-transform"></i> No search results found!</h5>
+                <div class="row">
+                    <div class="col text-center">
+                        <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M39.176 46.828L38.564 29.44H44L43.424 46.828H39.176ZM44.468 52.3C44.468 53.956 43.172 55.252 41.408 55.252C39.572 55.252 38.276 53.956 38.276 52.3C38.276 50.644 39.572 49.348 41.408 49.348C43.172 49.348 44.468 50.644 44.468 52.3Z"
+                                fill="#EA8887" />
+                            <path
+                                d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
+                                fill="#787878" />
+                        </svg>
+                        <h5 class="mt-2 text-center">No search results found!</h5>
+                    </div>
+                </div>
                 <div class="row justify-content-between mb-4">
                     <div class="gallery-cards-head">
                         <h3>For You</h3>
