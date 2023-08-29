@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Artist extends Model
 {
@@ -11,11 +12,13 @@ class Artist extends Model
 
     protected $guarded = ['id'];
 
-    public function projects() {
+    public function projects(): HasMany
+    {
         return $this->hasMany(Project::class);
     }
 
-    public function albums() {
+    public function albums(): HasMany
+    {
         return $this->hasMany(Album::class);
     }
 }

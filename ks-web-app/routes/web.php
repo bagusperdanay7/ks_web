@@ -5,10 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\RequestFormController;
 use App\Http\Controllers\SignUpController;
+use App\Models\ProjectType;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +28,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
-Route::get('/projects/huge-project-vol1', [ProjectController::class, 'huge_project_vol1'])->name('huge-project-vol1');
-
-Route::get('/projects/nostalgic-vibes', [ProjectController::class, 'nostalgic_vibes'])->name('nostalgic-vibes');
-
-Route::get('/projects/youtube-comment', [ProjectController::class, 'youtube_comment'])->name('youtube-comment');
-
-Route::get('/projects/non-project', [ProjectController::class, 'non_project'])->name('non-project');
+Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
 
 Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
 
@@ -47,33 +44,32 @@ Route::get('gallery/artists/{artist:codename}', function (Artist $artist) {
     return view('artist', [
         'title' => $artist->artist_name . " Gallery",
         'active' => 'gallery',
-        'artists' => $artist->projects->load('category', 'artist')
+        'artists' => $artist->projects->load('category', 'artist', 'type')
     ]);
 });
 
 Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show']);
 
+Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'show']);
+
 Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
-Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up');
+Route::post('/login', [LoginController::class, 'authenticate'])->name('login-post');
+
+Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up')->middleware('guest');;
+
+Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
+
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // Kasih Impor Excel,
 // https://www.malasngoding.com/import-excel-laravel/
-
-// Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
-// Route::post('/login', [LoginController::class, 'authenticate']);
-// Route::post('/logout', [LoginController::class, 'logout']);
-
-// Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-// Route::post('/register', [RegisterController::class, 'store']);
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard.index');
-// })->middleware('auth');
 
 // Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
 // Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');

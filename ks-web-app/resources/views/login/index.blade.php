@@ -1,10 +1,8 @@
 @extends('layouts.main')
 {{-- 
-    https://www.w3schools.com/tags/tag_meta.asp
     https://getbootstrap.com/docs/5.3/forms/validation/
-    https://www.youtube.com/watch?v=Wf7RliwJxj4&list=PLFIM0718LjIWiihbBIq-SWPU6b6x21Q_2&index=14&t=79s
     https://alertifyjs.com/guide.html --}}
-@section('container')
+@section('content')
     <section id="login">
         <div class="container">
             <div class="row justify-content-center">
@@ -12,18 +10,31 @@
                     <div class="form-container">
                         <h3 class="text-center m-0">Login</h3>
                         <div class="row justify-content-center align-items-center m-0">
-                            <form class="mt-30 col-12 col-md-8 p-0">
+                            <form action="{{ route('login-post') }}" method="POST" class="mt-30 col-12 col-md-8 p-0">
+                                @csrf
                                 <div class="mb-15">
                                     <label for="email" class="form-label text-mdm-18">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email"
-                                        aria-describedby="emailHelp" placeholder="example@gmail.com" required>
+                                    <input type="email"
+                                        class="form-control @error('email') is-invalid @enderror @error('password') is-invalid @enderror"
+                                        id="email" name="email" aria-describedby="emailHelp"
+                                        placeholder="example@gmail.com" value="{{ old('email') }}" required autofocus>
+                                    @error('email')
+                                        <div id="emailValidationFeedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
                                 </div>
                                 <div class="mb-30">
                                     <label for="password" class="form-label text-mdm-18">Password</label>
                                     <div class="input-group input-password">
-                                        <input type="password" class="form-control" id="password" name="password"
-                                            placeholder="Enter Your Password" aria-describedby="password-icon" required>
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                            id="password" name="password" placeholder="Enter Your Password" required>
                                         <span class="input-group-text"><i class="las la-eye password-icon"></i></span>
+                                        @error('password')
+                                            <div id="passwordValidationFeedback" class="invalid-feedback">
+                                                {{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary-form col-12">Login</button>

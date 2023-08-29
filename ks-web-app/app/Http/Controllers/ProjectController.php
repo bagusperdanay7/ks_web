@@ -27,7 +27,7 @@ class ProjectController extends Controller
                                     ->get();
 
         $youtubeCommentQuery = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
-                                    ->where('project_types.type_name', 'Nostalgic Vibes')
+                                    ->where('project_types.type_name', 'Youtube Comment')
                                     ->limit(10)
                                     ->get();
                                     
@@ -74,7 +74,11 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        return view('project', [
+            "title" => $project->project_title,
+            "active" => "projects",
+            "project" => $project
+        ]);
     }
 
     /**
@@ -99,42 +103,6 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
-    }
-
-    public function huge_project_vol1()
-    {
-        return view('projects.huge_project_vol1', [
-            "title" => "Huge Project Vol.#01",
-            "active" => 'huge_project_vol1',
-            'hugeProjects' => Project::where('project_class', 'Huge Project Vol.#01')->get(),
-        ]);
-    }
-
-    public function nostalgic_vibes()
-    {
-        return view('projects.nostalgic_vibes', [
-            "title" => "Nostalgic Vibes",
-            "active" => 'nostalgic_vibes',
-            'nostalgicVibes' => Project::where('project_class', 'Nostalgic Vibes')->get(),
-        ]);
-    }
-
-    public function youtube_comment()
-    {
-        return view('projects.youtube_comment', [
-            "title" => "Youtube Comment",
-            "active" => 'youtube_comment',
-            'youtubeCommentProjects' => Project::where('project_class', 'Youtube Comments')->get(),
-        ]);
-    }
-
-    public function non_project()
-    {
-        return view('projects.non-project', [
-            "title" => "Non-Project",
-            "active" => 'non_project',
-            'nonProjects' => Project::where('project_class', 'Non-Project')->get(),
-        ]);
     }
 
     public function getYoutubeAPICURL($url) {
@@ -163,6 +131,8 @@ class ProjectController extends Controller
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
 
         // Penutup Youtube API
+        $projectAll = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+        ->where('project_types.type_name', '!=', 'Non-Project')->orderBy('project_title');
 
         $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                                     ->where('project_types.type_name', '!=', 'Non-Project')->orderBy('project_title')
@@ -188,9 +158,11 @@ class ProjectController extends Controller
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'rejectedPage'); # add withQueryString
 
-        $projectNumber = $requestList->count();
-        $projectCompletedNumber = $requestList->where('status', 'Completed')->count();
-        $projectRejectedNumber = $requestList->where('status', 'Rejected')->count();
+        $projectNumber = $projectAll->count();
+        $projectCompletedNumber = $projectAll->where('status', 'Completed')->count();
+        $projectRejectedNumber =  Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                        ->where([['status', 'Rejected'], ['project_types.type_name', '!=', 'Non-Project']])
+                                        ->orderBy('project_title')->count();
 
         if ($projectNumber == 0) {
             $projectCompletedProgress = 0;

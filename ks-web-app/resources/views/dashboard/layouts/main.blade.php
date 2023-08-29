@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 
     {{-- My Style --}}
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
 
     {{-- Icon (Box Icon) --}}
     <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
@@ -31,19 +31,20 @@
 
 <body class="body-light">
 
-    @include('layouts.navbar')
+    {{-- sidebar toggle --}}
+    <input type="checkbox" id="sidebar-toggle">
 
-    <main>
-        <div class="container">
+    @include('dashboard.layouts.sidebar')
+
+    @include('dashboard.layouts.header')
+
+    <main class="main-content">
+        <div class="container-fluid">
             @yield('content')
         </div>
     </main>
 
-    @include('layouts.footer')
-
-    {{-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous">
-    </script> --}}
+    <label for="sidebar-toggle" class="body-label"></label>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Project extends Model
 {
@@ -12,7 +13,7 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // Eager loading menangani masalah n+1
-    protected $with = ['artist', 'category'];
+    protected $with = ['artist', 'category', 'type'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -38,17 +39,17 @@ class Project extends Model
         $query->when($filters['artist'] ?? false, fn ($query, $artist) => $query->whereHas('artist', fn ($query) => $query->where('codename', $artist)));
     }
 
-    public function artist()
+    public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
     }
 
-    public function category()
+    public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
     }
 
-    public function type()
+    public function type(): BelongsTo
     {
         return $this->belongsTo(ProjectType::class);
     }

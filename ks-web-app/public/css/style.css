@@ -152,7 +152,7 @@ h6 {
 
 /* Color */
 /* Text Color */
-.text-black {
+.text-black-100 {
     color: var(--text-color);
 }
 
@@ -168,13 +168,33 @@ h6 {
     color: var(--tertiary);
 }
 
+.text-success-100 {
+    color: var(--success);
+}
+
 /* Background Color */
 .body-light {
     background-color: var(--background-color);
 }
 
-.bg-color-secondary {
+.bg-white-secondary {
     background-color: var(--background-color-secondary);
+}
+
+.bg-main {
+    background-color: var(--primary);
+}
+
+.bg-second {
+    background-color: var(--secondary);
+}
+
+.bg-black-80 {
+    background-color: var(--black-80);
+}
+
+.bg-success-10 {
+    background-color: var(--success-10);
 }
 
 /* Penutup Color */
@@ -184,7 +204,10 @@ h6 {
 /* Box icon extra large manual */
 .bx-xlg {
     font-size: 72px;
-    color: var(--black-80);
+}
+
+.icon-size-18 {
+    font-size: 18px;
 }
 
 /* Poppins */
@@ -196,7 +219,6 @@ h6 {
 .text-sb-14 {
     font-size: 14px;
     font-weight: 600;
-    color: var(--text-color);
 }
 
 .text-mdm-14 {
@@ -215,19 +237,26 @@ h6 {
 }
 
 /* Inter */
+.inter-regular-12 {
+    font-family: var(--secondary-font);
+    font-size: 12px;
+    font-weight: 400;
+}
+
 .inter-regular-14 {
     font-family: var(--secondary-font);
     font-size: 14px;
     font-weight: 400;
-    color: var(--black-80);
-    margin: 0px;
 }
 
 .inter-medium-18 {
     font-family: var(--secondary-font);
     font-size: 18px;
     font-weight: 500;
-    color: var(--black-90);
+}
+
+.fs-18 {
+    font-size: 18px;
 }
 
 /* Text based on Category */
@@ -292,12 +321,12 @@ table td.category-text-cd,
     margin-top: 30px;
 }
 
-.mt-10 {
-    margin-top: 10px;
-}
-
 .mt-15 {
     margin-top: 15px;
+}
+
+.mt-10 {
+    margin-top: 10px;
 }
 
 /* Margin Bottom */
@@ -394,12 +423,25 @@ table td.category-text-cd,
     font-size: 12px;
 }
 
-.content-mobile-menu a {
+.content-mobile-menu a,
+.content-mobile-menu button {
     padding: 10px;
+}
+
+.content-mobile-menu button {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
 }
 
 .content-mobile-menu a:hover {
     color: var(--primary);
+}
+
+.content-mobile-menu button:hover,
+.content-mobile-menu button:active {
+    color: var(--primary);
+    border: 1px solid var(--white);
 }
 
 .show-mobile-menu {
@@ -433,8 +475,8 @@ table td.category-text-cd,
 
 /* Home Page */
 
-#hero-landing-page {
-    margin: 152px 0;
+main {
+    margin: 100px 0;
 }
 
 .hero-welcome {
@@ -529,16 +571,6 @@ table td.category-text-cd,
 
 /* Projects Page */
 
-.project-header {
-    margin-top: 125px;
-    margin-bottom: 30px;
-}
-
-.project-header h1 {
-    font-weight: 700;
-    font-size: 48px;
-}
-
 .project-text {
     font-family: var(--secondary-font);
     font-style: normal;
@@ -550,7 +582,6 @@ table td.category-text-cd,
     background-color: var(--white);
     padding: 25px;
     border-radius: 10px;
-    margin-bottom: 36px;
 }
 
 .project-section h3 {
@@ -560,10 +591,6 @@ table td.category-text-cd,
 .project-section p {
     font-family: var(--secondary-font);
     font-size: 18px;
-}
-
-.project-section a {
-    text-decoration: none;
 }
 
 .projects-table th,
@@ -583,14 +610,6 @@ table td.title-with-progress {
 .projects-table tbody td p {
     font-size: 14px;
     font-family: var(--main-font);
-}
-
-.bg-main {
-    background-color: var(--primary);
-}
-
-.bg-second {
-    background-color: var(--secondary);
 }
 
 .btn-onprocess {
@@ -683,7 +702,7 @@ table td.title-with-progress {
     color: white;
 }
 
-/* Huge Project Vol.#01 */
+/* Project Types Page */
 
 .btn-huge-project-vol1 {
     border: 1px solid #673ab7;
@@ -693,6 +712,7 @@ table td.title-with-progress {
 
 .btn-huge-project-vol1:hover {
     color: #673ab7;
+    border: 1px solid #673ab7;
 }
 
 .space-navbar {
@@ -714,7 +734,7 @@ table td.title-with-progress {
     font-weight: 500;
 }
 
-#huge-project-vol1 {
+#project-type-table-section {
     scroll-behavior: smooth;
     scroll-margin: 90px;
 }
@@ -772,6 +792,7 @@ table td.title-with-progress {
 
 .btn-nv-project:hover {
     color: var(--white);
+    border: 1px solid var(--white);
 }
 
 .yt-pro-text {
@@ -803,6 +824,7 @@ table td.title-with-progress {
 
 .btn-yt-project:hover {
     color: #ff0000;
+    border: 1px solid #ff0000;
 }
 
 .non-pro-hero {
@@ -835,6 +857,7 @@ table td.title-with-progress {
 
 .btn-non-project:hover {
     color: var(--text-color);
+    border: 1px solid var(--text-color);
 }
 
 /* Penutup Projects */
@@ -873,11 +896,11 @@ table td.title-with-progress {
 }
 
 .card-analytics-project {
-    background: var(--white);
+    background-color: var(--white);
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    padding: 1rem;
+    padding: 15px;
     height: 200px;
+    border-radius: 5px;
 }
 
 .card-info h2 {
@@ -943,22 +966,6 @@ table td.title-with-progress {
 
 /* Gallery */
 
-.search-form {
-    padding-left: 2.3rem;
-}
-
-.search-icon-pos .form-control-feedback {
-    position: absolute;
-    z-index: 2;
-    display: block;
-    width: 2.3rem;
-    height: 2.3;
-    line-height: 2.3rem;
-    text-align: center;
-    pointer-events: none;
-    color: var(--black-80);
-}
-
 .form-control {
     caret-color: var(--primary);
     padding: 12px 10px;
@@ -973,7 +980,6 @@ table td.title-with-progress {
 
 .icon-transform {
     transform: scaleX(-1);
-    font-size: 18px;
 }
 
 .gallery-section {
@@ -1120,10 +1126,6 @@ table td.title-with-progress {
     font-size: 36px;
 }
 
-.bg-black-80 {
-    background-color: var(--black-80);
-}
-
 /* Artist Page */
 img.image-hero-artist {
     width: 415px;
@@ -1169,6 +1171,10 @@ img.image-hero-artist {
     background-color: var(--primary);
 }
 
+.search-gallery-form .input-group i {
+    cursor: default;
+}
+
 /* Penutup Gallery */
 
 /* Login & Sign Up Page */
@@ -1184,6 +1190,7 @@ section#sign-up {
     color: var(--white);
     padding: 10px 0;
     border-radius: 5px;
+    transition: all 300ms;
 }
 
 .btn-primary-form:hover {
@@ -1198,6 +1205,7 @@ section#sign-up {
     font-size: 18px;
     padding: 10px 0;
     border-radius: 5px;
+    transition: all 300ms;
 }
 
 .btn-secondary-form:hover {
@@ -1213,10 +1221,10 @@ section#sign-up {
     font-size: 18px;
     padding: 10px 0;
     border-radius: 5px;
+    transition: all 300ms;
 }
 
 .btn-border-form:hover {
-    background-color: transparent;
     border: 1px solid var(--primary);
     color: var(--primary);
 }
@@ -1241,6 +1249,25 @@ span.input-group-text {
 
 span.input-group-text i {
     cursor: pointer;
+}
+
+.form-text {
+    font-family: var(--secondary-font);
+    margin: 5px 0 0 0;
+    color: var(--black-90);
+}
+
+.is-invalid {
+    background-color: var(--alert-10);
+}
+
+.invalid-feedback {
+    margin: 5px 0 0 0;
+}
+
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--primary);
+    color: var(--white);
 }
 
 /* Penutup Login & SIgn Up Page */
@@ -1327,8 +1354,9 @@ span.input-group-text i {
 @media only screen and (max-width: 768px) {
 }
 
-/* Large devices (laptops/desktops, 992px and up) */
+/* Large devices (laptops/desktops, 992px ke bawah) */
 @media only screen and (max-width: 992px) {
+    /* Home */
     .hero-welcome {
         text-align: center;
         margin-top: 30px;
@@ -1351,6 +1379,16 @@ span.input-group-text i {
         visibility: hidden;
         height: 0;
     }
+
+    /* Projects Page */
+    .project-text {
+        font-family: var(--secondary-font);
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+    }
+
+    /* Penutup Projects Page */
 }
 
 /* Extra large devices (large laptops and desktops, 768px and up) */

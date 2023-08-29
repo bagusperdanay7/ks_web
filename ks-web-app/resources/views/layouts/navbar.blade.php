@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-color-secondary d-none d-sm-flex shadow-sm">
+<nav class="navbar sticky-top navbar-expand-lg bg-white-secondary d-none d-sm-flex shadow-sm">
     <div class="container">
         <div class="brand">
             <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
@@ -44,22 +44,22 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Hello {{ auth()->user()->name }} !
+                            Hi {{ auth()->user()->name }}
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/dashboard">
-                                    <i class="bi bi-layout-text-sidebar-reverse"></i>
+                            <li><a class="dropdown-item fs-6 fw-normal" href="/dashboard">
+                                    <i class="las la-columns"></i>
                                     Dashboard
                                 </a>
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-                            <li>
-                                <form action="/logout" method="post">
+                            <li class="fs-6">
+                                <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
-                                        <i class="bi bi-box-arrow-right"></i> Logout
+                                        <i class="las la-sign-out-alt"></i> Logout
                                     </button>
                                 </form>
                             </li>
@@ -76,7 +76,7 @@
     </div>
 </nav>
 
-<header class="bg-color-secondary p-3 d-xs-block d-sm-none">
+<header class="bg-white-secondary p-3 d-xs-block d-sm-none">
     <div class="brand">
         <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
         <a class="navbar-brand logo-navbar align-middle" href="{{ route('home') }}">KPOP SOULMATE</a>
@@ -84,7 +84,7 @@
 </header>
 
 {{-- Nav Mobile --}}
-<nav class="navbar fixed-bottom bg-color-secondary mobile-nav shadow">
+<nav class="navbar fixed-bottom bg-white-secondary mobile-nav shadow">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="" class="text-decoration-none d-flex">
             <i class='bx bxs-user-voice bx-xs'></i>
@@ -92,12 +92,21 @@
         </a>
         <a href="" class="text-decoration-none d-flex">
             <i class='bx bxs-videos bx-xs'></i>
-            <span class="mx-2"> Exclusive Video</span>
+            <span class="mx-2">Exclusive Video</span>
         </a>
-        <a href="{{ route('login') }}" class="text-decoration-none d-flex">
-            <i class='bx bx-log-in-circle bx-xs'></i>
-            <span class="mx-2"> Login</span>
-        </a>
+        @auth
+            <form action="{{ route('logout') }}" method="post">
+                @csrf
+                <button type="submit" class="dropdown-item">
+                    <i class="bx bx-log-out-circle bx-xs"></i><span class="mx-2 fw-medium align-middle">Logout</span>
+                </button>
+            </form>
+        @else
+            <a href="{{ route('login') }}" class="text-decoration-none d-flex">
+                <i class='bx bx-log-in-circle bx-xs'></i>
+                <span class="mx-2">Login</span>
+            </a>
+        @endauth
     </div>
     <div class="d-flex py-2 m-0 align-items-center justify-content-evenly nav-link-mobile">
         @php

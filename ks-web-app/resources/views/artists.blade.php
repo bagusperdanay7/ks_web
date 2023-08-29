@@ -1,6 +1,6 @@
 @extends('layouts.main')
 
-@section('container')
+@section('content')
     <div class="row gallery-section mb-4">
         <div class="d-flex justify-content-between gallery-cards-head">
             <div>

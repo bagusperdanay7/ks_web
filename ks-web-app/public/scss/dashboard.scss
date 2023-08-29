@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
 // Variables
 $primary: #6528f7;
 $primary-90: #743df7;
@@ -70,27 +72,470 @@ $black-30: #bbb;
 $black-20: #d2d2d2;
 $black-10: #e8e8e8;
 $background-color: #f1f5f9;
-/* $background-color-dark: #2a2438; */
+$background-color-dark: #171521;
 $white: #ffffff;
 $background-color-secondary: #fff;
 $special-color: #a1f5ff;
+$ranking-battle-100: #f615a5;
+$ranking-battle-10: #fee5f5;
+$how-would-100: #fc3a00;
+$how-would-10: #ffeee8;
+$center-distribution-100: #1426ff;
+$center-distribution-10: #e7e9ff;
 
 // Typography
 $main-font: "Poppins", sans-serif;
 $secondary-font: "Inter", sans-serif;
 
 // Mixin
-
-@mixin button-shape($color: $primary) {
-    padding: 20px;
-    text-align: center;
-    background-color: $color;
+@mixin button-status($color, $bg-color) {
+    background-color: $bg-color;
+    color: $color;
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 5px;
+    width: 100px;
+    cursor: default;
 }
+
+@mixin primary-button($text-color, $bg-color) {
+    padding: 10px 15px;
+    font-weight: 600;
+    font-size: 18px;
+    color: $text-color;
+    background-color: $bg-color;
+    border-radius: 5px;
+}
+
+// Blok Text Selection
+
+::-moz-selection {
+    /* Code for Firefox */
+    color: $white;
+    background: $primary;
+}
+
+::selection {
+    color: $white;
+    background: $primary;
+}
+
+//  End of Blok Text Selection
+
+// Layout - Main
 
 body {
-    background-color: $primary;
+    overflow-x: hidden;
+
+    &.body-light {
+        background-color: $background-color;
+    }
 }
 
-.button-alert {
-    @include button-shape(#4444);
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: $main-font;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+.body-label {
+    position: fixed;
+    height: 100%;
+    width: calc(100% - 250px);
+    z-index: 30;
+    right: -100%;
+    top: 0;
+}
+
+/* ORIGINAL */
+
+#sidebar-toggle {
+    display: none;
+}
+
+#sidebar-toggle:checked ~ .sidebar {
+    left: -100%;
+}
+
+#sidebar-toggle:checked ~ header {
+    left: 0;
+    width: 100%;
+    right: 0;
+}
+
+#sidebar-toggle:checked ~ .main-content {
+    margin-left: 0;
+}
+
+// Sidebar
+
+nav {
+    &.sidebar {
+        background-color: $background-color-dark;
+        width: 250px;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        padding: 25px;
+        color: $white;
+        transition: left 300ms;
+        overflow-y: auto;
+    }
+
+    &.sidebar::-webkit-scrollbar {
+        width: 7px;
+    }
+
+    &.sidebar::-webkit-scrollbar-thumb {
+        background: $black-30;
+        border-radius: 20px;
+    }
+
+    &.sidebar a {
+        color: $white;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 18px;
+    }
+
+    &.sidebar ul {
+        margin-bottom: 1.5rem;
+    }
+
+    .sidebar-brand {
+        & {
+            height: 70px;
+        }
+
+        .brand-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .brand-icons i {
+            font-size: 1.5rem;
+            margin-left: 0.5rem;
+        }
+    }
+
+    .sidebar-main {
+        .sidebar-user {
+            & {
+                margin: 0rem 0rem 1rem 0rem;
+                text-align: center;
+            }
+
+            img {
+                max-width: 80px;
+                max-height: 80px;
+                border-radius: 50%;
+                border: 2px solid #efefef;
+            }
+
+            span {
+                font-size: 12px;
+            }
+
+            .user-name {
+                background-color: $black-80;
+                width: fit-content;
+                margin: auto;
+                padding: 5px 10px;
+            }
+        }
+
+        .sidebar-menu {
+            .menu-head {
+                color: $background-color;
+                font-size: 14px;
+                font-weight: 600;
+                margin-bottom: 15px;
+            }
+
+            & {
+                margin-top: calc(2rem - 2px);
+            }
+
+            a {
+                text-decoration: none;
+            }
+
+            ul {
+                padding: 0;
+            }
+
+            li {
+                & {
+                    margin-bottom: 10px;
+                }
+
+                a,
+                button {
+                    color: #dadada;
+                    font-size: 14px;
+                    font-weight: 500;
+                    display: flex;
+                    align-items: center;
+                }
+
+                a:hover,
+                button:hover {
+                    color: $white;
+                    display: flex;
+                    align-items: center;
+                }
+
+                a.text-active {
+                    color: $primary-20;
+                    display: flex;
+                    align-items: center;
+                }
+
+                a,
+                button {
+                    i {
+                        font-size: 1.5rem;
+                        display: inline-block;
+                        margin-right: 0.8rem;
+                    }
+                }
+            }
+
+            ul {
+                & {
+                    margin-bottom: 30px;
+                }
+
+                .logo-active {
+                    color: $primary-20;
+                }
+            }
+        }
+    }
+}
+
+// Penutup Sidebar
+
+// Header
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    height: 70px;
+    width: calc(100% - 250px);
+    padding: 25px;
+    left: 250px;
+    top: 0;
+    z-index: 10;
+    background: $white;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 300ms;
+
+    .menu-toggle {
+        label {
+            display: grid;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+            border-radius: 50%;
+        }
+
+        label:hover {
+            background: #efefef;
+            height: 60px;
+            width: 60px;
+        }
+
+        i {
+            margin: auto;
+            cursor: pointer;
+        }
+    }
+
+    .header-icons {
+        i {
+            display: inline-block;
+            margin-left: 0.7rem;
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        i:hover {
+            color: #5850ec;
+            transition: 0.5s;
+        }
+    }
+}
+
+// Penutup Header
+
+/* Main Blade */
+main {
+    min-height: calc(100vh - 70px);
+    margin-top: 100px;
+}
+
+.main-content {
+    margin-left: 250px;
+    transition: margin-left 300ms;
+    background-color: $background-color;
+    padding: 25px;
+}
+
+// Index
+.btn-main {
+    @include primary-button($white, $primary);
+}
+
+.btn-main:hover {
+    background-color: $primary-80;
+    color: $white;
+}
+
+#header-analytics button i {
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.card-analytics {
+    background-color: $white;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.card-info {
+    h2 {
+        font-size: 36px;
+        color: $text-color;
+    }
+}
+
+.card-head {
+    span {
+        display: block;
+        color: $black-80;
+        font-size: 16px;
+    }
+
+    small {
+        font-weight: 600;
+        color: $black-80;
+    }
+}
+
+.card-icon {
+    i {
+        font-size: 80px;
+    }
+}
+
+.analytics-card {
+    background: $white;
+    padding: 1.5rem;
+    border-radius: 10px;
+
+    .analytics-head {
+        .link-details a {
+            color: $primary;
+            display: block;
+            margin-bottom: 1rem;
+            text-decoration: none;
+        }
+
+        .link-details a:hover {
+            color: $primary;
+        }
+
+        i {
+            font-size: 24px;
+        }
+    }
+
+    .table {
+        th {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        td {
+            font-size: 12px;
+        }
+    }
+}
+
+.btn-complete,
+.btn-complete:hover {
+    @include button-status($success, $success-10);
+}
+
+.btn-onprocess,
+.btn-onprocess:hover {
+    @include button-status($secondary, $secondary-10);
+}
+
+.btn-pending,
+.btn-pending:hover {
+    @include button-status($warning, $warning-10);
+}
+
+.btn-rejected,
+.btn-rejected:hover {
+    @include button-status($alert, $alert-10);
+}
+
+.url-youtube a {
+    text-decoration: none;
+    color: $text-color;
+}
+
+.url-youtube a:hover {
+    color: $primary;
+}
+
+// Penutup Index Analytics
+
+@media only screen and (max-width: 1124px) {
+    .sidebar {
+        left: -100%;
+        z-index: 30;
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    header {
+        left: 0;
+        width: 100%;
+    }
+
+    #sidebar-toggle:checked ~ .sidebar {
+        left: 0;
+    }
+
+    #sidebar-toggle:checked ~ .body-label {
+        right: 0;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .header-actions .btn-main,
+    .header-actions .btn-border {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .sidebar {
+        top: 5rem;
+    }
 }
