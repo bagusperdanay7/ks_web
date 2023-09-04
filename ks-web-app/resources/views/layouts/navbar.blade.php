@@ -1,4 +1,5 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-white-secondary d-none d-sm-flex shadow-sm">
+<nav class="navbar sticky-top navbar-expand-lg bg-white-secondary d-none d-sm-flex shadow-sm"
+    aria-label="Navbar Desktop Mode">
     <div class="container">
         <div class="brand">
             <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
@@ -42,13 +43,20 @@
                 </li>
                 @auth
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Hi {{ auth()->user()->name }}
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item fs-6 fw-normal" href="/dashboard">
-                                    <i class="las la-columns"></i>
+                        @if (auth()->user()->profile_picture === null)
+                            <img src="{{ asset('img/user-default.png') }}" class="rounded-circle nav-link dropdown-toggle"
+                                alt="User Profile Picture" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" width="45px">
+                        @else
+                            <img src="{{ asset('img/user/') }} {{ auth()->user()->profile_picture }}"
+                                class="rounded-circle  nav-link dropdown-toggle" alt="User Profile Picture"
+                                id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                width="45px">
+                        @endif
+                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                            <li>
+                                <a class="dropdown-item fs-6 fw-normal" href="/dashboard">
+                                    <i class="las la-columns d-inline"></i>
                                     Dashboard
                                 </a>
                             </li>
@@ -84,7 +92,7 @@
 </header>
 
 {{-- Nav Mobile --}}
-<nav class="navbar fixed-bottom bg-white-secondary mobile-nav shadow">
+<nav class="navbar fixed-bottom bg-white-secondary mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="" class="text-decoration-none d-flex">
             <i class='bx bxs-user-voice bx-xs'></i>
@@ -93,6 +101,10 @@
         <a href="" class="text-decoration-none d-flex">
             <i class='bx bxs-videos bx-xs'></i>
             <span class="mx-2">Exclusive Video</span>
+        </a>
+        <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex">
+            <i class='bx bxs-dashboard bx-xs'></i>
+            <span class="mx-2">Dashboard</span>
         </a>
         @auth
             <form action="{{ route('logout') }}" method="post">

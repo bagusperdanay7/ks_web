@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
+use App\Http\Controllers\DashboardArtistController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\ProjectTypeController;
@@ -40,13 +42,7 @@ Route::get('/gallery/categories', [GalleryController::class, 'all_categories'])-
 
 Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists');
 
-Route::get('gallery/artists/{artist:codename}', function (Artist $artist) {
-    return view('artist', [
-        'title' => $artist->artist_name . " Gallery",
-        'active' => 'gallery',
-        'artists' => $artist->projects->load('category', 'artist', 'type')
-    ]);
-});
+Route::get('gallery/artists/{artist:codename}', [ArtistController::class, 'show']);
 
 Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show']);
 
@@ -67,6 +63,10 @@ Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post'
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::resource('/dashboard/projects', DashboardProjectController::class)->middleware('auth');
+
+Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('auth');
 
 // Kasih Impor Excel,
 // https://www.malasngoding.com/import-excel-laravel/

@@ -19,7 +19,7 @@ class ProjectFactory extends Factory
         return [
             'project_title' => $this->faker->lexify('?????? - ??????'),
             'category_id' => mt_rand(1, 4),
-            'artist_id' => mt_rand(1, 20),
+            'artist_id' => mt_rand(1, 10),
             'type_id' => mt_rand(1, 4),
             'requester' => $this->faker->name(),
             'date' => $this->faker->dateTime(),
