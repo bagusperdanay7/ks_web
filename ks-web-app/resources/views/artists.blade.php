@@ -10,15 +10,15 @@
         @foreach ($artists as $artist)
             <div class="col-2 artist-card mb-4">
                 <a href="/gallery/artists/{{ $artist->codename }}">
-                    @if ($artist->artist_pict != null)
-                        <img src="{{ asset('img/artist/' . $artist->artist_pict) }}" class="rounded artist-image"
-                            width="195px" height="195px" alt="{{ $artist->artist_name }}">
+                    @if ($artist->artist_pict)
+                        <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="rounded artist-image" width="195px"
+                            height="195px" alt="{{ $artist->artist_name }}">
                     @else
-                        <img src="{{ asset('img/artist/unknown_artist.jpg') }}" class="rounded artist-image" width="195px"
+                        <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image" width="195px"
                             height="195px" alt="{{ $artist->artist_name }}">
                     @endif
                     <p>{{ $artist->artist_name }}</p>
-                    <span>{{ $artist->total_artist }} Videos</span>
+                    <span>{{ $artist->projects->count() }} Videos</span>
                 </a>
             </div>
         @endforeach

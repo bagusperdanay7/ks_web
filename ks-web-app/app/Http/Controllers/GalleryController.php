@@ -13,6 +13,8 @@ class GalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    //  TODO: EDIT MENGGUNAKAN load saja, tidak perlu join, karena sudah join menggunakan load
     public function index()
     {
         $galleryQuery = Project::latest()

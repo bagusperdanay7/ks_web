@@ -21,4 +21,9 @@ class Artist extends Model
     {
         return $this->hasMany(Album::class);
     }
+
+    public function getRouteKeyName()
+    {
+        return 'codename';
+    }
 }

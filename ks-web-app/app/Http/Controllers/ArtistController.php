@@ -24,7 +24,7 @@ class ArtistController extends Controller
         return view('artists', [
             'title' => 'All Artists',
             'active' => 'gallery',
-            'artists' => $artist,
+            'artists' => Artist::all()->load('projects')->sortBy('artist_name'),
         ]);
     }
 
@@ -49,7 +49,12 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        //
+        return view('artist', [
+            'title' => $artist->artist_name . " Gallery",
+            'active' => 'gallery',
+            'artist' => $artist,
+            'artists' => $artist->projects->load('category', 'artist', 'type')
+        ]);
     }
 
     /**

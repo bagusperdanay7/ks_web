@@ -126,10 +126,10 @@ class DatabaseSeeder extends Seeder
             'votes' => 3,
         ]);
 
-        Artist::factory(50)->create();
-        Album::factory(50)->create();
-        Song::factory(50)->create();
-        Project::factory(50)->create();
-        AIModel::factory(50)->create();
+        Artist::factory(10)->create();
+        Album::factory(10)->create();
+        Song::factory(10)->create();
+        Project::factory(10)->create();
+        AIModel::factory(10)->create();
     }
 }

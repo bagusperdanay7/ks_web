@@ -7,31 +7,31 @@
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
             <li class="breadcrumb-item"><a href="/gallery/artists">Artists</a></li>
-            <li class="breadcrumb-item breadcumb-active" aria-current="page">{{ $artists->first()->artist->artist_name }}
+            <li class="breadcrumb-item breadcumb-active" aria-current="page">{{ $artist->artist_name }}
             </li>
         </ol>
     </nav>
 
     <div class="row gallery-section-artist mb-5">
         <div class="col-4">
-            @if ($artists->first()->artist->artist_pict == null)
-                <img src="{{ asset('img/artist/unknown_artist.jpg') }}" class="image-hero-artist shadow" alt=""
-                    width="">
+            @if ($artist->artist_pict == null)
+                <img src="{{ asset('img/unknown_artist.jpg') }}" class="image-hero-artist shadow"
+                    alt="{{ $artist->artist_pict }} picture" width="">
             @else
-                <img src="{{ asset('img/artist/' . $artists->first()->artist->artist_pict) }}"
-                    class="image-hero-artist shadow" alt="" width="">
+                <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="image-hero-artist shadow"
+                    alt="{{ $artist->artist_pict }} picture" width="">
             @endif
 
         </div>
         <div class="col-8 align-self-center">
-            <h2 class="header-2">{{ $artists->first()->artist->artist_name }}</h2>
-            <p class="text-about-artist">{{ $artists->first()->artist->about }}</p>
+            <h2 class="header-2">{{ $artist->artist_name }}</h2>
+            <p class="text-about-artist">{{ $artist->about }}</p>
             <div class="row">
                 <div class="col-2">
                     <h4 class="heading-info-artist">Debut</h4>
                 </div>
                 <div class="col">
-                    <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $artists->first()->artist->artist_birthday)->format('d F Y') }}
+                    <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $artist->debut)->format('d F Y') }}
                     </p>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <h4 class="heading-info-artist">Fandom Name</h4>
                 </div>
                 <div class="col">
-                    <p>{{ $artists->first()->artist->fandom_name }}</p>
+                    <p>{{ $artist->fandom }}</p>
                 </div>
             </div>
             <div class="row">
@@ -48,7 +48,7 @@
                     <h4 class="heading-info-artist">Origin</h4>
                 </div>
                 <div class="col">
-                    <p>{{ $artists->first()->artist->artist_birthplace }}</p>
+                    <p>{{ $artist->origin }}</p>
                 </div>
             </div>
             <div class="row">
@@ -56,7 +56,7 @@
                     <h4 class="heading-info-artist">Company</h4>
                 </div>
                 <div class="col">
-                    <p>{{ $artists->first()->artist->company_name }}</p>
+                    <p>{{ $artist->company }}</p>
                 </div>
             </div>
             <div class="row">
@@ -77,7 +77,7 @@
     </div>
 
     @php
-        // $category_le = $artists->where('content_category_id', '=', 2)->sortBy('project_title');
+        // $category_le = $artists->where('category_id', '=', 2)->sortBy('project_title');
         $videos = $artists->sortBy('project_title');
     @endphp
 
@@ -94,11 +94,11 @@
                             <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0" width="100%"
                                 alt="{{ $video->project_title }} thumbnail">
                         @endif
-                        <a href="gallery?content_category={{ $video->content_category->slug }}">
-                            <p class="category-text-video">{{ $video->content_category->name }}</p>
+                        <a href="gallery?category={{ $video->category->slug }}">
+                            <p class="category-text-video">{{ $video->category->category_name }}</p>
                         </a>
                         <h4>{{ $video->project_title }}
-                            ({{ $video->content_category->name }})
+                            ({{ $video->category->category_name }})
                         </h4>
                         <span
                             class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($video->project_date))->diffForHumans() }}
@@ -112,12 +112,11 @@
                                 <a href="/gallery?artist={{ $video->artist->codename }}">
                                     @if ($video->artist->artist_pict != null)
                                         <img class="rounded-circle fit-img"
-                                            src="{{ asset('img/artist/' . $video->artist->artist_pict) }}"
+                                            src="{{ asset('storage/' . $video->artist->artist_pict) }}"
                                             alt="{{ $video->artist->artist_name }} thumbnail" width="40px"
                                             height="40px">
                                     @else
-                                        <img class="rounded-circle fit-img"
-                                            src="{{ asset('img/artist/unknown_artist.jpg') }}"
+                                        <img class="rounded-circle fit-img" src="{{ asset('img/unknown_artist.jpg') }}"
                                             alt="{{ $video->artist->artist_name }} thumbnail" width="40px"
                                             height="40px">
                                     @endif

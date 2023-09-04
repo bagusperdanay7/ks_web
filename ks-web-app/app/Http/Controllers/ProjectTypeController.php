@@ -40,7 +40,8 @@ class ProjectTypeController extends Controller
         return view('project_types', [
             "title" => $projectType->type_name,
             "active" => "projects",
-            "projectType" => $projectType->projects->load('category', 'artist', 'type')
+            "projectType" => $projectType,
+            "projectsTypes" => $projectType->load('projects'),
         ]);
     }
 

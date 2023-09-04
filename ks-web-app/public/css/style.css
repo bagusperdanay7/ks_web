@@ -362,6 +362,79 @@ table td.category-text-cd,
     padding-bottom: 80px;
 }
 
+/* End of Margin */
+
+/* Component */
+/* Button */
+
+/* End of Component */
+
+/* Boostrap Modified Style */
+
+.dis {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.dis:hover {
+    color: var(--primary);
+    border: solid 1px var(--primary);
+    background-color: transparent;
+}
+
+input::placeholder {
+    color: var(--black-80);
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+input.form-control {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+select option:checked,
+select option:hover {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+.form-control {
+    caret-color: var(--primary);
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid var(--black-90);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
+}
+
+.form-text {
+    font-family: var(--secondary-font);
+    margin: 5px 0 0 0;
+    color: var(--black-90);
+}
+
+.is-invalid {
+    background-color: var(--alert-10);
+}
+
+.invalid-feedback {
+    margin: 5px 0 0 0;
+}
+
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--primary);
+    color: var(--white);
+}
+
+/* End ofBoostrap Modified Style */
+
 /* Navbar */
 
 .logo-navbar {
@@ -411,11 +484,11 @@ table td.category-text-cd,
 
 .content-mobile-menu {
     display: none;
+    flex-direction: column;
+    position: absolute;
     background-color: var(--white);
     padding: 5px;
-    flex-direction: column;
     min-width: 125px;
-    position: absolute;
     z-index: 1;
     bottom: 75px;
     right: 15px;
@@ -473,15 +546,26 @@ table td.category-text-cd,
 
 /* Penutup Footer */
 
-/* Home Page */
+/* Main Blade */
 
 main {
     margin: 100px 0;
 }
 
+/* End of Main Blade */
+
+/* Home Page */
+
 .hero-welcome {
     font-weight: 600;
     letter-spacing: 0.19em;
+}
+
+.img-hero {
+    aspect-ratio: 1 / 1; /* defining the aspect ratio of the image */
+    object-fit: cover; /* making sure the image isn't distorted */
+    border-radius: 15px;
+    width: 100%;
 }
 
 .hero-welcome p {
@@ -925,17 +1009,6 @@ table td.title-with-progress {
     font-size: 5rem;
 }
 
-.dis {
-    cursor: not-allowed;
-    opacity: 0.5;
-}
-
-.dis:hover {
-    color: var(--primary);
-    border: solid 1px var(--primary);
-    background-color: transparent;
-}
-
 .no-data-val {
     font-weight: 500;
 }
@@ -965,18 +1038,6 @@ table td.title-with-progress {
 /* Penutup Request List */
 
 /* Gallery */
-
-.form-control {
-    caret-color: var(--primary);
-    padding: 12px 10px;
-    border-radius: 5px;
-    border: 1px solid var(--black-90);
-}
-
-.form-control:focus {
-    border-color: var(--primary);
-    box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
-}
 
 .icon-transform {
     transform: scaleX(-1);
@@ -1229,19 +1290,6 @@ section#sign-up {
     color: var(--primary);
 }
 
-input::placeholder {
-    color: var(--black-80);
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-input.form-control {
-    font-size: 14px;
-    font-weight: 400;
-    color: var(--text-color);
-}
 span.input-group-text {
     color: var(--text-color);
     border: 1px solid var(--black-90);
@@ -1249,25 +1297,6 @@ span.input-group-text {
 
 span.input-group-text i {
     cursor: pointer;
-}
-
-.form-text {
-    font-family: var(--secondary-font);
-    margin: 5px 0 0 0;
-    color: var(--black-90);
-}
-
-.is-invalid {
-    background-color: var(--alert-10);
-}
-
-.invalid-feedback {
-    margin: 5px 0 0 0;
-}
-
-.dropdown-menu .dropdown-item:active {
-    background-color: var(--primary);
-    color: var(--white);
 }
 
 /* Penutup Login & SIgn Up Page */

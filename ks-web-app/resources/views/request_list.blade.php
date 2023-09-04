@@ -319,7 +319,7 @@
                             <h3 class="mb-3">On Process Request</h3>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-hover req-list-table display" id="myTable">
+                            <table class="table table-hover req-list-table display">
                                 <thead>
                                     <tr>
                                         <th>Project Title</th>

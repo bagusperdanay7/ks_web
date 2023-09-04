@@ -4,17 +4,14 @@
             <a href="{{ route('home') }}">
                 Kpop Soulmate
             </a>
-            <div class="brand-icons">
-                <i class="las la-bell"></i>
-            </div>
         </div>
     </div>
 
     <div class="sidebar-main">
         <div class="sidebar-user">
-            <img src="{{ asset('img/admin.png') }}" alt="" class="">
+            <img src="{{ asset('img/user-default.png') }}" alt="" class="">
             <div class="user-name rounded-pill my-3">
-                <span>{{ auth()->user()->name }}</span>
+                <span class="fs-12">{{ auth()->user()->name }}</span>
             </div>
         </div>
 
@@ -24,8 +21,8 @@
             </div>
             <ul class="table-menu">
                 <li>
-                    <a href="{{ route('dashboard') }}" class="text-active">
-                        <i class="la la-chart-pie logo-active"></i>
+                    <a href="{{ route('dashboard') }}" class="{{ Request::is('dashboard') ? 'text-active' : '' }}">
+                        <i class="la la-chart-pie"></i>
                         Analytics
                     </a>
                 </li>
@@ -72,9 +69,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="menu-nav">
+                    <a href="/dashboard/artists"
+                        class="menu-nav {{ Request::is('dashboard/artists*') ? 'text-active' : '' }}">
                         <i class="las la-user"></i>
-                        Artist
+                        Artists
                     </a>
                 </li>
                 <li>
@@ -96,7 +94,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="" class="menu-nav">
+                    <a href="/dashboard/projects"
+                        class="menu-nav {{ Request::is('dashboard/projects*') ? 'text-active' : '' }}">
                         <i class="las la-chalkboard"></i>
                         Projects
                     </a>

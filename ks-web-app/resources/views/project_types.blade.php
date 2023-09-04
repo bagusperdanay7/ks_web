@@ -6,20 +6,21 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('projects') }}">Projects</a></li>
-            <li class="breadcrumb-item breadcumb-active" aria-current="page">{{ $projectType->first()->type->type_name }}
+            <li class="breadcrumb-item breadcumb-active" aria-current="page">
+                {{ $projectType->type_name }}
             </li>
         </ol>
     </nav>
     <section id="banner-project">
-        @if ($projectType->first()->type->type_name === 'Non-Project')
+        @if ($projectType->type_name === 'Non-Project')
             <div class="row non-pro-hero">
                 <div class="col">
-                    <h2 class="mb-3">{{ $projectType->first()->type->type_name }}</h2>
-                    <p class="non-pro-text">{{ $projectType->first()->type->about }}</p>
+                    <h2 class="mb-3">{{ $projectType->type_name }}</h2>
+                    <p class="non-pro-text">{{ $projectType->about }}</p>
                     <a href="#project-type-table-section" class="btn btn-non-project">View Details</a>
                 </div>
             </div>
-        @elseif ($projectType->first()->type->type_name === 'Huge Project Vol.#01')
+        @elseif ($projectType->type_name === 'Huge Project Vol.#01')
             <div class="row huge-pro-hero">
                 <div class="col-12 mb-3 col-md-6 align-self-center">
                     <h2 class="mb-3">Huge Project Vol.#01</h2>
@@ -35,7 +36,7 @@
                     <img src="{{ asset('img/huge-pro-hero.png') }}" alt="" class="float-end" width="100%">
                 </div>
             </div>
-        @elseif ($projectType->first()->type->type_name === 'Nostalgic Vibes')
+        @elseif ($projectType->type_name === 'Nostalgic Vibes')
             <div class="row nv-pro-hero align-items-center">
                 <div class="col">
                     <h2 class="mb-3">Nostalgic Vibes</h2>
@@ -45,7 +46,7 @@
                     <a href="#project-type-table-section" class="btn btn-nv-project">View Details</a>
                 </div>
             </div>
-        @elseif ($projectType->first()->type->type_name === 'Youtube Comment')
+        @elseif ($projectType->type_name === 'Youtube Comment')
             <div class="row yt-pro-hero">
                 <div class="col">
                     <h2 class="mb-3">Youtube Comments</h2>
@@ -64,7 +65,7 @@
             <div class="col">
                 <div class="project-section">
                     <div class="d-flex justify-content-between">
-                        <h3>{{ $projectType->first()->type->type_name }}</h3>
+                        <h3>{{ $projectType->type_name }}</h3>
                     </div>
                     <div class="table-responsive">
                         <table class="table table-hover projects-table">
@@ -79,79 +80,79 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($projectType as $type)
+                                @forelse ($projectsTypes->projects as $pro)
                                     <tr>
-                                        <td class="align-middle">{{ $type->project_title }}</td>
-                                        @if ($type->category->category_name === 'Line Distribution')
+                                        <td class="align-middle">{{ $pro->project_title }}</td>
+                                        @if ($pro->category->category_name === 'Line Distribution')
                                             <td class="align-middle category-text-ld">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'Line Evolution')
+                                        @elseif ($pro->category->category_name === 'Line Evolution')
                                             <td class="align-middle category-text-le">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'Album Distribution')
+                                        @elseif ($pro->category->category_name === 'Album Distribution')
                                             <td class="align-middle category-text-ad">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'Album Evolution')
+                                        @elseif ($pro->category->category_name === 'Album Evolution')
                                             <td class="align-middle category-text-ae">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'Ranking Battle')
+                                        @elseif ($pro->category->category_name === 'Ranking Battle')
                                             <td class="align-middle category-text-rb">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'How Should')
+                                        @elseif ($pro->category->category_name === 'How Should')
                                             <td class="align-middle category-text-hs">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'How Would')
+                                        @elseif ($pro->category->category_name === 'How Would')
                                             <td class="align-middle category-text-hw">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
-                                        @elseif ($type->category->category_name === 'Center Distribution')
+                                        @elseif ($pro->category->category_name === 'Center Distribution')
                                             <td class="align-middle category-text-cd">
-                                                {{ $type->category->category_name }}
+                                                {{ $pro->category->category_name }}
                                             </td>
                                         @endif
                                         <td class="align-middle"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $type->date)->format('d F Y') }}
+                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $pro->date)->format('d F Y') }}
                                         </td>
-                                        <td class="align-middle">{{ $type->requester }}</td>
-                                        @if ($type->status == 'Completed')
+                                        <td class="align-middle">{{ $pro->requester }}</td>
+                                        @if ($pro->status == 'Completed')
                                             <td class="align-middle">
                                                 <span class="btn btn-complete">
-                                                    {{ $type->status }}
+                                                    {{ $pro->status }}
                                                 </span>
                                             </td>
-                                        @elseif ($type->status == 'On Process')
+                                        @elseif ($pro->status == 'On Process')
                                             <td class="align-middle">
                                                 <span class="btn btn-onprocess">
-                                                    {{ $type->status }}
+                                                    {{ $pro->status }}
                                                 </span>
                                             </td>
-                                        @elseif ($type->status == 'Pending')
+                                        @elseif ($pro->status == 'Pending')
                                             <td class="align-middle">
                                                 <span class="btn btn-pending">
-                                                    {{ $type->status }}
+                                                    {{ $pro->status }}
                                                 </span>
                                             </td>
-                                        @elseif ($type->status == 'Rejected')
+                                        @elseif ($pro->status == 'Rejected')
                                             <td class="align-middle">
                                                 <span class="btn btn-rejected">
-                                                    {{ $type->status }}
+                                                    {{ $pro->status }}
                                                 </span>
                                             </td>
                                         @else
                                             <td class="align-middle">
                                                 <span class="btn btn-onprocess">
-                                                    {{ $type->status }}
+                                                    {{ $pro->status }}
                                                 </span>
                                             </td>
                                         @endif
-                                        <td class="align-middle">{{ $type->votes }}</td>
-                                        <td class="align-middle"><a href="/projects/{{ $type->id }}"
+                                        <td class="align-middle">{{ $pro->votes }}</td>
+                                        <td class="align-middle"><a href="/projects/{{ $pro->id }}"
                                                 class="text-decoration-none"><i class="las la-external-link-alt"
                                                     data-bs-toggle="tooltip" data-bs-placement="top"
                                                     data-bs-title="Show Detail Project"></i></a>
@@ -159,7 +160,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="5" class="text-center no-data-val">
+                                        <td colspan="6" class="text-center no-data-val">
                                             <i class="las la-ban"></i> No Project Found
                                         </td>
                                     </tr>

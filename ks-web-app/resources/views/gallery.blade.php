@@ -63,14 +63,13 @@
                             <div class="d-flex flex-row my-2 px-2 pb-2">
                                 <div>
                                     <a href="/gallery?artist={{ $gallery->artist->codename }}">
-                                        @if ($gallery->artist->artist_pict != null)
+                                        @if ($gallery->artist->artist_pict)
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/' . $gallery->artist->artist_pict) }}"
+                                                src="{{ asset('storage' . $gallery->artist->artist_pict) }}"
                                                 alt="{{ $gallery->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @else
-                                            <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/unknown_artist.jpg') }}"
+                                            <img class="rounded-circle fit-img" src="{{ asset('img/unknown_artist.jpg') }}"
                                                 alt="{{ $gallery->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @endif
@@ -131,14 +130,14 @@
                                     <div class="d-flex flex-row my-2 px-2 pb-2">
                                         <div>
                                             <a href="/gallery?artist={{ $recVideo->artist->codename }}">
-                                                @if ($recVideo->artist->artist_pict != null)
+                                                @if ($recVideo->artist->artist_pict)
                                                     <img class="rounded-circle fit-img"
-                                                        src="{{ asset('img/artist/' . $recVideo->artist->artist_pict) }}"
+                                                        src="{{ asset('storage/' . $recVideo->artist->artist_pict) }}"
                                                         alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                         height="40px">
                                                 @else
                                                     <img class="rounded-circle fit-img"
-                                                        src="{{ asset('img/artist/unknown_artist.jpg') }}"
+                                                        src="{{ asset('img/unknown_artist.jpg') }}"
                                                         alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
                                                         height="40px">
                                                 @endif
@@ -187,7 +186,7 @@
             @endforeach
         </div>
 
-        <div class="row justify-content-between mb-4">
+        <div class="row mb-4">
             <div class="d-flex justify-content-between gallery-cards-head">
                 <div>
                     <h3>Artist</h3>
@@ -198,33 +197,43 @@
                     </a>
                 </div>
             </div>
-            @foreach ($artistsTotal as $artistTotal)
+            @forelse ($artistsTotal as $artistTotal)
                 <div class="col-2 artist-card">
-                    <a href="/gallery?artist={{ $artistTotal->artist->codename }}">
-                        @if ($artistTotal->artist->artist_pict != null)
-                            <img src="{{ asset('img/artist/' . $artistTotal->artist->artist_pict) }}"
+                    <a href="/gallery?artist={{ $artistTotal->artist->codename ?? '' }}">
+                        @if ($artistTotal->artist?->artist_pict)
+                            <img src="{{ asset('storage/' . $artistTotal->artist->artist_pict ?? '') }}"
                                 class="rounded artist-image" width="195px" height="195px"
                                 alt="{{ $artistTotal->artist->artist_name }}">
                         @else
-                            <img src="{{ asset('img/artist/unknown_artist.jpg') }}" class="rounded artist-image"
-                                width="195px" height="195px" alt="{{ $artistTotal->artist->artist_name }}">
+                            <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image" width="195px"
+                                height="195px" alt="{{ $artistTotal->artist->artist_name ?? '' }}">
                         @endif
-                        <p>{{ $artistTotal->artist->artist_name }}</p>
-                        <span>{{ $artistTotal->total }} Videos</span>
+                        <p>{{ $artistTotal->artist->artist_name ?? '' }}</p>
+                        <span>{{ $artistTotal->total ?? '' }} Videos</span>
                     </a>
                 </div>
-            @endforeach
+            @empty
+                <div class="col-2 artist-card">
+                    <a href="/gallery?artist=">
+                        <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image" width="195px"
+                            height="195px" alt="">
+                        <p>No Artist</p>
+                        <span>0 Videos</span>
+                    </a>
+                </div>
+            @endforelse
         </div>
 
         <div class="row justify-content-between mb-4">
             <div class="gallery-cards-head">
                 <h3>Latest Video</h3>
             </div>
+            {{-- TODO: https://laraveldaily.com/post/laravel-relation-attempt-to-read-property-on-null-error --}}
             @foreach ($latestVideo as $latestVid)
                 <div class="col-4 artist-card">
                     <a href="/gallery/videos/{{ $latestVid->id }}">
                         <div class="video-description-card">
-                            @if ($latestVid->thumbnail != null)
+                            @if ($latestVid->thumbnail !== null)
                                 <img src="{{ $latestVid->thumbnail }}" class="rounded thumbnail m-0 p-0" width="100%"
                                     alt="{{ $latestVid->project_title }} thumbnail">
                             @else
@@ -246,15 +255,15 @@
                             </span>
                             <div class="d-flex flex-row my-2 px-2 pb-2">
                                 <div>
-                                    <a href="/gallery?artist={{ $latestVid->artist->codename }}">
-                                        @if ($latestVid->artist->artist_pict != null)
+                                    <a href="/gallery?artist={{ $latestVid->artist->codename ?? '' }}">
+                                        @if ($latestVid->artist->artist_pict)
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/' . $latestVid->artist->artist_pict) }}"
+                                                src="{{ asset('storage/' . $latestVid->artist->artist_pict) }}"
                                                 alt="{{ $latestVid->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @else
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/unknown_artist.jpg') }}"
+                                                src="{{ asset('img/unknown_artist.jpg') }}"
                                                 alt="{{ $latestVid->artist->artist_name }} thumbnail" width="40px"
                                                 height="40px">
                                         @endif
@@ -302,24 +311,24 @@
                             </span>
                             <div class="d-flex flex-row my-2 px-2 pb-2">
                                 <div>
-                                    <a href="/gallery?artist={{ $recVideo->artist->codename }}">
-                                        @if ($recVideo->artist->artist_pict != null)
+                                    <a href="/gallery?artist={{ $recVideo->artist->codename ?? '' }}">
+                                        @if ($recVideo->artist?->artist_pict)
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/' . $recVideo->artist->artist_pict) }}"
-                                                alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
+                                                src="{{ asset('storage/' . $recVideo->artist->artist_pict) }}"
+                                                alt="{{ $recVideo->artist->artist_name ?? '' }} thumbnail" width="40px"
                                                 height="40px">
                                         @else
                                             <img class="rounded-circle fit-img"
-                                                src="{{ asset('img/artist/unknown_artist.jpg') }}"
-                                                alt="{{ $recVideo->artist->artist_name }} thumbnail" width="40px"
+                                                src="{{ asset('img/unknown_artist.jpg') }}"
+                                                alt="{{ $recVideo->artist->artist_name ?? '' }} thumbnail" width="40px"
                                                 height="40px">
                                         @endif
 
                                     </a>
                                 </div>
                                 <div class="align-self-center">
-                                    <a href="/gallery?artist={{ $recVideo->artist->codename }}">
-                                        <p class="mx-2 my-0 py-0">{{ $recVideo->artist->artist_name }}</p>
+                                    <a href="/gallery?artist={{ $recVideo->artist->codename ?? '' }}">
+                                        <p class="mx-2 my-0 py-0">{{ $recVideo->artist->artist_name ?? '' }}</p>
                                     </a>
                                 </div>
                             </div>

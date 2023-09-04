@@ -75,39 +75,142 @@ $background-color: #f1f5f9;
 $background-color-dark: #171521;
 $white: #ffffff;
 $background-color-secondary: #fff;
+$special-color-100: #00d6ef;
 $special-color: #a1f5ff;
-$ranking-battle-100: #f615a5;
+$ranking-battle: #f615a5;
 $ranking-battle-10: #fee5f5;
-$how-would-100: #fc3a00;
+$how-would: #fc3a00;
 $how-would-10: #ffeee8;
-$center-distribution-100: #1426ff;
+$center-distribution: #1426ff;
 $center-distribution-10: #e7e9ff;
+$header-background: #1b1829;
+$hugepro: #673ab7;
+$hugepro-10: #e1d7f2;
+$nostalgic-vibes: #034283;
+$nostalgic-vibes-10: #e5ecf2;
+$youtube-comment: #ff0000;
+$youtube-comment-10: #ffe5e5;
 
-// Typography
+// Typography String, And Number
 $main-font: "Poppins", sans-serif;
 $secondary-font: "Inter", sans-serif;
+$sidebar-size: 250px;
+
+// List
+$projects-colors: "huge-pro-vol1" $hugepro $hugepro-10,
+    "nostalgic-vibes" $nostalgic-vibes $nostalgic-vibes-10,
+    "youtube-comment" $youtube-comment $youtube-comment-10,
+    "non-project" $special-color-100 $special-color;
+
+$status-colors: "default" $primary $primary-10, "completed" $success $success-10,
+    "onprocess" $secondary $secondary-10, "pending" $warning $warning-10,
+    "rejected" $alert $alert-10;
+
+$theme-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+    "success": $success,
+    "warning": $warning,
+    "alert": $alert,
+    "black": $text-color,
+);
+
+// Map
+$text-colors: (
+    "primary": $primary,
+    "secondary": $secondary,
+    "tertiary": $tertiary,
+    "100": $text-color,
+    "80": $black-80,
+    "ad": $alert,
+    "ae": $secondary,
+    "cd": $center-distribution,
+    "hw": $how-would,
+    "hs": $success,
+    "ld": $primary,
+    "le": $tertiary,
+    "rb": $ranking-battle,
+);
+
+$bg-colors: (
+    "main": $primary,
+    "main-20": $primary-20,
+    "second": $secondary,
+    "second-20": $secondary-20,
+    "hugepro-vol1": $hugepro,
+    "hugepro-vol1-10": $hugepro-10,
+    "nv": $nostalgic-vibes,
+    "nv-10": $nostalgic-vibes-10,
+    "you-com": $youtube-comment,
+    "you-com-10": $youtube-comment-10,
+    "non-pro": $special-color-100,
+    "non-pro-10": $special-color,
+    "success-10": $success-10,
+);
+
+$spaces: (
+    "0": 0,
+    "5": 5px,
+    "10": 10px,
+    "15": 15px,
+    "25": 25px,
+    "30": 30px,
+    "50": 50px,
+    "80": 80px,
+    "100": 100px,
+);
+
+$padding-spaces: (
+    "5": 5px,
+    "10": 10px,
+    "15": 15px,
+    "25": 25px,
+    "30": 30px,
+);
+
+$font-sizes: (
+    "48": 48px,
+    "36": 36px,
+    "24": 24px,
+    "18": 18px,
+    "16": 16px,
+    "14": 14px,
+    "12": 12px,
+    "10": 10px,
+);
 
 // Mixin
 @mixin button-status($color, $bg-color) {
     background-color: $bg-color;
     color: $color;
     font-weight: 600;
-    font-size: 12px;
-    border-radius: 5px;
-    width: 100px;
+    font-size: map-get($map: $font-sizes, $key: "12");
+    border-radius: map-get($map: $spaces, $key: "5");
+    width: map-get($map: $spaces, $key: "100");
     cursor: default;
 }
 
-@mixin primary-button($text-color, $bg-color) {
-    padding: 10px 15px;
+@mixin button($text-color, $bg-color) {
+    padding: 8px 10px;
     font-weight: 600;
-    font-size: 18px;
+    font-size: map-get($map: $font-sizes, $key: "14");
     color: $text-color;
     background-color: $bg-color;
-    border-radius: 5px;
+    border-radius: map-get($map: $spaces, $key: "5");
 }
 
-// Blok Text Selection
+@mixin border-button($text-color, $border-color) {
+    padding: 8px 10px;
+    font-weight: 600;
+    font-size: map-get($map: $font-sizes, $key: "14");
+    color: $text-color;
+    background-color: transparent;
+    border-radius: map-get($map: $spaces, $key: "5");
+    border: 1px solid $border-color;
+}
+
+/* Blok Text Selection */
 
 ::-moz-selection {
     /* Code for Firefox */
@@ -120,15 +223,19 @@ $secondary-font: "Inter", sans-serif;
     background: $primary;
 }
 
-//  End of Blok Text Selection
+/* End of Blok Text Selection */
 
-// Layout - Main
+/* Layout - Main */
 
 body {
     overflow-x: hidden;
 
     &.body-light {
         background-color: $background-color;
+    }
+
+    &.body-dark {
+        background-color: $background-color-dark;
     }
 }
 
@@ -144,13 +251,11 @@ body {
 .body-label {
     position: fixed;
     height: 100%;
-    width: calc(100% - 250px);
+    width: calc(100% - $sidebar-size);
     z-index: 30;
     right: -100%;
     top: 0;
 }
-
-/* ORIGINAL */
 
 #sidebar-toggle {
     display: none;
@@ -170,12 +275,183 @@ body {
     margin-left: 0;
 }
 
-// Sidebar
+/* Penutup Layout - Main */
+
+/* Component */
+
+// Margin
+@each $margin, $size in $spaces {
+    .m-bottom-#{$margin} {
+        margin-bottom: $size;
+    }
+
+    .m-top-#{$margin} {
+        margin-top: $size;
+    }
+
+    .m-left-#{$margin} {
+        margin-left: $size;
+    }
+
+    .m-right-#{$margin} {
+        margin-right: $size;
+    }
+}
+
+/* Padding */
+@each $padding, $size in $padding-spaces {
+    .p-#{$padding} {
+        padding: $size;
+    }
+}
+
+/* Font Size */
+@each $namesize, $size in $font-sizes {
+    .fs-#{$namesize} {
+        font-size: $size;
+    }
+}
+
+@each $namesize, $size in $font-sizes {
+    .fs-inter-#{$namesize} {
+        font-family: $secondary-font;
+        font-size: $size;
+    }
+}
+
+/* Text Color */
+@each $category, $color in $text-colors {
+    .text-color-#{$category} {
+        color: $color !important;
+    }
+}
+
+/* Background  Color */
+// @each $type, $color, $tint-10 in $projects-colors {
+//     .bg-#{$type} {
+//         color: $color;
+//         background-color: $tint-10;
+//     }
+// }
+
+@each $type, $color in $bg-colors {
+    .bg-#{$type} {
+        background-color: $color;
+    }
+}
+
+.bg-alert-10 {
+    background-color: $alert-10;
+}
+
+// Border Radius
+@each $radius, $size in $padding-spaces {
+    .border-radius-#{$radius} {
+        border-radius: $size;
+    }
+}
+
+// Button
+
+@each $status, $color, $color-10 in $status-colors {
+    .btn-#{$status},
+    .btn-#{$status}:hover {
+        @include button-status($color, $color-10);
+    }
+}
+
+@each $theme, $color in $theme-colors {
+    .btn-#{$theme}-color {
+        @include button($white, $color);
+
+        &:hover {
+            background-color: $color;
+            color: $white;
+        }
+    }
+}
+
+.btn-light-border {
+    @include border-button($text-color, $black-40);
+
+    &:hover {
+        border-color: $black-40;
+        color: $text-color;
+    }
+}
+
+/* Penutup Component */
+
+/* Modified Boostrap Style */
+
+.dis {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.dis:hover {
+    color: $primary;
+    border: solid 1px $primary;
+    background-color: transparent;
+}
+
+input::placeholder,
+textarea::placeholder,
+option {
+    color: $black-80;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+select option:checked,
+select option:hover {
+    // box-shadow: 0 0 10px 100px $primary inset;
+    background-color: $primary;
+    color: $white;
+}
+
+input.form-control,
+select.form-select,
+textarea.form-control {
+    font-size: 14px;
+    font-weight: 400;
+    color: $text-color;
+    caret-color: $primary;
+    padding: 12px 10px;
+    border-radius: 5px;
+    border: 1px solid $black-90;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: $primary;
+    box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
+}
+
+.form-text {
+    font-family: $secondary-font;
+    margin: 5px 0 0 0;
+    color: $black-90;
+}
+
+.is-invalid {
+    background-color: $alert-10;
+}
+
+.invalid-feedback {
+    margin: 5px 0 0 0;
+}
+
+/* End of Modified Boostrap Style */
+
+/* Sidebar */
 
 nav {
     &.sidebar {
         background-color: $background-color-dark;
-        width: 250px;
+        width: $sidebar-size;
         position: fixed;
         left: 0;
         top: 0;
@@ -217,11 +493,6 @@ nav {
             align-items: center;
             font-weight: 700;
         }
-
-        .brand-icons i {
-            font-size: 1.5rem;
-            margin-left: 0.5rem;
-        }
     }
 
     .sidebar-main {
@@ -236,10 +507,6 @@ nav {
                 max-height: 80px;
                 border-radius: 50%;
                 border: 2px solid #efefef;
-            }
-
-            span {
-                font-size: 12px;
             }
 
             .user-name {
@@ -320,21 +587,22 @@ nav {
     }
 }
 
-// Penutup Sidebar
+/* Penutup Sidebar */
 
-// Header
+/* Header */
+
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     height: 70px;
-    width: calc(100% - 250px);
+    width: calc(100% - $sidebar-size);
     padding: 25px;
-    left: 250px;
+    left: $sidebar-size;
     top: 0;
     z-index: 10;
-    background: $white;
+    background: $background-color-secondary;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 300ms;
 
@@ -366,16 +634,17 @@ header {
             margin-left: 0.7rem;
             font-size: 1.4rem;
             cursor: pointer;
-        }
+            color: $text-color;
 
-        i:hover {
-            color: #5850ec;
-            transition: 0.5s;
+            &:hover {
+                color: $primary;
+                transition: 0.5s;
+            }
         }
     }
 }
 
-// Penutup Header
+/* Penutup Header */
 
 /* Main Blade */
 main {
@@ -384,52 +653,49 @@ main {
 }
 
 .main-content {
-    margin-left: 250px;
+    margin-left: $sidebar-size;
     transition: margin-left 300ms;
-    background-color: $background-color;
     padding: 25px;
 }
 
-// Index
-.btn-main {
-    @include primary-button($white, $primary);
-}
+/* Penutup Main Blade */
 
-.btn-main:hover {
-    background-color: $primary-80;
-    color: $white;
-}
-
-#header-analytics button i {
-    font-size: 24px;
-    margin-right: 5px;
-}
+/* Index - Dashboard Analytics */
 
 .card-analytics {
-    background-color: $white;
+    background-color: $background-color-secondary;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    height: 200px;
+    height: fit-content;
+    min-height: min-content;
+    max-height: max-content;
     border-radius: 5px;
 }
 
 .card-info {
     h2 {
-        font-size: 36px;
         color: $text-color;
     }
 }
 
 .card-head {
-    span {
-        display: block;
-        color: $black-80;
-        font-size: 16px;
+    p.title-card {
+        color: $text-color;
+        font-size: 18px;
+        font-weight: 400;
+        text-transform: uppercase;
     }
 
-    small {
-        font-weight: 600;
-        color: $black-80;
+    p.number-title-card {
+        font-weight: 500;
+        font-size: 14px;
+        color: $text-color;
+    }
+
+    p.description-card {
+        color: $text-color;
+        font-weight: 400;
+        font-size: 14px;
     }
 }
 
@@ -440,25 +706,12 @@ main {
 }
 
 .analytics-card {
-    background: $white;
+    background: $background-color-secondary;
     padding: 1.5rem;
     border-radius: 10px;
 
-    .analytics-head {
-        .link-details a {
-            color: $primary;
-            display: block;
-            margin-bottom: 1rem;
-            text-decoration: none;
-        }
-
-        .link-details a:hover {
-            color: $primary;
-        }
-
-        i {
-            font-size: 24px;
-        }
+    .link-details a:hover {
+        color: $primary;
     }
 
     .table {
@@ -473,54 +726,36 @@ main {
     }
 }
 
-.btn-complete,
-.btn-complete:hover {
-    @include button-status($success, $success-10);
+.upcoming-schedule-card {
+    div,
+    p {
+        font-size: map-get($map: $font-sizes, $key: "14");
+    }
 }
 
-.btn-onprocess,
-.btn-onprocess:hover {
-    @include button-status($secondary, $secondary-10);
+/* Penutup Dashboard Analytics */
+
+/* Dashboard Tabel Projects */
+.table-container {
+    background: $background-color-secondary;
+    padding: map-get($map: $spaces, $key: "25");
+    border-radius: 10px;
 }
 
-.btn-pending,
-.btn-pending:hover {
-    @include button-status($warning, $warning-10);
-}
-
-.btn-rejected,
-.btn-rejected:hover {
-    @include button-status($alert, $alert-10);
-}
-
-.url-youtube a {
-    text-decoration: none;
-    color: $text-color;
-}
-
-.url-youtube a:hover {
-    color: $primary;
-}
-
-// Penutup Index Analytics
-
+/* Dibawah 1125px */
 @media only screen and (max-width: 1124px) {
     .sidebar {
         left: -100%;
         z-index: 30;
     }
 
-    .main-content {
-        margin-left: 0;
-    }
-
     header {
-        left: 0;
-        width: 100%;
+        left: $sidebar-size;
+        width: 100vw;
     }
 
     #sidebar-toggle:checked ~ .sidebar {
-        left: 0;
+        left: -100%;
     }
 
     #sidebar-toggle:checked ~ .body-label {
@@ -528,14 +763,58 @@ main {
     }
 }
 
+/* Create Projects */
+.form-container {
+    background-color: $background-color-secondary;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+/* End of Create Projects */
+
+/* Artists Dashboard */
+.img-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.img-artist {
+    aspect-ratio: 1 / 1; /* defining the aspect ratio of the image */
+    object-fit: cover; /* making sure the image isn't distorted */
+    border-radius: 15px;
+}
+
+/* Tablet and Phone */
+@media only screen and (max-width: 576px) {
+    .fs-sm-12 {
+        font-size: 12px;
+    }
+}
+
 @media only screen and (max-width: 768px) {
-    .header-actions .btn-main,
-    .header-actions .btn-border {
-        width: 100%;
-        margin: 5px 0;
+    nav.sidebar {
+        left: -100%;
     }
 
-    .sidebar {
-        top: 5rem;
+    .main-content {
+        margin-left: 0;
+        padding: 0;
     }
+
+    header {
+        left: 0;
+        padding: 16px;
+    }
+
+    #sidebar-toggle:checked ~ .sidebar {
+        left: 0;
+    }
+
+    /* Create Projects */
+    .form-container {
+        padding: 20px;
+    }
+    /* End of Create Projects */
 }

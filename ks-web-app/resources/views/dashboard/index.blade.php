@@ -4,12 +4,12 @@
     <div aria-live="polite" aria-atomic="true" class="position-relative">
         <div class="toast-container top-0 end-0 p-3">
             <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header bg-success-10 text-black-100">
+                <div class="toast-header bg-success-10 ">
                     <strong class="me-auto"><i class="las la-check-circle text-success-100 fs-18"></i> Kpop
                         Soulmate</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body bg-success-10 inter-regular-14 text-black-100">
+                <div class="toast-body bg-success-10 inter-regular-14 ">
                     {{ session('success') }}
                 </div>
             </div>
@@ -18,45 +18,19 @@
 @endif --}}
 
 @section('content')
-    {{-- google Chart --}}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", {
-            packages: ["corechart"]
-        });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Category Name', 'Number of Video'],
-                ['Line Distribution', 11],
-                ['Line Evolution', 2],
-                ['Album Distribution', 2],
-                ['All Title Tracks', 2]
-            ]);
-
-            var options = {
-                pieHole: 0.4,
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
-            chart.draw(data, options);
-        }
-    </script>
-
     {{-- TODO: Ubah Beberapa Teks menjadi inter --}}
     <section id="header-analytics">
-        <div class="row mb-4">
+        <div class="row m-bottom-30">
             <div class="col">
                 <div class="d-flex justify-content-between">
                     <div>
                         <h1 class="fw-bold">Analytics Dashboard</h1>
-                        <p>Monitor key metrics. Check Reporting and review insights</p>
                     </div>
 
                     <div>
-                        <button class="btn btn-main">
-                            <i class="las la-download"></i>
+                        <button class="btn
+                            btn-primary-color">
+                            <i class="las la-download fs-18 m-right-5"></i>
                             Back Up
                         </button>
                     </div>
@@ -72,11 +46,11 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="card-info">
                             <div class="card-head">
-                                <span>Requests</span>
-                                <small>Number of Requests</small>
+                                <p class="title-card mx-0 m-bottom-5">Requests</p>
+                                <p class="number-title-card mx-0 m-bottom-5">Number of Requests</p>
                             </div>
-                            <h2>222</h2>
-                            <small>On Google Form and Youtube</small>
+                            <h2 class="m-bottom-5 fw-bold">222</h2>
+                            <p class="description-card">On Google Form and Youtube</p>
                         </div>
                         <div class="card-icon align-self-center">
                             <i class="las la-clipboard-list"></i>
@@ -90,11 +64,11 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="card-info">
                             <div class="card-head">
-                                <span>Video</span>
-                                <small>Number of Videos</small>
+                                <p class="title-card mx-0 m-bottom-5">Video</p>
+                                <p class="number-title-card mx-0 m-bottom-5">Number of Videos</p>
                             </div>
-                            <h2>222</h2>
-                            <small>Uploaded On Youtube</small>
+                            <h2 class="m-bottom-5 fw-bolder">222</h2>
+                            <p class="description-card">Uploaded On Youtube</p>
                         </div>
                         <div class="card-icon align-self-center">
                             <i class="lab la-youtube"></i>
@@ -108,19 +82,36 @@
                     <div class="d-flex flex-row justify-content-between">
                         <div class="card-info">
                             <div class="card-head">
-                                <span>Requests Completed</span>
-                                <small>Number of Requests</small>
+                                <p class="title-card mx-0 m-bottom-5">Requests Completed</p>
+                                <p class="number-title-card mx-0 m-bottom-5">Number of Requests</p>
                             </div>
-                            <h2>5 / 222</h2>
-                            <small>Progress </small>
+                            <h2 class="m-bottom-5 fw-bolder">5 / 222</h2>
+                            <p class="description-card m-bottom-5">Progress </p>
                         </div>
                         <div class="card-icon align-self-center">
                             <i class="las la-clipboard-check"></i>
                         </div>
                     </div>
-                    <div class="progress rounded-pill">
-                        <div class="progress-bar rounded-pill" role="progressbar"
-                            style="width: 10%; background-color: #776eb7;" aria-valuemin="0" aria-valuemax="100">4%
+                    <div class="progress bg-main-20" role="progressbar" aria-label="bar completed" aria-valuenow="25"
+                        aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-main rounded-pill" style="width: 25%">25%</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="card-analytics">
+                    <div class="d-flex flex-row justify-content-between">
+                        <div class="card-info">
+                            <div class="card-head">
+                                <p class="title-card mx-0 m-bottom-5">Requests Rejected</p>
+                                <p class="number-title-card mx-0 m-bottom-5">Number of Rejected</p>
+                            </div>
+                            <h2 class="m-bottom-5 fw-bolder">222</h2>
+                            <p class="description-card">From 20 Requests</p>
+                        </div>
+                        <div class="card-icon align-self-center btn">
+                            <i class="las la-comment-slash"></i>
                         </div>
                     </div>
                 </div>
@@ -133,14 +124,19 @@
             <div class="col">
                 <div class="analytics-card">
                     <div class="analytics-head">
-                        <div class="link-details d-flex justify-content-between">
-                            <h4 class="fw-semibold">Category Statistics</h4>
-                            <a href="category">
-                                <small>Show Category <i class="las la-angle-right"></i></small>
-                            </a>
+                        <h4 class="fw-semibold m-bottom-10">Overall Project Type</h4>
+                        <div class="">
+                            <canvas id="projectTypeChart"></canvas>
                         </div>
-                        <div class="analytics-chart">
-                            <div id="donutchart" style="width: 900px; height: 500px; margin:auto;"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="analytics-card">
+                    <div class="analytics-head">
+                        <h4 class="fw-semibold m-bottom-10">All Category</h4>
+                        <div class="">
+                            <canvas id="categoryChart"></canvas>
                         </div>
                     </div>
                 </div>
@@ -148,141 +144,86 @@
         </div>
     </section>
 
-    <section id="schedule">
+    <section id="progress-type-schedule">
         <div class="row mb-5">
-            <div class="col">
+            <div class="col-7">
                 <div class="analytics-card">
                     <div class="analytics-head">
-                        <div class="link-details d-flex justify-content-between">
-                            <h4 class="fw-semibold">Schedule</h4>
-                            <a href="">
-                                <small>Show All <i class="las la-angle-right"></i></small>
-                            </a>
+                        <h4 class="fw-semibold m-bottom-10">Progress Project Type</h4>
+                    </div>
+                    <div class="analytics-body mb-3">
+                        <div class="d-flex justify-content-between">
+                            <p class="m-bottom-5 fw-medium">Huge Project Vol.#01</p>
+                            <span class="fw-medium">25 %</span>
+                        </div>
+                        <div class="progress bg-hugepro-vol1-10" role="progressbar" aria-label="progressbar type"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                            <div class="progress-bar bg-hugepro-vol1 rounded-pill" style="width: 25%;"></div>
                         </div>
                     </div>
-                    <div class="container">
-                        <div class="row tabel-head">
-                            <div class="col">Date</div>
-                            <div class="col">Project Name</div>
-                            <div class="col">Category</div>
-                            <div class="col">Requester</div>
-                            <div class="col">Status</div>
+                    <div class="analytics-body mb-3">
+                        <div class="d-flex justify-content-between">
+                            <p class="m-bottom-5 fw-medium">Youtube Comment</p>
+                            <span class="fw-medium">25 %</span>
                         </div>
-                        <div class="row tabel-body">
-                            <div class="col align-self-center">
-                                <i class="lar la-calendar"></i> 21 Aug 2021
-                            </div>
-                            <div class="col align-self-center">WJSN - Neverland</div>
-                            <div class="col align-self-center">Album Distribution</div>
-                            <div class="col align-self-center">Kpop Soulmate</div>
-                            <div class="col">
-                                <span class="btn btn-onprocess">On Process</span>
-                            </div>
+                        <div class="progress bg-you-com-10" role="progressbar" aria-label="progressbar type"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                            <div class="progress-bar rounded-pill bg-you-com" style="width: 25%;"></div>
+                        </div>
+                    </div>
+                    <div class="analytics-body">
+                        <div class="d-flex justify-content-between">
+                            <p class="m-bottom-5 fw-medium">Non-Project</p>
+                            <span class="fw-medium">25 %</span>
+                        </div>
+                        <div class="progress bg-non-pro-10" role="progressbar" aria-label="progressbar type"
+                            aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 10px;">
+                            <div class="progress-bar rounded-pill bg-non-pro" style="width: 25%;"></div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col">
+                <div class="analytics-card">
+                    <div class="analytics-head">
+                        <h4 class="fw-semibold m-bottom-10">Upcoming Schedule</h4>
+                    </div>
+                    @foreach ($upcomings as $upcoming)
+                        @if ($loop->last)
+                            <div class="upcoming-schedule-card mb-0">
+                            @else
+                                <div class="upcoming-schedule-card mb-4">
+                        @endif
+                        <div class="d-flex flex-column">
+                            <div class="mb-2">
+                                <i class="lar la-calendar"></i>
+                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $upcoming->date)->format('d F Y') }}
+                                ({{ \Carbon\Carbon::createFromTimeStamp(strtotime($upcoming->date))->diffForHumans() }})
+                            </div>
+                            <div class="m-bottom-5">
+                                <h6 class="fw-semibold m-0">{{ $upcoming->project_title }}
+                                    ({{ $upcoming->category->category_name }})
+                                </h6>
+                            </div>
+                            <div class="m-bottom-5">
+                                <i class="las la-user-alt"></i> {{ $upcoming->requester }} |
+                                {{ $upcoming->type->type_name }}
+                            </div>
+                            <div class="d-flex justify-content-between fw-medium">
+                                <p class="m-0 m-bottom-5">Progress</p>
+                                <p class="m-0 ">{{ $upcoming->progress }} %</p>
+                            </div>
+                            <div class="progress bg-main-20" role="progressbar" aria-label="progress project"
+                                aria-valuenow="{{ $upcoming->progress }}" aria-valuemin="0" aria-valuemax="100"
+                                style="height: 10px">
+                                <div class="progress-bar bg-main rounded-pill" style="width: {{ $upcoming->progress }}%;">
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                @endforeach
             </div>
         </div>
-    </section>
-
-
-    <section id="video-content">
-        <div class="row mb-5">
-            <div class="col">
-                <div class="analytics-card">
-                    <div class="analytics-head">
-                        <div class="link-details d-flex justify-content-between">
-                            <h4 class="fw-semibold">Video Content</h4>
-                            <a href="">
-                                <small>Show All <i class="las la-angle-right"></i></small>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="container">
-                        <div class="row tabel-head">
-                            <div class="col">Video</div>
-                            <div class="col">Category</div>
-                            <div class="col">Url</div>
-                            <div class="col-2">Date</div>
-                        </div>
-                        <div class="row tabel-body">
-                            <div class="col">
-                                <div>
-                                    <img src="https://i.ytimg.com/vi/bJGe8w1C5Dc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8fdppwQTGokJ-ZJgApshnUF_p2w"
-                                        alt="thumbnail" style="width: 120px; height: 68px;">
-                                </div>TWICE - Heart Shaker
-                            </div>
-                            <div class="col">Line Distribution</div>
-                            <div class="col url-youtube">
-                                <a href="https://youtu.be/bJGe8w1C5Dc" target="__blank">https://youtu.be/bJGe8w1C5Dc</a>
-                            </div>
-                            <div class="col-2">
-                                <i class="las la-calendar"></i> 16 Dec 2020
-                            </div>
-                        </div>
-                        <div class="row tabel-body">
-                            <div class="col">
-                                <div>
-                                    <img src="https://i.ytimg.com/vi/bJGe8w1C5Dc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8fdppwQTGokJ-ZJgApshnUF_p2w"
-                                        alt="thumbnail" style="width: 120px; height: 68px;">
-                                </div>TWICE - Heart Shaker
-                            </div>
-                            <div class="col">Line Distribution</div>
-                            <div class="col url-youtube">
-                                <a href="https://youtu.be/bJGe8w1C5Dc" target="__blank">https://youtu.be/bJGe8w1C5Dc</a>
-                            </div>
-                            <div class="col-2">
-                                <i class="las la-calendar"></i> 16 Dec 2020
-                            </div>
-                        </div>
-                        <div class="row tabel-body">
-                            <div class="col">
-                                <div>
-                                    <img src="https://i.ytimg.com/vi/bJGe8w1C5Dc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8fdppwQTGokJ-ZJgApshnUF_p2w"
-                                        alt="thumbnail" style="width: 120px; height: 68px;">
-                                </div>TWICE - Heart Shaker
-                            </div>
-                            <div class="col">Line Distribution</div>
-                            <div class="col url-youtube">
-                                <a href="https://youtu.be/bJGe8w1C5Dc" target="__blank">https://youtu.be/bJGe8w1C5Dc</a>
-                            </div>
-                            <div class="col-2">
-                                <i class="las la-calendar"></i> 16 Dec 2020
-                            </div>
-                        </div>
-                        <div class="row tabel-body">
-                            <div class="col">
-                                <div>
-                                    <img src="https://i.ytimg.com/vi/bJGe8w1C5Dc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8fdppwQTGokJ-ZJgApshnUF_p2w"
-                                        alt="thumbnail" style="width: 120px; height: 68px;">
-                                </div>TWICE - Heart Shaker
-                            </div>
-                            <div class="col">Line Distribution</div>
-                            <div class="col url-youtube">
-                                <a href="https://youtu.be/bJGe8w1C5Dc" target="__blank">https://youtu.be/bJGe8w1C5Dc</a>
-                            </div>
-                            <div class="col-2">
-                                <i class="las la-calendar"></i> 16 Dec 2020
-                            </div>
-                        </div>
-                        <div class="row tabel-body">
-                            <div class="col">
-                                <div>
-                                    <img src="https://i.ytimg.com/vi/bJGe8w1C5Dc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA8fdppwQTGokJ-ZJgApshnUF_p2w"
-                                        alt="thumbnail" style="width: 120px; height: 68px;">
-                                </div>TWICE - Heart Shaker
-                            </div>
-                            <div class="col">Line Distribution</div>
-                            <div class="col url-youtube">
-                                <a href="https://youtu.be/bJGe8w1C5Dc" target="__blank">https://youtu.be/bJGe8w1C5Dc</a>
-                            </div>
-                            <div class="col-2">
-                                <i class="las la-calendar"></i> 16 Dec 2020
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -291,73 +232,149 @@
             <div class="col">
                 <div class="analytics-card">
                     <div class="analytics-head">
-                        <div class="link-details d-flex justify-content-between">
-                            <h4 class="fw-semibold">Project List</h4>
-                            <a href="">
-                                <small>Show All <i class="las la-angle-right"></i></small>
-                            </a>
-                        </div>
+                        <h4 class="fw-semibold m-bottom-10">Reviewed Request List</h4>
                     </div>
-                    <table class="table table-responsive table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Project Title</th>
-                                <th scope="col">Category</th>
-                                <th scope="col">Requester</th>
-                                <th scope="col">Status</th>
-                                <th>
-                                    <i class="las la-ellipsis-v" id="projectMenu" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false"></i>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-middle">WJSN - Neverland</td>
-                                <td class="align-middle">Album Distribution</td>
-                                <td class="align-middle">Kpop Soulmate</td>
-                                <td class="align-middle">
-                                    <span class="btn btn-onprocess">On Process</span>
-                                </td>
-                                <td class="align-middle">
-                                    <div class="dropleft">
-                                        <i class="las la-ellipsis-v" id="projectMenu" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false"></i>
-                                        <div class="dropdown-menu" aria-labelledby="projectMenu">
-                                            <button class="dropdown-item" type="button">Update</button>
-                                            <button class="dropdown-item" type="button">Hapus</button>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Hello Venus - Runaway</td>
-                                <td>Line Distribution</td>
-                                <td>Kpop Soulmate</td>
-                                <td>
-                                    <span class="btn btn-pending">On Process</span>
-                                </td>
-                                <td>
-                                    <div class="btn-group dropstart">
-                                        <button class="btn p-0" type="button" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            <i class="las la-ellipsis-v"> </i>
-                                        </button>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button class="dropdown-item" type="button">Update</button>
-                                            </li>
-                                            <li>
-                                                <button class="dropdown-item" type="button">Hapus</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Project Title</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Requester</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($requestList as $list)
+                                    <tr>
+                                        <td class="align-middle">{{ $list->project_title }}</td>
+                                        <td class="align-middle">{{ $list->category->category_name }}</td>
+                                        <td class="align-middle">{{ $list->type->type_name }}</td>
+                                        <td class="align-middle">{{ $list->date }}</td>
+                                        <td class="align-middle">{{ $list->requester }}</td>
+                                        <td class="align-middle">
+                                            <span class="btn btn-pending">{{ $list->status }}</span>
+                                        </td>
+                                        <td class="align-middle">
+                                            <a href="/dashboard/projects/{{ $list->id }}" class="dropdown-item"><i
+                                                    class="las la-external-link-alt fs-14"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="d-flex justify-content-center link-details">
+                        <a href="/dashboard/projects"
+                            class="text-decoration-none text-center fs-14 fw-medium text-color-100">Show
+                            All <i class="las la-arrow-right"> </i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    {{-- Chart.js --}}
+    <script>
+        // Chart Category Doughnut
+        const ctx = document.getElementById('categoryChart');
+
+        new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+                datasets: [{
+                    label: 'Category Chart',
+                    data: [12, 19, 3, 5, 2, 3],
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Chart Projects Total
+
+        const ctxType = document.getElementById('projectTypeChart');
+
+        new Chart(ctxType, {
+            type: 'bar',
+            data: {
+                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei'],
+                datasets: [{
+                    label: 'Project Type Chart',
+                    data: [65, 59, 80, 81, 56],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(255, 159, 64, 0.2)',
+                        'rgba(255, 205, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(201, 203, 207, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgb(255, 99, 132)',
+                        'rgb(255, 159, 64)',
+                        'rgb(255, 205, 86)',
+                        'rgb(75, 192, 192)',
+                        'rgb(54, 162, 235)',
+                        'rgb(153, 102, 255)',
+                        'rgb(201, 203, 207)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // new Chart(ctxType, {
+        //     type: 'bar',
+        //     data: {
+        //         labels: Utils.months({
+        //             count: 5
+        //         }),
+        //         datasets: [{
+        //             label: 'Project Type Chart',
+        //             data: [65, 59, 80, 81, 56],
+        //             backgroundColor: [
+        //                 'rgba(255, 99, 132, 0.2)',
+        //                 'rgba(255, 159, 64, 0.2)',
+        //                 'rgba(255, 205, 86, 0.2)',
+        //                 'rgba(75, 192, 192, 0.2)',
+        //                 'rgba(54, 162, 235, 0.2)',
+        //             ],
+        //             borderColor: [
+        //                 'rgb(255, 99, 132)',
+        //                 'rgb(255, 159, 64)',
+        //                 'rgb(255, 205, 86)',
+        //                 'rgb(75, 192, 192)',
+        //                 'rgb(54, 162, 235)',
+        //             ],
+        //             borderWidth: 1
+        //         }]
+        //     },
+        //     options: {
+        //         scales: {
+        //             y: {
+        //                 beginAtZero: true
+        //             }
+        //         }
+        //     },
+        // });
+    </script>
 @endsection

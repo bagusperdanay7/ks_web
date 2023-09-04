@@ -17,13 +17,13 @@
                 <div id="carouselHeroAutoplaying" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-inner shadow rounded-4">
                         <div class="carousel-item active">
-                            <img src="{{ asset('img/hero_img1.jpg') }}" class="d-block w-100" alt="hero image">
+                            <img src="{{ asset('img/hero_img1.jpg') }}" class="d-block img-hero img-fluid" alt="hero image">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/hero_img2.png" class="d-block w-100" alt="hero image 2">
+                            <img src="img/hero_img2.png" class="d-block img-hero img-fluid" alt="hero image 2">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/hero_img3.png" class="d-block w-100" alt="hero image 3">
+                            <img src="img/hero_img3.png" class="d-block img-hero img-fluid" alt="hero image 3">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselHeroAutoplaying"
