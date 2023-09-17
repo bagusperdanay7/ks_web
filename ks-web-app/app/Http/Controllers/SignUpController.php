@@ -12,7 +12,6 @@ class SignUpController extends Controller
     public function index() {
         return view('sign-up.index', [
             'title' => 'Sign Up',
-            'active' => 'sign_up',
         ]);
     }
 
@@ -29,6 +28,9 @@ class SignUpController extends Controller
                                                 ->uncompromised()
                             ],
             'confirm-password' => 'required|min:8|same:password'
+        ],
+        [
+            'confirm-password.same' => 'The Confirm Password does not match password'
         ]);
 
         $validatedData['password'] = Hash::make($validatedData['password']);

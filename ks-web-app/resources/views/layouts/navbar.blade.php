@@ -1,5 +1,4 @@
-<nav class="navbar sticky-top navbar-expand-lg bg-white-secondary d-none d-sm-flex shadow-sm"
-    aria-label="Navbar Desktop Mode">
+<nav class="navbar sticky-top navbar-expand-lg bg-second d-none d-sm-flex shadow-sm" aria-label="Navbar Desktop Mode">
     <div class="container">
         <div class="brand">
             <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
@@ -12,14 +11,14 @@
         <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarNav">
             <ul class="navbar-nav text-center text-start">
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'home' ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
+                    <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'projects' ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('projects*') ? 'active' : '' }}"
                         href="{{ route('projects') }}">Projects</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'gallery' ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('gallery*') ? 'active' : '' }}"
                         href="{{ route('gallery') }}">Gallery</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -28,7 +27,8 @@
                         Other Menu
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item fs-6 {{ $active === 'ai_model' ? 'active' : '' }}" href="#">AI
+                        <li><a class="dropdown-item fs-6 {{ Request::is('/ai-model') ? 'active' : '' }}"
+                                href="#">AI
                                 model <span class="badge mini-badge align-top">New</span></a></li>
                         <li>
                             <hr class="dropdown-divider">
@@ -38,7 +38,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{ $active === 'request_list' ? 'active' : '' }}"
+                    <a class="nav-link {{ Request::is('request-list') ? 'active' : '' }}"
                         href="{{ route('request-list') }}">Request List</a>
                 </li>
                 @auth
@@ -54,15 +54,17 @@
                                 width="45px">
                         @endif
                         <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-                            <li>
-                                <a class="dropdown-item fs-6 fw-normal" href="/dashboard">
-                                    <i class="las la-columns d-inline"></i>
-                                    Dashboard
-                                </a>
-                            </li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
+                            @can('admin')
+                                <li>
+                                    <a class="dropdown-item fs-6 fw-normal" href="/dashboard">
+                                        <i class="las la-columns d-inline"></i>
+                                        Dashboard
+                                    </a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                            @endcan
                             <li class="fs-6">
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
@@ -75,7 +77,7 @@
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="{{ route('login') }}" class="nav-link {{ $active === 'login' ? 'active' : '' }}"><i
+                        <a href="{{ route('login') }}" class="nav-link {{ Request::is('login') ? 'active' : '' }}"><i
                                 class="las la-sign-in-alt"></i> Login</a>
                     </li>
                 </ul>
@@ -84,7 +86,7 @@
     </div>
 </nav>
 
-<header class="bg-white-secondary p-3 d-xs-block d-sm-none">
+<header class="bg-second p-3 d-xs-block d-sm-none">
     <div class="brand">
         <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
         <a class="navbar-brand logo-navbar align-middle" href="{{ route('home') }}">KPOP SOULMATE</a>
@@ -92,7 +94,7 @@
 </header>
 
 {{-- Nav Mobile --}}
-<nav class="navbar fixed-bottom bg-white-secondary mobile-nav shadow" aria-label="Navbar Mobile Only">
+<nav class="navbar fixed-bottom bg-second mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="" class="text-decoration-none d-flex">
             <i class='bx bxs-user-voice bx-xs'></i>
@@ -102,11 +104,13 @@
             <i class='bx bxs-videos bx-xs'></i>
             <span class="mx-2">Exclusive Video</span>
         </a>
-        <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex">
-            <i class='bx bxs-dashboard bx-xs'></i>
-            <span class="mx-2">Dashboard</span>
-        </a>
         @auth
+            @can('admin')
+                <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex">
+                    <i class='bx bxs-dashboard bx-xs'></i>
+                    <span class="mx-2">Dashboard</span>
+                </a>
+            @endcan
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="dropdown-item">
@@ -127,13 +131,13 @@
             $isProjects = false;
             $isRequestList = false;
             
-            if ($active === 'home') {
+            if (Request::is('/')) {
                 $isHome = true;
-            } elseif ($active === 'projects') {
+            } elseif (Request::is('projects*')) {
                 $isProjects = true;
-            } elseif ($active === 'gallery') {
+            } elseif (Request::is('gallery*')) {
                 $isGallery = true;
-            } elseif ($active === 'request_list') {
+            } elseif (Request::is('request-list*')) {
                 $isRequestList = true;
             }
             

@@ -62,18 +62,18 @@ $success-30: #c4e7d5;
 $success-20: #d7efe3;
 $success-10: #ebf7f1;
 $text-color: #1f1f1f;
-$black-90: #353535;
-$black-80: #4b4b4b;
-$black-70: #626262;
-$black-60: #787878;
-$black-50: #8f8f8f;
-$black-40: #a5a5a5;
-$black-30: #bbb;
-$black-20: #d2d2d2;
-$black-10: #e8e8e8;
+$text-color-90: #353535;
+$text-color-80: #4b4b4b;
+$text-color-70: #626262;
+$text-color-60: #787878;
+$text-color-50: #8f8f8f;
+$text-color-40: #a5a5a5;
+$text-color-30: #bbb;
+$text-color-20: #d2d2d2;
+$text-color-10: #e8e8e8;
+$white: #ffffff;
 $background-color: #f1f5f9;
 $background-color-dark: #171521;
-$white: #ffffff;
 $background-color-secondary: #fff;
 $special-color-100: #00d6ef;
 $special-color: #a1f5ff;
@@ -122,7 +122,7 @@ $text-colors: (
     "secondary": $secondary,
     "tertiary": $tertiary,
     "100": $text-color,
-    "80": $black-80,
+    "80": $text-color-80,
     "ad": $alert,
     "ae": $secondary,
     "cd": $center-distribution,
@@ -279,7 +279,7 @@ body {
 
 /* Component */
 
-// Margin
+/* Margin */
 @each $margin, $size in $spaces {
     .m-bottom-#{$margin} {
         margin-bottom: $size;
@@ -344,14 +344,22 @@ body {
     background-color: $alert-10;
 }
 
-// Border Radius
+/* Border Radius */
 @each $radius, $size in $padding-spaces {
-    .border-radius-#{$radius} {
+    .rounded-all-#{$radius} {
         border-radius: $size;
     }
 }
 
-// Button
+.rounded-bottom-10 {
+    border-radius: 0 0 10px 10px;
+}
+
+.rounded-top-10 {
+    border-radius: 10px 10px 0 0;
+}
+
+/* Button*/
 
 @each $status, $color, $color-10 in $status-colors {
     .btn-#{$status},
@@ -372,15 +380,21 @@ body {
 }
 
 .btn-light-border {
-    @include border-button($text-color, $black-40);
+    @include border-button($text-color, $text-color-40);
 
     &:hover {
-        border-color: $black-40;
+        border-color: $text-color-40;
         color: $text-color;
     }
 }
 
-/* Penutup Component */
+/* Image */
+.img-square {
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+/* End of Component */
 
 /* Modified Boostrap Style */
 
@@ -398,7 +412,7 @@ body {
 input::placeholder,
 textarea::placeholder,
 option {
-    color: $black-80;
+    color: $text-color-80;
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -407,7 +421,6 @@ option {
 
 select option:checked,
 select option:hover {
-    // box-shadow: 0 0 10px 100px $primary inset;
     background-color: $primary;
     color: $white;
 }
@@ -421,7 +434,7 @@ textarea.form-control {
     caret-color: $primary;
     padding: 12px 10px;
     border-radius: 5px;
-    border: 1px solid $black-90;
+    border: 1px solid $text-color-90;
 }
 
 .form-control:focus,
@@ -433,7 +446,7 @@ textarea.form-control {
 .form-text {
     font-family: $secondary-font;
     margin: 5px 0 0 0;
-    color: $black-90;
+    color: $text-color-90;
 }
 
 .is-invalid {
@@ -444,6 +457,10 @@ textarea.form-control {
     margin: 5px 0 0 0;
 }
 
+.dropdown-menu .dropdown-item:active {
+    background-color: var(--primary);
+    color: var(--white);
+}
 /* End of Modified Boostrap Style */
 
 /* Sidebar */
@@ -467,7 +484,7 @@ nav {
     }
 
     &.sidebar::-webkit-scrollbar-thumb {
-        background: $black-30;
+        background: $text-color-30;
         border-radius: 20px;
     }
 
@@ -510,10 +527,8 @@ nav {
             }
 
             .user-name {
-                background-color: $black-80;
                 width: fit-content;
                 margin: auto;
-                padding: 5px 10px;
             }
         }
 
@@ -666,7 +681,7 @@ main {
     background-color: $background-color-secondary;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
     padding: 15px;
-    height: fit-content;
+    height: 100%;
     min-height: min-content;
     max-height: max-content;
     border-radius: 5px;
@@ -691,17 +706,12 @@ main {
         font-size: 14px;
         color: $text-color;
     }
-
-    p.description-card {
-        color: $text-color;
-        font-weight: 400;
-        font-size: 14px;
-    }
 }
 
 .card-icon {
     i {
         font-size: 80px;
+        color: $text-color;
     }
 }
 
@@ -718,21 +728,42 @@ main {
         th {
             font-size: 14px;
             font-weight: 600;
+            color: $text-color;
         }
 
         td {
             font-size: 12px;
+            color: $text-color;
+
+            a {
+                color: $secondary;
+            }
         }
     }
 }
 
 .upcoming-schedule-card {
+    padding: 15px;
+    border-radius: 5px;
+    border: 1px solid $text-color-30;
+
     div,
     p {
         font-size: map-get($map: $font-sizes, $key: "14");
     }
 }
 
+.chart-container {
+    position: relative;
+    margin: auto;
+    height: 50vh;
+}
+
+.link-details {
+    a {
+        color: $text-color-80;
+    }
+}
 /* Penutup Dashboard Analytics */
 
 /* Dashboard Tabel Projects */
@@ -740,6 +771,44 @@ main {
     background: $background-color-secondary;
     padding: map-get($map: $spaces, $key: "25");
     border-radius: 10px;
+
+    th,
+    td {
+        color: $text-color;
+    }
+}
+
+.dropdown-menu {
+    a.dropdown-item:hover,
+    button:hover {
+        background-color: $primary;
+        color: $white;
+    }
+}
+
+/* Create Projects */
+.form-container {
+    background-color: $background-color-secondary;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #dee2e6;
+}
+/* End of Create Projects */
+
+/* Artists Dashboard */
+.img-avatar {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* Album Dashboard */
+.img-album {
+    width: 100px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
 /* Dibawah 1125px */
@@ -761,29 +830,6 @@ main {
     #sidebar-toggle:checked ~ .body-label {
         right: 0;
     }
-}
-
-/* Create Projects */
-.form-container {
-    background-color: $background-color-secondary;
-    padding: 30px;
-    border-radius: 10px;
-    border: 1px solid #dee2e6;
-}
-/* End of Create Projects */
-
-/* Artists Dashboard */
-.img-avatar {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
-.img-artist {
-    aspect-ratio: 1 / 1; /* defining the aspect ratio of the image */
-    object-fit: cover; /* making sure the image isn't distorted */
-    border-radius: 15px;
 }
 
 /* Tablet and Phone */
@@ -811,6 +857,8 @@ main {
     #sidebar-toggle:checked ~ .sidebar {
         left: 0;
     }
+
+    /* Index Dashboard */
 
     /* Create Projects */
     .form-container {

@@ -4,11 +4,11 @@
         <div class="row m-bottom-25 justify-content-center">
             <div class="col-md-8 col-12">
                 <div class="form-container ">
-                    <h4 class="fw-bold m-bottom-30 text-center">Create Project Form</h4>
+                    <h4 class="fw-bold m-bottom-30 text-center text-color-100">Create Project Form</h4>
                     <form method="post" action="/dashboard/projects">
                         @csrf
                         <div class="m-bottom-15">
-                            <label for="artist" class="form-label m-bottom-10 fs-18 fw-medium">Artist</label>
+                            <label for="artist" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select" aria-label="Select Artist" id="artist" name="artist_id">
                                 @foreach ($artists as $artist)
                                     <option value="{{ $artist->id }}"
@@ -19,7 +19,8 @@
                             </select>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="category" class="form-label m-bottom-10 fs-18 fw-medium">Category</label>
+                            <label for="category"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Category</label>
                             <select class="form-select" aria-label="Select Category" id="category" name="category_id">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
@@ -30,7 +31,7 @@
                             </select>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="type" class="form-label m-bottom-10 fs-18 fw-medium">Type</label>
+                            <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
                             <select class="form-select" aria-label="Select Type" id="type" name="type_id">
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}"
@@ -41,8 +42,9 @@
                             </select>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="project_title" class="form-label m-bottom-10 fs-18 fw-medium">Project Title</label>
-                            <input type="type" class="form-control @error('project_title') is-invalid @enderror"
+                            <label for="project_title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Project
+                                Title</label>
+                            <input type="text" class="form-control @error('project_title') is-invalid @enderror"
                                 name="project_title" id="project_title" placeholder="OH MY GIRL - Celebrate"
                                 value="{{ old('project_title') }}">
                             @error('project_title')
@@ -52,8 +54,9 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="requester" class="form-label m-bottom-10 fs-18 fw-medium">Requester</label>
-                            <input type="type" class="form-control @error('requester') is-invalid @enderror"
+                            <label for="requester"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Requester</label>
+                            <input type="text" class="form-control @error('requester') is-invalid @enderror"
                                 name="requester" id="requester" value="{{ old('requester', auth()->user()->name) }}">
                             @error('requester')
                                 <div id="requesterFeedback" class="invalid-feedback">
@@ -62,9 +65,9 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="date" class="form-label m-bottom-10 fs-18 fw-medium">Date</label>
-                            <input type="date" class="form-control @error('date') is-invalid @enderror" name="date"
-                                id="date" value="{{ old('date') }}">
+                            <label for="date" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Date</label>
+                            <input type="datetime-local" class="form-control @error('date') is-invalid @enderror"
+                                name="date" id="date" value="{{ old('date') }}">
                             @error('date')
                                 <div id="dateFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -72,7 +75,8 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="status" class="form-label m-bottom-10 fs-18 fw-medium">Status</label>
+                            <label for="status"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
                             <select class="form-select" aria-label="Select status" id="status" name="status">
                                 @if (old('status') === 'Completed')
                                     <option value="{{ old('status') }}" selected>{{ old('status') }}</option>
@@ -103,9 +107,10 @@
                             </select>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="url" class="form-label m-bottom-10 fs-18 fw-medium">Url</label>
+                            <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
                             <input type="url" class="form-control @error('url') is-invalid @enderror" name="url"
-                                id="url" maxlength="191" value="{{ old('url') }}">
+                                id="url" maxlength="191" value="{{ old('url') }}"
+                                placeholder="Ex: https://www.youtube.com/embed/PMl5T1RNr5c">
                             @error('url')
                                 <div id="urlFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -113,9 +118,11 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="thumbnail" class="form-label m-bottom-10 fs-18 fw-medium">Thumbnail</label>
+                            <label for="thumbnail"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Thumbnail</label>
                             <input type="text" class="form-control @error('thumbnail') is-invalid @enderror"
-                                name="thumbnail" id="thumbnail" maxlength="191" value="{{ old('thumbnail') }}">
+                                name="thumbnail" id="thumbnail" maxlength="191" value="{{ old('thumbnail') }}"
+                                placeholder="Enter URL Thumbnail from Youtube">
                             @error('thumbnail')
                                 <div id="thumbnailFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -124,10 +131,11 @@
                         </div>
                         <div class="row m-bottom-15">
                             <div class="col">
-                                <label for="progress" class="form-label m-bottom-10 fs-18 fw-medium">Progress</label>
+                                <label for="progress"
+                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Progress</label>
                                 <input type="number" class="form-control @error('progress') is-invalid @enderror"
                                     name="progress" id="progress" min="0" max="100"
-                                    value="{{ old('progress') }}">
+                                    value="{{ old('progress') }}" placeholder="0-100">
                                 @error('progress')
                                     <div id="progressFeedback" class="invalid-feedback">
                                         {{ $message }}
@@ -135,9 +143,11 @@
                                 @enderror
                             </div>
                             <div class="col">
-                                <label for="votes" class="form-label m-bottom-10 fs-18 fw-medium">Votes</label>
+                                <label for="votes"
+                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Votes</label>
                                 <input type="number" class="form-control @error('votes') is-invalid @enderror"
-                                    name="votes" id="votes" min="1" value="{{ old('votes') }}">
+                                    name="votes" id="votes" min="1" value="{{ old('votes') }}"
+                                    placeholder="Min. 1">
                                 @error('votes')
                                     <div id="votesFeedback" class="invalid-feedback">
                                         {{ $message }}
@@ -146,12 +156,31 @@
                             </div>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="created_at" class="form-label m-bottom-10 fs-18 fw-medium">Created At</label>
+                            <label for="is_exclusive"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Exclusive Status</label>
+                            <select class="form-select" aria-label="Select Exclusive Status" id="is_exclusive"
+                                name="is_exclusive">
+                                @if (old('is_exclusive') === 'No')
+                                    <option value="{{ old('is_exclusive') }}" selected>{{ old('is_exclusive') }}</option>
+                                    <option value="Yes">Yes</option>
+                                @elseif (old('is_exclusive') === 'Yes')
+                                    <option value="No">No</option>
+                                    <option value="{{ old('is_exclusive') }}" selected>{{ old('is_exclusive') }}</option>
+                                @else
+                                    <option value="No">No</option>
+                                    <option value="Yes">Yes</option>
+                                @endif
+                            </select>
+                        </div>
+                        <div class="m-bottom-15">
+                            <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created
+                                At</label>
                             <input type="datetime-local" class="form-control" name="created_at" id="created_at"
                                 value="{{ old('created_at') }}">
                         </div>
                         <div class="m-bottom-15">
-                            <label for="notes" class="form-label m-bottom-10 fs-18 fw-medium">Notes</label>
+                            <label for="notes"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Notes</label>
                             <textarea class="form-control" id="notes" rows="3" name="notes"
                                 placeholder="Ex: Please, make nayeon as thumbnail, in More & More video">{{ old('notes') }}</textarea>
                         </div>

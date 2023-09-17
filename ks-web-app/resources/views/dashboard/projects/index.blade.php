@@ -1,15 +1,17 @@
 @extends('dashboard.layouts.main')
 @if (session()->has('success'))
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container top-0 end-0 p-3">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header bg-success-10 text-color-100">
-                    <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
-                        Soulmate</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
-                    {{ session('success') }}
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                        {{ session('success') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -17,13 +19,12 @@
 @endif
 
 @section('content')
-    {{-- TODO: Ubah Beberapa Teks menjadi inter --}}
     <section id="header-analytics">
         <div class="row m-bottom-30">
             <div class="col">
                 <div class="d-flex justify-content-between">
                     <div>
-                        <h1 class="fw-bold">Projects</h1>
+                        <h1 class="fw-bold text-color-100">Projects</h1>
                     </div>
 
                     <div>
@@ -62,7 +63,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($projects as $project)
+                                @forelse ($projects as $project)
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $projects->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">{{ $project->project_title }}</td>
@@ -106,7 +107,7 @@
                                         @endif
                                         <td class="align-middle">{{ $project->type->type_name }}</td>
                                         <td class="align-middle">
-                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $project->date)->format('d F Y') }}
+                                            {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
                                         </td>
                                         <td class="align-middle">{{ $project->requester }}</td>
                                         <td class="align-middle">
@@ -162,7 +163,22 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="10" class="text-center text-color-100">
+                                            <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M39.176 46.828L38.564 29.44H44L43.424 46.828H39.176ZM44.468 52.3C44.468 53.956 43.172 55.252 41.408 55.252C39.572 55.252 38.276 53.956 38.276 52.3C38.276 50.644 39.572 49.348 41.408 49.348C43.172 49.348 44.468 50.644 44.468 52.3Z"
+                                                    fill="#EA8887" />
+                                                <path
+                                                    d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
+                                                    fill="#787878" />
+                                            </svg>
+                                            <p class="fs-14 fw-medium mt-1 mb-0">No Project Found!</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>

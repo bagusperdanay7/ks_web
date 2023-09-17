@@ -1,176 +1,115 @@
 @extends('layouts.main')
 
 @section('content')
-    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
-        aria-label="breadcrumb" class="space-navbar">
-        <ol class="breadcrumb">
+    <nav class="mb-15"
+        style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+        aria-label="breadcrumb">
+        <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('projects') }}">Projects</a></li>
-            <li class="breadcrumb-item"><a
-                    href="/gallery/artists/{{ $project->artist->codename }}">{{ $project->artist->artist_name }}</a></li>
             <li class="breadcrumb-item breadcumb-active" aria-current="page">{{ $project->project_title }}
             </li>
         </ol>
     </nav>
 
-    <div class="row gallery-section-artist mb-5">
-        <div class="col-6">
-            <img src="{{ $project->thumbnail }}" class="img-fluid rounded" alt="">
-        </div>
-        <div class="col-6 bg-white-secondary rounded">
-            <div class="project-detail-card">
-                <h3>{{ $project->project_title }}</h3>
+    <section id="detail-single-project">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                @if ($project->thumbnail)
+                    <img src="{{ $project->thumbnail }}" class="img-fluid thumbnail"
+                        alt="{{ $project->project_title }} thumbnail">
+                @else
+                    <img src="{{ asset('img/no_thumbnail.jpg') }}" class="img-fluid thumbnail"
+                        alt="{{ $project->project_title }} thumbnail">
+                @endif
 
-                <div class="row">
-                    <div class="col-4">Category</div>
-                    <div class="col-8">{{ $project->category->category_name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Date</div>
-                    <div class="col-8">{{ $project->category->category_name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Project Type</div>
-                    <div class="col-8">{{ $project->type->type_name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Requester</div>
-                    <div class="col-8">{{ $project->requester }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Request Made</div>
-                    <div class="col-8">{{ $project->created_at }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Status</div>
-                    <div class="col-8">{{ $project->status }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Artist</div>
-                    <div class="col-8">{{ $project->artist->artist_name }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Votes</div>
-                    <div class="col-8">{{ $project->votes }}</div>
-                </div>
-                <div class="row">
-                    <div class="col-4">Notes</div>
-                    <div class="col-8">{{ $project->notes }}</div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="d-flex justify-content-between">
-                            <p class="m-0 text-md-14">Progress</p>
-                            <span class="text-sb-14 text-black-100">{{ $project->progress }}%</span>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="detail-project border">
+                    <h3 class="fw-semibold mb-15 fs-sm-18">{{ $project->project_title }}</h3>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Category</div>
+                        <div @class([
+                            'col-8',
+                            'fw-medium',
+                            'fs-inter-14',
+                            'text-color-ld' =>
+                                $project->category->category_name === 'Line Distribution',
+                            'text-color-le' => $project->category->category_name === 'Line Evolution',
+                            'text-color-ad' =>
+                                $project->category->category_name === 'Album Distribution',
+                            'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                            'text-color-rb' => $project->category->category_name === 'Ranking Battle',
+                            'text-color-hs' => $project->category->category_name === 'How Should',
+                            'text-color-hw' => $project->category->category_name === 'How Would',
+                            'text-color-cd' =>
+                                $project->category->category_name === 'Center Distribution',
+                        ])>{{ $project->category->category_name }}
                         </div>
-                        <div class="progress" role="progressbar" aria-label="progress project"
-                            aria-valuenow="{{ $project->progress }}" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar bg-second rounded-pill" style="width: {{ $project->progress }}%;">
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Date</div>
+                        <div class="col-8 fs-inter-14 text-color-100">
+                            {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                        </div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Project Type</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->type->type_name }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Requester</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->requester }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Request Made</div>
+                        <div class="col-8 fs-inter-14 text-color-100">
+                            {{ \Carbon\Carbon::parse($project->created_at)->format('d F Y, G:i T') }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Status</div>
+                        <div class="col-8">
+                            <span @class([
+                                'btn',
+                                'btn-complete' => $project->status === 'Completed',
+                                'btn-onprocess' => $project->status === 'On Process',
+                                'btn-pending' => $project->status === 'Pending',
+                                'btn-rejected' => $project->status === 'Rejected',
+                            ])>{{ $project->status }}</span>
+                        </div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Artist</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->artist->artist_name }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Votes</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->votes }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Exclusive</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->is_exclusive }}</div>
+                    </div>
+                    <div class="row mb-10">
+                        <div class="col-4 fs-inter-14 fw-semibold text-color-100">Notes</div>
+                        <div class="col-8 fs-inter-14 text-color-100">{{ $project->notes }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="d-flex justify-content-between mb-1">
+                                <p class="m-0 fs-inter-14 fw-semibold text-color-100">Progress</p>
+                                <span class="fs-inter-14 fw-medium text-color-100">{{ $project->progress }}%</span>
+                            </div>
+                            <div class="progress bg-main-20" role="progressbar" aria-label="progress project"
+                                aria-valuenow="{{ $project->progress }}" aria-valuemin="0" aria-valuemax="100"
+                                style="height: 10px">
+                                <div class="progress-bar bg-main rounded-pill" style="width: {{ $project->progress }}%;">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
-        {{-- <div class="col-8 align-self-center">
-            <h2 class="header-2">{{ $artists->first()->artist->artist_name }}</h2>
-            <p class="text-about-artist">{{ $artists->first()->artist->about }}</p>
-            <div class="row">
-                <div class="col-2">
-                    <h4 class="heading-info-artist">Debut</h4>
-                </div>
-                <div class="col">
-                    <p>{{ \Carbon\Carbon::createFromFormat('Y-m-d', $artists->first()->artist->artist_birthday)->format('d F Y') }}
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <h4 class="heading-info-artist">Fandom Name</h4>
-                </div>
-                <div class="col">
-                    <p>{{ $artists->first()->artist->fandom_name }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <h4 class="heading-info-artist">Origin</h4>
-                </div>
-                <div class="col">
-                    <p>{{ $artists->first()->artist->artist_birthplace }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <h4 class="heading-info-artist">Company</h4>
-                </div>
-                <div class="col">
-                    <p>{{ $artists->first()->artist->company_name }}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <h4 class="heading-info-artist">Total project</h4>
-                </div>
-                <div class="col">
-                    <p>{{ $artists->count() }}</p>
-                </div>
-            </div>
-        </div> --}}
-    </div>
-
-    {{-- <div class="row mt-4 mb-4">
-        <h3>project</h3>
-        @foreach ($projects as $project)
-            <div class="col-4 artist-card">
-                <a href="">
-                    <div class="project-description-card">
-                        @if ($project->project_thumbnail != null)
-                            <img src="{{ $project->project_thumbnail }}" class="rounded thumbnail m-0 p-0" width="100%"
-                                alt="{{ $project->project_title }} thumbnail">
-                        @else
-                            <img src="{{ asset('img/no_thumbnail.jpg') }}" class="rounded thumbnail m-0 p-0" width="100%"
-                                alt="{{ $project->project_title }} thumbnail">
-                        @endif
-                        <a href="gallery?content_category={{ $project->content_category->slug }}">
-                            <p class="category-text-project">{{ $project->content_category->name }}</p>
-                        </a>
-                        <h4>{{ $project->project_title }}
-                            ({{ $project->content_category->name }})
-                        </h4>
-                        <span
-                            class="pro-class-date">{{ \Carbon\Carbon::createFromTimeStamp(strtotime($project->project_date))->diffForHumans() }}
-                            &#8226; <a href="gallery?search={{ $project->project_class }}"
-                                class="p-0 m-0 text-decoration-none"><span
-                                    class="pro-class-text">{{ $project->project_class }}</span>
-                            </a>
-                        </span>
-                        <div class="d-flex flex-row my-2 px-2 pb-2">
-                            <div>
-                                <a href="/gallery?artist={{ $project->artist->codename }}">
-                                    @if ($project->artist->artist_pict != null)
-                                        <img class="rounded-circle fit-img"
-                                            src="{{ asset('img/artist/' . $project->artist->artist_pict) }}"
-                                            alt="{{ $project->artist->artist_name }} thumbnail" width="40px"
-                                            height="40px">
-                                    @else
-                                        <img class="rounded-circle fit-img"
-                                            src="{{ asset('img/artist/unknown_artist.jpg') }}"
-                                            alt="{{ $project->artist->artist_name }} thumbnail" width="40px"
-                                            height="40px">
-                                    @endif
-                                </a>
-                            </div>
-                            <div class="align-self-center">
-                                <a href="/gallery?artist={{ $project->artist->codename }}">
-                                    <p class="mx-2 my-0 py-0">{{ $project->artist->artist_name }}</p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-        @endforeach
-    </div> --}}
+    </section>
 @endsection

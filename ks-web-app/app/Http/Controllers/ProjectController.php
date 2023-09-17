@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Artist;
 use App\Models\Project;
-use App\Http\Requests\StoreProjectRequest;
-use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Category;
 use App\Models\ProjectType;
+use Illuminate\Http\Request;
+use App\Http\Requests\UpdateProjectRequest;
+use Illuminate\Http\RedirectResponse;
 
 class ProjectController extends Controller
 {
@@ -58,15 +61,33 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('request_form', [
+            'title' => 'Form Request',
+            'artists' => Artist::all()->sortBy('artist_name'),
+            "categories" => Category::all()->sortBy('category_name'),
+            "types" => ProjectType::all()->sortBy('type_name'),
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProjectRequest $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        $validateData = $request->validate([
+            'artist_id' => 'required',
+            'category_id' => 'required',
+            'project_title' => 'required|max:191',
+            'requester' => 'required|max:191',
+        ]);
+
+        $validateData['notes'] = strip_tags($request->notes);
+        $validateData['type_id'] = 1;
+        $validateData['votes'] = 1;
+
+        Project::create($validateData);
+
+        return redirect(route('request-list'))->with('success', "We have received your request, we will proceed later. Thank you");
     }
 
     /**
@@ -76,7 +97,6 @@ class ProjectController extends Controller
     {
         return view('project', [
             "title" => $project->project_title,
-            "active" => "projects",
             "project" => $project
         ]);
     }
@@ -135,25 +155,30 @@ class ProjectController extends Controller
         ->where('project_types.type_name', '!=', 'Non-Project')->orderBy('project_title');
 
         $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                    ->select('projects.*', 'project_types.type_name')
                                     ->where('project_types.type_name', '!=', 'Non-Project')->orderBy('project_title')
                                     ->paginate(25, ['*'], 'requestListpage');
 
         $completedRequestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                    ->select('projects.*', 'project_types.type_name')
                                     ->where([['status', 'Completed'], ['project_types.type_name', '!=', 'Non-Project']])
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'completedpage');
 
         $onProcessRequestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                    ->select('projects.*', 'project_types.type_name')
                                     ->where([['status', 'On Process'], ['project_types.type_name', '!=', 'Non-Project']])
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'onprocessPage');
 
         $pendingRequestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                    ->select('projects.*', 'project_types.type_name')
                                     ->where([['status', 'Pending'], ['project_types.type_name', '!=', 'Non-Project']])
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'pendingPage');
 
         $rejectedRequestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                    ->select('projects.*', 'project_types.type_name')
                                     ->where([['status', 'Rejected'], ['project_types.type_name', '!=', 'Non-Project']])
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'rejectedPage'); # add withQueryString

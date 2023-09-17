@@ -13,7 +13,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('categories', [
+            'title' => 'All Content Categories',
+            'categories' => Category::all()->load('projects')->sortBy('category_name'),
+        ]);
     }
 
     /**

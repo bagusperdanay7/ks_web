@@ -18,13 +18,14 @@ return new class extends Migration
             $table->foreignId('type_id');
             $table->string('project_title');
             $table->string('requester')->default("Unknown Google Forms Requester");
-            $table->date('date')->nullable();
+            $table->datetime('date')->nullable();
             $table->string('status')->default('Pending');
             $table->string('url')->nullable();
             $table->string('thumbnail')->nullable();
             $table->integer('progress')->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->integer('votes')->nullable()->default(0);
+            $table->string('is_exclusive')->nullable()->default("No");
             $table->timestamps();
         });
     }

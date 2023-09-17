@@ -29,7 +29,7 @@
     <title>{{ $title }} - Kpop Soulmate</title>
 </head>
 
-<body class="body-light">
+<body class="bg-color-light">
 
     @include('layouts.navbar')
 

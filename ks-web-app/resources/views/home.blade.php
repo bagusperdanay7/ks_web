@@ -4,14 +4,14 @@
     <section id="hero-landing-page">
         <div class="row">
             <div class="col-12 col-lg order-2 order-lg-1 align-self-center">
-                <h1 class="hero-welcome">Welcome to <p>KPOP SOULMATE</p>
+                <h1 class="hero-welcome">Welcome to <strong>KPOP SOULMATE</strong>
                 </h1>
                 <h2 class="hero-h2">Kpop Line Distribution & More</h2>
-                <p class="welcome-text">Hello, Welcome to Our Website it’s Good to see you here. Explore the video &
+                <p class="hero-text">Hello, Welcome to Our Website it’s Good to see you here. Explore the video &
                     Enjoy
                     Your Journey on Our Website
                 </p>
-                <a href="{{ route('gallery') }}" class="btn btn-main btn-lg">Explore</a>
+                <a href="{{ route('gallery') }}" class="btn btn-hero">Explore</a>
             </div>
             <div class="col-12 col-lg order-1 order-lg-2">
                 <div id="carouselHeroAutoplaying" class="carousel slide" data-bs-ride="carousel">
@@ -65,12 +65,12 @@
 
     <section id="our-content-lp">
         <div class="row">
-            <h3 class="text-center mb-30">OUR CONTENT</h3>
+            <h3 class="text-center mb-30 fs-24 fw-bold text-color-100">OUR CONTENT</h3>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
                 <div class="content-card-lp text-center">
-                    <i class='bx bxs-doughnut-chart bx-xlg text-black-80'></i>
-                    <p class="text-sb-18 text-black-100 m-vertical-10">Line Distribution</p>
-                    <p class="inter-regular-14 m-0 text-black-80">This content is provided about how many parts each
+                    <i class='bx bxs-doughnut-chart fs-72 text-color-80'></i>
+                    <p class="fs-18 fw-semibold text-color-100 my-10">Line Distribution</p>
+                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about how many parts each
                         member
                         sings in a song
                     </p>
@@ -78,9 +78,10 @@
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
                 <div class="content-card-lp text-center">
-                    <i class='bx bxs-bar-chart-alt-2 bx-xlg text-black-80'></i>
-                    <p class="text-sb-18 text-black-100 m-vertical-10">Line Evolution</p>
-                    <p class="inter-regular-14 m-0 text-black-80">This content is provided how many parts a member sings
+                    <i class='bx bxs-bar-chart-alt-2 fs-72 text-color-80'></i>
+                    <p class="fs-18 fw-semibold text-color-100 my-10">Line Evolution</p>
+                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided how many parts a member
+                        sings
                         in
                         the group's title
                         track
@@ -89,9 +90,9 @@
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
                 <div class="content-card-lp text-center">
-                    <i class='bx bxs-album bx-xlg text-black-80'></i>
-                    <p class="text-sb-18 text-black-100 m-vertical-10">Album Distribution</p>
-                    <p class="inter-regular-14 m-0 text-black-80">This content is provided about how many parts each
+                    <i class='bx bxs-album fs-72 text-color-80'></i>
+                    <p class="fs-18 fw-semibold text-color-100 my-10">Album Distribution</p>
+                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about how many parts each
                         member
                         sings in an album
                     </p>
@@ -99,15 +100,17 @@
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
                 <div class="content-card-lp text-center">
-                    <i class='bx bxs-user-voice bx-xlg text-black-80'></i>
-                    <p class="text-sb-18 text-black-100 m-vertical-10">How Would</p>
-                    <p class="inter-regular-14 m-0 text-black-80">This content is provided about what if a certain group
+                    <i class='bx bxs-user-voice fs-72 text-color-80'></i>
+                    <p class="fs-18 fw-semibold text-color-100 my-10">How Would</p>
+                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about what if a certain
+                        group
                         sings another group's
                         song
                     </p>
                 </div>
             </div>
-            <a href="{{ route('categories') }}" class="link-show-all text-decoration-none text-mdm-14 text-center mt-3">Show
+            <a href="{{ route('categories') }}"
+                class="link-show-all text-decoration-none fs-14 fw-medium text-center mt-30">Show
                 All Content <i class="las la-arrow-right"></i>
             </a>
         </div>
@@ -115,10 +118,10 @@
 
     <section id="upcoming-schedule-lp">
         <div class="row">
-            <h3 class="text-center mb-30">UPCOMING SCHEDULE</h3>
+            <h3 class="text-center mb-30 fw-bold text-color-100">UPCOMING SCHEDULE</h3>
             <div class="col-12" id="upcoming-display-desktop">
                 <div class="upcoming-schedule-card-lp">
-                    <div class="row fw-semibold header-table-upcoming">
+                    <div class="row fw-semibold fs-14 text-color-100 header-table-upcoming">
                         <div class="col-3">Project Title</div>
                         <div class="col">Category</div>
                         <div class="col">Date</div>
@@ -131,71 +134,57 @@
                         <div class="row mt-3">
                             <div class="col-3">
                                 <div class="d-flex justify-content-between">
-                                    <p class="m-0 text-sb-14 text-black-100">{{ $scheduleItems->project_title }}</p>
-                                    <span class="text-sb-14 text-black-100">{{ $scheduleItems->progress }}%</span>
+                                    <p class="m-0 fs-14 fw-semibold text-color-100">{{ $scheduleItems->project_title }}</p>
+                                    <span class="fs-14 fw-semibold text-color-100">{{ $scheduleItems->progress }}%</span>
                                 </div>
-                                <div class="progress" role="progressbar" aria-label="progress project"
-                                    aria-valuenow="{{ $scheduleItems->progress }}" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar bg-second rounded-pill"
+                                <div class="progress bg-main-20" role="progressbar" style="height: 10px"
+                                    aria-label="progress project" aria-valuenow="{{ $scheduleItems->progress }}"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main rounded-pill"
                                         style="width: {{ $scheduleItems->progress }}%;"></div>
                                 </div>
                             </div>
-                            @if ($scheduleItems->category->category_name === 'Line Distribution')
-                                <div class="col align-self-center category-text-ld text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'Line Evolution')
-                                <div class="col align-self-center category-text-le text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'Album Distribution')
-                                <div class="col align-self-center category-text-ad text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'Album Evolution')
-                                <div class="col align-self-center category-text-ae text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'Ranking Battle')
-                                <div class="col align-self-center category-text-rb text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'How Should')
-                                <div class="col align-self-center category-text-h text-mdm-14s">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'How Would')
-                                <div class="col align-self-center category-text-hw text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @elseif ($scheduleItems->category->category_name === 'Center Distribution')
-                                <div class="col align-self-center category-text-cd text-mdm-14">
-                                    {{ $scheduleItems->category->category_name }}
-                                </div>
-                            @endif
-                            <div class="col align-self-center text-regular-14"><i class="lar la-calendar"></i>
-                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $scheduleItems->date)->format('d F Y') }}
+                            <div @class([
+                                'col',
+                                'align-self-center',
+                                'fs-14',
+                                'fw-medium',
+                                'text-color-ld' =>
+                                    $scheduleItems->category->category_name === 'Line Distribution',
+                                'text-color-le' =>
+                                    $scheduleItems->category->category_name === 'Line Evolution',
+                                'text-color-ad' =>
+                                    $scheduleItems->category->category_name === 'Album Distribution',
+                                'text-color-ae' =>
+                                    $scheduleItems->category->category_name === 'Album Evolution',
+                                'text-color-rb' =>
+                                    $scheduleItems->category->category_name === 'Ranking Battle',
+                                'text-color-hs' => $scheduleItems->category->category_name === 'How Should',
+                                'text-color-hw' => $scheduleItems->category->category_name === 'How Would',
+                                'text-color-cd' =>
+                                    $scheduleItems->category->category_name === 'Center Distribution',
+                            ])> {{ $scheduleItems->category->category_name }}
                             </div>
-                            <div class="col align-self-center text-regular-14">
+                            <div class="col align-self-center fw-medium fs-14 text-color-80"><i
+                                    class="lar la-calendar"></i>
+                                {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
+                            </div>
+                            <div class="col align-self-center text-color-100 fs-14 fw-normal">
                                 {{ $scheduleItems->type->type_name }}
                             </div>
-                            <div class="col align-self-center text-regular-14">
+                            <div class="col align-self-center text-color-100 fs-14 fw-normal">
                                 <i class="las la-user-alt"></i> {{ $scheduleItems->requester }}
                             </div>
                             <div class="col align-self-center">
-                                @if ($scheduleItems->status == 'Completed')
-                                    <span class="btn btn-complete">{{ $scheduleItems->status }}</span>
-                                @elseif ($scheduleItems->status == 'On Process')
-                                    <span class="btn btn-onprocess">{{ $scheduleItems->status }}</span>
-                                @elseif ($scheduleItems->status == 'Pending')
-                                    <span class="btn btn-pending">{{ $scheduleItems->status }}</span>
-                                @elseif ($scheduleItems->status == 'Rejected')
-                                    <span class="btn btn-rejected">{{ $scheduleItems->status }}</span>
-                                @else
-                                    <span class="btn btn-onprocess">{{ $scheduleItems->status }}</span>
-                                @endif
+                                <span @class([
+                                    'btn',
+                                    'btn-complete' => $scheduleItems->status === 'Completed',
+                                    'btn-onprocess' => $scheduleItems->status === 'On Process',
+                                    'btn-pending' => $scheduleItems->status === 'Pending',
+                                    'btn-rejected' => $scheduleItems->status === 'Rejected',
+                                ])> {{ $scheduleItems->status }}</span>
                             </div>
-                            <div class="col align-self-center text-regular-14">{{ $scheduleItems->votes }}
+                            <div class="col align-self-center text-color-100 fs-14 fw-normal">{{ $scheduleItems->votes }}
                                 Votes
                             </div>
                         </div>
@@ -211,8 +200,7 @@
                                         d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                         fill="#787878" />
                                 </svg>
-                                <p class="text-sb-14 mt-2">No Data found!</p>
-                                <p></p>
+                                <p class="fs-14 fw-medium mt-2 mb-0">No Data found!</p>
                             </div>
                         </div>
                     @endforelse
@@ -220,77 +208,58 @@
             </div>
             @forelse ($schedules as $scheduleDate => $scheduleItems)
                 <div class="col-12 col-md-6" id="upcoming-display-mobile">
-                    <div class="upcoming-schedule-card-lp mb-3">
+                    <div class="upcoming-schedule-card-lp {{ $loop->last ? '' : 'mb-3' }}">
                         <div class="row">
                             <div class="d-flex flex-column">
-                                <div class="text-regular-14"><i class="lar la-calendar"></i>
-                                    {{ \Carbon\Carbon::createFromFormat('Y-m-d', $scheduleItems->date)->format('d F Y') }}
+                                <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
+                                    {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
                                 </div>
-                                <div class="mt-0 mb-1">
-                                    @if ($scheduleItems->status == 'Completed')
-                                        <span class="btn btn-complete">{{ $scheduleItems->status }}</span>
-                                    @elseif ($scheduleItems->status == 'On Process')
-                                        <span class="btn btn-onprocess">{{ $scheduleItems->status }}</span>
-                                    @elseif ($scheduleItems->status == 'Pending')
-                                        <span class="btn btn-pending">{{ $scheduleItems->status }}</span>
-                                    @elseif ($scheduleItems->status == 'Rejected')
-                                        <span class="btn btn-rejected">{{ $scheduleItems->status }}</span>
-                                    @else
-                                        <span class="btn btn-onprocess">{{ $scheduleItems->status }}</span>
-                                    @endif
+                                <div class="mt-0 mb5">
+                                    <span @class([
+                                        'btn',
+                                        'btn-complete' => $scheduleItems->status === 'Completed',
+                                        'btn-onprocess' => $scheduleItems->status === 'On Process',
+                                        'btn-pending' => $scheduleItems->status === 'Pending',
+                                        'btn-rejected' => $scheduleItems->status === 'Rejected',
+                                    ])> {{ $scheduleItems->status }}</span>
                                 </div>
-                                <div class="mb-1">
-                                    <p class="text-sb-14 text-black-100 m-0">{{ $scheduleItems->project_title }}</p>
+                                <div class="mb5">
+                                    <p class="fs-14 fw-semibold text-color-100 m-0">{{ $scheduleItems->project_title }}
+                                    </p>
                                 </div>
-                                <div class="text-mdm-14 mb-1">
-                                    @if ($scheduleItems->category->category_name === 'Line Distribution')
-                                        <span class="category-text-ld">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'Line Evolution')
-                                        <span class="category-text-le">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'Album Distribution')
-                                        <span class="category-text-ad">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'Album Evolution')
-                                        <span class="category-text-ae">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'Ranking Battle')
-                                        <span class="category-text-rb">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'How Should')
-                                        <span class="category-text-hs">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'How Would')
-                                        <span class="category-text-hw">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @elseif ($scheduleItems->category->category_name === 'Center Distribution')
-                                        <span class="category-text-cd">
-                                            {{ $scheduleItems->category->category_name }}
-                                        </span> •
-                                    @endif
-                                    <span class="text-black-100">{{ $scheduleItems->type->type_name }}</span>
+                                <div class="fs-14 fw-medium mb5">
+                                    <span @class([
+                                        'text-color-ld' =>
+                                            $scheduleItems->category->category_name === 'Line Distribution',
+                                        'text-color-le' =>
+                                            $scheduleItems->category->category_name === 'Line Evolution',
+                                        'text-color-ad' =>
+                                            $scheduleItems->category->category_name === 'Album Distribution',
+                                        'text-color-ae' =>
+                                            $scheduleItems->category->category_name === 'Album Evolution',
+                                        'text-color-rb' =>
+                                            $scheduleItems->category->category_name === 'Ranking Battle',
+                                        'text-color-hs' => $scheduleItems->category->category_name === 'How Should',
+                                        'text-color-hw' => $scheduleItems->category->category_name === 'How Would',
+                                        'text-color-cd' =>
+                                            $scheduleItems->category->category_name === 'Center Distribution',
+                                    ])>
+                                        {{ $scheduleItems->category->category_name }}</span> •
+                                    <span class="text-color-100">{{ $scheduleItems->type->type_name }}</span>
                                 </div>
-                                <div class="text-regular-14 mb-1">
+                                <div class="text-color-100 fs-14 fw-normal mb5">
                                     <i class="las la-user-alt"></i> {{ $scheduleItems->requester }} |
                                     {{ $scheduleItems->votes }}
                                     Votes
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="m-0 text-md-14">Progress</p>
-                                    <span class="text-sb-14 text-black-100">{{ $scheduleItems->progress }}%</span>
+                                <div class="d-flex justify-content-between fs-14">
+                                    <p class="m-0 fs-14">Progress</p>
+                                    <span class="fs-14 fw-semibold text-color-100">{{ $scheduleItems->progress }}%</span>
                                 </div>
-                                <div class="progress h-5" role="progressbar" aria-label="progress project"
-                                    aria-valuenow="{{ $scheduleItems->progress }}" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar bg-second rounded-pill"
+                                <div class="progress bg-main-20 h-5" role="progressbar" style="height: 10px"
+                                    aria-label="progress project" aria-valuenow="{{ $scheduleItems->progress }}"
+                                    aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar bg-main rounded-pill"
                                         style="width: {{ $scheduleItems->progress }}%;"></div>
                                 </div>
                             </div>
@@ -310,13 +279,13 @@
                                     d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                     fill="#787878" />
                             </svg>
-                            <p class="text-sb-14 mt-2">No Data found!</p>
+                            <p class="fs-14 fw-medium mb-0 mt-2">No Data found!</p>
                         </div>
                     </div>
                 </div>
             @endforelse
             <a href="{{ route('projects') }}"
-                class="link-show-all text-decoration-none text-mdm-14 text-center mt-30">Show All Projects <i
+                class="link-show-all text-decoration-none fs-14 fw-medium text-center mt-30">Show All Projects <i
                     class="las la-arrow-right"></i>
             </a>
         </div>

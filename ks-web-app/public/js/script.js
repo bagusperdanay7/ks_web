@@ -43,7 +43,7 @@ menuBtnMobile.addEventListener("click", mobileMenuFunc, true);
 // Show/Hide Password
 
 function passwordToggler(icon, inputType) {
-    icon.addEventListener("click", () => {
+    icon.addEventListener("click", function () {
         if (inputType.type === "password") {
             inputType.type = "text";
 
@@ -73,7 +73,7 @@ passwordToggler(passwordConfirmIcon, inputConfirmPass);
 //Button Discover
 const searchIcon = document.querySelector(".searchIc");
 searchIcon.addEventListener("click", function () {
-    window.location.href = "../index.php";
+    window.location.href = "gallery";
 });
 
 const hugeProjectTable = document.querySelector("#huge-project");
@@ -81,5 +81,3 @@ const hugeProjectTable = document.querySelector("#huge-project");
 hugeProjectTable.addEventListener("click", function () {
     hugeProjectTable.classList.add(".active");
 });
-
-/* globals Chart:false, feather:false */

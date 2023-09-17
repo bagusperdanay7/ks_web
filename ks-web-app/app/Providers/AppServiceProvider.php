@@ -24,9 +24,5 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         PaginationPaginator::useBootstrapFive();
-
-        // Gate::define('admin', function (User $user) {
-        //     return $user->is_admin;
-        // });
     }
 }
