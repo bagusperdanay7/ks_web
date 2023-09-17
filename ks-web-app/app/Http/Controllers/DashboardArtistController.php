@@ -15,7 +15,6 @@ class DashboardArtistController extends Controller
     {
         return view('dashboard.artists.index', [
             'title' => 'Artists Table',
-            'active' => 'artist-table',
             'artists' => Artist::orderBy('artist_name')->paginate(50),
         ]);
     }
@@ -26,8 +25,7 @@ class DashboardArtistController extends Controller
     public function create()
     {
         return view('dashboard.artists.create', [
-            'title' => 'Create Artists',
-            'active' => 'artist-table',
+            'title' => 'Create Artist',
         ]);
     }
 
@@ -64,7 +62,6 @@ class DashboardArtistController extends Controller
     {
         return view('dashboard.artists.show', [
             'title' => $artist->artist_name,
-            'active' => 'artists-table',
             'artist' => $artist,
         ]);
     }
@@ -76,7 +73,6 @@ class DashboardArtistController extends Controller
     {
         return view('dashboard.artists.edit', [
             'title' => 'Update Artist',
-            'active' => 'artis-table',
             'artist' => $artist,
         ]);
     }

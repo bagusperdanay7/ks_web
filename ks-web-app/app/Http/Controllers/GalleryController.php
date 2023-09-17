@@ -7,6 +7,7 @@ use App\Models\Project;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\ProjectType;
 
 class GalleryController extends Controller
 {
@@ -14,11 +15,11 @@ class GalleryController extends Controller
      * Display a listing of the resource.
      */
 
-    //  TODO: EDIT MENGGUNAKAN load saja, tidak perlu join, karena sudah join menggunakan load
+    //  TODO: Filter Perbaiki
     public function index()
     {
         $galleryQuery = Project::latest()
-                                ->filter(request(['search', 'category', 'artist']))
+                                ->filter(request(['search', 'category', 'type']))
                                 ->get();
 
         $artistTotalQuery = Project::groupBy('artist_id')
@@ -41,48 +42,39 @@ class GalleryController extends Controller
                                             ->shuffle()
                                             ->take(6);
 
+        $title = '';
 
-        if (request('artist') || request('category') || request('search')) {
-            $title = '';
+        if (request('type') || request('category') || request('search')) {
             $category = Category::firstWhere('slug', request('category'));
-            $artist = Artist::firstWhere('codename', request('artist'));
+            $type = ProjectType::firstWhere('type_name', request('type'));
 
-            if (request('artist') && request('search')) {
-                $title = request('search') . " & " . $artist->artist_name;
+            if (request('type') && request('search')) {
+                $title = request('search') . " & " . $type?->type_name;
             } elseif (request('category') && request('search')) {
                 $title = request('search') . " & " . $category->category_name;
             } elseif (request('search')) {
                 $title = request('search');
-            } elseif (request('artist')) {
-                $title = $artist->artist_name;
+            } elseif (request('type')) {
+                $title = $type?->type_name;
             } elseif (request('category')) {
                 $title = $category->category_name;
             }
 
-            return view('gallery', [
-                "title" => "Explore " . $title,
-                "active" => 'gallery',
-                "gallery" => $galleryQuery,
-                'artistsTotal' => $artistTotalQuery,
-                'categories' =>  $categoriesQuery,
-                'latestVideo' =>  $latestVideoQuery,
-                'recommendationVideo' =>  $recVideoQuery,
-            ]);
+            $preTitle = "Explore ";
         } else {
-            return view('gallery', [
-                "title" => "Gallery",
-                "active" => 'gallery',
-                "gallery" => $galleryQuery,
-                'artistsTotal' => $artistTotalQuery,
-                'categories' =>  $categoriesQuery,
-                'latestVideo' => $latestVideoQuery,
-                'recommendationVideo' =>  $recVideoQuery,
-                // 'artistTotal' => Project::groupBy('artist_id')->select('artist_id', Project::raw('count(*) as total'))->get()->sortBy('artist_id')->take(6),
-                // 'pro_count' =>  Project::get('project_category')->countBy('project_category')->sortKeys(),
-                // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
-                // $collection->take(3);
-            ]);
+            $preTitle = "Gallery";
         }
+
+        return view('gallery', [
+            "title" => $preTitle . $title ,
+            "galleries" => $galleryQuery,
+            'artistsTotal' => $artistTotalQuery,
+            'categories' =>  $categoriesQuery,
+            'latestVideo' => $latestVideoQuery,
+            'recommendationVideo' =>  $recVideoQuery,
+            // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
+            // $collection->take(3);
+        ]);
     }
 
     /**
@@ -106,10 +98,18 @@ class GalleryController extends Controller
      */
     public function show(Project $project)
     {
+        $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
+        ->select('projects.*', 'artists.codename')
+        ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id]])
+        ->limit(6)
+        ->get()->shuffle();
+
+        // $user->posts()->where('active', 1)->get(); # has many
+
         return view('video', [
             "title" => $project->project_title,
-            "active" => "gallery",
-            "video" => $project
+            "video" => $project,
+            "relatedVideo" => $relatedVideoQ
         ]);
     }
 
@@ -135,22 +135,5 @@ class GalleryController extends Controller
     public function destroy(string $id)
     {
         //
-    }
-
-    public function all_categories()
-    {
-        $allCategoryQuery = Category::query()
-                                    ->join('projects', 'projects.category_id', '=', 'categories.id')
-                                    ->select('categories.category_name', 'categories.slug', 'categories.icon_class')
-                                    ->selectRaw('count(projects.category_id) AS total')
-                                    ->groupby('categories.id')
-                                    ->orderby('categories.category_name')
-                                    ->get();
-
-        return view('categories', [
-            'title' => 'All Content Categories',
-            'active' => 'gallery',
-            'categories' => $allCategoryQuery,
-        ]);
     }
 }

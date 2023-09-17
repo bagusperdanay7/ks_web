@@ -1,15 +1,17 @@
 @extends('dashboard.layouts.main')
 @if (session()->has('success'))
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container top-0 end-0 p-3">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header bg-success-10 text-color-100">
-                    <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
-                        Soulmate</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
-                    {{ session('success') }}
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                        {{ session('success') }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,7 +61,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($artists as $artist)
+                                @forelse ($artists as $artist)
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $artists->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">
@@ -76,7 +78,7 @@
                                             {{ $artist->codename }}
                                         </td>
                                         <td class="align-middle">
-                                            {{ \Carbon\Carbon::createFromFormat('Y-m-d', $artist->debut)->format('d F Y') }}
+                                            {{ \Carbon\Carbon::parse($artist->debut)->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">{{ $artist->origin }}</td>
                                         <td class="align-middle">{{ $artist->fandom }}</td>
@@ -111,7 +113,14 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="8" class="text-center text-color-100">
+                                            <i class="las la-user-slash fs-48"></i>
+                                            <p class="fs-14 fw-medium mt-1 mb-0">No Artist Found!</p>
+                                        </td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
@@ -133,11 +142,11 @@
                     <div class="d-flex flex-column align-items-center">
                         <i class="las la-trash-alt fs-24 text-color-ad rounded-circle p-2 bg-alert-10 m-bottom-15"></i>
                         <h6 class="fw-semibold m-bottom-5">Delete Artist</h6>
-                        <p class="fs-14">Are you sure you want to delete this project?</p>
+                        <p class="fs-14">Are you sure you want to delete this artist?</p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
                     <form action="/dashboard/artists/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf

@@ -11,7 +11,6 @@ class LoginController extends Controller
     public function index() {
         return view('login.index', [
             'title' => 'Login',
-            'active' => 'login',
         ]);
     }
 
@@ -21,8 +20,6 @@ class LoginController extends Controller
             'password' => 'required'
         ]);
         
-
-        // TODO If Admin => Dashboard, If Not Admin => /home
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
@@ -30,7 +27,6 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            // 'email' => 'User doesn’t exist! Please check your email and password',
             'password' => 'User doesn’t exist! Please check your email and password'
         ])->onlyInput('email');
     }

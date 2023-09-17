@@ -15,8 +15,10 @@ return new class extends Migration
             $table->id();
             $table->foreignId('artist_id');
             $table->string('album_name');
+            $table->string('type')->default('EP');
             $table->date('release');
             $table->string('cover')->nullable();
+            $table->string('publisher');
             $table->timestamps();
         });
     }

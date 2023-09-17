@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('songs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('album_id');
             $table->string('title');
             $table->string('genre');
             $table->string('category')->default('Track/Title Track');

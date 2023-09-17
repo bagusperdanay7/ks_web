@@ -17,7 +17,6 @@ class DashboardProjectController extends Controller
     {
         return view('dashboard.projects.index', [
             'title' => 'Projects Table',
-            'active' => 'project-table',
             'projects' => Project::orderBy('project_title')->paginate(50),
             // 'projects' => Project::where('requester', auth()->user()->name->get()), // khusus user
         ]);
@@ -30,7 +29,6 @@ class DashboardProjectController extends Controller
     {
         return view('dashboard.projects.create', [
             'title' => 'Create Project',
-            'active' => 'project-table',
             'artists' => Artist::all()->sortBy('artist_name'),
             "categories" => Category::all()->sortBy('category_name'),
             "types" => ProjectType::all()->sortBy('type_name'),
@@ -54,6 +52,7 @@ class DashboardProjectController extends Controller
             'thumbnail' => 'max:191',
             'progress' => 'integer',
             'votes' => 'integer',
+            'is_exclusive' => 'required',
         ]);
 
         $validateData['notes'] = strip_tags($request->notes);
@@ -70,9 +69,7 @@ class DashboardProjectController extends Controller
     {
         return view('dashboard.projects.show', [
             'title' => $project->project_title,
-            'active' => 'project-table',
             'project' => $project,
-            // 'projects' => Project::where('requester', auth()->user()->name->get()), // khusus user
         ]);
     }
 
@@ -83,7 +80,6 @@ class DashboardProjectController extends Controller
     {
         return view('dashboard.projects.edit', [
             'title' => 'Update Project',
-            'active' => 'project-table',
             'project' => $project,
             'artists' => Artist::all()->sortBy('artist_name'),
             "categories" => Category::all()->sortBy('category_name'),
@@ -109,6 +105,7 @@ class DashboardProjectController extends Controller
             'thumbnail' => 'max:191',
             'progress' => 'integer',
             'votes' => 'integer',
+            'is_exclusive' => 'required',
         ];
 
         $validateData = $request->validate($rules);

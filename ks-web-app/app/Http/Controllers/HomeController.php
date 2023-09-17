@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
@@ -15,11 +14,8 @@ class HomeController extends Controller
                                 ->sortBy('date');
 
         return view('home', [
-            "title" => "home",
-            "active" => 'home',
+            "title" => "Home",
             'schedules' => $scheduleQuery,
-            // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
-            // $collection->take(3);
         ]);
     }
 }

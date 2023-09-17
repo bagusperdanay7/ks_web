@@ -39,7 +39,6 @@ class ProjectTypeController extends Controller
     {
         return view('project_types', [
             "title" => $projectType->type_name,
-            "active" => "projects",
             "projectType" => $projectType,
             "projectsTypes" => $projectType->load('projects'),
         ]);
@@ -69,39 +68,4 @@ class ProjectTypeController extends Controller
         //
     }
 
-    // public function huge_project_vol1()
-    // {
-    //     return view('projects.huge_project_vol1', [
-    //         "title" => "Huge Project Vol.#01",
-    //         "active" => 'huge_project_vol1',
-    //         'hugeProjects' => Project::where('project_class', 'Huge Project Vol.#01')->get(),
-    //     ]);
-    // }
-
-    // public function nostalgic_vibes()
-    // {
-    //     return view('projects.nostalgic_vibes', [
-    //         "title" => "Nostalgic Vibes",
-    //         "active" => 'nostalgic_vibes',
-    //         'nostalgicVibes' => Project::where('project_class', 'Nostalgic Vibes')->get(),
-    //     ]);
-    // }
-
-    // public function youtube_comment()
-    // {
-    //     return view('projects.youtube_comment', [
-    //         "title" => "Youtube Comment",
-    //         "active" => 'youtube_comment',
-    //         'youtubeCommentProjects' => Project::where('project_class', 'Youtube Comments')->get(),
-    //     ]);
-    // }
-
-    // public function non_project()
-    // {
-    //     return view('projects.non-project', [
-    //         "title" => "Non-Project",
-    //         "active" => 'non_project',
-    //         'nonProjects' => Project::where('project_class', 'Non-Project')->get(),
-    //     ]);
-    // }
 }

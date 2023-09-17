@@ -23,7 +23,6 @@ class Project extends Model
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return  $query->where(function ($query) use ($search) {
                 $query->where('project_title', 'like', '%' . $search . '%');
-                // ->orWhere('project_types.type_name', 'like', '%' . $search . '%');
             });
         });
 
@@ -35,8 +34,14 @@ class Project extends Model
             });
         });
 
+        $query->when($filters['type'] ?? false, function ($query, $type) {
+            return $query->whereHas('type', function ($query) use ($type) {
+                $query->where('type_name', $type);
+            });
+        });
+
         // arrow function
-        $query->when($filters['artist'] ?? false, fn ($query, $artist) => $query->whereHas('artist', fn ($query) => $query->where('codename', $artist)));
+        // $query->when($filters['type'] ?? false, fn ($query, $type) => $query->whereHas('type', fn ($query) => $query->where('type_name', $type)));
     }
 
     public function artist(): BelongsTo

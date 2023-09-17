@@ -61,6 +61,7 @@ body.body-dark {
 
 /* Penutup Layout - Main */
 /* Component */
+/* Margin */
 .m-bottom-0 {
   margin-bottom: 0;
 }
@@ -409,26 +410,36 @@ body.body-dark {
   background-color: #fceeed;
 }
 
-.border-radius-5 {
+/* Border Radius */
+.rounded-all-5 {
   border-radius: 5px;
 }
 
-.border-radius-10 {
+.rounded-all-10 {
   border-radius: 10px;
 }
 
-.border-radius-15 {
+.rounded-all-15 {
   border-radius: 15px;
 }
 
-.border-radius-25 {
+.rounded-all-25 {
   border-radius: 25px;
 }
 
-.border-radius-30 {
+.rounded-all-30 {
   border-radius: 30px;
 }
 
+.rounded-bottom-10 {
+  border-radius: 0 0 10px 10px;
+}
+
+.rounded-top-10 {
+  border-radius: 10px 10px 0 0;
+}
+
+/* Button*/
 .btn-default,
 .btn-default:hover {
   background-color: #efe9fe;
@@ -589,7 +600,13 @@ body.body-dark {
   color: #1f1f1f;
 }
 
-/* Penutup Component */
+/* Image */
+.img-square {
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}
+
+/* End of Component */
 /* Modified Boostrap Style */
 .dis {
   cursor: not-allowed;
@@ -650,6 +667,11 @@ textarea.form-control {
   margin: 5px 0 0 0;
 }
 
+.dropdown-menu .dropdown-item:active {
+  background-color: var(--primary);
+  color: var(--white);
+}
+
 /* End of Modified Boostrap Style */
 /* Sidebar */
 nav.sidebar {
@@ -700,10 +722,8 @@ nav .sidebar-main .sidebar-user img {
   border: 2px solid #efefef;
 }
 nav .sidebar-main .sidebar-user .user-name {
-  background-color: #4b4b4b;
   width: fit-content;
   margin: auto;
-  padding: 5px 10px;
 }
 nav .sidebar-main .sidebar-menu .menu-head {
   color: #f1f5f9;
@@ -820,7 +840,7 @@ main {
   background-color: #fff;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   padding: 15px;
-  height: fit-content;
+  height: 100%;
   min-height: min-content;
   max-height: max-content;
   border-radius: 5px;
@@ -841,14 +861,10 @@ main {
   font-size: 14px;
   color: #1f1f1f;
 }
-.card-head p.description-card {
-  color: #1f1f1f;
-  font-weight: 400;
-  font-size: 14px;
-}
 
 .card-icon i {
   font-size: 80px;
+  color: #1f1f1f;
 }
 
 .analytics-card {
@@ -862,14 +878,34 @@ main {
 .analytics-card .table th {
   font-size: 14px;
   font-weight: 600;
+  color: #1f1f1f;
 }
 .analytics-card .table td {
   font-size: 12px;
+  color: #1f1f1f;
+}
+.analytics-card .table td a {
+  color: #0c96f8;
 }
 
+.upcoming-schedule-card {
+  padding: 15px;
+  border-radius: 5px;
+  border: 1px solid #bbb;
+}
 .upcoming-schedule-card div,
 .upcoming-schedule-card p {
   font-size: 14px;
+}
+
+.chart-container {
+  position: relative;
+  margin: auto;
+  height: 50vh;
+}
+
+.link-details a {
+  color: #4b4b4b;
 }
 
 /* Penutup Dashboard Analytics */
@@ -878,6 +914,41 @@ main {
   background: #fff;
   padding: 25px;
   border-radius: 10px;
+}
+.table-container th,
+.table-container td {
+  color: #1f1f1f;
+}
+
+.dropdown-menu a.dropdown-item:hover,
+.dropdown-menu button:hover {
+  background-color: #6528f7;
+  color: #ffffff;
+}
+
+/* Create Projects */
+.form-container {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+}
+
+/* End of Create Projects */
+/* Artists Dashboard */
+.img-avatar {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Album Dashboard */
+.img-album {
+  width: 100px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 /* Dibawah 1125px */
@@ -897,29 +968,6 @@ main {
     right: 0;
   }
 }
-/* Create Projects */
-.form-container {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  border: 1px solid #dee2e6;
-}
-
-/* End of Create Projects */
-/* Artists Dashboard */
-.img-avatar {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 50%;
-}
-
-.img-artist {
-  aspect-ratio: 1/1; /* defining the aspect ratio of the image */
-  object-fit: cover; /* making sure the image isn't distorted */
-  border-radius: 15px;
-}
-
 /* Tablet and Phone */
 @media only screen and (max-width: 576px) {
   .fs-sm-12 {
@@ -941,6 +989,7 @@ main {
   #sidebar-toggle:checked ~ .sidebar {
     left: 0;
   }
+  /* Index Dashboard */
   /* Create Projects */
   .form-container {
     padding: 20px;

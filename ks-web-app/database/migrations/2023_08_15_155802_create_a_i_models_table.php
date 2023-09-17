@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('url')->nullable();
             $table->string('status', 10)->nullable()->default('Pending');
             $table->text('description')->nullable();
-            $table->string('sample', 100)->nullable();
+            $table->string('sample', 100)->nullable(); #atau jadi url dan upload ke soundcloud
             $table->timestamps();
         });
     }

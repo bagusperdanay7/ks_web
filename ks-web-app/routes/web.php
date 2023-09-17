@@ -1,19 +1,23 @@
 <?php
 
-use App\Models\Artist;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
-use App\Http\Controllers\DashboardArtistController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DashboardProjectController;
+use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardAIModelController;
+use App\Http\Controllers\DashboardAlbumController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\RequestFormController;
-use App\Http\Controllers\SignUpController;
-use App\Models\ProjectType;
+use App\Http\Controllers\DashboardArtistController;
+use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardProjectController;
+use App\Http\Controllers\DashboardProjectTypeController;
+use App\Http\Controllers\DashboardSongController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,11 +38,13 @@ Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
 
 Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
 
-Route::get('/request-form', [RequestFormController::class, 'index'])->name('request-form');
+Route::get('/form-request', [ProjectController::class, 'create'])->name('request-form');
+
+Route::post('/form-request', [ProjectController::class, 'store'])->name('request-form-post');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
 
-Route::get('/gallery/categories', [GalleryController::class, 'all_categories'])->name('categories');
+Route::get('/gallery/categories', [CategoryController::class, 'index'])->name('categories');
 
 Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists');
 
@@ -60,22 +66,22 @@ Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up')->mid
 
 Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
-
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+
+Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
+
+Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
+
+Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('admin');
+
+Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('admin');
 
 Route::resource('/dashboard/projects', DashboardProjectController::class)->middleware('auth');
 
-Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('auth');
+Route::resource('/dashboard/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
-// Kasih Impor Excel,
-// https://www.malasngoding.com/import-excel-laravel/
-
-// Route::get('/dashboard/posts/checkSlug', [DashboardPostController::class, 'checkSlug'])->middleware('auth');
-// Route::resource('/dashboard/posts', DashboardPostController::class)->middleware('auth');
-
-// pakai gate
-// Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show');
-
-// middle ware
-// Route::resource('/dashboard/categories', AdminCategoryController::class)->except('show')->middleware('admin');
+Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');

@@ -18,7 +18,7 @@
             <div class="col">
                 <div class="d-flex justify-content-between flex-sm-row flex-column">
                     <div class="title-heading">
-                        <h2 class="fw-bold">{{ $artist->artist_name }}</h2>
+                        <h2 class="fw-bold text-color-100">{{ $artist->artist_name }}</h2>
                     </div>
 
                     <div class="button-group">
@@ -52,7 +52,7 @@
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Debut</p>
                             <p class="text-color-100 fs-14 m-0">
-                                {{ \Carbon\Carbon::createFromFormat('Y-m-d', $artist->debut)->format('d F Y') }}
+                                {{ \Carbon\Carbon::parse($artist->debut)->format('d F Y') }}
                             </p>
                         </div>
                         <div class="col">
@@ -83,12 +83,12 @@
             <div class="col-12 col-md-4 order-md-2 order-1 m-bottom-30">
                 @if ($artist->artist_pict !== null)
                     <img src="{{ asset('storage/' . $artist->artist_pict) }}" alt="{{ $artist->artist_name }} picture"
-                        class="img-fluid img-artist shadow-sm">
+                        class="img-fluid img-square rounded-top-10 shadow-sm" width="100%">
                 @else
                     <img src="{{ asset('img/unknown_artist.jpg') }}" alt="{{ $artist->artist_name }} thumbnail"
-                        class="img-fluid img-artist shadow-sm">
+                        class="img-fluid img-square rounded-top-10 shadow-sm">
                 @endif
-                <div class="bg-white p-15 border rounded-2">
+                <div class="bg-white p-15 border rounded-bottom-10">
                     <p class="m-0 text-color-100 fw-medium fs-14">Picture</p>
                     <p class="m-0 text-color-80 fs-12 text-break">{{ $artist->artist_pict }}</p>
                 </div>
@@ -102,7 +102,6 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    {{-- <h1 class="modal-title fs-5 justify-content-center" id="confirmDeleteModalLabel">Modal title</h1> --}}
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
