@@ -15,7 +15,7 @@ class DashboardArtistController extends Controller
     {
         return view('dashboard.artists.index', [
             'title' => 'Artists Table',
-            'artists' => Artist::orderBy('artist_name')->paginate(50),
+            'artists' => Artist::orderBy('artist_name')->paginate(25),
         ]);
     }
 

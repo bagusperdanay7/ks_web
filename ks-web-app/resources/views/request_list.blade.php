@@ -215,7 +215,11 @@
                                                 ])>{{ $project->category->category_name }}
                                                 </td>
                                                 <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                                    {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                                                    @if ($project->date)
+                                                        {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                                                    @else
+                                                        Coming Soon
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle text-color-100">{{ $project->type->type_name }}
                                                 </td>
@@ -268,7 +272,11 @@
                                                 <div class="d-flex justify-content-between align-items-start mb-10">
                                                     <div class="fs-12 fw-medium text-color-80"><i
                                                             class="lar la-calendar"></i>
-                                                        {{ \Carbon\Carbon::parse($project->date)->format('j F Y, G:i T') }}
+                                                        @if ($project->date)
+                                                            {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                                                        @else
+                                                            Coming Soon
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="/projects/{{ $project->id }}"
@@ -381,7 +389,11 @@
                                                     {{ $completedPro->category->category_name }}
                                                 </td>
                                                 <td class="align-middle"><i class="lar la-calendar"></i>
-                                                    {{ \Carbon\Carbon::parse($completedPro->date)->format('d F Y, G:i T') }}
+                                                    @if ($completedPro->date)
+                                                        {{ \Carbon\Carbon::parse($completedPro->date)->format('d F Y, G:i T') }}
+                                                    @else
+                                                        Coming Soon
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">{{ $completedPro->type->type_name }}</td>
                                                 <td class="align-middle">{{ $completedPro->requester }}</td>
@@ -435,7 +447,11 @@
                                                 <div class="d-flex justify-content-between align-items-start mb-10">
                                                     <div class="fs-12 fw-medium text-color-80"><i
                                                             class="lar la-calendar"></i>
-                                                        {{ \Carbon\Carbon::parse($completedPro->date)->format('j F Y, G:i T') }}
+                                                        @if ($completedPro->date)
+                                                            {{ \Carbon\Carbon::parse($completedPro->date)->format('d F Y, G:i T') }}
+                                                        @else
+                                                            Coming Soon
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="/projects/{{ $completedPro->id }}"
@@ -552,7 +568,11 @@
                                                     {{ $onProcessPro->category->category_name }}
                                                 </td>
                                                 <td class="align-middle"><i class="lar la-calendar"></i>
-                                                    {{ \Carbon\Carbon::parse($onProcessPro->date)->format('d F Y, G:i T') }}
+                                                    @if ($onProcessPro->date)
+                                                        {{ \Carbon\Carbon::parse($onProcessPro->date)->format('d F Y, G:i T') }}
+                                                    @else
+                                                        Coming Soon
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">{{ $onProcessPro->type->type_name }}</td>
                                                 <td class="align-middle">{{ $onProcessPro->requester }}</td>
@@ -604,7 +624,11 @@
                                                 <div class="d-flex justify-content-between align-items-start mb-10">
                                                     <div class="fs-12 fw-medium text-color-80"><i
                                                             class="lar la-calendar"></i>
-                                                        {{ \Carbon\Carbon::parse($onProcessPro->date)->format('j F Y, G:i T') }}
+                                                        @if ($onProcessPro->date)
+                                                            {{ \Carbon\Carbon::parse($onProcessPro->date)->format('d F Y, G:i T') }}
+                                                        @else
+                                                            Coming Soon
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="/projects/{{ $onProcessPro->id }}"
@@ -721,7 +745,11 @@
                                                     {{ $pendingPro->category->category_name }}
                                                 </td>
                                                 <td class="align-middle"><i class="lar la-calendar"></i>
-                                                    {{ \Carbon\Carbon::parse($pendingPro->date)->format('d F Y, G:i T') }}
+                                                    @if ($pendingPro->date)
+                                                        {{ \Carbon\Carbon::parse($pendingPro->date)->format('d F Y, G:i T') }}
+                                                    @else
+                                                        Coming Soon
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">{{ $pendingPro->type->type_name }}</td>
                                                 <td class="align-middle">{{ $pendingPro->requester }}</td>
@@ -773,7 +801,11 @@
                                                 <div class="d-flex justify-content-between align-items-start mb-10">
                                                     <div class="fs-12 fw-medium text-color-80"><i
                                                             class="lar la-calendar"></i>
-                                                        {{ \Carbon\Carbon::parse($pendingPro->date)->format('j F Y, G:i T') }}
+                                                        @if ($pendingPro->date)
+                                                            {{ \Carbon\Carbon::parse($pendingPro->date)->format('d F Y, G:i T') }}
+                                                        @else
+                                                            Coming Soon
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="/projects/{{ $pendingPro->id }}"
@@ -888,7 +920,11 @@
                                                     {{ $rejectedPro->category->category_name }}
                                                 </td>
                                                 <td class="align-middle"><i class="lar la-calendar"></i>
-                                                    {{ \Carbon\Carbon::parse($rejectedPro->date)->format('d F Y, G:i T') }}
+                                                    @if ($rejectedPro->date)
+                                                        {{ \Carbon\Carbon::parse($rejectedPro->date)->format('j F Y, G:i T') }}
+                                                    @else
+                                                        Coming Soon
+                                                    @endif
                                                 </td>
                                                 <td class="align-middle">{{ $rejectedPro->type->type_name }}</td>
                                                 <td class="align-middle">{{ $rejectedPro->requester }}</td>
@@ -940,7 +976,11 @@
                                                 <div class="d-flex justify-content-between align-items-start mb-10">
                                                     <div class="fs-12 fw-medium text-color-80"><i
                                                             class="lar la-calendar"></i>
-                                                        {{ \Carbon\Carbon::parse($rejectedPro->date)->format('j F Y, G:i T') }}
+                                                        @if ($rejectedPro->date)
+                                                            {{ \Carbon\Carbon::parse($rejectedPro->date)->format('j F Y, G:i T') }}
+                                                        @else
+                                                            Coming Soon
+                                                        @endif
                                                     </div>
                                                     <div>
                                                         <a href="/projects/{{ $rejectedPro->id }}"

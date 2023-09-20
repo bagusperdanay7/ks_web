@@ -10,6 +10,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardAIModelController;
 use App\Http\Controllers\DashboardAlbumController;
+use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectTypeController;
 use App\Http\Controllers\RequestFormController;
@@ -73,6 +74,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
 
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
+
+Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');
 
 Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
 

@@ -15,7 +15,10 @@ class ArtistController extends Controller
     {
         return view('artists', [
             'title' => 'All Artists',
-            'artists' => Artist::all()->load('projects')->sortBy('artist_name'),
+            'artists' => Artist::with('projects')->whereHas('projects',  function($q)  {
+                $q->where([['status', 'Completed'], ['is_exclusive', 'No']]);//query on team model
+            })->get()->sortBy('artist_name'),
+            // 'artists' => Artist::all()->load('projects')->sortBy('artist_name'),
         ]);
     }
 
@@ -43,7 +46,8 @@ class ArtistController extends Controller
         return view('artist', [
             'title' => $artist->artist_name . " Gallery",
             'artist' => $artist,
-            'artists' => $artist->projects->load('category', 'artist', 'type')
+            'artists' => $artist->projects->load('category', 'artist', 'type')->where('status', 'Completed')->where('is_exclusive', 'No')
+            // 'artists' => $artist->projects->load('category', 'artist', 'type')
         ]);
     }
 

@@ -91,7 +91,7 @@
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Type</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->type->type_name }}</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $project->type?->type_name }}</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">

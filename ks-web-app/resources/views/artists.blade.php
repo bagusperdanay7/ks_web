@@ -20,7 +20,8 @@
                                     alt="{{ $artist->artist_name }} picture">
                             @endif
                             <p>{{ $artist->artist_name }}</p>
-                            <span>{{ $artist->projects->count() }} Videos</span>
+                            <span>{{ $artist->projects->where('status', 'Completed')->where('is_exclusive', 'No')->count() }}
+                                Videos</span>
                         </a>
                     </div>
                 </div>

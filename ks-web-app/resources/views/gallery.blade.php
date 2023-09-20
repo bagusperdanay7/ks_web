@@ -378,7 +378,7 @@
                                     <a href="/gallery/artists/{{ $latestVid->artist->codename ?? '' }}">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                @if ($latestVid->artist->artist_pict)
+                                                @if ($latestVid->artist?->artist_pict)
                                                     <img class="rounded-circle"
                                                         src="{{ asset('storage/' . $latestVid->artist->artist_pict) }}"
                                                         alt="{{ $latestVid->artist->artist_name }} thumbnail"
@@ -386,13 +386,13 @@
                                                 @else
                                                     <img class="rounded-circle"
                                                         src="{{ asset('img/unknown_artist.jpg') }}"
-                                                        alt="{{ $latestVid->artist->artist_name }} thumbnail"
+                                                        alt="{{ $latestVid->artist?->artist_name }} thumbnail"
                                                         width="40px" height="40px">
                                                 @endif
                                             </div>
                                             <div>
                                                 <p class="ml-10 mb-0 fw-semibold fs-14 text-color-100">
-                                                    {{ $latestVid->artist->artist_name }}</p>
+                                                    {{ $latestVid->artist?->artist_name }}</p>
                                             </div>
                                         </div>
                                     </a>
@@ -461,21 +461,21 @@
                                     <a href="/gallery/artists/{{ $recVideo->artist->codename ?? '' }}">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                @if ($recVideo->artist->artist_pict)
+                                                @if ($recVideo->artist?->artist_pict)
                                                     <img class="rounded-circle"
-                                                        src="{{ asset('storage/' . $recVideo->artist->artist_pict) }}"
+                                                        src="{{ asset('storage/' . $recVideo->artist?->artist_pict) }}"
                                                         alt="{{ $recVideo->artist->artist_name }} thumbnail"
                                                         width="40px" height="40px">
                                                 @else
                                                     <img class="rounded-circle"
                                                         src="{{ asset('img/unknown_artist.jpg') }}"
-                                                        alt="{{ $recVideo->artist->artist_name }} thumbnail"
+                                                        alt="{{ $recVideo->artist?->artist_name }} thumbnail"
                                                         width="40px" height="40px">
                                                 @endif
                                             </div>
                                             <div>
                                                 <p class="ml-10 mb-0 fw-semibold fs-14 text-color-100">
-                                                    {{ $recVideo->artist->artist_name }}</p>
+                                                    {{ $recVideo->artist?->artist_name }}</p>
                                             </div>
                                         </div>
                                     </a>

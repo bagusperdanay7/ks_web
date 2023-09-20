@@ -50,7 +50,11 @@
                     <div class="row mb-10">
                         <div class="col-4 fs-inter-14 fw-semibold text-color-100">Date</div>
                         <div class="col-8 fs-inter-14 text-color-100">
-                            {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                            @if ($project->date)
+                                {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                            @else
+                                Coming Soon
+                            @endif
                         </div>
                     </div>
                     <div class="row mb-10">
@@ -108,6 +112,17 @@
                             </div>
                         </div>
                     </div>
+                    {{-- TODO: Add Upvote --}}
+                    @auth
+                        @if ($project->status !== 'Completed')
+                            <div class="row mt-15">
+                                <div class="col">
+                                    <button class="btn btn-main col-12">Upvote</button>
+                                </div>
+                            </div>
+                        @endif
+                    @endauth
+
                 </div>
             </div>
         </div>

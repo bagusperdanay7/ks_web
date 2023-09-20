@@ -177,23 +177,23 @@
                                     <option value="Yes">Yes</option>
                                 @endif
                             </select>
-                            <div class="m-bottom-15">
-                                <label for="created_at"
-                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created
-                                    At</label>
-                                <input type="datetime-local" class="form-control" name="created_at" id="created_at"
-                                    value="{{ old('created_at', $project->created_at) }}">
-                            </div>
-                            <div class="m-bottom-15">
-                                <label for="notes"
-                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Notes</label>
-                                <textarea class="form-control" id="notes" rows="3" name="notes"
-                                    placeholder="Ex: Please, make nayeon as thumbnail, in More & More video">{{ old('notes', $project->notes) }}</textarea>
-                            </div>
-                            <div class="button-grouping text-end">
-                                <a href="/dashboard/projects" class="btn btn-light-border m-right-15">Cancel</a>
-                                <button type="submit" class="btn btn-primary-color px-4">Update</button>
-                            </div>
+                        </div>
+                        <div class="m-bottom-15">
+                            <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created
+                                At</label>
+                            <input type="datetime-local" class="form-control" name="created_at" id="created_at"
+                                value="{{ old('created_at', $project->created_at) }}">
+                        </div>
+                        <div class="m-bottom-15">
+                            <label for="notes"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Notes</label>
+                            <textarea class="form-control" id="notes" rows="3" name="notes"
+                                placeholder="Ex: Please, make nayeon as thumbnail, in More & More video">{{ old('notes', $project->notes) }}</textarea>
+                        </div>
+                        <div class="button-grouping text-end">
+                            <a href="/dashboard/projects" class="btn btn-light-border m-right-15">Cancel</a>
+                            <button type="submit" class="btn btn-primary-color px-4">Update</button>
+                        </div>
                     </form>
                 </div>
             </div>
