@@ -105,9 +105,16 @@
                                         ])>
                                             {{ $pro->category->category_name }}
                                         </td>
-                                        <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($pro->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($pro->date)
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($pro->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @else
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @endif
+
                                         <td class="align-middle text-color-100">{{ $pro->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
@@ -145,9 +152,15 @@
                             <div class="col">
                                 <div class="table-content-mobile bg-second">
                                     <div class="d-flex justify-content-between align-items-start mb-10">
-                                        <div class="fs-14 fw-medium text-color-80"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($pro->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($pro->date)
+                                            <div class="fs-14 fw-medium text-color-80"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($pro->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @endif
                                         <div>
                                             <a href="/projects/{{ $pro->id }}"
                                                 class="text-decoration-none text-color-secondary">

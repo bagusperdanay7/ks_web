@@ -165,10 +165,17 @@
                                     $scheduleItems->category->category_name === 'Center Distribution',
                             ])> {{ $scheduleItems->category->category_name }}
                             </div>
-                            <div class="col align-self-center fw-medium fs-14 text-color-80"><i
-                                    class="lar la-calendar"></i>
-                                {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
-                            </div>
+                            @if ($scheduleItems->date)
+                                <div class="col align-self-center fw-medium fs-14 text-color-80"><i
+                                        class="lar la-calendar"></i>
+                                    {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
+                                </div>
+                            @else
+                                <div class="col align-self-center fw-medium fs-14 text-color-80"><i
+                                        class="lar la-calendar"></i>
+                                    Coming Soon
+                                </div>
+                            @endif
                             <div class="col align-self-center text-color-100 fs-14 fw-normal">
                                 {{ $scheduleItems->type->type_name }}
                             </div>
@@ -211,9 +218,15 @@
                     <div class="upcoming-schedule-card-lp {{ $loop->last ? '' : 'mb-3' }}">
                         <div class="row">
                             <div class="d-flex flex-column">
-                                <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                    {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
-                                </div>
+                                @if ($scheduleItems->date)
+                                    <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
+                                        {{ \Carbon\Carbon::parse($scheduleItems->date)->format('j F Y, G:i T') }}
+                                    </div>
+                                @else
+                                    <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
+                                        Coming Soon
+                                    </div>
+                                @endif
                                 <div class="mt-0 mb5">
                                     <span @class([
                                         'btn',

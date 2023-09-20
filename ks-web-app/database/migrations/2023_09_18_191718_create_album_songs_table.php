@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album_songs', function (Blueprint $table) {
+        Schema::create('album_song', function (Blueprint $table) {
             $table->id();
             $table->integer('track_number');
             $table->foreignId('album_id');

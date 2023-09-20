@@ -45,14 +45,15 @@ class DashboardProjectController extends Controller
             'category_id' => 'required',
             'type_id' => 'required',
             'project_title' => 'required|max:191',
+            'date' => 'nullable|date',
             'requester' => 'required|max:191',
-            'date' => 'required',
             'status' => 'required',
             'url' => 'max:191',
             'thumbnail' => 'max:191',
             'progress' => 'integer',
             'votes' => 'integer',
             'is_exclusive' => 'required',
+            'created_at' => 'nullable|date'
         ]);
 
         $validateData['notes'] = strip_tags($request->notes);
@@ -99,13 +100,14 @@ class DashboardProjectController extends Controller
             'type_id' => 'required',
             'project_title' => 'required|max:191',
             'requester' => 'required|max:191',
-            'date' => 'required',
+            'date' => 'nullable|date',
             'status' => 'required',
             'url' => 'max:191',
             'thumbnail' => 'max:191',
             'progress' => 'integer',
             'votes' => 'integer',
             'is_exclusive' => 'required',
+            'created_at' => 'nullable|date'
         ];
 
         $validateData = $request->validate($rules);

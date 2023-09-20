@@ -40,7 +40,8 @@
                             </div>
                             <div class="ml-10 ml-sm-0 text-center text-sm-start">
                                 <h5>{{ $category->category_name }}</h5>
-                                <p>{{ $category->projects->count() }} videos</p>
+                                <p>{{ $category->projects->where('status', 'Completed')->where('is_exclusive', 'No')->count() }}
+                                    videos</p>
                             </div>
                         </div>
                     </a>

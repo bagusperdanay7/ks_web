@@ -76,8 +76,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/albums"
-                        class="menu-nav {{ Request::is('dashboard/albums') ? 'text-active' : '' }}">
+                    <a href="/dashboard/album-songs"
+                        class="menu-nav {{ Request::is('dashboard/album-songs') ? 'text-active' : '' }}">
                         <i class="las la-compact-disc"></i>
                         Albums Songs
                     </a>

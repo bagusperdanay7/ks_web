@@ -45,7 +45,7 @@
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Artist</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $album->artist->artist_name }}</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $album->artist->artist_name ?? 'No Artist' }}</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">

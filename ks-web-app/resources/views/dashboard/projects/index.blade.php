@@ -105,7 +105,7 @@
                                                 {{ $project->category->category_name }}
                                             </td>
                                         @endif
-                                        <td class="align-middle">{{ $project->type->type_name }}</td>
+                                        <td class="align-middle">{{ $project->type?->type_name }}</td>
                                         <td class="align-middle">
                                             {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
                                         </td>

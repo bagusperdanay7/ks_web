@@ -285,7 +285,7 @@
                                     <tr>
                                         <td class="align-middle">{{ $list->project_title }}</td>
                                         <td class="align-middle">{{ $list->category->category_name }}</td>
-                                        <td class="align-middle">{{ $list->type->type_name }}</td>
+                                        <td class="align-middle">{{ $list->type?->type_name }}</td>
                                         <td class="align-middle">{{ $list->date }}</td>
                                         <td class="align-middle">{{ $list->requester }}</td>
                                         <td class="align-middle">

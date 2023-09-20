@@ -66,9 +66,17 @@
                                             'text-color-cd' =>
                                                 $project->category->category_name === 'Center Distribution',
                                         ])> {{ $project->category->category_name }}</td>
-                                        <td class="align-middle fw-medium text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($project->date == null)
+                                            <td class="align-middle fw-medium text-color-100"><i
+                                                    class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @else
+                                            <td class="align-middle fw-medium text-color-100"><i
+                                                    class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @endif
                                         <td class="align-middle text-color-100">{{ $project->type->type_name }}</td>
                                         <td class="align-middle text-color-100">{{ $project->requester }}</td>
                                         <td class="align-middle">
@@ -106,9 +114,15 @@
                             <div class="row {{ $loop->last ? '' : 'mb-3' }}">
                                 <div class="col">
                                     <div class="table-content-mobile">
-                                        <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($project->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($project->date == null)
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($project->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @endif
                                         <div class="mb5">
                                             <span @class([
                                                 'btn',
@@ -221,9 +235,15 @@
                                             'text-color-cd' =>
                                                 $nonProject->category->category_name === 'Center Distribution',
                                         ])> {{ $nonProject->category->category_name }}</td>
-                                        <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($nonProject->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($nonProject->date == null)
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @else
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($nonProject->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @endif
                                         <td class="align-middle text-color-100">{{ $nonProject->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
@@ -260,9 +280,17 @@
                             <div class="row {{ $loop->last ? '' : 'mb-3' }}">
                                 <div class="col">
                                     <div class="table-content-mobile">
-                                        <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($nonProject->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($nonProject->date == null)
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($nonProject->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @endif
                                         <div class="mb5">
                                             <span @class([
                                                 'btn',
@@ -370,9 +398,15 @@
                                             'text-color-cd' =>
                                                 $hugeProj->category->category_name === 'Center Distribution',
                                         ])> {{ $hugeProj->category->category_name }}</td>
-                                        <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($hugeProj->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($hugeProj->date == null)
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @else
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($hugeProj->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @endif
                                         <td class="align-middle text-color-100">{{ $hugeProj->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
@@ -409,9 +443,17 @@
                             <div class="row {{ $loop->last ? '' : 'mb-3' }}">
                                 <div class="col">
                                     <div class="table-content-mobile">
-                                        <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($hugeProj->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($hugeProj->date == null)
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($hugeProj->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @endif
                                         <div class="mb5">
                                             <span @class([
                                                 'btn',
@@ -516,9 +558,15 @@
                                                 $nvProj->category->category_name === 'Center Distribution',
                                         ])>
                                             {{ $nvProj->category->category_name }}</td>
-                                        <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($nvProj->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($nvProj->date == null)
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @else
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($nvProj->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @endif
                                         <td class="align-middle text-color-100">{{ $nvProj->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
@@ -555,9 +603,17 @@
                             <div class="row {{ $loop->last ? '' : 'mb-3' }}">
                                 <div class="col">
                                     <div class="table-content-mobile">
-                                        <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($nvProj->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($nvProj->date == null)
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($nvProj->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @endif
                                         <div class="mb5">
                                             <span @class([
                                                 'btn',
@@ -663,9 +719,16 @@
                                                 $ytComPro->category->category_name === 'Center Distribution',
                                         ])>
                                             {{ $ytComPro->category->category_name }}</td>
-                                        <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($ytComPro->date)->format('d F Y, G:i T') }}
-                                        </td>
+                                        @if ($ytComPro->date == null)
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </td>
+                                        @else
+                                            <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($ytComPro->date)->format('d F Y, G:i T') }}
+                                            </td>
+                                        @endif
+
                                         <td class="align-middle text-color-100">{{ $ytComPro->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
@@ -702,9 +765,17 @@
                             <div class="row {{ $loop->last ? '' : 'mb-3' }}">
                                 <div class="col">
                                     <div class="table-content-mobile">
-                                        <div class="fs-14 fw-medium text-color-80 mb-10"><i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($ytComPro->date)->format('j F Y, G:i T') }}
-                                        </div>
+                                        @if ($ytComPro->date == null)
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                Coming Soon
+                                            </div>
+                                        @else
+                                            <div class="fs-14 fw-medium text-color-80 mb-10"><i
+                                                    class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($ytComPro->date)->format('j F Y, G:i T') }}
+                                            </div>
+                                        @endif
                                         <div class="mb5">
                                             <span @class([
                                                 'btn',

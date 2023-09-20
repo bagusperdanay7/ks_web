@@ -72,7 +72,7 @@
                                                     alt="{{ $album->album_name }} Cover" class="img-fluid img-album">
                                             @endif
                                         </td>
-                                        <td class="align-middle">{{ $album->artist->artist_name }}</td>
+                                        <td class="align-middle">{{ $album->artist->artist_name ?? 'No Artist' }}</td>
                                         <td class="align-middle text-color-100">
                                             {{ $album->album_name }}
                                         </td>

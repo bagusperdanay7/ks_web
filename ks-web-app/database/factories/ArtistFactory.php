@@ -19,7 +19,7 @@ class ArtistFactory extends Factory
         return [
             'artist_name' => $this->faker->name(),
             'codename' => $this->faker->unique()->name(),
-            'debut' => $this->faker->dateTime(),
+            'debut' => $this->faker->date(),
             'origin' => $this->faker->city(),
             'fandom' => $this->faker->catchPhrase(),
             'company' => $this->faker->company(),
