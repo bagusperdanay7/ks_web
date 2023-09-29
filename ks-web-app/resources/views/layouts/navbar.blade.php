@@ -28,8 +28,9 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fs-6 {{ Request::is('/ai-model') ? 'active' : '' }}"
-                                href="#">AI
-                                model <span class="badge mini-badge align-top">New</span></a></li>
+                                href="{{ route('ai-model') }}">AI
+                                model
+                            </a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -96,7 +97,7 @@
 {{-- Nav Mobile --}}
 <nav class="navbar fixed-bottom bg-second mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
-        <a href="" class="text-decoration-none d-flex">
+        <a href="{{ route('ai-model') }}" class="text-decoration-none d-flex">
             <i class='bx bxs-user-voice bx-xs'></i>
             <span class="mx-2">AI Model</span>
         </a>

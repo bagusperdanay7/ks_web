@@ -17,15 +17,12 @@ class Project extends Model
 
     public function scopeFilter($query, array $filters)
     {
-
-        // TODO: Nanti tambahkan ['project_status', 'Completed'] atau di viewnya tuliskan keterangan saja, project ini sedang dikerjakan
         // null
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return  $query->where(function ($query) use ($search) {
                 $query->where('project_title', 'like', '%' . $search . '%');
             });
         });
-
 
         // callback
         $query->when($filters['category'] ?? false, function ($query, $category) {
@@ -36,12 +33,9 @@ class Project extends Model
 
         $query->when($filters['type'] ?? false, function ($query, $type) {
             return $query->whereHas('type', function ($query) use ($type) {
-                $query->where('type_name', $type);
+                $query->where('slug', $type);
             });
         });
-
-        // arrow function
-        // $query->when($filters['type'] ?? false, fn ($query, $type) => $query->whereHas('type', fn ($query) => $query->where('type_name', $type)));
     }
 
     public function artist(): BelongsTo

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AIModelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -33,6 +35,8 @@ use App\Http\Controllers\DashboardSongController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
+
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
@@ -58,6 +62,8 @@ Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, '
 Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
+
+Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 

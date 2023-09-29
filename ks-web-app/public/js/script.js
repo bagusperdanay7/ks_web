@@ -12,6 +12,18 @@ const toastElList = document.querySelectorAll(".toast");
 const toastList = [...toastElList].map(
     (toastEl) => new bootstrap.Toast(toastEl, option)
 );
+
+const toastTrigger = document.getElementById("liveToastBtn");
+const toastLiveExample = document.getElementById("liveToast");
+
+if (toastTrigger) {
+    const toastBootstrap =
+        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+    toastTrigger.addEventListener("click", () => {
+        toastBootstrap.show();
+    });
+}
+
 //  Add Alert
 const alertList = document.querySelectorAll(".alert");
 const alerts = [...alertList].map((element) => new bootstrap.Alert(element));
@@ -39,6 +51,19 @@ function mobileMenuFunc() {
 }
 
 menuBtnMobile.addEventListener("click", mobileMenuFunc, true);
+
+const triggerFilter = document.querySelector("#triggerFilter");
+const filterGroup = document.querySelector("#filterGroup");
+
+if (triggerFilter !== null) {
+    triggerFilter.addEventListener("click", function () {
+        if (triggerFilter.textContent == "Show Advanced Filter") {
+            triggerFilter.textContent = "Hide Advanced Filter";
+        } else {
+            triggerFilter.textContent = "Show Advanced Filter";
+        }
+    });
+}
 
 // Show/Hide Password
 

@@ -57,6 +57,12 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('ai-model') }}" class="menu-nav">
+                        <i class="las la-user-clock"></i>
+                        AI Model
+                    </a>
+                </li>
+                <li>
                     <a href="" class="menu-nav">
                         <i class="las la-photo-video"></i>
                         Exclusive Video

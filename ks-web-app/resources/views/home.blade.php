@@ -49,7 +49,7 @@
                 </a>
             </div>
             <div class="col-12 col-sm mb-sm-30">
-                <a href="">
+                <a href="https://paypal.me/bagusperdanq" target="_blank">
                     <i class='bx bxl-paypal bx-lg' style="color: #009CDE;"></i>
                     <p class="socmed-home-text">SUPPORT</p>
                 </a>

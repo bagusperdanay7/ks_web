@@ -6,13 +6,6 @@
             <div class="col">
                 <h2 class="text-color-100 fw-bold mb-15">Explore</h2>
                 <form class="search-gallery-form" action="/gallery">
-                    @if (request('category'))
-                        <input type="hidden" name="category" value="{{ request('category') }}">
-                    @endif
-
-                    @if (request('type'))
-                        <input type="hidden" name="type" value="{{ request('type') }}">
-                    @endif
                     <div class="input-group">
                         <span class="input-group-text" id="basic-addon1">
                             <i class='bx bx-search fs-18'></i>
@@ -21,16 +14,58 @@
                             placeholder="Search title, or artist (Press /)" aria-label="Search" id="searchGallery"
                             name="search" value="{{ request('search') }}" autofocus>
                     </div>
-                    @if (request('category') or request('search'))
-                        <p class="mt-10 mb-0 fs-inter-14 fw-medium text-color-secondary text-end">Show Advanced
-                            Filter</p>
+                    @if (request('category') || request('search') || request('type') || request('sort'))
+                        <p class="mt-10 mb-15 fs-inter-14 fw-medium text-color-secondary text-end" id="triggerFilter"
+                            data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false"
+                            aria-controls="collapseExample" role="button">Show Advanced Filter</p>
+                        <div class="row collapse" id="filterGroup">
+                            <div class="col-6 col-auto-2">
+                                <select class="form-select" aria-label="Select Category" name="category"
+                                    onchange="if(this.value != '') { this.form.submit(); }">
+                                    <option value="">Category</option>
+                                    @foreach ($allCategory as $categoryList)
+                                        <option value="{{ $categoryList->slug }}"
+                                            {{ request('category') == $categoryList->slug ? ' selected' : ' ' }}>
+                                            {{ $categoryList->category_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6 col-auto-2 mb-2 mb-sm-0">
+                                <select class="form-select" aria-label="Select Type" name="type"
+                                    onchange="if(this.value != '') { this.form.submit(); }">
+                                    <option value="">Type</option>
+                                    @foreach ($allType as $typeList)
+                                        <option value="{{ $typeList->slug }}"
+                                            {{ request('type') == $typeList->slug ? ' selected' : ' ' }}>
+                                            {{ $typeList->type_name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-6 col-auto-2">
+                                <select class="form-select" aria-label="Select Sort" name="sort"
+                                    onchange="if(this.value != '') { this.form.submit(); }">
+                                    <option value="">Sort By</option>
+                                    <optgroup label="Title">
+                                        <option value="title_asc" {{ request('sort') == 'title_asc' ? ' selected' : '' }}>
+                                            Ascending</option>
+                                    </optgroup>
+                                    <optgroup label="Date">
+                                        <option value="latest" {{ request('sort') == 'latest' ? ' selected' : '' }}>Latest
+                                        </option>
+                                        <option value="oldest" {{ request('sort') == 'oldest' ? ' selected' : '' }}>Oldest
+                                        </option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
                     @endif
                 </form>
             </div>
         </div>
     </section>
 
-    {{-- TODO:tambahin juga {{ Route::current()->getName() }} jika yang diakses url artist atau bikin filter --}}
     @if (request('search') or request('type') or request('category'))
         <section id="search-results">
             <div class="row">
@@ -88,7 +123,7 @@
                                     <h4>{{ $gallery->project_title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($gallery->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ urlencode($gallery->type->type_name) }}"
+                                        &#8226; <a href="gallery?type={{ $gallery->type->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
                                                 class="type-tag">{{ $gallery->type->type_name }}</span>
                                         </a>
@@ -147,7 +182,8 @@
                                         <img src="{{ $recVideo->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
                                             alt="{{ $recVideo->project_title }} thumbnail">
                                     @else
-                                        <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
+                                        <img src="{{ asset('img/no_thumbnail.jpg') }}"
+                                            class="thumbnail m-0 p-0 img-fluid"
                                             alt="{{ $recVideo->project_title }} thumbnail">
                                     @endif
                                     <div class="video-desc-card">
@@ -174,7 +210,7 @@
                                         <h4>{{ $recVideo->project_title }}</h4>
                                         <p class="date-text">
                                             {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                            &#8226; <a href="gallery?type={{ urlencode($recVideo->type->type_name) }}"
+                                            &#8226; <a href="gallery?type={{ $recVideo->type->slug }}"
                                                 class="p-0 m-0 text-decoration-none"><span
                                                     class="type-tag">{{ $recVideo->type->type_name }}</span>
                                             </a>
@@ -370,7 +406,7 @@
                                     <h4>{{ $latestVid->project_title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($latestVid->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ urlencode($latestVid->type->type_name) }}"
+                                        &#8226; <a href="gallery?type={{ $latestVid->type->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
                                                 class="type-tag">{{ $latestVid->type->type_name }}</span>
                                         </a>
@@ -453,7 +489,7 @@
                                     <h4>{{ $recVideo->project_title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ urlencode($recVideo->type->type_name) }}"
+                                        &#8226; <a href="gallery?type={{ $recVideo->type->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
                                                 class="type-tag">{{ $recVideo->type->type_name }}</span>
                                         </a>
