@@ -15,13 +15,31 @@ class GalleryController extends Controller
      * Display a listing of the resource.
      */
 
-    //  TODO: Filter Perbaiki & Where = copleted
+    //  TODO: Filter Perbaiki
     public function index()
     {
         $galleryQuery = Project::latest()
                                 ->where([['status', 'Completed'], ['is_exclusive', 'No']])
                                 ->filter(request(['search', 'category', 'type']))
                                 ->get();
+                                
+        if (request('sort') == 'title_asc') {
+            $galleryQuery = Project::orderBy('project_title')
+            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
+            ->filter(request(['search', 'category', 'type']))
+            ->get();
+
+        } elseif (request('sort') == 'latest') {
+            $galleryQuery = Project::orderByDesc('date')
+            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
+            ->filter(request(['search', 'category', 'type']))
+            ->get();
+        } elseif (request('sort') == 'oldest') {
+            $galleryQuery = Project::orderBy('date')
+            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
+            ->filter(request(['search', 'category', 'type']))
+            ->get();
+        }
 
         $artistTotalQuery = Project::where([['status', 'Completed'], ['is_exclusive', 'No']])
                                     ->groupBy('artist_id')
@@ -47,25 +65,20 @@ class GalleryController extends Controller
                                 ->shuffle()
                                 ->take(6);
 
+        $allCategoryQuery = Category::all()->sortBy('category_name');
+
+        $allTypeQuery = ProjectType::all()->sortBy('type_name');
+
         $title = '';
 
         if (request('type') || request('category') || request('search')) {
-            $category = Category::firstWhere('slug', request('category'));
-            $type = ProjectType::firstWhere('type_name', request('type'));
 
-            if (request('type') && request('search')) {
-                $title = request('search') . " & " . $type?->type_name;
-            } elseif (request('category') && request('search')) {
-                $title = request('search') . " & " . $category->category_name;
-            } elseif (request('search')) {
+            if (request('search')) {
                 $title = request('search');
-            } elseif (request('type')) {
-                $title = $type?->type_name;
-            } elseif (request('category')) {
-                $title = $category->category_name;
             }
 
             $preTitle = "Explore ";
+
         } else {
             $preTitle = "Gallery";
         }
@@ -77,6 +90,8 @@ class GalleryController extends Controller
             'categories' =>  $categoriesQuery,
             'latestVideo' => $latestVideoQuery,
             'recommendationVideo' =>  $recVideoQuery,
+            'allCategory' => $allCategoryQuery,
+            'allType' => $allTypeQuery,
             // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
             // $collection->take(3);
         ]);
@@ -110,6 +125,10 @@ class GalleryController extends Controller
         ->get()->shuffle();
 
         // $user->posts()->where('active', 1)->get(); # has many
+
+        if ($project->status !== "Completed" || $project->is_exclusive !== "No") {
+            abort(404);
+        }
 
         return view('video', [
             "title" => $project->project_title,

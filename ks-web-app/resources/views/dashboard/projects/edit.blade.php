@@ -114,7 +114,8 @@
                         <div class="m-bottom-15">
                             <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
                             <input type="url" class="form-control @error('url') is-invalid @enderror" name="url"
-                                id="url" maxlength="191" value="{{ old('url', $project->url) }}">
+                                id="url" maxlength="191" value="{{ old('url', $project->url) }}"
+                                placeholder="https://www.youtube.com/embed/{VIDEO_ID}">
                             @error('url')
                                 <div id="urlFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -126,7 +127,8 @@
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Thumbnail</label>
                             <input type="text" class="form-control @error('thumbnail') is-invalid @enderror"
                                 name="thumbnail" id="thumbnail" maxlength="191"
-                                value="{{ old('thumbnail', $project->thumbnail) }}">
+                                value="{{ old('thumbnail', $project->thumbnail) }}"
+                                placeholder="https://i.ytimg.com/vi/{VIDEO_ID}/maxresdefault.jpg">
                             @error('thumbnail')
                                 <div id="thumbnailFeedback" class="invalid-feedback">
                                     {{ $message }}

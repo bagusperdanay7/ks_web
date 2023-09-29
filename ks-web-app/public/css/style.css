@@ -192,6 +192,10 @@ h6 {
 }
 
 /* Margin Right */
+.mr-10 {
+    margin-right: 10px;
+}
+
 .mr-15 {
     margin-right: 15px;
 }
@@ -586,7 +590,7 @@ table td.text-color-cd,
 
 /* End of Component */
 
-/* Boostrap Modified Style */
+/* Bootstrap Modified Style */
 
 .dis {
     cursor: not-allowed;
@@ -628,7 +632,7 @@ textarea.form-control {
 }
 
 .form-control:focus,
-.form-selecr:focus {
+.form-select:focus {
     border-color: var(--primary);
     box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
 }
@@ -660,6 +664,14 @@ textarea.form-control {
 
 .pagination > li.page-item > a {
     color: var(--primary);
+}
+
+.accordion-button:focus {
+    box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: var(--primary-10);
 }
 
 /* End of Boostrap Modified Style */
@@ -1297,6 +1309,24 @@ table td.title-with-progress {
     color: var(--secondary);
 }
 
+.filter-selected {
+    color: var(--primary);
+}
+
+.dis-none {
+    max-height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 2s, max-height 2s;
+}
+
+.dis-visible {
+    max-height: auto;
+    visibility: visible;
+    opacity: 1;
+    transition: all 2s, max-height 2s;
+}
+
 /* Artist Page */
 .artist-about {
     font-family: var(--secondary-font);
@@ -1327,6 +1357,20 @@ table td.title-with-progress {
 }
 
 /* Penutup Gallery */
+
+/* AI Models Page */
+.ai-models-container {
+    padding: 25px;
+    background-color: var(--background-color-secondary);
+    border-radius: 5px;
+}
+
+.list-ai-model img {
+    width: 100px;
+    min-width: 50px;
+}
+
+/* Penutup AI Models Page */
 
 /* Login & Sign Up Page */
 section#login,
@@ -1378,6 +1422,12 @@ section#sign-up {
 .btn-border-form:hover {
     border: 1px solid var(--primary);
     color: var(--primary);
+}
+
+.btn-border-30 {
+    border: 1px solid var(--text-color-30);
+    background-color: transparent;
+    color: var(--text-color);
 }
 
 span.input-group-text {
@@ -1485,6 +1535,12 @@ span.input-group-text i {
     .req-list-section {
         padding: 15px;
     }
+
+    /* AI-Model Page */
+    .list-ai-model img {
+        width: 50px;
+        min-width: 50px;
+    }
 }
 
 /* Responsive untuk Mobile dan Tablet */
@@ -1498,6 +1554,11 @@ span.input-group-text i {
 
     .mb-md-15 {
         margin-bottom: 15px;
+    }
+
+    .fs-inter-md-18 {
+        font-family: var(--secondary-font);
+        font-size: 18px;
     }
 
     /* Projects Page */

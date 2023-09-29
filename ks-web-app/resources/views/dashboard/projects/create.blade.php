@@ -110,7 +110,9 @@
                             <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
                             <input type="url" class="form-control @error('url') is-invalid @enderror" name="url"
                                 id="url" maxlength="191" value="{{ old('url') }}"
-                                placeholder="Ex: https://www.youtube.com/embed/PMl5T1RNr5c">
+                                placeholder="https://www.youtube.com/embed/{VIDEO_ID}" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Press Alt+C on this Input to copy the example url">
                             @error('url')
                                 <div id="urlFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -122,7 +124,9 @@
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Thumbnail</label>
                             <input type="text" class="form-control @error('thumbnail') is-invalid @enderror"
                                 name="thumbnail" id="thumbnail" maxlength="191" value="{{ old('thumbnail') }}"
-                                placeholder="Enter URL Thumbnail from Youtube">
+                                placeholder="https://i.ytimg.com/vi/{VIDEO_ID}/maxresdefault.jpg" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Press Alt+C on this Input to copy the example url">
                             @error('thumbnail')
                                 <div id="thumbnailFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -206,5 +210,19 @@
 
             projectTitle.value = selectedValues + ' - ';
         };
+
+        const url = document.querySelector('#url');
+        url.addEventListener("keydown", (event) => {
+            if (event.altKey && event.keyCode == 67) {
+                url.value = "https://www.youtube.com/embed/{VIDEO_ID}"
+            }
+        });
+
+        const thumbnail = document.querySelector('#thumbnail');
+        thumbnail.addEventListener("keydown", (event) => {
+            if (event.altKey && event.keyCode == 67) {
+                thumbnail.value = "https://i.ytimg.com/vi/{VIDEO_ID}/maxresdefault.jpg"
+            }
+        });
     </script>
 @endsection

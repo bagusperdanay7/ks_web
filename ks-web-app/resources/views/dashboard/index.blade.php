@@ -159,7 +159,7 @@
                             if ($typeCompletedTotal === 0) {
                                 $progressType = 0;
                             } else {
-                                $progressType = ($typeCompletedTotal / $typeTotal) * 100;
+                                $progressType = round(($typeCompletedTotal / $typeTotal) * 100);
                             }
                             
                         @endphp
@@ -324,7 +324,6 @@
             </div>
         </div>
     </section>
-    {{--  --}}
 
     {{-- Chart.js --}}
     <script>

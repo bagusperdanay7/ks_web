@@ -13,7 +13,12 @@ class AIModelController extends Controller
      */
     public function index()
     {
-        //
+        $modelsQuery = AIModel::orderBy('model_name')->paginate(50);
+
+        return view('ai_model', [
+            "title" => "AI Models" ,
+            "models" => $modelsQuery,
+        ]);
     }
 
     /**
