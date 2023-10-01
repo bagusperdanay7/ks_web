@@ -8,7 +8,9 @@ use App\Models\Category;
 use App\Models\ProjectType;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Mail\RequestProcessed;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -87,7 +89,12 @@ class ProjectController extends Controller
 
         Project::create($validateData);
 
-        return redirect(route('request-list'))->with('success', "We have received your request, we will proceed later. Thank you");
+        $project = Project::latest()->first();
+
+        // return (new RequestProcessed($project))->render(); #debug html
+        Mail::to($request->user())->send(new RequestProcessed($project));
+
+        return redirect(route('request-list'))->with('success', "We have received your request, we will proceed later. Check your email for further information about your request. Thank you");
     }
 
     /**

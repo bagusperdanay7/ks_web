@@ -1,26 +1,27 @@
 <?php
 
-use App\Http\Controllers\AboutUsController;
-use App\Http\Controllers\AIModelController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\SignUpController;
+use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AIModelController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardAIModelController;
-use App\Http\Controllers\DashboardAlbumController;
-use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProjectTypeController;
-use App\Http\Controllers\RequestFormController;
-use App\Http\Controllers\DashboardArtistController;
-use App\Http\Controllers\DashboardCategoryController;
-use App\Http\Controllers\DashboardProjectController;
-use App\Http\Controllers\DashboardProjectTypeController;
 use App\Http\Controllers\DashboardSongController;
+use App\Http\Controllers\DashboardAlbumController;
+use App\Http\Controllers\DashboardArtistController;
+use App\Http\Controllers\DashboardAIModelController;
+use App\Http\Controllers\DashboardProjectController;
+use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\DashboardAlbumSongsController;
+use App\Http\Controllers\DashboardProjectTypeController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,7 +44,7 @@ Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
 
 Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
 
-Route::get('/form-request', [ProjectController::class, 'create'])->name('request-form');
+Route::get('/form-request', [ProjectController::class, 'create'])->middleware(['auth', 'verified'])->name('request-form');
 
 Route::post('/form-request', [ProjectController::class, 'store'])->name('request-form-post');
 
@@ -69,9 +70,28 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login-post');
 
-Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up')->middleware('guest');;
+Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up')->middleware('guest');
 
 Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post');
+
+Route::get('/verification', [SignUpController::class, 'verification'])->name('verify-email')->middleware('guest');
+
+// Kirim Verifikasi ke Email
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+// Verifikasi Berhasil
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/')->with('validationSuccess', 'The verification of your account was successful.');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// Resend Verification
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
