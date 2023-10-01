@@ -330,6 +330,14 @@ td.text-color-100 {
     color: var(--success);
 }
 
+.text-color-warning {
+    color: var(--warning);
+}
+
+.text-color-alert {
+    color: var(--alert);
+}
+
 .text-color-ld,
 table td.text-color-ld {
     color: var(--primary);
@@ -407,6 +415,10 @@ table td.text-color-cd,
 
 .bg-success-10 {
     background-color: var(--success-10);
+}
+
+.bg-warning-10 {
+    background-color: var(--warning-10);
 }
 
 .bg-alert-10 {
@@ -1437,6 +1449,11 @@ span.input-group-text {
 
 span.input-group-text i {
     cursor: pointer;
+}
+
+.verification-container {
+    background-color: var(--background-color-secondary);
+    padding: 25px;
 }
 
 /* Penutup Login & SIgn Up Page */

@@ -1,4 +1,25 @@
 @extends('layouts.main')
+@if (session()->has('message'))
+    <div class="container">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0" style="margin-top: 75px">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-warning-10">
+                        <strong class="me-auto"> <i class="las la-exclamation-circle text-warning fs-18"></i>
+                            Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
+                        {{ session('message') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
+
 {{-- 
     https://getbootstrap.com/docs/5.3/forms/validation/
     https://alertifyjs.com/guide.html --}}

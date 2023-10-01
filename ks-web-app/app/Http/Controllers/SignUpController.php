@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
@@ -12,6 +13,12 @@ class SignUpController extends Controller
     public function index() {
         return view('sign-up.index', [
             'title' => 'Sign Up',
+        ]);
+    }
+
+    public function verification() {
+        return view('sign-up.verification', [
+            'title' => "Verify Email Address Sign Up",
         ]);
     }
 
@@ -35,8 +42,8 @@ class SignUpController extends Controller
 
         $validatedData['password'] = Hash::make($validatedData['password']);
 
-        User::create($validatedData);
+        event (new Registered(User::create($validatedData)));
 
-        return redirect(route('sign-up'))->with('success', 'Your account has been successfully created, please login');
+        return redirect(route('verify-email'))->with('success', 'Your account has been successfully created, Check your email for verification!');
     }
 }

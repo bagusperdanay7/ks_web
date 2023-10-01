@@ -1,23 +1,4 @@
 @extends('layouts.main')
-@if (session()->has('success'))
-    <div class="container">
-        <div aria-live="polite" aria-atomic="true" class="position-relative">
-            <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
-                        <strong class="me-auto"><i class="las la-check-circle text-success-100 fs-18"></i> Kpop
-                            Soulmate</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
-                        {{ session('success') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-
 @section('content')
     <section id="sign-up">
         <div class="row justify-content-center">

@@ -19,7 +19,7 @@
                             data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false"
                             aria-controls="collapseExample" role="button">Show Advanced Filter</p>
                         <div class="row collapse" id="filterGroup">
-                            <div class="col-6 col-auto-2">
+                            <div class="col-6 col-sm-auto">
                                 <select class="form-select" aria-label="Select Category" name="category"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Category</option>
@@ -31,7 +31,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-6 col-auto-2 mb-2 mb-sm-0">
+                            <div class="col-6 col-sm-auto mb-2 mb-sm-0">
                                 <select class="form-select" aria-label="Select Type" name="type"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Type</option>
@@ -43,7 +43,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-6 col-auto-2">
+                            <div class="col-6 col-sm-auto">
                                 <select class="form-select" aria-label="Select Sort" name="sort"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Sort By</option>
