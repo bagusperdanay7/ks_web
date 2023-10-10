@@ -59,7 +59,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary-form col-12">Login</button>
                             <p class="mt-15 mb-15 text-center">or</p>
-                            <a href="" class="btn btn-border-form col-12 mb-15">Login With Google</a>
+                            <a href="{{ route('google.login') }}" class="btn btn-border-form col-12 mb-15">Login With Google</a>
                             <a href="{{ route('sign-up') }}" class="btn btn-secondary-form col-12">Sign Up</a>
                         </form>
                     </div>

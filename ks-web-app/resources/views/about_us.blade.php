@@ -69,7 +69,7 @@
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-first-faq" aria-expanded="false" aria-controls="flush-first-faq">
-                                What software do you use For Editing Video?
+                                What software do we use For Editing Video?
                             </button>
                         </h2>
                         <div id="flush-first-faq" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
@@ -81,15 +81,15 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                Accordion Item #2
+                                What timezone do we use?
                             </button>
                         </h2>
                         <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
-                            <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                                demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion
-                                body. Let's imagine this being filled with some actual content.</div>
+                            <div class="accordion-body">
+                                We use Korea Standard Time (KST), since its related to K-Pop.
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
