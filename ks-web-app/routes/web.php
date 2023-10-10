@@ -97,9 +97,9 @@ Route::post('/email/verification-notification', function (Request $request) {
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/auth/google/redirect', [GoogleLoginController::class, 'redirect'])->name('google.login');
+Route::get('/auth/google/redirect', [LoginController::class, 'googleLoginRedirect'])->name('google.login');
 
-Route::get('/auth/google/callback/', [GoogleLoginController::class, 'handlerCallback'])->name('google.callback');
+Route::get('/auth/google/callback/', [LoginController::class, 'googleLoginCallback'])->name('google.callback');
 
 // TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
 
