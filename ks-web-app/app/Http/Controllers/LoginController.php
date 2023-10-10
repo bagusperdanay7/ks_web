@@ -40,21 +40,33 @@ class LoginController extends Controller
     public function googleLoginCallback() {
         $googleUser = Socialite::driver('google')->user();
 
+        //Cleaning the username 
+        $username = $googleUser['name'];
+
+        // Replaces all spaces with hyphens.
+        $username = str_replace(' ', '-', $username);
+
+        // Removes special chars.
+        $username = preg_replace('/[^A-Za-z0-9\-]/', '', $username);
+
+        // Replaces multiple hyphens with single one.
+        $usernameClean = preg_replace('/-+/', '-', $username);
+
+        // TODO: Jika sudah terdaftar, maka tidak bisa dihubungkan, Hubungi Admin untuk menghapus account. , jika ada google_id kasih badge (this account linked to google)
         $user = User::updateOrCreate([
             'google_id' => $googleUser->id,
         ], [
             'name' => $googleUser->name,
             'email' => $googleUser->email,
-            'username' => $googleUser->name,
+            'username' => $usernameClean,
             'profile_picture' => $googleUser->avatar,
-            'password' => ''
-            // 'github_token' => $googleUser->token,
-            // 'github_refresh_token' => $googleUser->refreshToken,
+            'password' => '',
+            'email_verified_at' => date('Y-m-d H:i:s')
         ]);
 
         Auth::login($user);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'Your account has been successfully created');
     }
 
     public function logout(Request $request): RedirectResponse {

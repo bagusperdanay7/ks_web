@@ -95,6 +95,7 @@
 </header>
 
 {{-- Nav Mobile --}}
+{{-- TODO: Menu Diganti Profile, Request List diganti ke menu --}}
 <nav class="navbar fixed-bottom bg-second mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="{{ route('ai-model') }}" class="text-decoration-none d-flex">

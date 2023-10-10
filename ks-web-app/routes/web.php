@@ -22,7 +22,6 @@ use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardProjectTypeController;
-use App\Http\Controllers\GoogleLoginController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -100,6 +99,8 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 Route::get('/auth/google/redirect', [LoginController::class, 'googleLoginRedirect'])->name('google.login');
 
 Route::get('/auth/google/callback/', [LoginController::class, 'googleLoginCallback'])->name('google.callback');
+
+// TODO: Add Reset Password
 
 // TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
 
