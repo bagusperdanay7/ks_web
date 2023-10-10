@@ -26,7 +26,7 @@ class SignUpController extends Controller
 
         $validatedData = $request->validate([
             'email' => 'required|email:dns|max:191|unique:users,email',
-            'username' => 'required|between:3,191|unique:users,username',
+            'username' => 'required|between:3,191|unique:users,username|alpha_dash:ascii',
             'name' => 'required|max:191',
             'password' => ['required', Password::min(8)->letters()
                                                 ->mixedCase()
