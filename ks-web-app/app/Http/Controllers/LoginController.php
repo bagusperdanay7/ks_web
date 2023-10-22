@@ -37,36 +37,45 @@ class LoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    public function usernameCleaner($username) {
+
+        // Replaces all spaces with hyphens.
+        $cleanUsername = str_replace(' ', '-', $username);
+
+         // Removes special chars.
+        $cleanUsername = preg_replace('/[^A-Za-z0-9\-]/', '', $cleanUsername);
+
+         // Replaces multiple hyphens with single one.
+        $cleanUsername = preg_replace('/-+/', '-', $cleanUsername);
+
+        return $cleanUsername;
+    }
+
     public function googleLoginCallback() {
         $googleUser = Socialite::driver('google')->user();
 
-        //Cleaning the username 
-        $username = $googleUser['name'];
+        // TODO: Hubungi Admin untuk menghapus account, jika ada google_id kasih badge (this account linked to google)
+        
+        $existUser = User::where('email', $googleUser->email)->first();
 
-        // Replaces all spaces with hyphens.
-        $username = str_replace(' ', '-', $username);
+        if ($existUser != null && $existUser->google_id == null) {
+            return redirect('/login')->with('loginError', 'This account is not connected to Google. Please login with email instead!');
+        } else {
+            $user = User::updateOrCreate([
+                'google_id' => $googleUser->id,
+            ], [
+                'name' => $googleUser->name,
+                'email' => $googleUser->email,
+                'username' => $this->usernameCleaner($googleUser->name),
+                'profile_picture' => $googleUser->avatar,
+                'password' => '',
+                'email_verified_at' => date('Y-m-d H:i:s')
+            ]);
 
-        // Removes special chars.
-        $username = preg_replace('/[^A-Za-z0-9\-]/', '', $username);
-
-        // Replaces multiple hyphens with single one.
-        $usernameClean = preg_replace('/-+/', '-', $username);
-
-        // TODO: Jika sudah terdaftar, maka tidak bisa dihubungkan, Hubungi Admin untuk menghapus account. , jika ada google_id kasih badge (this account linked to google)
-        $user = User::updateOrCreate([
-            'google_id' => $googleUser->id,
-        ], [
-            'name' => $googleUser->name,
-            'email' => $googleUser->email,
-            'username' => $usernameClean,
-            'profile_picture' => $googleUser->avatar,
-            'password' => '',
-            'email_verified_at' => date('Y-m-d H:i:s')
-        ]);
-
-        Auth::login($user);
-
-        return redirect('/')->with('success', 'Your account has been successfully created');
+            Auth::login($user);
+    
+            return redirect('/')->with('success', 'Welcome!');
+        }
     }
 
     public function logout(Request $request): RedirectResponse {
