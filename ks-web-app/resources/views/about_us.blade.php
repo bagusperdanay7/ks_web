@@ -51,7 +51,7 @@
         </div>
     </section>
 
-    {{-- TODO: Inspirasi https://www.gojek.com/id-id/ dan https://www.gojek.com/id-id/products/ --}}
+    <!-- TODO: Inspirasi https://www.gojek.com/id-id/ dan https://www.gojek.com/id-id/products/ -->
     <section id="content" class="mb-50">
         <div class="row text-center">
             <div class="col">

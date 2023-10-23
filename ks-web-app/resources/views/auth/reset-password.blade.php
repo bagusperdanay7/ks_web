@@ -19,59 +19,29 @@
     </div>
 @endif
 
-@if (session()->has('status'))
-    <div class="container">
-        <div aria-live="polite" aria-atomic="true" class="position-relative">
-            <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10">
-                        <strong class="me-auto"> <i class="las la-check-circle text-success fs-18"></i>
-                            Kpop
-                            Soulmate</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
-                        {{ session('status') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-
-@if (session()->has('loginError'))
-    <div class="container">
-        <div aria-live="polite" aria-atomic="true" class="position-relative">
-            <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-warning-10">
-                        <strong class="me-auto"> <i class="las la-exclamation-circle text-warning fs-18"></i>
-                            Kpop
-                            Soulmate</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                    </div>
-                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
-                        {{ session('loginError') }}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endif
-
 @section('content')
     <section id="login">
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 col-xl-6">
                 <div class="form-container">
-                    <h3 class="text-center m-0 fw-bold text-color-100">Login</h3>
+                    <h3 class="text-center m-0 fw-bold text-color-100">Create New Password</h3>
                     <div class="row justify-content-center align-items-center m-0">
-                        <form action="{{ route('login-post') }}" method="POST" class="mt-30 col-12 col-md-8 p-0">
+                        <form action="{{ route('password.update') }}" method="POST" class="mt-30 col-12 col-md-8 p-0">
                             @csrf
+                            <div class="mb-0">
+                                <input type="hidden"
+                                    class="form-control @error('token') is-invalid @enderror"
+                                    id="token" name="token" aria-describedby="tokenHelp" value="{{ $token }}" required>
+                                @error('token')
+                                    <div id="tokenValidationFeedback" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
                             <div class="mb-15">
                                 <label for="email" class="form-label fs-18 fw-medium text-color-100">Email</label>
                                 <input type="email"
-                                    class="form-control @error('email') is-invalid @enderror @error('password') is-invalid @enderror"
+                                    class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" aria-describedby="emailHelp"
                                     placeholder="example@gmail.com" value="{{ old('email') }}" required autofocus>
                                 @error('email')
@@ -93,13 +63,26 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="mb-30 text-end">
-                                <a href="{{ route('password.request') }}" class="fs-14 text-color-primary fw-medium text-decoration-none">Forgot Password?</a>
+                            <div class="mb-30">
+                                <label for="password_confirmation" class="form-label fs-18 fw-medium text-color-100">Confirm
+                                    Password</label>
+                                <div class="input-group input-confirm-password">
+                                    <input type="password"
+                                        class="form-control @error('password_confirmation') is-invalid @enderror"
+                                        id="password_confirmation" name="password_confirmation"
+                                        placeholder="Enter Your Password Again" aria-describedby="password-confirm-icon"
+                                        required>
+                                    <span class="input-group-text">
+                                        <i class="las la-eye password-confirm-icon"></i>
+                                    </span>
+                                    @error('password_confirmation')
+                                        <div id="confirmPasswordValidationFeedback" class="invalid-feedback">
+                                            {{ $message }}
+                                        </div>
+                                    @enderror
+                                </div>
                             </div>
-                            <button type="submit" class="btn btn-primary-form col-12">Login</button>
-                            <p class="mt-15 mb-15 text-center">or</p>
-                            <a href="{{ route('google.login') }}" class="btn btn-border-form col-12 mb-15"><i class="bx bxl-google fs-24 align-middle"></i> Login With Google</a>
-                            <a href="{{ route('sign-up') }}" class="btn btn-secondary-form col-12">Sign Up</a>
+                            <button type="submit" class="btn btn-primary-form col-12">Reset Password</button>
                         </form>
                     </div>
                 </div>

@@ -14,8 +14,7 @@ class GalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
-
-    //  TODO: Filter Perbaiki
+    
     public function index()
     {
         $galleryQuery = Project::latest()
