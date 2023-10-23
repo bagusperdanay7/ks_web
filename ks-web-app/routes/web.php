@@ -3,11 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Password;
 use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\SignUpController;
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AIModelController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
@@ -22,6 +24,8 @@ use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardProjectTypeController;
+use App\Http\Controllers\EmailVerificationController;
+use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
@@ -77,22 +81,11 @@ Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post'
 
 Route::get('/verification', [SignUpController::class, 'verification'])->name('verify-email')->middleware('guest');
 
-// Kirim Verifikasi ke Email
-Route::get('/email/verify', function () {
-    return view('auth.verify-email');
-})->middleware('auth')->name('verification.notice');
+Route::get('/email/verify', [EmailVerificationController::class, 'sentEmailVerification'])->middleware('auth')->name('verification.notice');
 
-// Verifikasi Berhasil
-Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/')->with('validationSuccess', 'The verification of your account was successful.');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verificationSuccess'])->middleware(['auth', 'signed'])->name('verification.verify');
 
-// Resend Verification
-Route::post('/email/verification-notification', function (Request $request) {
-    $request->user()->sendEmailVerificationNotification();
-    return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -100,9 +93,21 @@ Route::get('/auth/google/redirect', [LoginController::class, 'googleLoginRedirec
 
 Route::get('/auth/google/callback/', [LoginController::class, 'googleLoginCallback'])->name('google.callback');
 
-// TODO: Add Reset Password
+Route::get('/forgot-password', [ResetPasswordController::class, 'index'])->middleware('guest')->name('password.request');
+
+Route::post('/forgot-password', [ResetPasswordController::class, 'sendEmail'])->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', [ResetPasswordController::class, 'resetPasswordView'])->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', [ResetPasswordController::class, 'update'])->middleware('guest')->name('password.update');
 
 // TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
+
+Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('');
+
+Route::get('/account/requests', [AccountController::class, 'index'])->middleware('auth')->name('');
+
+Route::get('/account/password', [AccountController::class, 'index'])->middleware('auth')->name('');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
 
