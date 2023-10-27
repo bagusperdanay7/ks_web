@@ -27,14 +27,14 @@
                         Other Menu
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item fs-6 {{ Request::is('/ai-model') ? 'active' : '' }}"
+                        <li><a class="dropdown-item fs-14 {{ Request::is('/ai-model') ? 'active' : '' }}"
                                 href="{{ route('ai-model') }}">AI
                                 model
                             </a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item fs-6" href="#">Exclusive Video</a>
+                        <li><a class="dropdown-item fs-14" href="#">Exclusive Video</a>
                         </li>
                     </ul>
                 </li>
@@ -59,19 +59,22 @@
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @endif
-                        <ul class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
                             @can('admin')
                                 <li>
-                                    <a class="dropdown-item fs-6 fw-normal" href="/dashboard">
+                                    <a class="dropdown-item fs-14 fw-normal" href="/dashboard">
                                         <i class="las la-columns d-inline"></i>
                                         Dashboard
                                     </a>
                                 </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
                             @endcan
-                            <li class="fs-6">
+                            <li>
+                                <a class="dropdown-item fs-14 fw-normal" href="{{ route('profile') }}">
+                                    <i class="las la-user-circle"></i>
+                                    Profile
+                                </a>
+                            </li>
+                            <li class="fs-14">
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
                                     <button type="submit" class="dropdown-item">
@@ -100,7 +103,7 @@
 </header>
 
 {{-- Nav Mobile --}}
-{{-- TODO: Menu Diganti Profile, Request List diganti ke menu --}}
+<!-- TODO: Menu Diganti Profile, Request List diganti ke menu -->
 <nav class="navbar fixed-bottom bg-second mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="{{ route('ai-model') }}" class="text-decoration-none d-flex">
@@ -118,6 +121,10 @@
                     <span class="mx-2">Dashboard</span>
                 </a>
             @endcan
+            <a href="{{ route('profile') }}" class="text-decoration-none d-flex">
+                <i class='bx bxs-user-circle bx-xs'></i>
+                <span class="mx-2">Profile</span>
+            </a>
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="dropdown-item">

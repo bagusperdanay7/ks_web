@@ -39,8 +39,8 @@ class ResetPasswordController extends Controller
     public function update(Request $request) {
         $request->validate([
             'token' => 'required',
-            'email' => 'required|email',
-            'password' => ['required', 'confirmed', \Illuminate\Validation\Rules\Password::min(8)->letters()
+            'email' => 'required|email|max:191',
+            'password' => ['required', 'max:191', 'confirmed', \Illuminate\Validation\Rules\Password::min(8)->letters()
                         ->mixedCase()
                         ->numbers()
                         ->symbols()
