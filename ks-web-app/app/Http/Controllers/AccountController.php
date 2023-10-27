@@ -22,38 +22,15 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+    //  TODO: Add My Request Page
+    public function requests()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // TODO: Change My Profile
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, User $user)
     {
         $userId = Auth::id();
@@ -93,13 +70,5 @@ class AccountController extends Controller
         User::where('id', $userId)->update(['password' => $validatedData['password']]);
 
         return redirect('/account/profile')->with('successChangePassword', "Password has been changed!");
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(User $user)
-    {
-        //
     }
 }
