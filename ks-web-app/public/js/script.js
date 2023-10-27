@@ -87,12 +87,13 @@ function passwordToggler(icon, inputType) {
 const passwordIcon = document.querySelector(".password-icon");
 const input = document.querySelector(".input-password input");
 const passwordConfirmIcon = document.querySelector(".password-confirm-icon");
-const inputConfirmPass = document.querySelector(
-    ".input-confirm-password input"
-);
+const inputConfirmPass = document.querySelector(".input-confirm-password input");
+const oldPasswordIcon = document.querySelector(".old-password-icon");
+const inputOldPass = document.querySelector(".input-old-password input");
 
 passwordToggler(passwordIcon, input);
 passwordToggler(passwordConfirmIcon, inputConfirmPass);
+passwordToggler(oldPasswordIcon, inputOldPass);
 
 // Admin Dashboard
 //Button Discover

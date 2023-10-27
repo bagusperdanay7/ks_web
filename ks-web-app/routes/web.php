@@ -103,11 +103,13 @@ Route::post('/reset-password', [ResetPasswordController::class, 'update'])->midd
 
 // TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
 
-Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('');
+Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
 
-Route::get('/account/requests', [AccountController::class, 'index'])->middleware('auth')->name('');
+Route::get('/account/requests', [AccountController::class, 'index'])->middleware('auth')->name('my-request');
 
-Route::get('/account/password', [AccountController::class, 'index'])->middleware('auth')->name('');
+Route::put('/account/profile', [AccountController::class, 'update'])->name('account.update');
+
+Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
 
