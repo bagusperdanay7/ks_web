@@ -101,8 +101,6 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'resetPas
 
 Route::post('/reset-password', [ResetPasswordController::class, 'update'])->middleware('guest')->name('password.update');
 
-// TODO: User Can Edit Profile, Update Password, And Have a Single Page = My Request
-
 Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
 
 Route::get('/account/requests', [AccountController::class, 'index'])->middleware('auth')->name('my-request');
