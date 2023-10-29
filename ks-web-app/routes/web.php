@@ -107,6 +107,10 @@ Route::get('/account/requests', [AccountController::class, 'index'])->middleware
 
 Route::put('/account/profile', [AccountController::class, 'update'])->name('account.update');
 
+Route::put('/account/picture', [AccountController::class, 'updateProfilePicture'])->name('account.profile.update');
+
+Route::delete('/account/picture', [AccountController::class, 'removeProfilePicture'])->name('account.profile.remove');
+
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');

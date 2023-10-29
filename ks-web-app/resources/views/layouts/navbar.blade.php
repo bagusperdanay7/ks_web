@@ -45,17 +45,17 @@
                 @auth
                     <li class="nav-item dropdown">
                         @if (auth()->user()->profile_picture === null)
-                            <img src="{{ asset('img/user-default.png') }}" class="rounded-circle nav-link dropdown-toggle"
-                                alt="User Profile Picture" id="profileDropdown" role="button" data-bs-toggle="dropdown"
+                            <img src="{{ asset('img/user-default.png') }}" class="rounded-circle img-square nav-link dropdown-toggle"
+                                alt="User Picture" id="profileDropdown" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false" width="45px">
                         @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
                             <img src="{{ auth()->user()->profile_picture }}"
-                                class="rounded-circle  nav-link dropdown-toggle" alt="User Profile Picture"
+                                class="rounded-circle  nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @else
-                            <img src="{{ asset('img/user/') }} {{ auth()->user()->profile_picture }}"
-                                class="rounded-circle  nav-link dropdown-toggle" alt="User Profile Picture"
+                            <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
+                                class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @endif
