@@ -9,7 +9,13 @@
 
     <div class="sidebar-main">
         <div class="sidebar-user">
-            <img src="{{ asset('img/user-default.png') }}" alt="" class="">
+            @if (auth()->user()->profile_picture === null)
+                <img src="{{ asset('img/user-default.png') }}" alt="User Picture" class="img-square">
+            @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
+                <img src="{{ auth()->user()->profile_picture }}" alt="User Picture">
+            @else
+                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="User Picture" class="img-square">
+            @endif
             <div class="user-name my-3">
                 <h6 class="fw-semibold">{{ auth()->user()->name }}</h6>
             </div>
