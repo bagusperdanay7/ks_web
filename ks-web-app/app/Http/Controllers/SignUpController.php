@@ -31,8 +31,6 @@ class SignUpController extends Controller
             'password' => ['required', Password::min(8)->letters()
                                                 ->mixedCase()
                                                 ->numbers()
-                                                ->symbols()
-                                                ->uncompromised()
                             ],
             'confirm-password' => 'required|min:8|same:password'
         ],

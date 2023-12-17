@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Project;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,7 +29,12 @@ class AccountController extends Controller
     //  TODO: Add My Request Page
     public function requests()
     {
-        //
+        $myRequestsQuery = Project::where('requester', Auth::user()->name)->get()->sortBy('date');
+
+        return view('account.requests', [
+            'title' => 'My Requests',
+            'myrequests' => $myRequestsQuery
+        ]);
     }
 
     public function update(Request $request, User $user)

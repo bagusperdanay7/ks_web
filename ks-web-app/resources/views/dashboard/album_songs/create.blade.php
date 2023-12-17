@@ -25,7 +25,7 @@
                                 @foreach ($albums as $album)
                                     <option value="{{ $album->id }}"
                                         {{ old('album_id') == $album->id ? ' selected' : ' ' }}>
-                                        {{ $album->album_name }}
+                                        {{ $album->album_name }} · {{ $album->artist->artist_name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -36,7 +36,7 @@
                                 @foreach ($songs as $song)
                                     <option value="{{ $song->id }}"
                                         {{ old('song_id') == $song->id ? ' selected' : ' ' }}>
-                                        {{ $song->title }}
+                                        {{ $song->title }} · Written by {{ $song->author }}
                                     </option>
                                 @endforeach
                             </select>

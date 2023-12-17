@@ -48,8 +48,8 @@
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
                                     <th scope="col">Track Number</th>
-                                    <th scope="col">Album Id</th>
-                                    <th scope="col">Song Id</th>
+                                    <th scope="col">Album</th>
+                                    <th scope="col">Song</th>
                                     <th>
                                         <i class="las la-ellipsis-v" id="albumMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"></i>
@@ -67,10 +67,10 @@
                                             </td>
                                             <td class="align-middle">{{ $item->pivot->track_number }}</td>
                                             <td class="align-middle text-color-100">
-                                                {{ $album->album_name }} ({{ $album->id }})
+                                                {{ $album->album_name }}
                                             </td>
                                             <td class="align-middle text-color-100">
-                                                {{ $item->title }} ({{ $item->id }})
+                                                {{ $item->title }}
                                             </td>
                                             <td class="align-middle">
                                                 <div class="btn-group dropstart">

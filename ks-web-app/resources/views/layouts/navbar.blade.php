@@ -45,14 +45,14 @@
                 @auth
                     <li class="nav-item dropdown">
                         @if (auth()->user()->profile_picture === null)
-                            <img src="{{ asset('img/user-default.png') }}" class="rounded-circle img-square nav-link dropdown-toggle"
-                                alt="User Picture" id="profileDropdown" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false" width="45px">
-                        @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
-                            <img src="{{ auth()->user()->profile_picture }}"
-                                class="rounded-circle  nav-link dropdown-toggle" alt="User Picture"
+                            <img src="{{ asset('img/user-default.png') }}"
+                                class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
+                        @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
+                            <img src="{{ auth()->user()->profile_picture }}"
+                                class="rounded-circle  nav-link dropdown-toggle" alt="User Picture" id="profileDropdown"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false" width="45px">
                         @else
                             <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
                                 class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
@@ -72,6 +72,12 @@
                                 <a class="dropdown-item fs-14 fw-normal" href="{{ route('profile') }}">
                                     <i class="las la-user-circle"></i>
                                     Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fs-14 fw-normal" href="{{ route('my-request') }}">
+                                    <i class="las la-clipboard-list"></i>
+                                    My Request
                                 </a>
                             </li>
                             <li class="fs-14">
@@ -144,7 +150,7 @@
             $isGallery = false;
             $isProjects = false;
             $isRequestList = false;
-            
+
             if (Request::is('/')) {
                 $isHome = true;
             } elseif (Request::is('projects*')) {
@@ -154,7 +160,7 @@
             } elseif (Request::is('request-list*')) {
                 $isRequestList = true;
             }
-            
+
         @endphp
         <div class="text-center">
             <a href="{{ route('home') }}" @class(['text-decoration-none', 'active' => $isHome])>
