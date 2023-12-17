@@ -516,7 +516,9 @@ table td.text-color-cd,
     color: white;
 }
 
-.btn-upload-picture, .btn-upload-picture:hover, .btn-upload-picture:active {
+.btn-upload-picture,
+.btn-upload-picture:hover,
+.btn-upload-picture:active {
     font-size: 14px;
     color: var(--white);
     background-color: var(--primary-90);
@@ -524,7 +526,9 @@ table td.text-color-cd,
     padding: 8px 10px;
 }
 
-.btn-remove-picture, .btn-remove-picture:hover, .btn-remove-picture:active {
+.btn-remove-picture,
+.btn-remove-picture:hover,
+.btn-remove-picture:active {
     font-size: 14px;
     border: 1px solid var(--text-color-80);
     color: var(--text-color-90);
@@ -1522,6 +1526,15 @@ span.input-group-text i {
     max-width: 150px;
 }
 /* End of Profile Page  */
+
+/* My Requests Pag */
+.request-container {
+    background-color: var(--background-color-secondary);
+    padding: 25px;
+    border-radius: 10px;
+}
+
+/* End of My Requests Pag */
 
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 575.9px) {

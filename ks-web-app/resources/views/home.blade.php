@@ -162,7 +162,7 @@
                         <div class="col-3">Project Title</div>
                         <div class="col">Category</div>
                         <div class="col">Date</div>
-                        <div class="col">Class</div>
+                        <div class="col">Type</div>
                         <div class="col">Requester</div>
                         <div class="col">Status</div>
                         <div class="col">Vote</div>

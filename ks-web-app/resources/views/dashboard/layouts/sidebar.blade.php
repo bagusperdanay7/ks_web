@@ -14,7 +14,8 @@
             @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
                 <img src="{{ auth()->user()->profile_picture }}" alt="User Picture">
             @else
-                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="User Picture" class="img-square">
+                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="User Picture"
+                    class="img-square">
             @endif
             <div class="user-name my-3">
                 <h6 class="fw-semibold">{{ auth()->user()->name }}</h6>
@@ -72,6 +73,18 @@
                     <a href="" class="menu-nav">
                         <i class="las la-photo-video"></i>
                         Exclusive Video
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('my-request') }}" class="menu-nav">
+                        <i class="las la-clipboard-list"></i>
+                        My Request
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('profile') }}" class="menu-nav">
+                        <i class="las la-user-circle"></i>
+                        Profile
                     </a>
                 </li>
             </ul>
