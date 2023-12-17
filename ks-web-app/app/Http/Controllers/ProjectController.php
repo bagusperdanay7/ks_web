@@ -147,7 +147,7 @@ class ProjectController extends Controller
     public function request_list()
     {
         // Youtube API Call
-        $apiKey = 'AIzaSyC9X67kK6KirTPzzxrodASGpum3eyXbQcA';
+        $apiKey = env('GOOGLE_API_KEY');
         
 
         $fetchApiResult = $this->getYoutubeAPICURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=' . $apiKey);

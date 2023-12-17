@@ -103,7 +103,7 @@ Route::post('/reset-password', [ResetPasswordController::class, 'update'])->midd
 
 Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
 
-Route::get('/account/requests', [AccountController::class, 'index'])->middleware('auth')->name('my-request');
+Route::get('/account/requests', [AccountController::class, 'requests'])->middleware('auth')->name('my-request');
 
 Route::put('/account/profile', [AccountController::class, 'update'])->name('account.update');
 
@@ -114,6 +114,8 @@ Route::delete('/account/picture', [AccountController::class, 'removeProfilePictu
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+
+Route::post('/dashboard/backup', [DashboardController::class, 'backup'])->middleware('admin')->name('dashboard.backup');
 
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 

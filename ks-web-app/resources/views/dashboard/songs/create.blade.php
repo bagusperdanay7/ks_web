@@ -69,10 +69,10 @@
                         </div>
                         <div class="m-bottom-15">
                             <label for="arranger"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">arranger</label>
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Arranger</label>
                             <input type="text" class="form-control @error('arranger') is-invalid @enderror"
                                 name="arranger" id="arranger" value="{{ old('arranger') }}"
-                                placeholder="Enter the arranger">
+                                placeholder="Enter the Arranger">
                             @error('arranger')
                                 <div id="arrangerFeedback" class="invalid-feedback">
                                     {{ $message }}

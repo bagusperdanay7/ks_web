@@ -117,6 +117,7 @@ class GalleryController extends Controller
      */
     public function show(Project $project)
     {
+        // TODO: Related Random jika limit < 6
         $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
         ->select('projects.*', 'artists.codename')
         ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.is_exclusive', 'No']])

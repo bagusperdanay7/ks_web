@@ -49,8 +49,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Model Cover</th>
                                     <th scope="col">Model Name</th>
-                                    <th scope="col">Description</th>
                                     <th scope="col">Status</th>
+                                    <th scope="col">Description</th>
                                     <th>
                                         <i class="las la-ellipsis-v" id="aiModelsMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"></i>

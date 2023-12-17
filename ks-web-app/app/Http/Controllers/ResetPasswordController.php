@@ -42,9 +42,7 @@ class ResetPasswordController extends Controller
             'email' => 'required|email|max:191',
             'password' => ['required', 'max:191', 'confirmed', \Illuminate\Validation\Rules\Password::min(8)->letters()
                         ->mixedCase()
-                        ->numbers()
-                        ->symbols()
-                        ->uncompromised()],
+                        ->numbers()],
         ]);
 
         $status = Password::reset(

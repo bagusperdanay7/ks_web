@@ -52,9 +52,7 @@ class LoginController extends Controller
     }
 
     public function googleLoginCallback() {
-        $googleUser = Socialite::driver('google')->user();
-
-        // TODO: Hubungi Admin untuk menghapus account, jika ada google_id kasih badge (this account linked to google)
+        $googleUser = Socialite::driver('google')->stateless()->user();
         
         $existUser = User::where('email', $googleUser->email)->first();
 

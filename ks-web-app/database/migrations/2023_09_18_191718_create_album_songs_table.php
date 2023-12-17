@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('album_song', function (Blueprint $table) {
             $table->id();
             $table->integer('track_number');
+            // TODO: Add Category, Hapus Yang Di Songs table
             $table->foreignId('album_id');
             $table->foreignId('song_id');
             $table->timestamps();

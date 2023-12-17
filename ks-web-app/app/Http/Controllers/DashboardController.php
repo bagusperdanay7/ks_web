@@ -13,10 +13,9 @@ use Illuminate\Support\Facades\Gate;
 class DashboardController extends Controller
 {
     public function index() {
-
         // $this->authorize('admin'); #pake gate untuk contoh
         $projectController = new ProjectController();
-        $apiKey = 'AIzaSyC9X67kK6KirTPzzxrodASGpum3eyXbQcA';
+        $apiKey = env('GOOGLE_API_KEY');
 
         $fetchApiResult = $projectController->getYoutubeAPICURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=' . $apiKey);
         
