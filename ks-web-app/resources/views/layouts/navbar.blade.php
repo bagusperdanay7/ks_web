@@ -69,15 +69,15 @@
                                 </li>
                             @endcan
                             <li>
-                                <a class="dropdown-item fs-14 fw-normal" href="{{ route('profile') }}">
-                                    <i class="las la-user-circle"></i>
-                                    Profile
-                                </a>
-                            </li>
-                            <li>
                                 <a class="dropdown-item fs-14 fw-normal" href="{{ route('my-request') }}">
                                     <i class="las la-clipboard-list"></i>
                                     My Request
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item fs-14 fw-normal" href="{{ route('profile') }}">
+                                    <i class="las la-user-circle"></i>
+                                    Profile
                                 </a>
                             </li>
                             <li class="fs-14">
@@ -127,6 +127,10 @@
                     <span class="mx-2">Dashboard</span>
                 </a>
             @endcan
+            <a href="{{ route('my-request') }}" class="text-decoration-none d-flex">
+                <i class='bx bx-list-ul bx-xs'></i>
+                <span class="mx-2">My Request</span>
+            </a>
             <a href="{{ route('profile') }}" class="text-decoration-none d-flex">
                 <i class='bx bxs-user-circle bx-xs'></i>
                 <span class="mx-2">Profile</span>

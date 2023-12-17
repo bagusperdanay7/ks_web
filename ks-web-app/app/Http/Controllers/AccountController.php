@@ -25,8 +25,6 @@ class AccountController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-
-    //  TODO: Add My Request Page
     public function requests()
     {
         $myRequestsQuery = Project::where('requester', Auth::user()->name)->get()->sortBy('date');
@@ -41,9 +39,15 @@ class AccountController extends Controller
     {
         $userId = Auth::id();
 
+        $usernameRules = 'required|between:3,191|alpha_dash:ascii|unique:users,username';
+
+        if ($request->username === Auth::user()->username) {
+            $usernameRules = 'required|between:3,191|alpha_dash:ascii';
+        }
+
         $validateData = $request->validate([
             'name' => 'required|max:191',
-            'username' => 'required|between:3,191|unique:users,username|alpha_dash:ascii',
+            'username' => $usernameRules,
         ]);
 
         $user::where('id', $userId)->update($validateData);

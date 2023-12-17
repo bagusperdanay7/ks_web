@@ -1,97 +1,67 @@
 @extends('layouts.main')
 @section('content')
     <section id="my-requests" class="mb-50">
-        <h2 class="mb-15 fw-bold text-color-100">My Profile</h2>
+        {{-- TODO: Buat Responsive --}}
+        <h2 class="mb-30 fw-bold text-color-100">My Request</h2>
         <div class="row">
-            <div class="col-12 col-lg-7 col-xl-8 order-2 order-lg-1">
-                <div class="profile-container border">
-                    <form action="{{ route('account.update') }}" method="post" class="col-12 p-0">
-                        @method('put')
-                        @csrf
-                        <h3 class="fw-semibold text-color-100 mb-30">Account Information</h3>
-                        <div class="mb-15">
-                            <label for="name" class="form-label fs-18 fw-medium text-color-100">Name</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
-                                name="name" aria-describedby="name_Help" placeholder="Enter your name"
-                                value="{{ auth()->user()->name }}" required>
-                            @error('name')
-                                <div id="name_Help" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="mb-15">
-                            <label for="username" class="form-label fs-18 fw-medium text-color-100">Username</label>
-                            <input type="text" class="form-control @error('username') is-invalid @enderror"
-                                id="username" name="username" aria-describedby="usernameHelp"
-                                placeholder="Enter your Username" value="{{ auth()->user()->username }}" required>
-                            @error('username')
-                                <div id="usernameHelp" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="mb-30">
-                            <label for="email" class="form-label fs-18 fw-medium text-color-100">Email</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" aria-describedby="emailHelp" placeholder="Your Email"
-                                value="{{ auth()->user()->email }}" readonly>
-                            @error('email')
-                                <div id="emailHelp" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="text-end">
-                            <button type="submit" class="btn btn-main px-4">Save Profile</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="col-12 col-lg-5 col-xl-4 order-1 order-lg-2 mb-0 mb-4 mb-lg-0">
-                <div class="profile-container border">
-                    <div class="d-flex flex-column flex-sm-row align-items-sm-center mb-30">
-                        @if (auth()->user()->profile_picture === null)
-                            <div class="flex-shrink-0  mb-2 mb-sm-0">
-                                <img src="{{ asset('img/user-default.png') }}" class="rounded-circle img-square"
-                                    alt="User Profile" width="100px">
-                            </div>
-                        @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
-                            <div class="flex-shrink-0  mb-2 mb-sm-0">
-                                <img src="{{ auth()->user()->profile_picture }}" class="rounded-circle img-square"
-                                    alt="User Profile" width="100px">
-                            </div>
-                        @else
-                            <div class="flex-shrink-0  mb-2 mb-sm-0">
-                                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                    class="rounded-circle img-square " alt="User Profile" width="100px">
-                            </div>
-                        @endif
-
-                        <div class="flex-grow-1 ms-0 ms-sm-3">
-                            <h4 class="text-color-100 mb5">{{ auth()->user()->name }}</h4>
-                            <p class="text-color-80 mb5">{{ auth()->user()->email }}</p>
-                            @if (auth()->user()->google_id !== null)
-                                <p class="fs-14 m-0 text-color-100">Linked to <img class="img-fluid" width="40px"
-                                        src="{{ asset('img/google.png') }}" alt="google linked"></p>
-                            @endif
-                        </div>
+            <div class="col order-2 order-lg-1">
+                <div class="request-container border">
+                    <h3 class="fw-semibold text-color-100 mb-24">All Request ({{ $myrequests->count() }})</h3>
+                    <div class="row fs-14 mb-24">
+                        <div class="col-4 fw-medium">Project Title</div>
+                        <div class="col fw-medium">Category</div>
+                        <div class="col fw-medium">Project Type</div>
+                        <div class="col fw-medium">Status</div>
+                        <div class="col-1"></div>
                     </div>
-                    <div class="d-flex">
-                        <div class="me-3">
-                            <button type="button" class="btn btn-upload-picture" data-bs-toggle="modal"
-                                data-bs-target="#uploadModal">
-                                {{ auth()->user()->profile_picture == null ? 'Upload Picture' : 'Change Picture' }}
-                            </button>
+                    @forelse ($myrequests as $request)
+                        <div class="row fs-12 {{ $loop->last ? 'mb-0' : 'mb-24' }}">
+                            <div class="col-4">{{ $request->project_title }}</div>
+                            <div @class([
+                                'col',
+                                'text-color-ld' =>
+                                    $request->category->category_name === 'Line Distribution',
+                                'text-color-le' => $request->category->category_name === 'Line Evolution',
+                                'text-color-ad' =>
+                                    $request->category->category_name === 'Album Distribution',
+                                'text-color-ae' => $request->category->category_name === 'Album Evolution',
+                                'text-color-rb' => $request->category->category_name === 'Ranking Battle',
+                                'text-color-hs' => $request->category->category_name === 'How Should',
+                                'text-color-hw' => $request->category->category_name === 'How Would',
+                                'text-color-cd' =>
+                                    $request->category->category_name === 'Center Distribution',
+                            ])>{{ $request->category->category_name }}</div>
+                            <div class="col">{{ $request->type->type_name }}</div>
+                            <div class="col">
+                                <span @class([
+                                    'btn',
+                                    'btn-complete' => $request->status === 'Completed',
+                                    'btn-onprocess' => $request->status === 'On Process',
+                                    'btn-pending' => $request->status === 'Pending',
+                                    'btn-rejected' => $request->status === 'Rejected',
+                                ])>{{ $request->status }}</span>
+                            </div>
+                            <div class="col-1">
+                                <a href="/projects/{{ $request->id }}" class="dropdown-item" target="_blank"><i
+                                        class="las la-external-link-alt fs-14"></i></a>
+                            </div>
                         </div>
-
-                        <div>
-                            @if (auth()->user()->profile_picture)
-                                <button type="button" class="btn btn-remove-picture" data-bs-toggle="modal"
-                                    data-bs-target="#confirmRemoveProfileModal">Remove Profile</button>
-                            @endif
+                    @empty
+                        <div class="row">
+                            <div class="col text-center text-color-100">
+                                <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M39.176 46.828L38.564 29.44H44L43.424 46.828H39.176ZM44.468 52.3C44.468 53.956 43.172 55.252 41.408 55.252C39.572 55.252 38.276 53.956 38.276 52.3C38.276 50.644 39.572 49.348 41.408 49.348C43.172 49.348 44.468 50.644 44.468 52.3Z"
+                                        fill="#EA8887" />
+                                    <path
+                                        d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
+                                        fill="#787878" />
+                                </svg>
+                                <p class="fs-14 fw-medium mt-1 mb-0"></p>No Request Has Been Made!
+                            </div>
                         </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
