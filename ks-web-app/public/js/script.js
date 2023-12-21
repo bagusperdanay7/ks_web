@@ -1,33 +1,3 @@
-// Activate Tooltip
-const tooltipTriggerList = document.querySelectorAll(
-    '[data-bs-toggle="tooltip"]'
-);
-
-const tooltipList = [...tooltipTriggerList].map(
-    (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
-);
-
-// Add Toaster
-const toastElList = document.querySelectorAll(".toast");
-const toastList = [...toastElList].map(
-    (toastEl) => new bootstrap.Toast(toastEl, option)
-);
-
-const toastTrigger = document.getElementById("liveToastBtn");
-const toastLiveExample = document.getElementById("liveToast");
-
-if (toastTrigger) {
-    const toastBootstrap =
-        bootstrap.Toast.getOrCreateInstance(toastLiveExample);
-    toastTrigger.addEventListener("click", () => {
-        toastBootstrap.show();
-    });
-}
-
-//  Add Alert
-const alertList = document.querySelectorAll(".alert");
-const alerts = [...alertList].map((element) => new bootstrap.Alert(element));
-
 // Search Focus "/"
 let searchGallery = document.getElementById("searchGallery");
 window.addEventListener("keyup", searchKeyFunction, false);
@@ -43,14 +13,19 @@ function searchKeyFunction(evt) {
 //     element.classList.toggle("show-visible");
 // }
 
-const mobileMenu = document.getElementById("mobile-menu");
-const menuBtnMobile = document.getElementById("menu-btn-mobile");
+const mobileMenu = document.querySelector("#mobile-menu");
+const menuBtnMobile = document.querySelector("#menu-btn-mobile");
 
-function mobileMenuFunc() {
+menuBtnMobile.addEventListener("click", function () {
     mobileMenu.classList.toggle("show-mobile-menu");
-}
+});
 
-menuBtnMobile.addEventListener("click", mobileMenuFunc, true);
+// klik di luar hamburger
+document.addEventListener('click', function (e) {
+    if(e.target != menuBtnMobile && e.target != mobileMenu ) {
+        mobileMenu.classList.remove('show-mobile-menu');
+    }
+})
 
 const triggerFilter = document.querySelector("#triggerFilter");
 const filterGroup = document.querySelector("#filterGroup");
@@ -91,19 +66,54 @@ const inputConfirmPass = document.querySelector(".input-confirm-password input")
 const oldPasswordIcon = document.querySelector(".old-password-icon");
 const inputOldPass = document.querySelector(".input-old-password input");
 
-passwordToggler(passwordIcon, input);
-passwordToggler(passwordConfirmIcon, inputConfirmPass);
-passwordToggler(oldPasswordIcon, inputOldPass);
+if (passwordIcon !== null) {
+    passwordToggler(passwordIcon, input);
+}
 
-// Admin Dashboard
-//Button Discover
-const searchIcon = document.querySelector(".searchIc");
-searchIcon.addEventListener("click", function () {
-    window.location.href = "gallery";
-});
+if (passwordConfirmIcon !== null) {
+    passwordToggler(passwordConfirmIcon, inputConfirmPass);
+}
 
-const hugeProjectTable = document.querySelector("#huge-project");
+if (oldPasswordIcon !== null) {
+    passwordToggler(oldPasswordIcon, inputOldPass);
+}
 
-hugeProjectTable.addEventListener("click", function () {
-    hugeProjectTable.classList.add(".active");
-});
+const themeSwitcher = document.querySelector('#theme-switcher');
+const themeSwitcherMobile = document.querySelector('#theme-switcher-mobile');
+const html = document.querySelector('html');
+
+// TODO : Ganti dengan ini https://getbootstrap.com/docs/5.3/customize/color-modes/
+
+if (themeSwitcherMobile !== null) {
+    themeSwitcherMobile.addEventListener('click', function () {
+        if (localStorage.dataTheme == 'light' && localStorage.dataBsTheme == 'light') {
+            html.setAttribute('data-theme', 'dark');
+            html.setAttribute('data-bs-theme', 'dark');
+            localStorage.dataTheme = 'dark';
+            localStorage.dataBsTheme = 'dark';
+        } else {
+            html.setAttribute('data-theme', 'light');
+            html.setAttribute('data-bs-theme', 'light');
+            localStorage.dataTheme = 'light';
+            localStorage.dataBsTheme = 'light';
+        }
+
+    })
+}
+
+if (themeSwitcher !== null) {
+    themeSwitcher.addEventListener('click', function () {
+        if (localStorage.dataTheme == 'light' && localStorage.dataBsTheme == 'light') {
+            html.setAttribute('data-theme', 'dark');
+            html.setAttribute('data-bs-theme', 'dark');
+            localStorage.dataTheme = 'dark';
+            localStorage.dataBsTheme = 'dark';
+        } else {
+            html.setAttribute('data-theme', 'light');
+            html.setAttribute('data-bs-theme', 'light');
+            localStorage.dataTheme = 'light';
+            localStorage.dataBsTheme = 'light';
+        }
+
+    })
+}

@@ -8,7 +8,7 @@
             <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
             <li class="breadcrumb-item"><a
                     href="/gallery/artists/{{ $video->artist->codename }}">{{ $video->artist->artist_name }}</a></li>
-            <li class="breadcrumb-item breadcumb-active" aria-current="page">
+            <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page">
                 {{ $video->project_title }}
             </li>
         </ol>

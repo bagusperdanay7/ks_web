@@ -322,7 +322,7 @@ body.body-dark {
 }
 
 .text-color-ad {
-  color: #e15554 !important;
+  color: #DC3545 !important;
 }
 
 .text-color-ae {
@@ -338,7 +338,7 @@ body.body-dark {
 }
 
 .text-color-hs {
-  color: #3bb273 !important;
+  color: #198754 !important;
 }
 
 .text-color-ld {
@@ -394,20 +394,12 @@ body.body-dark {
   background-color: #ffe5e5;
 }
 
-.bg-non-pro {
-  background-color: #00d6ef;
-}
-
-.bg-non-pro-10 {
-  background-color: #a1f5ff;
-}
-
 .bg-success-10 {
-  background-color: #ebf7f1;
+  background-color: #D1E7DD;
 }
 
 .bg-alert-10 {
-  background-color: #fceeed;
+  background-color: #F8D7DA;
 }
 
 /* Border Radius */
@@ -453,8 +445,8 @@ body.body-dark {
 
 .btn-completed,
 .btn-completed:hover {
-  background-color: #ebf7f1;
-  color: #3bb273;
+  background-color: var(--bs-success-bg-subtle);
+  color: var(--bs-success);
   font-weight: 600;
   font-size: 12px;
   border-radius: 5px;
@@ -475,8 +467,8 @@ body.body-dark {
 
 .btn-pending,
 .btn-pending:hover {
-  background-color: #fcf8e9;
-  color: #e1bc29;
+  background-color: #FFF3CD;
+  color: #FFC107;
   font-weight: 600;
   font-size: 12px;
   border-radius: 5px;
@@ -486,8 +478,8 @@ body.body-dark {
 
 .btn-rejected,
 .btn-rejected:hover {
-  background-color: #fceeed;
-  color: #e15554;
+  background-color: #F8D7DA;
+  color: #DC3545;
   font-weight: 600;
   font-size: 12px;
   border-radius: 5px;
@@ -539,11 +531,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #3bb273;
+  background-color: #198754;
   border-radius: 5px;
 }
 .btn-success-color:hover {
-  background-color: #3bb273;
+  background-color: #198754;
   color: #ffffff;
 }
 
@@ -552,11 +544,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #e1bc29;
+  background-color: #FFC107;
   border-radius: 5px;
 }
 .btn-warning-color:hover {
-  background-color: #e1bc29;
+  background-color: #FFC107;
   color: #ffffff;
 }
 
@@ -565,11 +557,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #e15554;
+  background-color: #DC3545;
   border-radius: 5px;
 }
 .btn-alert-color:hover {
-  background-color: #e15554;
+  background-color: #DC3545;
   color: #ffffff;
 }
 
@@ -660,7 +652,7 @@ textarea.form-control {
 }
 
 .is-invalid {
-  background-color: #fceeed;
+  background-color: #F8D7DA;
 }
 
 .invalid-feedback {

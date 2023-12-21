@@ -59,7 +59,39 @@
         integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous">
     </script>
 
-    <script src="{{ asset('js/script.js') }}"></script>
+    {{-- Bootstrap Script --}}
+    <script>
+        // Activate Tooltip
+        const tooltipTriggerList = document.querySelectorAll(
+            '[data-bs-toggle="tooltip"]'
+        );
+
+        const tooltipList = [...tooltipTriggerList].map(
+            (tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl)
+        );
+
+        // Add Toaster
+
+        const toastElList = document.querySelectorAll('.toast')
+        const toastList = [...toastElList].map(toastEl => new bootstrap.Toast(toastEl, option))
+
+        const toastTrigger = document.getElementById("liveToastBtn");
+        const toastLiveExample = document.getElementById("liveToast");
+
+        if (toastTrigger) {
+            const toastBootstrap =
+                bootstrap.Toast.getOrCreateInstance(toastLiveExample);
+            toastTrigger.addEventListener("click", () => {
+                toastBootstrap.show();
+            });
+        }
+
+        //  Add Alert
+        const alertList = document.querySelectorAll(".alert");
+        const alerts = [...alertList].map((element) => new bootstrap.Alert(element));
+    </script>
+
+    <script src="{{ asset('js/dashboard.js') }}"></script>
 
 </body>
 

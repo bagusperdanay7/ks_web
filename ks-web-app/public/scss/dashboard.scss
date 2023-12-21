@@ -31,36 +31,6 @@ $tertiary-40: #e3acbf;
 $tertiary-30: #eac1cf;
 $tertiary-20: #f1d5df;
 $tertiary-10: #f8eaef;
-$alert: #e15554;
-$alert-90: #e46665;
-$alert-80: #e77676;
-$alert-70: #ea8887;
-$alert-60: #ed9998;
-$alert-50: #f0aaa9;
-$alert-40: #f3bbba;
-$alert-30: #f6cccb;
-$alert-20: #f9dddc;
-$alert-10: #fceeed;
-$warning: #e1bc29;
-$warning-90: #e4c23e;
-$warning-80: #e7c953;
-$warning-70: #ead069;
-$warning-60: #edd67e;
-$warning-50: #f0dd94;
-$warning-40: #f3e4a9;
-$warning-30: #f6eabe;
-$warning-20: #f9f1d4;
-$warning-10: #fcf8e9;
-$success: #3bb273;
-$success-90: #4eb981;
-$success-80: #62c18f;
-$success-70: #75c99d;
-$success-60: #89d0ab;
-$success-50: #9dd8b9;
-$success-40: #b0e0c7;
-$success-30: #c4e7d5;
-$success-20: #d7efe3;
-$success-10: #ebf7f1;
 $text-color: #1f1f1f;
 $text-color-90: #353535;
 $text-color-80: #4b4b4b;
@@ -71,12 +41,16 @@ $text-color-40: #a5a5a5;
 $text-color-30: #bbb;
 $text-color-20: #d2d2d2;
 $text-color-10: #e8e8e8;
+$success: #198754;
+$success-10: #D1E7DD;
+$warning: #FFC107;
+$warning-10: #FFF3CD;
+$alert: #DC3545;
+$alert-10: #F8D7DA;
 $white: #ffffff;
 $background-color: #f1f5f9;
 $background-color-dark: #171521;
 $background-color-secondary: #fff;
-$special-color-100: #00d6ef;
-$special-color: #a1f5ff;
 $ranking-battle: #f615a5;
 $ranking-battle-10: #fee5f5;
 $how-would: #fc3a00;
@@ -99,10 +73,9 @@ $sidebar-size: 250px;
 // List
 $projects-colors: "huge-pro-vol1" $hugepro $hugepro-10,
     "nostalgic-vibes" $nostalgic-vibes $nostalgic-vibes-10,
-    "youtube-comment" $youtube-comment $youtube-comment-10,
-    "non-project" $special-color-100 $special-color;
+    "youtube-comment" $youtube-comment $youtube-comment-10;
 
-$status-colors: "default" $primary $primary-10, "completed" $success $success-10,
+$status-colors: "default" $primary $primary-10, "completed" var(--bs-success) var(--bs-success-bg-subtle),
     "onprocess" $secondary $secondary-10, "pending" $warning $warning-10,
     "rejected" $alert $alert-10;
 
@@ -144,8 +117,6 @@ $bg-colors: (
     "nv-10": $nostalgic-vibes-10,
     "you-com": $youtube-comment,
     "you-com-10": $youtube-comment-10,
-    "non-pro": $special-color-100,
-    "non-pro-10": $special-color,
     "success-10": $success-10,
 );
 

@@ -9,7 +9,7 @@
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100">
                         {{ session('validationSuccess') }}
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -104,20 +104,22 @@
         <div class="row">
             <h3 class="text-center mb-30 fs-24 fw-bold text-color-100">OUR CONTENT</h3>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
-                <div class="content-card-lp text-center">
+                <div class="border-card text-center">
                     <i class='bx bxs-doughnut-chart fs-72 text-color-80'></i>
                     <p class="fs-18 fw-semibold text-color-100 my-10">Line Distribution</p>
-                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about how many parts each
+                    <p class="fs-14 font-inter fw-normal m-0 text-color-80">This content is provided about how many parts
+                        each
                         member
                         sings in a song
                     </p>
                 </div>
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
-                <div class="content-card-lp text-center">
+                <div class="border-card text-center">
                     <i class='bx bxs-bar-chart-alt-2 fs-72 text-color-80'></i>
                     <p class="fs-18 fw-semibold text-color-100 my-10">Line Evolution</p>
-                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided how many parts a member
+                    <p class="fs-14 font-inter fw-normal m-0 text-color-80">This content is provided how many parts a
+                        member
                         sings
                         in
                         the group's title
@@ -126,28 +128,29 @@
                 </div>
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
-                <div class="content-card-lp text-center">
+                <div class="border-card text-center">
                     <i class='bx bxs-album fs-72 text-color-80'></i>
                     <p class="fs-18 fw-semibold text-color-100 my-10">Album Distribution</p>
-                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about how many parts each
+                    <p class="fs-14 font-inter fw-normal m-0 text-color-80">This content is provided about how many parts
+                        each
                         member
                         sings in an album
                     </p>
                 </div>
             </div>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
-                <div class="content-card-lp text-center">
+                <div class="border-card text-center">
                     <i class='bx bxs-user-voice fs-72 text-color-80'></i>
                     <p class="fs-18 fw-semibold text-color-100 my-10">How Would</p>
-                    <p class="fs-inter-14 fw-normal m-0 text-color-80">This content is provided about what if a certain
+                    <p class="fs-14 font-inter fw-normal m-0 text-color-80">This content is provided about what if a
+                        certain
                         group
                         sings another group's
                         song
                     </p>
                 </div>
             </div>
-            <a href="{{ route('categories') }}"
-                class="link-show-all text-decoration-none fs-14 fw-medium text-center mt-30">Show
+            <a href="{{ route('categories') }}" class="link-show-all mt-30">Show
                 All Content <i class="las la-arrow-right"></i>
             </a>
         </div>
@@ -157,7 +160,7 @@
         <div class="row">
             <h3 class="text-center mb-30 fw-bold text-color-100">UPCOMING SCHEDULE</h3>
             <div class="col-12" id="upcoming-display-desktop">
-                <div class="upcoming-schedule-card-lp">
+                <div class="border-card">
                     <div class="row fw-semibold fs-14 text-color-100 header-table-upcoming">
                         <div class="col-3">Project Title</div>
                         <div class="col">Category</div>
@@ -252,7 +255,7 @@
             </div>
             @forelse ($schedules as $scheduleDate => $scheduleItems)
                 <div class="col-12 col-md-6" id="upcoming-display-mobile">
-                    <div class="upcoming-schedule-card-lp {{ $loop->last ? '' : 'mb-3' }}">
+                    <div class="border-card {{ $loop->last ? '' : 'mb-3' }}">
                         <div class="row">
                             <div class="d-flex flex-column">
                                 @if ($scheduleItems->date)
@@ -318,7 +321,7 @@
                 </div>
             @empty
                 <div class="col-12 col-md-6 mt-3 text-center" id="upcoming-display-mobile">
-                    <div class="upcoming-schedule-card-lp mb-3">
+                    <div class="border-card mb-3">
                         <div class="row">
                             <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
@@ -334,8 +337,7 @@
                     </div>
                 </div>
             @endforelse
-            <a href="{{ route('projects') }}"
-                class="link-show-all text-decoration-none fs-14 fw-medium text-center mt-30">Show All Projects <i
+            <a href="{{ route('projects') }}" class="link-show-all mt-30">Show All Projects <i
                     class="las la-arrow-right"></i>
             </a>
         </div>
