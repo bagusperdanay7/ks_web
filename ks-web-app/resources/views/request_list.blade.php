@@ -9,7 +9,7 @@
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -179,7 +179,7 @@
                         <div class="tab-pane fade show active" id="underline-all-req" role="tabpanel"
                             aria-labelledby="underline-all-req-tab" tabindex="0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="mb-3">All Request List</h3>
+                                <h3 class="mb-3 text-color-100">All Request List</h3>
                             </div>
                             <div class="table-responsive d-md-block d-none">
                                 <table class="table table-hover req-list-table display" id="myTable">
@@ -349,7 +349,7 @@
                         <div class="tab-pane fade" id="underline-completed" role="tabpanel"
                             aria-labelledby="underline-completed-tab" tabindex="0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="mb-3">Completed Request</h3>
+                                <h3 class="mb-3 text-color-100">Completed Request</h3>
                             </div>
                             <div class="table-responsive d-md-block d-none">
                                 <table class="table table-hover req-list-table display" id="myTable">
@@ -528,7 +528,7 @@
                         <div class="tab-pane fade" id="underline-onprocess" role="tabpanel"
                             aria-labelledby="underline-onprocess-tab" tabindex="0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="mb-3">On Process Request</h3>
+                                <h3 class="mb-3 text-color-100">On Process Request</h3>
                             </div>
                             <div class="table-responsive d-md-block d-none">
                                 <table class="table table-hover req-list-table display">
@@ -705,7 +705,7 @@
                         <div class="tab-pane fade" id="underline-pending" role="tabpanel"
                             aria-labelledby="underline-pending-tab" tabindex="0">
                             <div class="d-flex justify-content-between">
-                                <h3 class="mb-3">Pending Request</h3>
+                                <h3 class="mb-3 text-color-100">Pending Request</h3>
                             </div>
                             <div class="table-responsive d-md-block d-none">
                                 <table class="table table-hover req-list-table display" id="myTable">
@@ -880,7 +880,7 @@
 
                         <div class="tab-pane fade" id="underline-rejected" role="tabpanel"
                             aria-labelledby="underline-rejected-tab" tabindex="0">
-                            <h3 class="mb-2">Rejected Request</h3>
+                            <h3 class="mb-2 text-color-100">Rejected Request</h3>
                             <p class="mb-3">The reason I rejected this, due some reasons.</p>
                             <div class="table-responsive d-md-block d-none">
                                 <table class="table table-hover req-list-table display" id="myTable">

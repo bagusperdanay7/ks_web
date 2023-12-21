@@ -13,7 +13,7 @@
     <section id="upcoming-projects" class="mb-30">
         <div class="row">
             <div class="col">
-                <div class="project-section border">
+                <div class="table-card">
                     <h3>Upcoming Schedule</h3>
                     <p>The upcoming Schedule shows what projects are coming up in a short time.</p>
                     <div class="table-responsive d-md-block d-none">
@@ -38,7 +38,7 @@
                                                     <p class="p-0 m-0">
                                                         {{ $project->project_title }}
                                                     </p>
-                                                    <span class="p-0 m-0 ">
+                                                    <span class="p-0 m-0 text-color-100">
                                                         {{ $project->progress }}%
                                                     </span>
                                                 </div>
@@ -195,7 +195,7 @@
     <section id="non-projects" class="mb-30">
         <div class="row">
             <div class="col">
-                <div class="project-section border">
+                <div class="table-card">
                     <div class="d-flex justify-content-between">
                         <h3>{{ $nonProjectType->type_name ?? '' }}</h3>
                     </div>
@@ -348,8 +348,7 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="/projects-type/{{ $nonProjectType->slug ?? '' }}"
-                            class="link-show-all text-decoration-none fs-14 fw-medium">Show
+                        <a href="/projects-type/{{ $nonProjectType->slug ?? '' }}" class="link-show-all">Show
                             All <i class="las la-arrow-right"> </i>
                         </a>
                     </div>
@@ -361,7 +360,7 @@
     <section id="huge-projects-vol1" class="mb-30">
         <div class="row">
             <div class="col">
-                <div class="project-section border">
+                <div class="table-card">
                     <div class="d-flex justify-content-between">
                         <h3>{{ $hugeProjectType->type_name ?? '' }}</h3>
                     </div>
@@ -508,8 +507,7 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="/projects-type/{{ $hugeProjectType->slug ?? '' }}"
-                            class="link-show-all text-decoration-none fs-14 fw-medium">Show
+                        <a href="/projects-type/{{ $hugeProjectType->slug ?? '' }}" class="link-show-all">Show
                             All <i class="las la-arrow-right"> </i>
                         </a>
                     </div>
@@ -521,7 +519,7 @@
     <section id="nostalgic-vibes" class="mb-30">
         <div class="row">
             <div class="col">
-                <div class="project-section border">
+                <div class="table-card">
                     <div class="d-flex justify-content-between">
                         <h3>{{ $nostalgicVibesType->type_name ?? '' }}</h3>
                     </div>
@@ -667,8 +665,7 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="/projects-type/{{ $nostalgicVibesType->slug ?? '' }}"
-                            class="link-show-all text-decoration-none fs-14 fw-medium">Show
+                        <a href="/projects-type/{{ $nostalgicVibesType->slug ?? '' }}" class="link-show-all">Show
                             All <i class="las la-arrow-right"> </i>
                         </a>
                     </div>
@@ -681,7 +678,7 @@
     <section id="youtube-comment">
         <div class="row">
             <div class="col">
-                <div class="project-section border">
+                <div class="table-card">
                     <div class="d-flex justify-content-between">
                         <h3>{{ $youtubeCommentType->type_name ?? '' }}</h3>
                     </div>
@@ -830,8 +827,7 @@
                         @endforelse
                     </div>
                     <div class="d-flex justify-content-center align-items-center">
-                        <a href="/projects-type/{{ $youtubeCommentType->slug ?? '' }}"
-                            class="link-show-all text-decoration-none fs-14 fw-medium">Show
+                        <a href="/projects-type/{{ $youtubeCommentType->slug ?? '' }}" class="link-show-all">Show
                             All <i class="las la-arrow-right"> </i>
                         </a>
                     </div>

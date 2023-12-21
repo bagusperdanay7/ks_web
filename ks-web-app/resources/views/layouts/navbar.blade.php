@@ -21,16 +21,22 @@
                     <a class="nav-link {{ Request::is('gallery*') ? 'active' : '' }}"
                         href="{{ route('gallery') }}">Gallery</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ Request::is('request-list') ? 'active' : '' }}"
+                        href="{{ route('request-list') }}">Request List</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
                         Other Menu
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item fs-14 {{ Request::is('/ai-model') ? 'active' : '' }}"
+                    <ul class="dropdown-menu bg-second rounded-10">
+                        <li>
+                            <a class="dropdown-item fs-14 {{ Request::is('/ai-model') ? 'active' : '' }}"
                                 href="{{ route('ai-model') }}">AI
                                 model
-                            </a></li>
+                            </a>
+                        </li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
@@ -38,18 +44,17 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link {{ Request::is('request-list') ? 'active' : '' }}"
-                        href="{{ route('request-list') }}">Request List</a>
-                </li>
                 @auth
+                    @php
+                        $example_google_avatar = 'https://lh3.googleusercontent.com';
+                    @endphp
                     <li class="nav-item dropdown">
                         @if (auth()->user()->profile_picture === null)
                             <img src="{{ asset('img/user-default.png') }}"
                                 class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
-                        @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
+                        @elseif (str_starts_with(auth()->user()->profile_picture, $example_google_avatar))
                             <img src="{{ auth()->user()->profile_picture }}"
                                 class="rounded-circle  nav-link dropdown-toggle" alt="User Picture" id="profileDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false" width="45px">
@@ -59,7 +64,7 @@
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @endif
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                        <ul class="dropdown-menu dropdown-menu-end rounded-10 bg-second" aria-labelledby="profileDropdown">
                             @can('admin')
                                 <li>
                                     <a class="dropdown-item fs-14 fw-normal" href="/dashboard">
@@ -80,10 +85,17 @@
                                     Profile
                                 </a>
                             </li>
+                            {{-- ? For Testing --}}
+                            <li>
+                                <span class="dropdown-item fs-14 fw-normal text-color-100" id="theme-switcher">
+                                    <i class="las la-adjust"></i>
+                                    Switch Theme
+                                </span>
+                            </li>
                             <li class="fs-14">
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
-                                    <button type="submit" class="dropdown-item">
+                                    <button type="submit" class="dropdown-item text-color-100">
                                         <i class="las la-sign-out-alt"></i> Logout
                                     </button>
                                 </form>
@@ -104,12 +116,11 @@
 <header class="bg-second p-3 d-xs-block d-sm-none">
     <div class="brand">
         <img src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate" width="50px" class=" align-middle">
-        <a class="navbar-brand logo-navbar align-middle" href="{{ route('home') }}">KPOP SOULMATE</a>
+        <a class="navbar-brand logo-navbar align-middle text-color-100" href="{{ route('home') }}">KPOP SOULMATE</a>
     </div>
 </header>
 
 {{-- Nav Mobile --}}
-<!-- TODO: Menu Diganti Profile, Request List diganti ke menu -->
 <nav class="navbar fixed-bottom bg-second mobile-nav shadow" aria-label="Navbar Mobile Only">
     <div id="mobile-menu" class="content-mobile-menu shadow">
         <a href="{{ route('ai-model') }}" class="text-decoration-none d-flex">
@@ -135,6 +146,10 @@
                 <i class='bx bxs-user-circle bx-xs'></i>
                 <span class="mx-2">Profile</span>
             </a>
+            <a class="text-decoration-none d-flex" id="theme-switcher-mobile">
+                <i class='bx bx-adjust bx-xs'></i>
+                <span class="mx-2">Switch Theme</span>
+            </a>
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="dropdown-item">
@@ -149,6 +164,7 @@
         @endauth
     </div>
     <div class="d-flex py-2 m-0 align-items-center justify-content-evenly nav-link-mobile">
+
         @php
             $isHome = false;
             $isGallery = false;
@@ -164,8 +180,8 @@
             } elseif (Request::is('request-list*')) {
                 $isRequestList = true;
             }
-
         @endphp
+
         <div class="text-center">
             <a href="{{ route('home') }}" @class(['text-decoration-none', 'active' => $isHome])>
                 <i @class(['bx', 'bxs-home' => $isHome, 'bx-home' => !$isHome, 'bx-sm'])></i>
@@ -201,8 +217,8 @@
             </a>
         </div>
         <div class="text-center mobile-menu">
-            <span id="menu-btn-mobile">
-                <i class='bx bx-menu bx-sm'></i>
+            <span>
+                <i class='bx bx-menu bx-sm' id="menu-btn-mobile"></i>
                 <p class="m-0">Menu</p>
             </span>
         </div>

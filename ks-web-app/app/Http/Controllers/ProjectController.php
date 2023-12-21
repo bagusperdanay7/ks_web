@@ -190,7 +190,7 @@ class ProjectController extends Controller
                                     ->orderBy('project_title')
                                     ->paginate(25, ['*'], 'rejectedPage'); # add withQueryString
 
-        // todo: jumlah progress tidak termasuk yang direject, sehingga dapat mencapai seratus persen
+        // TODO: jumlah progress tidak termasuk yang direject, sehingga dapat mencapai seratus persen
         $projectNumber = $projectAll->count();
         $projectCompletedNumber = $projectAll->where('status', 'Completed')->count();
         $projectRejectedNumber =  Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
