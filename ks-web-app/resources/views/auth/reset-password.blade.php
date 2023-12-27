@@ -3,14 +3,14 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-warning-10">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-warning-10 rounded-top-8">
                         <strong class="me-auto"> <i class="las la-exclamation-circle text-warning fs-18"></i>
                             Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-warning-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('message') }}
                     </div>
                 </div>
@@ -29,9 +29,9 @@
                         <form action="{{ route('password.update') }}" method="POST" class="mt-30 col-12 col-md-8 p-0">
                             @csrf
                             <div class="mb-0">
-                                <input type="hidden"
-                                    class="form-control @error('token') is-invalid @enderror"
-                                    id="token" name="token" aria-describedby="tokenHelp" value="{{ $token }}" required>
+                                <input type="hidden" class="form-control @error('token') is-invalid @enderror"
+                                    id="token" name="token" aria-describedby="tokenHelp" value="{{ $token }}"
+                                    required>
                                 @error('token')
                                     <div id="tokenValidationFeedback" class="invalid-feedback">
                                         {{ $message }}
@@ -40,8 +40,7 @@
                             </div>
                             <div class="mb-15">
                                 <label for="email" class="form-label fs-18 fw-medium text-color-100">Email</label>
-                                <input type="email"
-                                    class="form-control @error('email') is-invalid @enderror"
+                                <input type="email" class="form-control @error('email') is-invalid @enderror"
                                     id="email" name="email" aria-describedby="emailHelp"
                                     placeholder="example@gmail.com" value="{{ old('email') }}" required autofocus>
                                 @error('email')

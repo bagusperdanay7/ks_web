@@ -4,14 +4,14 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 rounded-top-8">
                         <strong class="me-auto"> <i class="las la-check-circle text-success fs-18"></i>
                             Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('status') }}
                     </div>
                 </div>
@@ -30,7 +30,8 @@
                         <form action="{{ route('password.email') }}" method="POST" class="mt-30 col-12 col-md-8 p-0">
                             @csrf
                             <div class="mb-30">
-                                <label for="email" class="form-label fs-14 text-color-100">Please enter your email address to proceed. We'll send you an email to reset your password.</label>
+                                <label for="email" class="form-label fs-14 text-color-100">Please enter your email
+                                    address to proceed. We'll send you an email to reset your password.</label>
                                 <input type="email"
                                     class="form-control @error('email') is-invalid @enderror @error('password') is-invalid @enderror"
                                     id="email" name="email" aria-describedby="emailHelp"

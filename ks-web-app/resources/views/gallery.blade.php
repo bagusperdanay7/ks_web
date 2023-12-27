@@ -15,12 +15,15 @@
                             name="search" value="{{ request('search') }}" autofocus>
                     </div>
                     @if (request('category') || request('search') || request('type') || request('sort'))
-                        <p class="mt-10 mb-15 fs-inter-14 fw-medium text-color-secondary text-end" id="triggerFilter"
+                        <p class="mt-10 mb-15 fs-14 font-inter fw-medium text-color-secondary text-end" id="triggerFilter"
                             data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false"
-                            aria-controls="collapseExample" role="button">Show Advanced Filter</p>
-                        <div class="row collapse" id="filterGroup">
+                            aria-controls="collapseExample" role="button">
+                            {{ request('category') || request('sort') || request('type') ? 'Hide Advanced Filter' : 'Show Advanced Filter' }}
+                        </p>
+                        <div class="row collapse {{ request('category') || request('sort') || request('type') ? 'show' : '' }}"
+                            id="filterGroup">
                             <div class="col-6 col-sm-auto">
-                                <select class="form-select" aria-label="Select Category" name="category"
+                                <select class="form-select filter-select" aria-label="Select Category" name="category"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Category</option>
                                     @foreach ($allCategory as $categoryList)
@@ -32,7 +35,7 @@
                                 </select>
                             </div>
                             <div class="col-6 col-sm-auto mb-2 mb-sm-0">
-                                <select class="form-select" aria-label="Select Type" name="type"
+                                <select class="form-select filter-select" aria-label="Select Type" name="type"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Type</option>
                                     @foreach ($allType as $typeList)
@@ -44,7 +47,7 @@
                                 </select>
                             </div>
                             <div class="col-6 col-sm-auto">
-                                <select class="form-select" aria-label="Select Sort" name="sort"
+                                <select class="form-select filter-select" aria-label="Select Sort" name="sort"
                                     onchange="if(this.value != '') { this.form.submit(); }">
                                     <option value="">Sort By</option>
                                     <optgroup label="Title">
@@ -72,15 +75,15 @@
                 <div class="col">
                     <div class="d-flex justify-content-between">
                         <div class="gallery-cards-head d-flex align-items-center">
-                            <h4 class="m-0 fw-semibold">Search Results
+                            <h4 class="m-0 fw-semibold text-color-100">Search Results
                             </h4>
-                            <span class="ms-2 align-middle badge bg-main text-white">
+                            <span class="ms-2 align-middle badge fs-inter fs-14 fw-medium bg-main text-white">
                                 {{ $galleries->count() }}
                             </span>
                         </div>
-                        <div>
+                        <div class="filter-clear">
                             <a href="{{ route('gallery') }}"
-                                class="fs-inter-14 text-decoration-none text-color-100 fw-medium">
+                                class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
                                 <i class="las la-times-circle"></i> Clear Filter
                             </a>
                         </div>
@@ -103,7 +106,7 @@
                                     <a href="gallery?category={{ $gallery->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-inter-14',
+                                            'fs-14 font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $gallery->category->category_name === 'Album Distribution',
@@ -190,7 +193,7 @@
                                         <a href="gallery?category={{ $recVideo->category->slug }}">
                                             <p @class([
                                                 'mb5',
-                                                'fs-inter-14',
+                                                'fs-14 font-inter',
                                                 'fw-semibold',
                                                 'text-color-ad' =>
                                                     $recVideo->category->category_name === 'Album Distribution',
@@ -385,7 +388,7 @@
                                     <a href="gallery?category={{ $latestVid->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-inter-14',
+                                            'fs-14 font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $latestVid->category->category_name === 'Album Distribution',
@@ -469,7 +472,7 @@
                                     <a href="gallery?category={{ $recVideo->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-inter-14',
+                                            'fs-14 font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $recVideo->category->category_name === 'Album Distribution',

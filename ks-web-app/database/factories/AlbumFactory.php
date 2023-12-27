@@ -20,6 +20,7 @@ class AlbumFactory extends Factory
             'artist_id' => mt_rand(1, 20),
             'album_name' => $this->faker->word(),
             'release' => $this->faker->dateTime(),
+            'publisher' => $this->faker->company()
         ];
     }
 }

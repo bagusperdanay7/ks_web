@@ -1,15 +1,15 @@
-@extends('layouts.main')
+le@extends('layouts.main')
 @if (session()->has('success'))
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
                         <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -22,13 +22,15 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-alert-10 text-color-100">
+                <div class="toast show rounded-10
+                " role="alert" aria-live="assertive"
+                    aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100 rounded-top-8">
                         <strong class="me-auto"><i class="las la-exclamation-circle text-color-alert fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-alert-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('errorOldpassword') }}
                     </div>
                 </div>
@@ -41,13 +43,13 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
                         <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('successChangePassword') }}
                     </div>
                 </div>
@@ -60,13 +62,13 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
                         <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('changeProfileSuccess') }}
                     </div>
                 </div>
@@ -79,13 +81,13 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-warning-10 text-color-100">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-warning-10 text-color-100 rounded-top-8">
                         <strong class="me-auto"><i class="las la-exclamation-circle text-color-warning fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-warning-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('errorSamePassword') }}
                     </div>
                 </div>
@@ -99,7 +101,7 @@
         <h2 class="mb-15 fw-bold text-color-100">My Profile</h2>
         <div class="row">
             <div class="col-12 col-lg-7 col-xl-8 order-2 order-lg-1">
-                <div class="profile-container border">
+                <div class="profile-container">
                     <form action="{{ route('account.update') }}" method="post" class="col-12 p-0">
                         @method('put')
                         @csrf
@@ -144,7 +146,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5 col-xl-4 order-1 order-lg-2 mb-0 mb-4 mb-lg-0">
-                <div class="profile-container border">
+                <div class="profile-container">
                     <div class="d-flex flex-column flex-sm-row align-items-sm-center mb-30">
                         @if (auth()->user()->profile_picture === null)
                             <div class="flex-shrink-0  mb-2 mb-sm-0">
@@ -195,7 +197,7 @@
     <section id="password-information">
         <div class="row">
             <div class="col-12 col-lg-7 col-xl-8">
-                <div class="profile-container border">
+                <div class="profile-container">
                     <form action="{{ route('password.change') }}" method="post" class="col-12 p-0 mb-0">
                         @method('put')
                         @csrf
@@ -254,9 +256,9 @@
 
     <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-                <form action="{{ route('account.profile.update') }}" method="post" enctype="multipart/form-data">
-                    @method('put')
-                    @csrf
+            <form action="{{ route('account.profile.update') }}" method="post" enctype="multipart/form-data">
+                @method('put')
+                @csrf
                 <div class="modal-content">
                     <div class="modal-header">
                         <h3 class="modal-title text-color-100 fw-semibold" id="uploadModalLabel">Upload Profile</h3>
@@ -274,7 +276,8 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <span class="text-color-50 fs-14">File format must be JPEG, PNG, or GIF. Max Size 250 KB. Recommended Aspect
+                            <span class="text-color-50 fs-14">File format must be JPEG, PNG, or GIF. Max Size 250 KB.
+                                Recommended Aspect
                                 ratio of picture is 1:1</span>
                         </div>
                         <div class="">
@@ -284,7 +287,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-main fw-medium">Upload</button>
                     </div>
                 </div>
@@ -307,7 +310,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
                     <form action="{{ route('account.profile.remove') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf

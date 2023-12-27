@@ -21,59 +21,67 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // ! Activate this commented code if Database empyty
         // User::factory(3)->create();
 
         // Membuat Category
+        // ! Activate this commented code if Database empyty
         // Category::create([
         //     'category_name' => 'Line Distribution',
         //     'slug' => 'line-distribution',
-        //     'icon_class' => 'las la-chart-pie'
-        // ]);
-
-        // Category::create([
+        //     'icon_class' => 'las la-chart-pie'],
+        //     [
         //     'category_name' => 'Line Evolution',
         //     'slug' => 'line-evolution',
-        //     'icon_class' => 'las la-chart-bar'
-        // ]);
-
-        // Category::create([
+        //     'icon_class' => 'las la-chart-bar'],
+        //     [
         //     'category_name' => 'Album Distribution',
         //     'slug' => 'album-distribution',
-        //     'icon_class' => 'las la-compact-disc'
-        // ]);
-
-        // Category::create([
+        //     'icon_class' => 'las la-compact-disc'],
+        //     [
         //     'category_name' => 'Album Evolution',
         //     'slug' => 'all-evolution',
         //     'icon_class' => 'las la-file-audio'
         // ]);
 
+        // ! Activate this commented code if Database empyty
         // ProjectType::create([
         //     "type_name" => "Non-Project",
         //     "slug" => "non-project",
         //     "about" => "Non-project Isn't based on your requests. Instead, it's based on our own desires and upcoming new comeback songs from particular artists.",
-        // ]);
-
-        // ProjectType::create([
+        // ],
+        // [
         //     "type_name" => "Huge Project Vol.#01",
         //     "slug" => "huge-project-vol-1",
         //     "about" => "Huge Project Vol.#01 is a project based on Google Forms requests, where the content will be the line evolution of the female group of your choice.",
-        // ]);
-
-        // ProjectType::create([
+        // ],
+        // [
         //     "type_name" => "Nostalgic Vibes",
         //     "slug" => "nostalgic-vibes",
         //     "about" => "Nostalgic Vibes is a project that is planned to be uploaded every weekend. Where the video contains the line distribution of old songs.",
-        // ]);
-
-        // ProjectType::create([
+        // ],
+        // [
         //     "type_name" => "Youtube Comment",
         //     "slug" => "youtube-comment",
         //     "about" => "This project is retrieved from youtube comments.",
+        // ]
+        // );
+
+        // ProjectType::create(
+        // [
+        //     "type_name" => "Huge Project Vol.#03",
+        //     "slug" => "huge-project-vol-3",
+        //     "about" => "Huge Project Vol.#03 is a project based on Google Forms requests, where the content will be the line evolution of the female group of your choice.",
+        // ],
+        // [
+        //     "type_name" => "Memoriam Best Songs",
+        //     "slug" => "memoriam-best",
+        //     "about" => "Nostalgic Vibes is a project that is planned to be uploaded every weekend. Where the video contains the line distribution of old songs.",
         // ]);
 
         // Seeder Manual //
 
+        // ! Activate this commented code if Database empyty
         // User::create([
         //     'name' => 'Bagus Perdana',
         //     'username' => 'bagusper',
@@ -81,7 +89,7 @@ class DatabaseSeeder extends Seeder
         //     'password' => bcrypt('password')
         // ]);
 
-        // Artist
+        // ! Activate this commented code if Database empyty
         // Artist::create([
         //     'artist_name' => 'OH MY GIRL',
         //     'codename' => 'oh-my-girl',
@@ -93,14 +101,14 @@ class DatabaseSeeder extends Seeder
         //     'about' => 'OH MY GIRL is a South Korean group of eight members, consisting of Hyojung, JinE, Mimi, YooA, Seunghee, Jiho, Yubin (Binnie), and Arin. Unfortunately, JinE left the group in October 2017, followed by Jiho leaving the group on May 9, 2022. So that the members now consist of 6 members.',
         // ]);
 
-        // // // Album
+        // ! Activate this commented code if Database empyty
         // Album::create([
         //     'artist_id' => 1,
         //     'album_name' => 'Fall In Love',
         //     'release' => date('2019-07-01'),
         // ]);
 
-        // // // Album
+        // ! Activate this commented code if Database empyty
         // Song::create([
         //     'album_id' => 1,
         //     'title' => 'Bungee',
@@ -112,6 +120,7 @@ class DatabaseSeeder extends Seeder
         //     'arranger' => '정윤 @ 153/Joombas, MooF(153/Joombas)',
         // ]);
 
+        // ! Activate this commented code if Database empyty
         // Project::create([
         //     'project_title' => 'OH MY GIRL - Jine',
         //     'artist_id' => 1,
@@ -126,7 +135,7 @@ class DatabaseSeeder extends Seeder
         //     'votes' => 3,
         // ]);
 
-        Artist::factory(100)->create();
+        // Artist::factory(10)->create();
         // Album::factory(10)->create();
         // Song::factory(10)->create();
         // Project::factory(10)->create();

@@ -27,7 +27,6 @@ class GalleryController extends Controller
             ->where([['status', 'Completed'], ['is_exclusive', 'No']])
             ->filter(request(['search', 'category', 'type']))
             ->get();
-
         } elseif (request('sort') == 'latest') {
             $galleryQuery = Project::orderByDesc('date')
             ->where([['status', 'Completed'], ['is_exclusive', 'No']])

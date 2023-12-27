@@ -20,7 +20,7 @@ body.body-light {
   background-color: #f1f5f9;
 }
 body.body-dark {
-  background-color: #171521;
+  background-color: #191427;
 }
 
 * {
@@ -677,7 +677,7 @@ textarea.form-control {
 /* End of Modified Boostrap Style */
 /* Sidebar */
 nav.sidebar {
-  background-color: #171521;
+  background-color: #191427;
   width: 250px;
   position: fixed;
   left: 0;
