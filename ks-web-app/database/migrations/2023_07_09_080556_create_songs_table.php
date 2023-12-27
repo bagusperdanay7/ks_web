@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('genre');
-            $table->string('category')->default('Track/Title Track');
             $table->string('author')->nullable();
             $table->string('composer')->nullable();
             $table->string('arranger')->nullable();

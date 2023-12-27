@@ -15,8 +15,8 @@ class ArtistController extends Controller
     {
         return view('artists', [
             'title' => 'All Artists',
-            'artists' => Artist::with('projects')->whereHas('projects',  function($q)  {
-                $q->where([['status', 'Completed'], ['is_exclusive', 'No']]);//query on team model
+            'artists' => Artist::with('projects')->whereHas('projects',  function($query)  {
+                $query->where([['status', 'Completed'], ['is_exclusive', 'No']]);//query on team model
             })->get()->sortBy('artist_name'),
             // 'artists' => Artist::all()->load('projects')->sortBy('artist_name'),
         ]);

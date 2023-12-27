@@ -56,6 +56,8 @@
     --nostalgic-vibes-10: #e5ecf2;
     --youtube-comment: #ff0000;
     --youtube-comment-10: #ffe5e5;
+    --non-project-100: #07769d;
+    --non-project-10: #bcecfb;
     --main-font: "Poppins", sans-serif;
     --secondary-font: "Inter", sans-serif;
 }
@@ -419,6 +421,14 @@ table td.text-color-cd,
     border-radius: 15px;
 }
 
+.rounded-top-8 {
+    border-radius: 8px 8px 0 0;
+}
+
+.rounded-bottom-8 {
+    border-radius: 0 0 8px 8px;
+}
+
 /* End of Border Radius */
 
 /* Component */
@@ -428,6 +438,7 @@ table td.text-color-cd,
     margin-top: 30px;
     background-color: var(--primary);
     padding: 18px 60px;
+    border-radius: 10px;
     font-weight: 700;
     color: var(--white);
     transition: all 0.5s ease-in;
@@ -439,11 +450,19 @@ table td.text-color-cd,
     background-color: var(--primary-90);
     color: var(--white);
 }
-.btn-main,
-.btn-main:hover {
+
+.btn-main {
     color: var(--white);
     background-color: var(--primary);
     font-weight: 600;
+    border-radius: 10px;
+}
+
+.btn-main:hover,
+.btn-main:active,
+.btn-main:first-child:active {
+    color: var(--white);
+    background-color: var(--primary);
 }
 
 .btn-outline-main {
@@ -496,6 +515,58 @@ table td.text-color-cd,
     cursor: default;
 }
 
+.btn-light-border {
+    padding: 8px 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--text-color);
+    background-color: transparent;
+    border-radius: 10px;
+    border: 1px solid var(--text-color-40);
+}
+
+.btn-light-border:hover {
+    border-color: var(--text-color-40);
+    color: var(--text-color);
+}
+
+.btn-alert-color {
+    padding: 8px 10px;
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--white);
+    background-color: var(--bs-danger);
+    border-radius: 10px;
+}
+.btn-alert-color:hover {
+    background-color: var(--bs-danger);
+    color: var(--white);
+}
+
+.btn-404 {
+    display: inline-block;
+    padding: 10px 20px;
+    color: var(--white);
+    font-weight: 600;
+    background-color: var(--primary);
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+    border-radius: 10px;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.btn-404:active,
+.btn-404:first-child:active {
+    background-color: var(--primary-90);
+    color: var(--white);
+}
+
 .btn-complete {
     background-color: var(--bs-success-bg-subtle);
     color: var(--bs-success);
@@ -506,7 +577,8 @@ table td.text-color-cd,
 }
 
 .btn-complete:hover,
-.btn-complete:active:focus .btn-complete:active,
+.btn-complete:active:focus,
+.btn-complete:active,
 .btn-complete:first-child:active {
     background-color: var(--bs-success-bg-subtle);
     color: var(--bs-success);
@@ -565,34 +637,6 @@ table td.text-color-cd,
     background-color: var(--bs-danger-bg-subtle);
     color: var(--bs-danger);
     cursor: default;
-}
-
-.btn-light-border {
-    padding: 8px 10px;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-color);
-    background-color: transparent;
-    border-radius: 10px;
-    border: 1px solid var(--text-color-40);
-}
-
-.btn-light-border:hover {
-    border-color: var(--text-color-40);
-    color: var(--text-color);
-}
-
-.btn-alert-color {
-    padding: 8px 10px;
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--white);
-    background-color: var(--bs-danger);
-    border-radius: 10px;
-}
-.btn-alert-color:hover {
-    background-color: var(--bs-danger);
-    color: var(--white);
 }
 
 /* Image */
@@ -655,6 +699,20 @@ textarea.form-control {
     padding: 12px 10px;
     border-radius: 10px;
     border: 1px solid var(--text-color-90);
+}
+
+select:hover,
+select:focus {
+    cursor: pointer;
+}
+
+select.filter-select {
+    font-size: 14px;
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 8px 30px 8px 10px;
+    background-color: var(--background-color-secondary);
+    border: 1px solid var(--text-color-50);
 }
 
 .form-control:focus,
@@ -926,7 +984,13 @@ main {
     color: var(--text-color);
 }
 
-.table-card {
+.table-card,
+.detail-card,
+.req-list-section,
+.ai-models-container,
+.verification-container,
+.profile-container,
+.request-container {
     background-color: var(--background-color-secondary);
     padding: 25px;
     border-radius: 10px;
@@ -969,7 +1033,7 @@ table td.title-with-progress {
 .table-content-mobile {
     padding: 15px;
     border-radius: 10px;
-    border: 1px solid var(--text-color-30);
+    border: 1px solid var(--text-color-20);
 }
 
 .table-content-mobile p {
@@ -982,18 +1046,6 @@ table td.title-with-progress {
 }
 
 /* Project Types Page */
-
-.btn-huge-project-vol1 {
-    border: 1px solid #673ab7;
-    color: #673ab7;
-    font-weight: 700;
-}
-
-.btn-huge-project-vol1:hover {
-    color: #673ab7;
-    border: 1px solid #673ab7;
-}
-
 .breadcrumb a {
     text-decoration: none;
     color: var(--text-color-80);
@@ -1013,28 +1065,69 @@ table td.title-with-progress {
     scroll-margin: 90px;
 }
 
-.huge-pro-hero {
-    background-color: #e1d7f2;
+.non-project-hero {
+    background-color: var(--non-project-10);
+    border-radius: 10px;
+    margin: 0 0 30px 0;
+    padding: 25px;
+}
+
+.non-project-text {
+    font-family: var(--secondary-font);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--non-project-100);
+}
+
+.non-project-hero h2 {
+    font-weight: 700;
+    font-size: 36px;
+    color: var(--non-project-100);
+}
+
+.btn-non-project,
+.btn-non-project:hover,
+.btn-non-project:active,
+.btn-non-project:active:focus,
+.btn-non-project:first-child:active {
+    border: 1px solid var(--non-project-100);
+    color: var(--non-project-100);
+    font-weight: 500;
+}
+
+.huge-project-vol1-hero {
+    background-color: var(--hugepro-10);
     border-radius: 10px;
     margin: 0 0 30px 0;
     padding: 25px 13px;
 }
 
-.huge-pro-hero h2 {
+.huge-project-vol1-hero h2 {
     font-weight: 700;
     font-size: 36px;
-    color: #673ab7;
+    color: var(--hugepro);
 }
 
-.huge-pro-text {
+.huge-project-vol1-text {
     font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    color: #673ab7;
+    color: var(--hugepro);
 }
 
-.nv-pro-hero {
+.btn-huge-project-vol1,
+.btn-huge-project-vol1:hover,
+.btn-huge-project-vol1:active,
+.btn-huge-project-vol1:active:focus,
+.btn-huge-project-vol1:first-child:active {
+    border: 1px solid var(--hugepro);
+    color: var(--hugepro);
+    font-weight: 500;
+}
+
+.nv-project-hero {
     background-image: url("../img/nv_cover_grad.png");
     background-size: cover;
     border-radius: 10px;
@@ -1044,13 +1137,13 @@ table td.title-with-progress {
     padding: 25px 13px;
 }
 
-.nv-pro-hero h2 {
+.nv-project-hero h2 {
     font-weight: 700;
     font-size: 36px;
     color: var(--white);
 }
 
-.nv-pro-text {
+.nv-project-text {
     font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
@@ -1058,88 +1151,48 @@ table td.title-with-progress {
     color: var(--white);
 }
 
-.btn-nv-project {
+.btn-nv-project,
+.btn-nv-project:hover,
+.btn-nv-project:active,
+.btn-nv-project:active:focus,
+.btn-nv-project:first-child:active {
     border: 1px solid var(--white);
     color: var(--white);
-    font-weight: 700;
-}
-
-.btn-nv-project:hover {
-    color: var(--white);
-    border: 1px solid var(--white);
-}
-
-.yt-pro-text {
-    font-family: var(--secondary-font);
-    font-style: normal;
     font-weight: 500;
-    font-size: 18px;
-    color: #ff0000;
 }
 
-.yt-pro-hero {
-    background-color: #ffd8d8;
+.youtube-project-hero {
+    background-color: var(--youtube-comment-10);
     border-radius: 10px;
     margin: 0 0 30px 0;
     padding: 25px 13px;
 }
 
-.yt-pro-hero h2 {
+.youtube-project-hero h2 {
     font-weight: 700;
     font-size: 36px;
-    color: #ff0000;
+    color: var(--youtube-comment);
 }
 
-.btn-yt-project {
-    border: 1px solid #ff0000;
-    color: #ff0000;
-    font-weight: 700;
-}
-
-.btn-yt-project:hover {
-    color: #ff0000;
-    border: 1px solid #ff0000;
-}
-
-.non-pro-hero {
-    background-color: var(--text-color-10);
-    border: 1px solid var(--background-color-dark);
-    border-radius: 10px;
-    margin: 0 0 30px 0;
-    padding: 25px;
-}
-
-.non-pro-text {
+.youtube-project-text {
     font-family: var(--secondary-font);
     font-style: normal;
     font-weight: 500;
     font-size: 18px;
-    color: var(--text-color-80);
+    color: var(--youtube-comment);
 }
 
-.non-pro-hero h2 {
-    font-weight: 700;
-    font-size: 36px;
-    color: var(--text-color);
-}
-
-.btn-non-project {
-    border: 1px solid var(--text-color);
-    color: var(--text-color);
-    font-weight: 700;
-}
-
-.btn-non-project:hover {
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
+.btn-youtube-project,
+.btn-youtube-project:hover,
+.btn-youtube-project:active,
+.btn-youtube-project:active:focus,
+.btn-youtube-project:first-child:active {
+    border: 1px solid var(--youtube-comment);
+    color: var(--youtube-comment);
+    font-weight: 500;
 }
 
 /* Single Project */
-.detail-card {
-    background-color: var(--background-color-secondary);
-    border-radius: 10px;
-    padding: 25px;
-}
 
 .thumbnail {
     border-radius: 10px;
@@ -1149,7 +1202,7 @@ table td.title-with-progress {
 
 /* Penutup Projects */
 
-/* Request List */
+/* Request List Page */
 
 .card-analytics {
     background-color: var(--background-color-secondary);
@@ -1184,13 +1237,6 @@ table td.title-with-progress {
 
 .card-icon i {
     font-size: 80px;
-}
-
-.req-list-section {
-    background-color: var(--background-color-secondary);
-    padding: 25px;
-    border-radius: 10px;
-    margin-bottom: 30px;
 }
 
 .req-list-section h2 {
@@ -1233,13 +1279,6 @@ table td.title-with-progress {
     margin-bottom: 10px;
 }
 
-.gallery-cards-head span {
-    font-family: var(--secondary-font);
-    font-weight: 600;
-    font-size: 14px;
-    color: var(--text-color-90);
-}
-
 .gallery-cards-head a {
     text-decoration: none;
     color: var(--text-color);
@@ -1248,6 +1287,10 @@ table td.title-with-progress {
 .gallery-cards-head a:hover,
 .gallery-cards-head span:hover {
     color: var(--primary);
+}
+
+.filter-clear a:hover {
+    color: var(--bs-danger);
 }
 
 .category-card {
@@ -1401,11 +1444,6 @@ table td.title-with-progress {
 /* Penutup Gallery */
 
 /* AI Models Page */
-.ai-models-container {
-    padding: 25px;
-    background-color: var(--background-color-secondary);
-    border-radius: 10px;
-}
 
 .list-ai-model img {
     width: 100px;
@@ -1480,34 +1518,15 @@ span.input-group-text {
 span.input-group-text i {
     cursor: pointer;
 }
-
-.verification-container {
-    background-color: var(--background-color-secondary);
-    padding: 25px;
-}
-
 /* Penutup Login & SIgn Up Page */
 
 /* Profile Page  */
-.profile-container {
-    background-color: var(--background-color-secondary);
-    padding: 25px;
-    border-radius: 10px;
-}
 
 .profile-preview {
     max-width: 150px;
 }
+
 /* End of Profile Page  */
-
-/* My Requests Pag */
-.request-container {
-    background-color: var(--background-color-secondary);
-    padding: 25px;
-    border-radius: 10px;
-}
-
-/* End of My Requests Pag */
 
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 575.9px) {
@@ -1578,7 +1597,6 @@ span.input-group-text i {
     }
 
     /* Footer */
-
     .py-footer {
         padding-top: 50px;
         padding-bottom: 110px;
@@ -1594,13 +1612,9 @@ span.input-group-text i {
 
     /* Penutup Home */
 
-    /* Project */
-    .table-card {
-        padding: 20px;
-    }
-
-    /* Requests List Page */
-    .req-list-section {
+    .table-card,
+    .req-list-section,
+    .non-project-hero {
         padding: 15px;
     }
 
@@ -1635,7 +1649,7 @@ span.input-group-text i {
     }
 
     /* Project Types Page */
-    .nv-pro-hero {
+    .nv-project-hero {
         background-position: -100px 0px;
     }
 
@@ -1702,7 +1716,7 @@ span.input-group-text i {
 /* Extra large devices (large laptops and desktops, 1200px and below) */
 @media only screen and (min-width: 1200px) {
     /* Project Types Page */
-    .nv-pro-hero {
+    .nv-project-hero {
         background-position: 0px -150px;
     }
 

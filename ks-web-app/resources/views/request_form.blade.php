@@ -1,4 +1,4 @@
-{{-- if User masuk nama channel youtube diganti dengan namanya --}}
+{{-- TODO: if User masuk nama channel youtube diganti dengan namanya --}}
 @extends('layouts.main')
 
 @section('content')
@@ -35,8 +35,7 @@
                             <div class="mb-15">
                                 <label for="project_title" class="form-label fs-18 fw-medium text-color-100">Project
                                     Title</label>
-                                <input type="text"
-                                    class="form-control @error('project_title') is-invalid @enderror"
+                                <input type="text" class="form-control @error('project_title') is-invalid @enderror"
                                     id="project_title" name="project_title" aria-describedby="project_title_Help"
                                     placeholder="OH MY GIRL - Celebrate" value="{{ old('project_title') }}" required>
                                 @error('project_title')
@@ -47,8 +46,7 @@
                             </div>
                             <div class="mb-15">
                                 <label for="requester" class="form-label fs-18 fw-medium text-color-100">Requester</label>
-                                <input type="text"
-                                    class="form-control @error('requester') is-invalid @enderror"
+                                <input type="text" class="form-control @error('requester') is-invalid @enderror"
                                     id="requester" name="requester" aria-describedby="requesterHelp"
                                     placeholder="Your Name or Youtube Channel"
                                     @auth value="{{ auth()->user()->name }}" @endauth value="{{ old('requester') }}"

@@ -3,14 +3,14 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-warning-10">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-warning-subtle rounded-top-8">
                         <strong class="me-auto"> <i class="las la-exclamation-circle text-warning fs-18"></i>
                             Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-warning-subtle fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('message') }}
                     </div>
                 </div>
@@ -23,14 +23,14 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-subtle rounded-top-8">
                         <strong class="me-auto"> <i class="las la-check-circle text-success fs-18"></i>
                             Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-subtle fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('status') }}
                     </div>
                 </div>
@@ -43,14 +43,14 @@
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0" style="margin-top: 75px">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-warning-10">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-warning-subtle rounded-top-8">
                         <strong class="me-auto"> <i class="las la-exclamation-circle text-warning fs-18"></i>
                             Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-warning-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-warning-subtle fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('loginError') }}
                     </div>
                 </div>
@@ -94,11 +94,13 @@
                                 </div>
                             </div>
                             <div class="mb-30 text-end">
-                                <a href="{{ route('password.request') }}" class="fs-14 text-color-primary fw-medium text-decoration-none">Forgot Password?</a>
+                                <a href="{{ route('password.request') }}"
+                                    class="fs-14 text-color-primary fw-medium text-decoration-none">Forgot Password?</a>
                             </div>
                             <button type="submit" class="btn btn-primary-form col-12">Login</button>
                             <p class="mt-15 mb-15 text-center">or</p>
-                            <a href="{{ route('google.login') }}" class="btn btn-border-form col-12 mb-15"><i class="bx bxl-google fs-24 align-middle"></i> Login With Google</a>
+                            <a href="{{ route('google.login') }}" class="btn btn-border-form col-12 mb-15"><i
+                                    class="bx bxl-google fs-24 align-middle"></i> Login With Google</a>
                             <a href="{{ route('sign-up') }}" class="btn btn-secondary-form col-12">Sign Up</a>
                         </form>
                     </div>

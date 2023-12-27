@@ -18,7 +18,6 @@ class SongFactory extends Factory
     {
         return [
             'title' => $this->faker->word(),
-            'album_id' => mt_rand(1, 20),
             'genre' => implode($this->faker->randomElements(['Pop', 'Retro', 'EDM', 'Rock', 'Jazz', 'Dance', 'R&B'])),
             'category' => implode($this->faker->randomElements(['Title Track', 'Track'])),
             'author' => $this->faker->name(),

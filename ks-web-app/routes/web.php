@@ -43,11 +43,11 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
-
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
+
+Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'show']);
 
 Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
 
@@ -64,8 +64,6 @@ Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artist
 Route::get('gallery/artists/{artist:codename}', [ArtistController::class, 'show']);
 
 Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show']);
-
-Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'show']);
 
 Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
@@ -135,3 +133,5 @@ Route::resource('/dashboard/project-types', DashboardProjectTypeController::clas
 
 Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');
 
+// TODO: Nanti Pindahin ke atas lagi
+Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');
