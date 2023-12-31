@@ -7,7 +7,7 @@
                 <h2 class="text-color-100 fw-bold mb-15">Explore</h2>
                 <form class="search-gallery-form" action="/gallery">
                     <div class="input-group">
-                        <span class="input-group-text" id="basic-addon1">
+                        <span class="input-group-text" id="search-logo">
                             <i class='bx bx-search fs-18'></i>
                         </span>
                         <input type="search" class="form-control shadow-none"
@@ -77,7 +77,7 @@
                         <div class="gallery-cards-head d-flex align-items-center">
                             <h4 class="m-0 fw-semibold text-color-100">Search Results
                             </h4>
-                            <span class="ms-2 align-middle badge fs-inter fs-14 fw-medium bg-main text-white">
+                            <span class="ms-2 align-middle badge font-inter fs-14 fw-medium bg-main text-white">
                                 {{ $galleries->count() }}
                             </span>
                         </div>
@@ -106,7 +106,8 @@
                                     <a href="gallery?category={{ $gallery->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-14 font-inter',
+                                            'fs-14',
+                                            'font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $gallery->category->category_name === 'Album Distribution',
@@ -193,7 +194,8 @@
                                         <a href="gallery?category={{ $recVideo->category->slug }}">
                                             <p @class([
                                                 'mb5',
-                                                'fs-14 font-inter',
+                                                'fs-14',
+                                                'font-inter',
                                                 'fw-semibold',
                                                 'text-color-ad' =>
                                                     $recVideo->category->category_name === 'Album Distribution',
@@ -246,7 +248,7 @@
                     @empty
                         <div class="col-12">
                             <div class="text-color-100 text-center">
-                                <i class="las la-photo-video fs-48"></i>
+                                <i class="las la-photo-video fs-1"></i>
                                 <p class="mt-1 fs-14 fw-medium mb-0">
                                     No Video Found!
                                 </p>
@@ -265,7 +267,7 @@
                             <h3>Category</h3>
                         </div>
                         <div class="align-self-end">
-                            <a href="{{ route('categories') }}">
+                            <a class="fw-medium text-color-100 fs-14 font-inter" href="{{ route('categories') }}">
                                 <span>Show All</span>
                             </a>
                         </div>
@@ -318,7 +320,7 @@
                 @empty
                     <div class="col">
                         <div class="text-color-100 text-center">
-                            <i class="las la-icons fs-48"></i>
+                            <i class="las la-icons fs-1"></i>
                             <p class="fw-medium mt-1 fs-14 mb-0 ">No Category Found!</p>
                         </div>
                     </div>
@@ -333,13 +335,13 @@
                         <h3>Artist</h3>
                     </div>
                     <div class="align-self-end">
-                        <a href="{{ route('artists') }}">
+                        <a class="fw-medium text-color-100 fs-14 font-inter" href="{{ route('artists') }}">
                             <span>Show All</span>
                         </a>
                     </div>
                 </div>
                 @forelse ($artistsTotal as $artistTotal)
-                    <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="artist-card">
                             <a href="/gallery/artists/{{ $artistTotal->artist->codename ?? '' }}">
                                 @if ($artistTotal->artist?->artist_pict)
@@ -359,7 +361,7 @@
                 @empty
                     <div class="col">
                         <div class="text-color-100 text-center">
-                            <i class="las la-user-slash fs-48"></i>
+                            <i class="las la-user-slash fs-1"></i>
                             <p class="mb-0 mt-1 fw-medium fs-14">No Artist Found!</p>
                         </div>
                     </div>
@@ -372,7 +374,6 @@
                 <div class="gallery-cards-head">
                     <h3>Latest Video</h3>
                 </div>
-                {{-- TODO: https://laraveldaily.com/post/laravel-relation-attempt-to-read-property-on-null-error --}}
                 @forelse ($latestVideo as $latestVid)
                     <div class="col-12 col-md-6 col-lg-4 mb-xl-0 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
@@ -388,7 +389,8 @@
                                     <a href="gallery?category={{ $latestVid->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-14 font-inter',
+                                            'fs-14',
+                                            'font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $latestVid->category->category_name === 'Album Distribution',
@@ -442,7 +444,7 @@
                 @empty
                     <div class="col-12">
                         <div class="text-color-100 text-center">
-                            <i class="las la-photo-video fs-48"></i>
+                            <i class="las la-photo-video fs-1"></i>
                             <p class="fs-14 fw-medium mt-1 mb-0">
                                 No Video Found!
                             </p>
@@ -472,7 +474,8 @@
                                     <a href="gallery?category={{ $recVideo->category->slug }}">
                                         <p @class([
                                             'mb5',
-                                            'fs-14 font-inter',
+                                            'fs-14',
+                                            'font-inter',
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $recVideo->category->category_name === 'Album Distribution',
@@ -525,7 +528,7 @@
                 @empty
                     <div class="col-12">
                         <div class="text-color-100 text-center">
-                            <i class="las la-photo-video fs-48"></i>
+                            <i class="las la-photo-video fs-1"></i>
                             <p class="fs-14 fw-medium mt-1 mb-0">
                                 No Video Found!
                             </p>

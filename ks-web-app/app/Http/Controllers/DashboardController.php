@@ -14,10 +14,9 @@ class DashboardController extends Controller
 {
     public function index() {
         // $this->authorize('admin'); #pake gate untuk contoh
-        $projectController = new ProjectController();
-        $apiKey = env('GOOGLE_API_KEY');
+        $endPoint = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=";
 
-        $fetchApiResult = $projectController->getYoutubeAPICURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=' . $apiKey);
+        $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
         
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
 

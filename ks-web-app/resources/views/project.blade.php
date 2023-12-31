@@ -1,4 +1,22 @@
 @extends('layouts.main')
+@if (session()->has('upvoteSuccess'))
+    <div class="container">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
+                        <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
+                        {{ session('upvoteSuccess') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 
 @section('content')
     <nav class="mb-15"
@@ -114,17 +132,19 @@
                             </div>
                         </div>
                     </div>
-                    {{-- TODO: Add Upvote --}}
                     @auth
                         @if ($project->status !== 'Completed')
                             <div class="row mt-15">
                                 <div class="col">
-                                    <button class="btn btn-main col-12">Upvote</button>
+                                    <form method="post" action="/projects/{{ $project->id }}">
+                                        @method('put')
+                                        @csrf
+                                        <button type="submit" class="btn btn-main col-12">Upvote</button>
+                                    </form>
                                 </div>
                             </div>
                         @endif
                     @endauth
-
                 </div>
             </div>
         </div>

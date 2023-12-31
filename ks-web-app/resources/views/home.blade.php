@@ -102,7 +102,7 @@
 
     <section id="our-content-lp">
         <div class="row">
-            <h3 class="text-center mb-30 fs-24 fw-bold text-color-100">OUR CONTENT</h3>
+            <h3 class="text-center mb-30 fw-bold text-color-100">OUR CONTENT</h3>
             <div class="col-sm-6 col-12 col-md-4 col-lg-3 mb-3">
                 <div class="border-card text-center">
                     <i class='bx bxs-doughnut-chart fs-72 text-color-80'></i>

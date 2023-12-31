@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('type')->default('EP');
             $table->date('release');
             $table->string('cover')->nullable();
-            $table->string('publisher');
+            $table->string('publisher')->nullable();
             $table->timestamps();
         });
     }

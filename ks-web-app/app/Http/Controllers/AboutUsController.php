@@ -8,10 +8,9 @@ class AboutUsController extends Controller
 {
     public function index() {
 
-        $projectController = new ProjectController();
-        $apiKey = 'AIzaSyC9X67kK6KirTPzzxrodASGpum3eyXbQcA';
+        $endPoint = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=";
 
-        $fetchApiResult = $projectController->getYoutubeAPICURL('https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=' . $apiKey);
+        $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
 
         $subscriberCount = $fetchApiResult['items'][0]['statistics']['subscriberCount'];
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];

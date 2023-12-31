@@ -18,13 +18,14 @@
         <div class="row mb-5">
             <div class="col-12 col-lg-8 mb-lg-30">
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-all-10" src="{{ $video->url }}"
+                    <iframe class="rounded-10" src="{{ $video->url }}"
                         title="{{ $video->project_title }} YouTube video" allowfullscreen></iframe>
                 </div>
-                <div class="detail-video-description border">
+                <div class="detail-video-description">
                     <p @class([
                         'mb-10',
-                        'fs-inter-14',
+                        'fs-14',
+                        'font-inter',
                         'fw-semibold',
                         'text-color-ad' => $video->category->category_name === 'Album Distribution',
                         'text-color-ae' => $video->category->category_name === 'Album Evolution',
@@ -39,33 +40,33 @@
                         {{ $video->category->category_name }}
                     </p>
                     <h3 class="fw-semibold text-color-100 mb-10">{{ $video->project_title }}</h3>
-                    <p class="mb-10 text-color-100"><i class="las la-calendar"></i>
+                    <p class="fs-14 mb-10 text-color-100"><i class="las la-calendar"></i>
                         <span
-                            class="fs-inter-14 fw-medium">{{ \Carbon\Carbon::parse($video->date)->format('d F Y, G:i T') }}</span>
+                            class="fs-14 font-inter fw-medium">{{ \Carbon\Carbon::parse($video->date)->format('d F Y, G:i T') }}</span>
                         •
                         <span class="fw-semibold fs-14">{{ $video->type->type_name }}</span>
                     </p>
-                    <p class="fs-inter-14 fw-medium mb-10 text-color-100"><i class="las la-user-alt"></i>
+                    <p class="fs-14 font-inter fw-medium mb-10 text-color-100"><i class="las la-user-alt"></i>
                         {{ $video->requester }} |
                         {{ $video->votes }} votes</p>
-                    <p class="mb-10 fw-medium fs-inter-14 text-color-100">Request Created at
+                    <p class="mb-10 fw-medium fs-14 font-inter text-color-100">Request Created at
                         {{ \Carbon\Carbon::parse($video->created_at)->format('d F Y, G:i T') }}
                     </p>
-                    <p class="mb-10 fs-inter-14 text-color-100">{{ $video->notes }}</p>
+                    <p class="mb-10 fs-14 font-inter text-color-100">{{ $video->notes }}</p>
                     <a class="text-decoration-none" href="/gallery/artists/{{ $video->artist->codename ?? '' }}">
                         <div class="d-flex flex-row align-items-center">
                             <div>
                                 @if ($video->artist->artist_pict)
                                     <img class="rounded-circle img-square"
                                         src="{{ asset('storage/' . $video->artist->artist_pict) }}"
-                                        alt="{{ $video->artist->artist_name }} thumbnail" width="48px">
+                                        alt="{{ $video->artist->artist_name }} thumbnail" width="40px">
                                 @else
                                     <img class="rounded-circle img-square" src="{{ asset('img/unknown_artist.jpg') }}"
-                                        alt="{{ $video->artist->artist_name }} thumbnail" width="48px">
+                                        alt="{{ $video->artist->artist_name }} thumbnail" width="40px">
                                 @endif
                             </div>
                             <div>
-                                <p class="ml-10 mb-0 fw-medium fs-18 text-color-100">
+                                <p class="ml-10 mb-0 fw-medium text-color-100">
                                     {{ $video->artist->artist_name }}</p>
                             </div>
                         </div>
@@ -87,10 +88,11 @@
                                 @endif
                             </div>
                             <div class="col-12 col-xl-6 ps-xl-0">
-                                <div class="related-vid-container justify-content-center d-flex flex-column border">
+                                <div class="related-vid-container justify-content-center d-flex flex-column">
                                     <p @class([
                                         'mb5',
-                                        'fs-inter-12',
+                                        'fs-12',
+                                        'font-inter',
                                         'fw-semibold',
                                         'text-color-ad' =>
                                             $related->category->category_name === 'Album Distribution',
@@ -106,8 +108,8 @@
                                     ])>
                                         {{ $related->category->category_name }}
                                     </p>
-                                    <h5 class="fw-semibold text-color-100 mb5">{{ $related->project_title }}</h5>
-                                    <p class="m-0 text-color-80 p-0 fs-inter-12 fw-medium">
+                                    <h5 class="fw-semibold text-color-100 mb5 text-truncate" title="{{ $related->project_title }}">{{ $related->project_title }}</h5>
+                                    <p class="m-0 text-color-80 p-0 fs-12 font-inter fw-medium">
                                         {{ \Carbon\Carbon::parse($related->date)->diffForHumans() }} •
                                         {{ $related->type->type_name }}
                                     </p>
@@ -117,7 +119,7 @@
                     </a>
                 @empty
                     <div class="text-color-100 text-center">
-                        <i class="las la-photo-video fs-48"></i>
+                        <i class="las la-photo-video fs-1"></i>
                         <p class="mt-1 fs-14 fw-medium mb-0">
                             No Video Found!
                         </p>

@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 col-md-6 align-self-center">
                 <h4 class="fw-semibold text-color-100 text-center text-md-start">What Is Kpop Soulmate?</h4>
-                <p class="fs-14 fw-medium text-color-100 mb-0">Kpop Soulmate is a YouTube channel dedicated to K-pop videos;
+                <p class="fs-14 fw-medium text-color-100 mb-0 lh-base">Kpop Soulmate is a YouTube channel dedicated to K-pop videos;
                     the
                     channel's
                     beginnings consist of the
@@ -65,7 +65,7 @@
             <div class="col">
                 <h2 class="fw-bold text-color-100 text-center mb-15">FAQ</h2>
                 <div class="accordion accordion-flush" id="accordionFlushFAQ">
-                    <div class="accordion-item rounded-all-5">
+                    <div class="accordion-item rounded-10">
                         <h2 class="accordion-header">
                             <button class="accordion-button collapsed fw-medium" type="button" data-bs-toggle="collapse"
                                 data-bs-target="#flush-first-faq" aria-expanded="false" aria-controls="flush-first-faq">
@@ -119,7 +119,7 @@
             <div class="col-12 col-lg-6">
                 <h3 class="fw-semibold text-color-100">First Video</h3>
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-all-10" src="https://www.youtube.com/embed/Vm5dJvx4V90"
+                    <iframe class="rounded-10" src="https://www.youtube.com/embed/Vm5dJvx4V90"
                         title="Hello Venus (헬로비너스) - &#39;Runway (아니길)&#39; (Line Distribution)"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen>
@@ -130,7 +130,7 @@
             <div class="col-12 col-lg-6">
                 <h3 class="fw-semibold text-color-100">Latest Video</h3>
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-all-10" src="https://www.youtube.com/embed/EZXp-Gj8iP8"
+                    <iframe class="rounded-10" src="https://www.youtube.com/embed/EZXp-Gj8iP8"
                         title="Dreamcatcher - July 7th (약속해 우리) (Line Distribution)"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>

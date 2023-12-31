@@ -10,31 +10,7 @@ class ProjectTypeController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreProjectTypeRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(ProjectType $projectType)
+    public function index(ProjectType $projectType)
     {
         $projectTypeQuery = $projectType;
 
@@ -72,8 +48,30 @@ class ProjectTypeController extends Controller
             "title" => $projectType->type_name,
             "projectType" => $projectType,
             "projectTypes" => $projectTypeQuery,
-            // 'orderProjectType' => ProjectType::with('projects')->where('')->get()->sortBy('project_title'),
         ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StoreProjectTypeRequest $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(ProjectType $projectType)
+    {
     }
 
     /**

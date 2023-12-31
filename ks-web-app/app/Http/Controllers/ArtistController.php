@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Models\Project;
 use App\Http\Requests\StoreArtistRequest;
 use App\Http\Requests\UpdateArtistRequest;
 
@@ -16,9 +17,8 @@ class ArtistController extends Controller
         return view('artists', [
             'title' => 'All Artists',
             'artists' => Artist::with('projects')->whereHas('projects',  function($query)  {
-                $query->where([['status', 'Completed'], ['is_exclusive', 'No']]);//query on team model
-            })->get()->sortBy('artist_name'),
-            // 'artists' => Artist::all()->load('projects')->sortBy('artist_name'),
+                $query->where([['status', 'Completed'], ['is_exclusive', 'No']]);
+            })->orderBy('artist_name')->get(),
         ]);
     }
 
@@ -43,11 +43,15 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
+        $artistQuery = $artist->projects->load('category', 'artist', 'type')
+                            ->where('status', 'Completed')->where('is_exclusive', 'No')
+                            ->sortBy('project_title');
+
         return view('artist', [
             'title' => $artist->artist_name . " Gallery",
             'artist' => $artist,
-            'artists' => $artist->projects->load('category', 'artist', 'type')->where('status', 'Completed')->where('is_exclusive', 'No')
-            // 'artists' => $artist->projects->load('category', 'artist', 'type')
+            'artists' => $artistQuery
+            // 'artists' => Project::with('artist')->where('artist_id', $artist->id)->where('status', 'Completed')->where('is_exclusive', 'no')->orderByDesc('date')->paginate(5)
         ]);
     }
 

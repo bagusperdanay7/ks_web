@@ -30,7 +30,7 @@
                     <div>
                         <a class="btn btn-primary-color" href="/dashboard/project-types/create">
                             <i class="las la-plus fs-18 m-right-5"></i>
-                            Add Project Types
+                            Add Types
                         </a>
                     </div>
                 </div>

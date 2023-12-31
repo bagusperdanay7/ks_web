@@ -21,11 +21,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // ! Activate this commented code if Database empyty
+        // ! Activate this commented code if Database empty
         // User::factory(3)->create();
 
         // Membuat Category
-        // ! Activate this commented code if Database empyty
+        // ! Activate this commented code if Database empty
         // Category::create([
         //     'category_name' => 'Line Distribution',
         //     'slug' => 'line-distribution',
@@ -110,10 +110,8 @@ class DatabaseSeeder extends Seeder
 
         // ! Activate this commented code if Database empyty
         // Song::create([
-        //     'album_id' => 1,
         //     'title' => 'Bungee',
         //     'genre' => 'Dance Pop',
-        //     'category' => 'Title Track',
         //     'author' => '서지음, 미미(오마이걸)',
         //     'composer' => 'Hyuk Shin @ 153/Joombas, 정윤 @ 153/Joombas, Ashley
         //     Alisha(153/Joombas), JJ Evans(153/Joombas), MooF(153/Joombas)',
@@ -135,10 +133,10 @@ class DatabaseSeeder extends Seeder
         //     'votes' => 3,
         // ]);
 
-        // Artist::factory(10)->create();
-        // Album::factory(10)->create();
-        // Song::factory(10)->create();
-        // Project::factory(10)->create();
-        // AIModel::factory(10)->create();
+        Artist::factory(10)->create();
+        Album::factory(10)->create();
+        Song::factory(10)->create();
+        Project::factory(10)->create();
+        AIModel::factory(10)->create();
     }
 }

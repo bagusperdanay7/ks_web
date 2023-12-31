@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col">
                 <h2 class="text-color-100 fw-bold mb-10">AI Model</h2>
-                <p class="fs-inter-24 fs-inter-md-18 text-color-100 mb-0">This AI model is provided for creators who want to
+                <p class="font-inter fs-4 fs-md-18 text-color-100 mb-0">This AI model is provided for creators who want to
                     create AI
                     covers using their favorite artists.</p>
             </div>
@@ -23,7 +23,7 @@
                                 <div class="d-flex align-items-xl-center align-items-start">
                                     <div class="mr-10">
                                         <img src="{{ asset('storage/' . $model->cover_model) }}"
-                                            alt="{{ $model->model_name }} cover" class="rounded-all-5 img-square">
+                                            alt="{{ $model->model_name }} cover" class="rounded-10 img-square">
                                     </div>
                                     <div class="mb-0">
                                         <h5 class="text-color-100">{{ $model->model_name }}</h5>
@@ -37,16 +37,16 @@
                             <div class="col-12 col-lg-2 col-xxl-1 text-end">
                                 <button class="btn p-0 me-3 text-color-100 btn-copy" data-url="{{ $model->url }}"
                                     data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy to clipboard">
-                                    <i class="las la-clipboard fs-24"></i>
+                                    <i class="las la-clipboard fs-4"></i>
                                 </button>
-                                <a href="{{ $model->url }}" class="btn p-0 text-decoration-none text-color-100">
-                                    <i class="las la-download fs-24"></i>
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Model" href="{{ $model->url }}" class="btn p-0 text-decoration-none text-color-100">
+                                    <i class="las la-download fs-4"></i>
                                 </a>
                             </div>
                         </div>
                     @empty
                         <div class="text-color-100 text-center">
-                            <i class="las la-user-slash fs-48"></i>
+                            <i class="las la-user-slash fs-1"></i>
                             <p class="mb-0 mt-1 fw-medium fs-14">No AI Models Found!</p>
                         </div>
                     @endforelse

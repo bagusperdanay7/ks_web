@@ -1,4 +1,3 @@
-{{-- TODO: if User masuk nama channel youtube diganti dengan namanya --}}
 @extends('layouts.main')
 
 @section('content')
@@ -37,7 +36,7 @@
                                     Title</label>
                                 <input type="text" class="form-control @error('project_title') is-invalid @enderror"
                                     id="project_title" name="project_title" aria-describedby="project_title_Help"
-                                    placeholder="OH MY GIRL - Celebrate" value="{{ old('project_title') }}" required>
+                                    placeholder="Ex: OH MY GIRL - Celebrate" value="{{ old('project_title') }}" required>
                                 @error('project_title')
                                     <div id="project_title_Help" class="invalid-feedback">
                                         {{ $message }}

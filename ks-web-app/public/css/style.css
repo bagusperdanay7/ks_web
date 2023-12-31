@@ -456,13 +456,14 @@ table td.text-color-cd,
     background-color: var(--primary);
     font-weight: 600;
     border-radius: 10px;
+    padding: 8px 10px;
 }
 
 .btn-main:hover,
 .btn-main:active,
 .btn-main:first-child:active {
-    color: var(--white);
-    background-color: var(--primary);
+    color: var(--white) !important;
+    background-color: var(--primary) !important;
 }
 
 .btn-outline-main {
@@ -472,14 +473,17 @@ table td.text-color-cd,
     border: solid 1px var(--primary);
 }
 
-.btn-outline-main:hover {
-    background-color: var(--primary);
-    color: white;
+.btn-outline-main:hover,
+.btn-outline-main:active,
+.btn-outline-main:first-child:active {
+    background-color: transparent !important;
+    color: var(--primary) !important;
 }
 
 .btn-upload-picture,
 .btn-upload-picture:hover,
-.btn-upload-picture:active {
+.btn-upload-picture:active,
+.btn-upload-picture:first-child:active {
     font-size: 14px;
     color: var(--white);
     background-color: var(--primary-90);
@@ -489,30 +493,14 @@ table td.text-color-cd,
 
 .btn-remove-picture,
 .btn-remove-picture:hover,
-.btn-remove-picture:active {
+.btn-remove-picture:active,
+.btn-remove-picture:first-child:active {
     font-size: 14px;
     border: 1px solid var(--text-color-80);
-    color: var(--text-color-90);
+    color: var(--text-color-80);
     background-color: transparent;
     font-weight: 500;
     padding: 8px 10px;
-}
-
-.btn-default {
-    background-color: var(--primary-10);
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 12px;
-    border-radius: 10px;
-    width: 100px;
-}
-
-.btn-default:hover,
-.btn-default:active:focus {
-    background-color: var(--primary-10);
-    color: var(--primary);
-    font-weight: 600;
-    cursor: default;
 }
 
 .btn-light-border {
@@ -538,9 +526,12 @@ table td.text-color-cd,
     background-color: var(--bs-danger);
     border-radius: 10px;
 }
-.btn-alert-color:hover {
-    background-color: var(--bs-danger);
-    color: var(--white);
+.btn-alert-color:hover,
+.btn-alert:active:focus,
+.btn-alert:active,
+.btn-alert:first-child:active {
+    background-color: var(--bs-danger) !important;
+    color: var(--white) !important;
 }
 
 .btn-404 {
@@ -565,6 +556,24 @@ table td.text-color-cd,
 .btn-404:first-child:active {
     background-color: var(--primary-90);
     color: var(--white);
+}
+
+.btn-default {
+    background-color: var(--primary-10);
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 12px;
+    border-radius: 10px;
+    width: 100px;
+}
+
+.btn-default:hover,
+.btn-default:active:focus,
+.btn-default:active,
+.btn-default:first-child:active {
+    background-color: var(--primary-10);
+    color: var(--primary);
+    cursor: default;
 }
 
 .btn-complete {
@@ -692,13 +701,20 @@ select option:hover {
 input.form-control,
 select.form-select,
 textarea.form-control {
+    background-color: var(--background-color-secondary);
     font-size: 14px;
     font-weight: 400;
     color: var(--text-color);
     caret-color: var(--primary);
     padding: 12px 10px;
     border-radius: 10px;
-    border: 1px solid var(--text-color-90);
+    border: 1px solid var(--text-color);
+}
+
+input.form-control:focus,
+select.form-select:focus,
+textarea.form-control:focus {
+    color: var(--text-color);
 }
 
 select:hover,
@@ -707,12 +723,16 @@ select:focus {
 }
 
 select.filter-select {
-    font-size: 14px;
-    color: var(--text-color);
-    border-radius: 10px;
-    padding: 8px 30px 8px 10px;
     background-color: var(--background-color-secondary);
+    color: var(--text-color);
+    padding: 8px 30px 8px 10px;
+    font-size: 14px;
     border: 1px solid var(--text-color-50);
+    border-radius: 10px;
+}
+
+input.filter-search {
+    padding: 8px 10px;
 }
 
 .form-control:focus,
@@ -756,6 +776,16 @@ select.filter-select {
 
 .accordion-button:not(.collapsed) {
     background-color: var(--primary-10);
+}
+
+.nav-pills .nav-link {
+    border-radius: 10px;
+}
+
+.btn-close:focus {
+    outline: 0;
+    box-shadow: none;
+    opacity: var(--bs-btn-close-focus-opacity);
 }
 
 /* End of Boostrap Modified Style */
@@ -989,8 +1019,7 @@ main {
 .req-list-section,
 .ai-models-container,
 .verification-container,
-.profile-container,
-.request-container {
+.profile-container {
     background-color: var(--background-color-secondary);
     padding: 25px;
     border-radius: 10px;
@@ -1237,6 +1266,7 @@ table td.title-with-progress {
 
 .card-icon i {
     font-size: 80px;
+    color: var(--text-color);
 }
 
 .req-list-section h2 {
@@ -1394,24 +1424,6 @@ table td.title-with-progress {
     color: var(--secondary);
 }
 
-.filter-selected {
-    color: var(--primary);
-}
-
-.dis-none {
-    max-height: 0;
-    visibility: hidden;
-    opacity: 0;
-    transition: all 2s, max-height 2s;
-}
-
-.dis-visible {
-    max-height: auto;
-    visibility: visible;
-    opacity: 1;
-    transition: all 2s, max-height 2s;
-}
-
 /* Artist Page */
 .artist-about {
     font-family: var(--secondary-font);
@@ -1439,6 +1451,13 @@ table td.title-with-progress {
     padding: 10px;
     border-radius: 0 0 10px 10px;
     height: 100%;
+}
+
+.related-vid-container h5.text-truncate {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
 }
 
 /* Penutup Gallery */
@@ -1512,13 +1531,14 @@ section#sign-up {
 
 span.input-group-text {
     color: var(--text-color);
-    border: 1px solid var(--text-color-90);
+    background-color: var(--background-color-secondary);
+    border: 1px solid var(--text-color);
 }
 
 span.input-group-text i {
     cursor: pointer;
 }
-/* Penutup Login & SIgn Up Page */
+/* Penutup Login & Sign Up Page */
 
 /* Profile Page  */
 
@@ -1526,7 +1546,29 @@ span.input-group-text i {
     max-width: 150px;
 }
 
+.profile-container button {
+    width: auto;
+}
+
 /* End of Profile Page  */
+
+/* My Requests Page */
+#tab-requests .nav-link {
+    color: var(--primary);
+}
+
+#tab-requests .nav-link.active {
+    color: white;
+    background-color: var(--primary);
+}
+/* End of My Requests Page */
+
+@media only screen and (max-width: 369.9px) {
+    /* Requests */
+    .text-responsive {
+        font-size: 10px !important;
+    }
+}
 
 /* Extra small devices (phones, 576px and down) */
 @media only screen and (max-width: 575.9px) {
@@ -1548,6 +1590,10 @@ span.input-group-text i {
 
     .fs-sm-18 {
         font-size: 18px;
+    }
+
+    .fs-sm-16 {
+        font-size: 16px;
     }
 
     .fs-sm-24 {
@@ -1590,12 +1636,7 @@ span.input-group-text i {
     .mobile-nav {
         display: inherit;
     }
-
-    /* Requests List */
-    .text-responsive {
-        font-size: 2.9vw;
-    }
-
+    
     /* Footer */
     .py-footer {
         padding-top: 50px;
@@ -1618,11 +1659,23 @@ span.input-group-text i {
         padding: 15px;
     }
 
+    /* Gallery */
+    .detail-video-description h3 {
+        font-size: 18px;
+    }
+    /* End of Gallery */
+
     /* AI-Model Page */
     .list-ai-model img {
         width: 50px;
         min-width: 50px;
     }
+
+    /* Requests Page */
+    #tab-requests button.nav-link {
+        padding: 4px 0;
+    }
+    /* End of Requests Page */
 }
 
 /* Responsive untuk Mobile dan Tablet */
@@ -1638,9 +1691,8 @@ span.input-group-text i {
         margin-bottom: 15px;
     }
 
-    .fs-inter-md-18 {
-        font-family: var(--secondary-font);
-        font-size: 18px;
+    .fs-md-18 {
+        font-size: 18px !important;
     }
 
     /* Projects Page */
@@ -1660,6 +1712,16 @@ span.input-group-text i {
 
     .thumbnail {
         border-radius: 10px 10px 0 0;
+    }
+
+    /* Requests */
+    .text-responsive {
+        font-size: 12px;
+    }
+
+    /* Profile Page */
+    .profile-container button {
+        width: 100%;
     }
 }
 
