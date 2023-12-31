@@ -35,15 +35,14 @@
             </div>
             <div class="col-12 col-sm-6 col-md-4 col-lg-3">
                 <h4 class="mb-3 fw-bold text-color-100">Get In Touch</h4>
-                <a href="mailto:bgkfuntastic@gmail.com" class="text-decoration-none text-color-80">
+                <a href="mailto:bgkfuntastic@gmail.com" class="text-decoration-none text-color-80" aria-label="Link to contact us via email">
                     <i class='bx bxl-gmail bx-sm mr-15'></i>
                 </a>
-                <a href="" class="text-decoration-none text-color-80"><i
+                <a href="" class="text-decoration-none text-color-80" aria-label="Link to discord server"><i
                         class='bx bxl-discord-alt bx-sm mr-15'></i>
                 </a>
-                <a href="" class="text-decoration-none text-color-80"><i class='bx bxl-spotify bx-sm'></i>
+                <a href="" class="text-decoration-none text-color-80" aria-label="Link to Kpop Soulmate Spotify List"><i class='bx bxl-spotify bx-sm'></i>
                 </a>
-
             </div>
         </div>
     </div>

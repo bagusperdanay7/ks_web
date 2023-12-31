@@ -27,11 +27,19 @@ class AccountController extends Controller
      */
     public function requests()
     {
-        $myRequestsQuery = Project::where('requester', Auth::user()->name)->get()->sortBy('date');
+        $myRequestsQuery = Project::orderBy('project_title')->where('requester', Auth::user()->name)->get();
+        $myCompletedRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Completed']])->get();
+        $myOnProcessRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'On Process']])->get();
+        $myPendingRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Pending']])->get();
+        $myRejectedRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Rejected']])->get();
 
         return view('account.requests', [
             'title' => 'My Requests',
-            'myrequests' => $myRequestsQuery
+            'myrequests' => $myRequestsQuery,
+            'myCompletedRequests' => $myCompletedRequestQuery,
+            'myOnProcessRequests' => $myOnProcessRequestQuery,
+            'myPendingRequests' => $myPendingRequestQuery,
+            'myRejectedRequests' => $myRejectedRequestQuery
         ]);
     }
 
@@ -52,7 +60,7 @@ class AccountController extends Controller
 
         $user::where('id', $userId)->update($validateData);
 
-        return redirect('/account/profile')->with('success', "The Account Information has been updated!");
+        return redirect('/account/profile')->with('updateSuccess', "The Account Information has been updated!");
     }
 
     public function updateProfilePicture(Request $request)

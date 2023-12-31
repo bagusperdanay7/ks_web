@@ -28,7 +28,7 @@
             @empty
                 <div class="col">
                     <div class="text-color-100 text-center">
-                        <i class="las la-user-slash fs-48"></i>
+                        <i class="las la-user-slash fs-1"></i>
                         <p class="mb-0 mt-1 fw-medium fs-14">No Artist Found!</p>
                     </div>
                 </div>

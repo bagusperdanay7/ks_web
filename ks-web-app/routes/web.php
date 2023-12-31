@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RequestListController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -39,21 +40,21 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 |
 */
 
-// TODO: Tambahkan Album Songs
-
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
 
-Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'show']);
+Route::put('/projects/{project:id}', [ProjectController::class, 'upvote'])->middleware('auth')->name('upvote-project');
 
-Route::get('/request-list', [ProjectController::class, 'request_list'])->name('request-list');
+Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'index']);
 
-Route::get('/form-request', [ProjectController::class, 'create'])->middleware(['auth', 'verified'])->name('request-form');
+Route::get('/request-list', [RequestListController::class, 'index'])->name('request-list');
 
-Route::post('/form-request', [ProjectController::class, 'store'])->name('request-form-post');
+Route::get('/request-list/form', [RequestListController::class, 'create'])->middleware(['auth', 'verified'])->name('request-form');
+
+Route::post('/request-list/form', [RequestListController::class, 'store'])->name('request-form-post');
 
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
 
@@ -70,6 +71,10 @@ Route::get('/gallery/videos/', function () {
 });
 
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
+
+// TODO: Tambahkan Album Songs
+
+// TODO: Lanjutin disini
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
@@ -103,13 +108,13 @@ Route::post('/reset-password', [ResetPasswordController::class, 'update'])->midd
 
 Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
 
-Route::get('/account/requests', [AccountController::class, 'requests'])->middleware('auth')->name('my-request');
-
 Route::put('/account/profile', [AccountController::class, 'update'])->name('account.update');
 
 Route::put('/account/picture', [AccountController::class, 'updateProfilePicture'])->name('account.profile.update');
 
 Route::delete('/account/picture', [AccountController::class, 'removeProfilePicture'])->name('account.profile.remove');
+
+Route::get('/account/requests', [AccountController::class, 'requests'])->middleware('auth')->name('my-request');
 
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 

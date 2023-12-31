@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
+    <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
         aria-label="breadcrumb" class="mb-15">
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
@@ -16,11 +16,11 @@
         <div class="row mb-6">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-xl-0 mb-15">
                 @if ($artist->artist_pict === null)
-                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-all-10 shadow img-fluid"
+                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-10 shadow img-fluid"
                         alt="{{ $artist->artist_pict }} picture">
                 @else
-                    <img src="{{ asset('storage/' . $artist->artist_pict) }}"
-                        class="img-square rounded-all-10 shadow img-fluid" alt="{{ $artist->artist_pict }} picture">
+                    <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="img-square rounded-10 shadow img-fluid"
+                        alt="{{ $artist->artist_pict }} picture">
                 @endif
 
             </div>
@@ -95,7 +95,8 @@
                                 <a href="gallery?category={{ $video->category->slug }}">
                                     <p @class([
                                         'mb5',
-                                        'fs-inter-14',
+                                        'fs-14',
+                                        'font-inter',
                                         'fw-semibold',
                                         'text-color-ad' => $video->category->category_name === 'Album Distribution',
                                         'text-color-ae' => $video->category->category_name === 'Album Evolution',
@@ -119,13 +120,13 @@
                                     </a>
                                 </p>
                             </div>
-                            </last>
+                        </a>
                     </div>
                 </div>
             @empty
                 <div class="col-12">
                     <div class="text-color-100 text-center">
-                        <i class="las la-photo-video fs-48"></i>
+                        <i class="las la-photo-video fs-1"></i>
                         <p class="mt-1 fs-14 fw-medium mb-0">
                             No Video Found!
                         </p>

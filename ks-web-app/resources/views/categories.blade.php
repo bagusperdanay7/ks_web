@@ -49,7 +49,7 @@
             @empty
                 <div class="col">
                     <div class="text-color-100 text-center">
-                        <i class="las la-icons fs-48"></i>
+                        <i class="las la-icons fs-1"></i>
                         <p class="fw-medium mt-1 fs-14 mb-0 ">No Category Found!</p>
                     </div>
                 </div>

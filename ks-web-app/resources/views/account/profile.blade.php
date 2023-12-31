@@ -1,5 +1,5 @@
-le@extends('layouts.main')
-@if (session()->has('success'))
+@extends('layouts.main')
+@if (session()->has('updateSuccess'))
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
@@ -10,7 +10,7 @@ le@extends('layouts.main')
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
-                        {{ session('success') }}
+                        {{ session('updateSuccess') }}
                     </div>
                 </div>
             </div>
@@ -175,16 +175,16 @@ le@extends('layouts.main')
                         </div>
                     </div>
                     <div class="d-flex">
-                        <div class="me-3">
-                            <button type="button" class="btn btn-upload-picture" data-bs-toggle="modal"
+                        <div class="me-3 col-6">
+                            <button type="button" class="btn btn-upload-picture rounded-10 w-100" data-bs-toggle="modal"
                                 data-bs-target="#uploadModal">
                                 {{ auth()->user()->profile_picture == null ? 'Upload Picture' : 'Change Picture' }}
                             </button>
                         </div>
 
-                        <div>
+                        <div class="col-6">
                             @if (auth()->user()->profile_picture)
-                                <button type="button" class="btn btn-remove-picture" data-bs-toggle="modal"
+                                <button type="button" class="btn btn-remove-picture rounded-10 w-100" data-bs-toggle="modal"
                                     data-bs-target="#confirmRemoveProfileModal">Remove Profile</button>
                             @endif
                         </div>
@@ -259,7 +259,7 @@ le@extends('layouts.main')
             <form action="{{ route('account.profile.update') }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
-                <div class="modal-content">
+                <div class="modal-content bg-second">
                     <div class="modal-header">
                         <h3 class="modal-title text-color-100 fw-semibold" id="uploadModalLabel">Upload Profile</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -287,8 +287,8 @@ le@extends('layouts.main')
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-main fw-medium">Upload</button>
+                        <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-main fw-medium fs-14">Upload</button>
                     </div>
                 </div>
             </form>
@@ -298,19 +298,19 @@ le@extends('layouts.main')
     <div class="modal fade" id="confirmRemoveProfileModal" tabindex="-1"
         aria-labelledby="confirmDRemoveProfileModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content bg-second">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center">
-                        <i class="las la-trash-alt fs-24 text-color-ad rounded-circle p-2 bg-alert-10 mb-15"></i>
-                        <h5 class="fw-semibold m-bottom-5">Remove Profile Picture</h5>
-                        <p class="fs-14">Are you sure you want to remove the profile picture?</p>
+                        <i class="las la-trash-alt fs-4 text-color-ad rounded-circle p-2 bg-alert-10 mb-15"></i>
+                        <h5 class="fw-semibold text-color-100 m-bottom-5">Remove Profile Picture</h5>
+                        <p class="fs-14 text-color-80">Are you sure you want to remove the profile picture?</p>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
                     <form action="{{ route('account.profile.remove') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
