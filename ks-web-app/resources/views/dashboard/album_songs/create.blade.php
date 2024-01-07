@@ -41,6 +41,30 @@
                                 @endforeach
                             </select>
                         </div>
+                        <div class="m-bottom-15">
+                            <label for="category"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Category</label>
+                            <select class="form-select @error('category') is-invalid @enderror" aria-label="Select Category" id="category" name="category">
+                                @if (old('category') === 'Track')
+                                    <option value="">Select Category</option>
+                                    <option value="{{ old('category') }}" selected>{{ old('category') }}</option>
+                                    <option value="Title Track">Title Track</option>
+                                @elseif (old('category') === 'Title Track')
+                                    <option value="">Select Category</option>
+                                    <option value="Track">Track</option>
+                                    <option value="{{ old('category') }}" selected>{{ old('category') }}</option>
+                                @else
+                                    <option value="">Select Category</option>
+                                    <option value="Track">Track</option>
+                                    <option value="Title Track">Title Track</option>
+                                @endif
+                            </select>
+                            @error('category')
+                                <div id="categoryFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/album-songs" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>

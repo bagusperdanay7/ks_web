@@ -37,7 +37,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-3 border">
+                <div class="bg-white p-25 rounded-10 border">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Title</p>
@@ -50,19 +50,15 @@
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->category }}</p>
-                        </div>
-                        <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Author</p>
                             <p class="m-0 text-color-100 fs-14">{{ $song->author }}</p>
                         </div>
-                    </div>
-                    <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Composer</p>
                             <p class="m-0 text-color-100 fs-14">{{ $song->composer }}</p>
                         </div>
+                    </div>
+                    <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Arranger</p>
                             <p class="m-0 text-color-100 fs-14">{{ $song->arranger }}</p>

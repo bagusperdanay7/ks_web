@@ -9,7 +9,7 @@
                         @csrf
                         <div class="m-bottom-15">
                             <label for="artist" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
-                            <select class="form-select" aria-label="Select Artist" id="artist" name="artist_id">
+                            <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
                                 @foreach ($artists as $artist)
                                     <option value="{{ $artist->id }}"
                                         {{ old('artist_id') == $artist->id ? ' selected' : ' ' }}>
@@ -17,11 +17,16 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('artist_id')
+                                <div id="artistFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="category"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Category</label>
-                            <select class="form-select" aria-label="Select Category" id="category" name="category_id">
+                            <select class="form-select @error('category_id') is-invalid @enderror" aria-label="Select Category" id="category" name="category_id">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
                                         {{ old('category_id') == $category->id ? ' selected' : ' ' }}>
@@ -29,10 +34,15 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('category_id')
+                                <div id="categoryFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
-                            <select class="form-select" aria-label="Select Type" id="type" name="type_id">
+                            <select class="form-select @error('type_id') is-invalid @enderror" aria-label="Select Type" id="type" name="type_id">
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}"
                                         {{ old('type_id') == $type->id ? ' selected' : ' ' }}>
@@ -40,6 +50,11 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('type_id')
+                                <div id="typeFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="project_title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Project
@@ -77,7 +92,7 @@
                         <div class="m-bottom-15">
                             <label for="status"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select" aria-label="Select status" id="status" name="status">
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select status" id="status" name="status">
                                 @if (old('status') === 'Completed')
                                     <option value="{{ old('status') }}" selected>{{ old('status') }}</option>
                                     <option value="On Process">On Process</option>
@@ -105,6 +120,11 @@
                                     <option value="Rejected">Rejected</option>
                                 @endif
                             </select>
+                            @error('status')
+                                <div id="statusFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
@@ -162,7 +182,7 @@
                         <div class="m-bottom-15">
                             <label for="is_exclusive"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Exclusive Status</label>
-                            <select class="form-select" aria-label="Select Exclusive Status" id="is_exclusive"
+                            <select class="form-select @error('is_exclusive') is-invalid @enderror" aria-label="Select Exclusive Status" id="is_exclusive"
                                 name="is_exclusive">
                                 @if (old('is_exclusive') === 'No')
                                     <option value="{{ old('is_exclusive') }}" selected>{{ old('is_exclusive') }}</option>
@@ -175,18 +195,33 @@
                                     <option value="Yes">Yes</option>
                                 @endif
                             </select>
+                            @error('is_exclusive')
+                                <div id="exclusiveFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created
+                            <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('created_at') is-invalid @enderror">Created
                                 At</label>
                             <input type="datetime-local" class="form-control" name="created_at" id="created_at"
                                 value="{{ old('created_at') }}">
+                            @error('created_at')
+                                <div id="createdAtFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="notes"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Notes</label>
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('notes') is-invalid @enderror">Notes</label>
                             <textarea class="form-control" id="notes" rows="3" name="notes"
                                 placeholder="Ex: Please, make nayeon as thumbnail, in More & More video">{{ old('notes') }}</textarea>
+                            @error('notes')
+                                <div id="notesFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/projects" class="btn btn-light-border m-right-15">Cancel</a>

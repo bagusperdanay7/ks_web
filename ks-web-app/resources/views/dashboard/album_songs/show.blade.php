@@ -42,7 +42,7 @@
 
                     <div class="row m-bottom-25">
                         <div class="col-12 col-md order-md-1 order-2">
-                            <div class="bg-white p-25 rounded-3 border">
+                            <div class="bg-white p-25 rounded-10 border">
                                 <div class="row m-bottom-15">
                                     <div class="col">
                                         <p class="m-bottom-10 text-color-100 fw-medium fs-14">Id</p>
@@ -71,6 +71,12 @@
                                     <div class="col">
                                         <p class="m-bottom-10 text-color-100 fw-medium fs-14">Song Id</p>
                                         <p class="m-0 text-color-100 fs-14">{{ $albumSong->song_id }}</p>
+                                    </div>
+                                </div>
+                                <div class="row m-bottom-15">
+                                    <div class="col">
+                                        <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
+                                        <p class="m-0 text-color-100 fs-14">{{ $albumSong->category }}</p>
                                     </div>
                                 </div>
                             </div>

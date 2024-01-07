@@ -207,10 +207,6 @@ body.body-dark {
 }
 
 /* Padding */
-.p-5 {
-  padding: 5px;
-}
-
 .p-10 {
   padding: 10px;
 }
@@ -260,44 +256,8 @@ body.body-dark {
   font-size: 10px;
 }
 
-.fs-inter-48 {
+.font-inter {
   font-family: "Inter", sans-serif;
-  font-size: 48px;
-}
-
-.fs-inter-36 {
-  font-family: "Inter", sans-serif;
-  font-size: 36px;
-}
-
-.fs-inter-24 {
-  font-family: "Inter", sans-serif;
-  font-size: 24px;
-}
-
-.fs-inter-18 {
-  font-family: "Inter", sans-serif;
-  font-size: 18px;
-}
-
-.fs-inter-16 {
-  font-family: "Inter", sans-serif;
-  font-size: 16px;
-}
-
-.fs-inter-14 {
-  font-family: "Inter", sans-serif;
-  font-size: 14px;
-}
-
-.fs-inter-12 {
-  font-family: "Inter", sans-serif;
-  font-size: 12px;
-}
-
-.fs-inter-10 {
-  font-family: "Inter", sans-serif;
-  font-size: 10px;
 }
 
 /* Text Color */
@@ -310,7 +270,7 @@ body.body-dark {
 }
 
 .text-color-tertiary {
-  color: #b93160 !important;
+  color: #e60452 !important;
 }
 
 .text-color-100 {
@@ -322,7 +282,7 @@ body.body-dark {
 }
 
 .text-color-ad {
-  color: #DC3545 !important;
+  color: #dc3545 !important;
 }
 
 .text-color-ae {
@@ -338,7 +298,7 @@ body.body-dark {
 }
 
 .text-color-hs {
-  color: #198754 !important;
+  color: #d1e7dd !important;
 }
 
 .text-color-ld {
@@ -346,7 +306,7 @@ body.body-dark {
 }
 
 .text-color-le {
-  color: #b93160 !important;
+  color: #e60452 !important;
 }
 
 .text-color-rb {
@@ -395,31 +355,27 @@ body.body-dark {
 }
 
 .bg-success-10 {
-  background-color: #D1E7DD;
+  background-color: #a3cfbb;
 }
 
 .bg-alert-10 {
-  background-color: #F8D7DA;
+  background-color: #f8d7da;
 }
 
 /* Border Radius */
-.rounded-all-5 {
-  border-radius: 5px;
-}
-
-.rounded-all-10 {
+.rounded-10 {
   border-radius: 10px;
 }
 
-.rounded-all-15 {
+.rounded-15 {
   border-radius: 15px;
 }
 
-.rounded-all-25 {
+.rounded-25 {
   border-radius: 25px;
 }
 
-.rounded-all-30 {
+.rounded-30 {
   border-radius: 30px;
 }
 
@@ -427,62 +383,85 @@ body.body-dark {
   border-radius: 0 0 10px 10px;
 }
 
+.rounded-bottom-8 {
+  border-radius: 0 0 8px 8px;
+}
+
 .rounded-top-10 {
   border-radius: 10px 10px 0 0;
 }
 
+.rounded-top-8 {
+  border-radius: 8px 8px 0 0;
+}
+
 /* Button*/
 .btn-default,
-.btn-default:hover {
+.btn-default:hover,
+.btn-default:active,
+.btn-default:active:focus,
+.btn-default:first-child:active {
   background-color: #efe9fe;
   color: #6528f7;
   font-weight: 600;
   font-size: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100px;
   cursor: default;
 }
 
 .btn-completed,
-.btn-completed:hover {
+.btn-completed:hover,
+.btn-completed:active,
+.btn-completed:active:focus,
+.btn-completed:first-child:active {
   background-color: var(--bs-success-bg-subtle);
   color: var(--bs-success);
   font-weight: 600;
   font-size: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100px;
   cursor: default;
 }
 
 .btn-onprocess,
-.btn-onprocess:hover {
+.btn-onprocess:hover,
+.btn-onprocess:active,
+.btn-onprocess:active:focus,
+.btn-onprocess:first-child:active {
   background-color: #e6f4fe;
   color: #0c96f8;
   font-weight: 600;
   font-size: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100px;
   cursor: default;
 }
 
 .btn-pending,
-.btn-pending:hover {
-  background-color: #FFF3CD;
-  color: #FFC107;
+.btn-pending:hover,
+.btn-pending:active,
+.btn-pending:active:focus,
+.btn-pending:first-child:active {
+  background-color: #fff3cd;
+  color: #ffc107;
   font-weight: 600;
   font-size: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100px;
   cursor: default;
 }
 
 .btn-rejected,
-.btn-rejected:hover {
-  background-color: #F8D7DA;
-  color: #DC3545;
+.btn-rejected:hover,
+.btn-rejected:active,
+.btn-rejected:active:focus,
+.btn-rejected:first-child:active {
+  background-color: #f8d7da;
+  color: #dc3545;
   font-weight: 600;
   font-size: 12px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: 100px;
   cursor: default;
 }
@@ -493,9 +472,9 @@ body.body-dark {
   font-size: 14px;
   color: #ffffff;
   background-color: #6528f7;
-  border-radius: 5px;
+  border-radius: 10px;
 }
-.btn-primary-color:hover {
+.btn-primary-color:hover, .btn-primary-color:active, .btn-primary-color:active:focus, .btn-primary-color:first-child:active {
   background-color: #6528f7;
   color: #ffffff;
 }
@@ -506,9 +485,9 @@ body.body-dark {
   font-size: 14px;
   color: #ffffff;
   background-color: #0c96f8;
-  border-radius: 5px;
+  border-radius: 10px;
 }
-.btn-secondary-color:hover {
+.btn-secondary-color:hover, .btn-secondary-color:active, .btn-secondary-color:active:focus, .btn-secondary-color:first-child:active {
   background-color: #0c96f8;
   color: #ffffff;
 }
@@ -518,11 +497,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #b93160;
-  border-radius: 5px;
+  background-color: #e60452;
+  border-radius: 10px;
 }
-.btn-tertiary-color:hover {
-  background-color: #b93160;
+.btn-tertiary-color:hover, .btn-tertiary-color:active, .btn-tertiary-color:active:focus, .btn-tertiary-color:first-child:active {
+  background-color: #e60452;
   color: #ffffff;
 }
 
@@ -531,11 +510,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #198754;
-  border-radius: 5px;
+  background-color: #d1e7dd;
+  border-radius: 10px;
 }
-.btn-success-color:hover {
-  background-color: #198754;
+.btn-success-color:hover, .btn-success-color:active, .btn-success-color:active:focus, .btn-success-color:first-child:active {
+  background-color: #d1e7dd;
   color: #ffffff;
 }
 
@@ -544,11 +523,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #FFC107;
-  border-radius: 5px;
+  background-color: #ffc107;
+  border-radius: 10px;
 }
-.btn-warning-color:hover {
-  background-color: #FFC107;
+.btn-warning-color:hover, .btn-warning-color:active, .btn-warning-color:active:focus, .btn-warning-color:first-child:active {
+  background-color: #ffc107;
   color: #ffffff;
 }
 
@@ -557,11 +536,11 @@ body.body-dark {
   font-weight: 600;
   font-size: 14px;
   color: #ffffff;
-  background-color: #DC3545;
-  border-radius: 5px;
+  background-color: #dc3545;
+  border-radius: 10px;
 }
-.btn-alert-color:hover {
-  background-color: #DC3545;
+.btn-alert-color:hover, .btn-alert-color:active, .btn-alert-color:active:focus, .btn-alert-color:first-child:active {
+  background-color: #dc3545;
   color: #ffffff;
 }
 
@@ -571,9 +550,9 @@ body.body-dark {
   font-size: 14px;
   color: #ffffff;
   background-color: #1f1f1f;
-  border-radius: 5px;
+  border-radius: 10px;
 }
-.btn-black-color:hover {
+.btn-black-color:hover, .btn-black-color:active, .btn-black-color:active:focus, .btn-black-color:first-child:active {
   background-color: #1f1f1f;
   color: #ffffff;
 }
@@ -584,7 +563,7 @@ body.body-dark {
   font-size: 14px;
   color: #1f1f1f;
   background-color: transparent;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #a5a5a5;
 }
 .btn-light-border:hover {
@@ -630,13 +609,25 @@ select option:hover {
 input.form-control,
 select.form-select,
 textarea.form-control {
+  background-color: #fff;
   font-size: 14px;
   font-weight: 400;
   color: #1f1f1f;
   caret-color: #6528f7;
   padding: 12px 10px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #353535;
+}
+
+input.form-control:focus,
+select.form-select:focus,
+textarea.form-control:focus {
+  color: var(#1f1f1f);
+}
+
+select:hover,
+select:focus {
+  cursor: pointer;
 }
 
 .form-control:focus,
@@ -652,7 +643,7 @@ textarea.form-control {
 }
 
 .is-invalid {
-  background-color: #F8D7DA;
+  background-color: #f8d7da;
 }
 
 .invalid-feedback {
@@ -672,6 +663,16 @@ textarea.form-control {
 
 .pagination > li.page-item > a {
   color: #6528f7;
+}
+
+.pagination {
+  --bs-pagination-focus-box-shadow: 0 0 0 0.25rem $primary-20;
+}
+
+.btn-close:focus {
+  outline: 0;
+  box-shadow: none;
+  opacity: var(--bs-btn-close-focus-opacity);
 }
 
 /* End of Modified Boostrap Style */
@@ -845,7 +846,7 @@ main {
   height: 100%;
   min-height: min-content;
   max-height: max-content;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .card-info h2 {
@@ -892,7 +893,7 @@ main {
 
 .upcoming-schedule-card {
   padding: 15px;
-  border-radius: 5px;
+  border-radius: 10px;
   border: 1px solid #bbb;
 }
 .upcoming-schedule-card div,
@@ -950,7 +951,7 @@ main {
   width: 100px;
   aspect-ratio: 1/1;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 /* Dibawah 1125px */

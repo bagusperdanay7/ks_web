@@ -170,24 +170,25 @@
                             <p class="text-color-80 mb5">{{ auth()->user()->email }}</p>
                             @if (auth()->user()->google_id !== null)
                                 <p class="fs-14 m-0 text-color-100">Linked to <img class="img-fluid" width="40px"
-                                        src="{{ asset('img/google.png') }}" alt="google linked"></p>
+                                        src="{{ asset('img/google.png') }}" alt="google linked"> <i class="las la-check text-color-primary"></i></p>
                             @endif
                         </div>
                     </div>
-                    <div class="d-flex">
-                        <div class="me-3 col-6">
+                    <div class="d-flex justify-content-between">
+                        <div class="col">
                             <button type="button" class="btn btn-upload-picture rounded-10 w-100" data-bs-toggle="modal"
                                 data-bs-target="#uploadModal">
                                 {{ auth()->user()->profile_picture == null ? 'Upload Picture' : 'Change Picture' }}
                             </button>
                         </div>
 
-                        <div class="col-6">
-                            @if (auth()->user()->profile_picture)
-                                <button type="button" class="btn btn-remove-picture rounded-10 w-100" data-bs-toggle="modal"
-                                    data-bs-target="#confirmRemoveProfileModal">Remove Profile</button>
-                            @endif
-                        </div>
+                        @if (auth()->user()->profile_picture)
+                            <div class="col ms-2">
+                                <button type="button" class="btn btn-remove-picture rounded-10 w-100"
+                                    data-bs-toggle="modal" data-bs-target="#confirmRemoveProfileModal">Remove
+                                    Profile</button>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

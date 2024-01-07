@@ -69,12 +69,12 @@
                         AI Model
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="" class="menu-nav">
                         <i class="las la-photo-video"></i>
                         Exclusive Video
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('my-request') }}" class="menu-nav">
                         <i class="las la-clipboard-list"></i>

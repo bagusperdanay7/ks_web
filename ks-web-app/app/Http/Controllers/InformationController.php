@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AboutUsController extends Controller
+class InformationController extends Controller
 {
-    public function index() {
-
+    public function aboutUs() {
         $endPoint = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=";
 
         $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
@@ -16,11 +15,23 @@ class AboutUsController extends Controller
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
         $totalView = $fetchApiResult['items'][0]['statistics']['viewCount'];
 
-        return view('about_us', [
+        return view('information.about_us', [
             "title" => "About Us",
             "subscriberCount" => $subscriberCount,
             "totalVideo" => $totalVideo,
             "totalView" => $totalView,
+        ]);
+    }
+
+    public function privacyAndPolicy() {
+        return view('information.privacy_policy', [
+            "title" => "Privacy & Policy",
+        ]);
+    }
+
+    public function termsAndConditions() {
+        return view('information.terms_conditions', [
+            "title" => "Terms & Conditions",
         ]);
     }
 }

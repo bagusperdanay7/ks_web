@@ -37,7 +37,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-3 border">
+                <div class="bg-white p-25 rounded-10 border">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Album Name</p>
@@ -56,7 +56,7 @@
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Release</p>
                             <p class="text-color-100 fs-14 m-0">
-                                {{ \Carbon\Carbon::parse($album->Release)->format('d F Y') }}
+                                {{ \Carbon\Carbon::parse($album->release)->format('d F Y') }}
                             </p>
                         </div>
                     </div>

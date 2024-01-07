@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     {{-- https://www.w3schools.com/tags/tag_meta.asp --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Welcome to Kpop Soulmate Website. K-Pop Line Distribution & More. Explore the video & Enjoy Your Journey on Our Website">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -28,8 +29,10 @@
     {{-- Script for Chart.js --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    {{-- Google Chart --}}
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('favicon/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('favicon/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
     <title>{{ $title }} - Kpop Soulmate</title>
 </head>

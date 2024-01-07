@@ -43,11 +43,12 @@ class DashboardAlbumSongsController extends Controller
             'track_number' => 'required',
             'album_id' => 'required',
             'song_id' => 'required',
+            'category' => 'required',
         ]);
 
         $album = Album::find($validateData['album_id']);
 
-        $album->songs()->attach($validateData['song_id'],  ['track_number' => $validateData['track_number']]);
+        $album->songs()->attach($validateData['song_id'],  ['track_number' => $validateData['track_number'], 'category' => $validateData['category']]);
 
         return redirect('/dashboard/album-songs')->with('success', "The Relation has been created!");
     }
@@ -88,6 +89,7 @@ class DashboardAlbumSongsController extends Controller
             'track_number' => 'required',
             'album_id' => 'required',
             'song_id' => 'required',
+            'category' => 'required',
         ];
 
         $validateData = $request->validate($rules);

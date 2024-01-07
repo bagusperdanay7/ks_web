@@ -36,7 +36,6 @@ class DashboardSongController extends Controller
         $validateData = $request->validate([
             'title' => 'required|max:191',
             'genre' => 'required|max:191',
-            'category' => 'required',
             'author' => 'max:191' ,
             'composer' => 'max:191',
             'arranger' => 'max:191',
@@ -77,7 +76,6 @@ class DashboardSongController extends Controller
         $rules = [
             'title' => 'required|max:191',
             'genre' => 'required|max:191',
-            'category' => 'required',
             'author' => 'max:191' ,
             'composer' => 'max:191',
             'arranger' => 'max:191',

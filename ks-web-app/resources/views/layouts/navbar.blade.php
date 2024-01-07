@@ -86,12 +86,12 @@
                                 </a>
                             </li>
                             {{-- ? For Testing --}}
-                            <li>
+                            {{-- <li>
                                 <span class="dropdown-item fs-14 fw-normal text-color-100" id="theme-switcher">
                                     <i class="las la-adjust"></i>
                                     Switch Theme
                                 </span>
-                            </li>
+                            </li> --}}
                             <li class="fs-14">
                                 <form action="{{ route('logout') }}" method="post">
                                     @csrf
@@ -127,7 +127,7 @@
             <i class='bx bxs-user-voice bx-xs'></i>
             <span class="mx-2">AI Model</span>
         </a>
-        <a href="" class="text-decoration-none d-flex">
+        <a href="#" class="text-decoration-none d-flex">
             <i class='bx bxs-videos bx-xs'></i>
             <span class="mx-2">Exclusive Video</span>
         </a>
@@ -146,10 +146,10 @@
                 <i class='bx bxs-user-circle bx-xs'></i>
                 <span class="mx-2">Profile</span>
             </a>
-            <a class="text-decoration-none d-flex" id="theme-switcher-mobile">
+            {{-- <a class="text-decoration-none d-flex" id="theme-switcher-mobile">
                 <i class='bx bx-adjust bx-xs'></i>
                 <span class="mx-2">Switch Theme</span>
-            </a>
+            </a> --}}
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit" class="dropdown-item">

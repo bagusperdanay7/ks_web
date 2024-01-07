@@ -15,10 +15,10 @@
                         <form action="{{ route('verification.send') }}" method="post">
                             @csrf
                             <p class="text-color-100 fs-14 fw-medium mb-10">Didn't receive the email yet?</p>
-                            <button class="btn btn-main">Resend Email</button>
+                            <button class="btn btn-main col-12">Resend Email</button>
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="btn btn-outline-main">Go Back</a>
+                        <a href="{{ route('login') }}" class="btn btn-outline-main col-12">Go Back</a>
                     @endif
                 </div>
             </div>

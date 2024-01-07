@@ -20,6 +20,6 @@ class Album extends Model
 
     public function songs(): BelongsToMany
     {
-        return $this->belongsToMany(Song::class)->using(AlbumSong::class)->withPivot('id', 'track_number')->withTimestamps();
+        return $this->belongsToMany(Song::class)->using(AlbumSong::class)->withPivot('id', 'track_number', 'category')->withTimestamps();
     }
 }

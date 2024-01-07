@@ -53,7 +53,8 @@
                         <div class="m-bottom-15">
                             <label for="status"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select" aria-label="Select status" id="status" name="status">
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select status"
+                                id="status" name="status">
                                 @if (old('status', $aiModel->status) === 'Completed')
                                     <option value="{{ old('status', $aiModel->status) }}" selected>
                                         {{ old('status', $aiModel->status) }}</option>
@@ -85,12 +86,22 @@
                                     <option value="Rejected">Rejected</option>
                                 @endif
                             </select>
+                            @error('status')
+                                <div id="statusFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="description"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Description</label>
-                            <textarea class="form-control" id="description" rows="3" name="description"
-                                placeholder="Enter the model description">{{ old('description', $aiModel->description) }}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
+                                name="description" placeholder="Enter the model description">{{ old('description', $aiModel->description) }}</textarea>
+                            @error('description')
+                                <div id="descriptionFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="sample"
@@ -112,7 +123,6 @@
                                 <audio id="audio" class="col-12 m-top-10 preview-audio d-none"controls>
                                 </audio>
                             @endif
-
                         </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/ai-models" class="btn btn-light-border m-right-15">Cancel</a>
