@@ -1,21 +1,4 @@
 @extends('dashboard.layouts.main')
-{{-- TODO: Tambahkan Confirm apakah ingin keluar atau tidak? --}}
-{{-- @if (session()->has('success'))
-    <div aria-live="polite" aria-atomic="true" class="position-relative">
-        <div class="toast-container top-0 end-0 p-3">
-            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                <div class="toast-header bg-success-10 ">
-                    <strong class="me-auto"><i class="las la-check-circle text-success-100 fs-18"></i> Kpop
-                        Soulmate</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                </div>
-                <div class="toast-body bg-success-10 inter-regular-14 ">
-                    {{ session('success') }}
-                </div>
-            </div>
-        </div>
-    </div>
-@endif --}}
 
 @section('content')
     <section id="header-analytics">
@@ -27,11 +10,14 @@
                     </div>
 
                     <div>
-                        <button class="btn
-                            btn-primary-color">
-                            <i class="las la-download fs-18 m-right-5"></i>
-                            Back Up
-                        </button>
+                        <form action="/dashboard/backup" method="post">
+                            @csrf
+                            <button class="btn
+                            btn-primary-color" type="submit">
+                                <i class="las la-download fs-18 m-right-5"></i>
+                                Back Up
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -84,7 +70,7 @@
                                 <p class="title-card mx-0 m-bottom-5">Requests Completed</p>
                                 <p class="number-title-card mx-0 m-bottom-5">Number of Completed</p>
                             </div>
-                            <h2 class="m-bottom-5 fw-bolder">{{ $completedRequests }} / {{ $requests }}</h2>
+                            <h2 class="m-bottom-5 fw-bolder">{{ $completedRequests }} / {{ $numberRequestWithOutRejected }}</h2>
                             <p class="text-color-80 fs-14 m-bottom-5">Progress </p>
                         </div>
                         <div class="card-icon align-self-center">
@@ -122,7 +108,7 @@
     <section id="category-statistics">
         <div class="row mb-5">
             <div class="col-lg-7 col-12 m-bottom-30">
-                <div class="analytics-card border">
+                <div class="analytics-card">
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Overall Project Type</h4>
                         <div class="chart-container">
@@ -132,7 +118,7 @@
                 </div>
             </div>
             <div class="col-12 col-lg-5">
-                <div class="analytics-card border">
+                <div class="analytics-card">
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">All Category</h4>
                         <div class="chart-container">
@@ -147,7 +133,7 @@
     <section id="progress-type-schedule">
         <div class="row mb-5">
             <div class="col-12 col-md-7 col-sm-6 m-bottom-30">
-                <div class="analytics-card border text-color-100">
+                <div class="analytics-card text-color-100">
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Progress Project Type</h4>
                     </div>
@@ -155,13 +141,13 @@
                         @php
                             $typeCompletedTotal = $type->where('status', 'Completed')->count();
                             $typeTotal = $type->count();
-                            
+
                             if ($typeCompletedTotal === 0) {
                                 $progressType = 0;
                             } else {
                                 $progressType = round(($typeCompletedTotal / $typeTotal) * 100);
                             }
-                            
+
                         @endphp
                         <div class="analytics-body {{ $loop->last ? '' : 'm-bottom-15' }}">
                             <div class="d-flex justify-content-between">
@@ -209,7 +195,7 @@
                 </div>
             </div>
             <div class="col-12 col-md-5 col-sm-6">
-                <div class="analytics-card border text-color-100">
+                <div class="analytics-card text-color-100">
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Upcoming Schedule</h4>
                     </div>
@@ -264,7 +250,7 @@
     <section id="project-list">
         <div class="row mb-5">
             <div class="col">
-                <div class="analytics-card border">
+                <div class="analytics-card">
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Reviewed Request List</h4>
                     </div>
@@ -286,7 +272,7 @@
                                         <td class="align-middle">{{ $list->project_title }}</td>
                                         <td class="align-middle">{{ $list->category->category_name }}</td>
                                         <td class="align-middle">{{ $list->type?->type_name }}</td>
-                                        <td class="align-middle">{{ $list->date }}</td>
+                                        <td class="align-middle">{{ $list->date !== null ? $list->date : "Coming Soon" }}</td>
                                         <td class="align-middle">{{ $list->requester }}</td>
                                         <td class="align-middle">
                                             <span class="btn btn-pending">{{ $list->status }}</span>

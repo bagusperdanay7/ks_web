@@ -29,22 +29,6 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="category"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Category</label>
-                            <select class="form-select" aria-label="Select Category" id="category" name="category">
-                                @if (old('category') === 'Track')
-                                    <option value="{{ old('category') }}" selected>{{ old('category') }}</option>
-                                    <option value="Title Track">Title Track</option>
-                                @elseif (old('category') === 'Title Track')
-                                    <option value="Track">Track</option>
-                                    <option value="{{ old('category') }}" selected>{{ old('category') }}</option>
-                                @else
-                                    <option value="Track">Track</option>
-                                    <option value="Title Track">Title Track</option>
-                                @endif
-                            </select>
-                        </div>
-                        <div class="m-bottom-15">
                             <label for="author"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Author</label>
                             <input type="text" class="form-control @error('author') is-invalid @enderror" name="author"

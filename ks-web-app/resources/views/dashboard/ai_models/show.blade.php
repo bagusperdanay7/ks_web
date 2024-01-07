@@ -38,7 +38,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-3 border">
+                <div class="bg-white p-25 rounded-10 border">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Model Name</p>

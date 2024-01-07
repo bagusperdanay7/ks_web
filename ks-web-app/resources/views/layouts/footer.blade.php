@@ -4,7 +4,7 @@
             <div
                 class="col-12 col-sm-6 col-md-12 col-lg-3 text-center text-sm-start text-md-center text-lg-start mb-5 mb-lg-0">
                 <img src="{{ asset('img/logo.png') }}" width="60px" alt="Logo footer">
-                <p class="mt-10 fs-18 font-inter fw-medium text-color-80"><i class="las la-copyright"></i> 2023 Kpop
+                <p class="mt-10 font-inter fw-medium text-color-80"><i class="las la-copyright"></i><span id="copyright-year">2023</span> Kpop
                     Soulmate,
                     All
                     Rights Reserved.
@@ -14,9 +14,10 @@
                 <h4 class="mb-3 fw-bold text-color-100">More Information</h4>
                 <ul>
                     <li class="mb-10"><a href="{{ route('about-us') }}" class="text-decoration-none">About Us </a></li>
-                    <li class="mb-10"><a href="" class="text-decoration-none">Tutorials </a></li>
-                    <li class="mb-10"><a href="" class="text-decoration-none">Privacy & Policy </a></li>
-                    <li><a href="" class="text-decoration-none">Terms & Conditions </a></li>
+                    <li class="mb-10"><a href="{{ route('explore-album') }}" class="text-decoration-none">Explore Album</a></li>
+                    {{-- <li class="mb-10"><a href="" class="text-decoration-none">Tutorials </a></li> --}}
+                    <li class="mb-10"><a href="{{ route('privacy-and-policy') }}" class="text-decoration-none">Privacy & Policy </a></li>
+                    <li><a href="{{ route('terms-and-conditions') }}" class="text-decoration-none">Terms & Conditions </a></li>
                 </ul>
             </div>
             <div class="col-6 col-sm-6 col-md-4 col-lg-3">

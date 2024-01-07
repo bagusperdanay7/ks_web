@@ -34,7 +34,12 @@
                         <div class="m-bottom-15">
                             <label for="about"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">About</label>
-                            <textarea class="form-control" id="about" rows="3" name="about" placeholder="Enter Project Type About">{{ old('about', $type->about) }}</textarea>
+                            <textarea class="form-control @error('about') is-invalid @enderror" id="about" rows="3" name="about" placeholder="Enter Project Type About">{{ old('about', $type->about) }}</textarea>
+                            @error('about')
+                                <div id="aboutFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/project-types" class="btn btn-light-border m-right-15">Cancel</a>

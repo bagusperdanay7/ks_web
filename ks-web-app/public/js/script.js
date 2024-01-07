@@ -8,10 +8,10 @@ function searchKeyFunction(evt) {
     }
 }
 
-// function toggleFilter() {
-//     let element = document.getElementById("showFilter");
-//     element.classList.toggle("show-visible");
-// }
+function toggleFilter() {
+    let element = document.getElementById("showFilter");
+    element.classList.toggle("show-visible");
+}
 
 const mobileMenu = document.querySelector("#mobile-menu");
 const menuBtnMobile = document.querySelector("#menu-btn-mobile");
@@ -80,46 +80,49 @@ if (oldPasswordIcon !== null) {
     passwordToggler(oldPasswordIcon, inputOldPass);
 }
 
-const themeSwitcher = document.querySelector("#theme-switcher");
-const themeSwitcherMobile = document.querySelector("#theme-switcher-mobile");
-const html = document.querySelector("html");
+const copyrightYear = document.querySelector("#copyright-year");
+copyrightYear.innerHTML = new Date().getFullYear();
 
-// TODO : Ganti dengan ini https://getbootstrap.com/docs/5.3/customize/color-modes/
+// const themeSwitcherMobile = document.querySelector("#theme-switcher-mobile");
+// const themeSwitcher = document.querySelector("#theme-switcher");
+// const html = document.querySelector("html");
 
-if (themeSwitcherMobile !== null) {
-    themeSwitcherMobile.addEventListener("click", function () {
-        if (
-            localStorage.dataTheme == "light" &&
-            localStorage.dataBsTheme == "light"
-        ) {
-            html.setAttribute("data-theme", "dark");
-            html.setAttribute("data-bs-theme", "dark");
-            localStorage.dataTheme = "dark";
-            localStorage.dataBsTheme = "dark";
-        } else {
-            html.setAttribute("data-theme", "light");
-            html.setAttribute("data-bs-theme", "light");
-            localStorage.dataTheme = "light";
-            localStorage.dataBsTheme = "light";
-        }
-    });
-}
+// Bootstrap Dark Theme
 
-if (themeSwitcher !== null) {
-    themeSwitcher.addEventListener("click", function () {
-        if (
-            localStorage.dataTheme == "light" &&
-            localStorage.dataBsTheme == "light"
-        ) {
-            html.setAttribute("data-theme", "dark");
-            html.setAttribute("data-bs-theme", "dark");
-            localStorage.dataTheme = "dark";
-            localStorage.dataBsTheme = "dark";
-        } else {
-            html.setAttribute("data-theme", "light");
-            html.setAttribute("data-bs-theme", "light");
-            localStorage.dataTheme = "light";
-            localStorage.dataBsTheme = "light";
-        }
-    });
-}
+// if (themeSwitcherMobile !== null) {
+//     themeSwitcherMobile.addEventListener("click", function () {
+//         if (
+//             localStorage.dataTheme == "light" &&
+//             localStorage.dataBsTheme == "light"
+//         ) {
+//             html.setAttribute("data-theme", "dark");
+//             html.setAttribute("data-bs-theme", "dark");
+//             localStorage.dataTheme = "dark";
+//             localStorage.dataBsTheme = "dark";
+//         } else {
+//             html.setAttribute("data-theme", "light");
+//             html.setAttribute("data-bs-theme", "light");
+//             localStorage.dataTheme = "light";
+//             localStorage.dataBsTheme = "light";
+//         }
+//     });
+// }
+
+// if (themeSwitcher !== null) {
+//     themeSwitcher.addEventListener("click", function () {
+//         if (
+//             localStorage.dataTheme == "light" &&
+//             localStorage.dataBsTheme == "light"
+//         ) {
+//             html.setAttribute("data-theme", "dark");
+//             html.setAttribute("data-bs-theme", "dark");
+//             localStorage.dataTheme = "dark";
+//             localStorage.dataBsTheme = "dark";
+//         } else {
+//             html.setAttribute("data-theme", "light");
+//             html.setAttribute("data-bs-theme", "light");
+//             localStorage.dataTheme = "light";
+//             localStorage.dataBsTheme = "light";
+//         }
+//     });
+// }

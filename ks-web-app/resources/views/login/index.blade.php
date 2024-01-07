@@ -95,7 +95,7 @@
                             </div>
                             <div class="mb-30 text-end">
                                 <a href="{{ route('password.request') }}"
-                                    class="fs-14 text-color-primary fw-medium text-decoration-none">Forgot Password?</a>
+                                    class="fs-14 text-color-primary fw-medium text-underline-hover">Forgot Password?</a>
                             </div>
                             <button type="submit" class="btn btn-primary-form col-12">Login</button>
                             <p class="mt-15 mb-15 text-center">or</p>

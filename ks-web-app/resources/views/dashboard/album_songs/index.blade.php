@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-3">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
-                        <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
+                        <strong class="me-auto"><i class="las la-check-circle text-success fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-14 font-inter text-color-100 rounded-bottom-8">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -50,6 +50,7 @@
                                     <th scope="col">Track Number</th>
                                     <th scope="col">Album</th>
                                     <th scope="col">Song</th>
+                                    <th scope="col">Category</th>
                                     <th>
                                         <i class="las la-ellipsis-v" id="albumMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"></i>
@@ -71,6 +72,9 @@
                                             </td>
                                             <td class="align-middle text-color-100">
                                                 {{ $item->title }}
+                                            </td>
+                                            <td class="align-middle text-color-100">
+                                                {{ $item->pivot->category }}
                                             </td>
                                             <td class="align-middle">
                                                 <div class="btn-group dropstart">

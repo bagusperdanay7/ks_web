@@ -32,6 +32,10 @@ class DashboardController extends Controller
                                     ->where([['status', 'Rejected'], ['project_types.type_name', '!=', 'Non-Project']])
                                     ->count();
 
+        $requestTotalWithOutRejected = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                                ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', '!=', 'Rejected']])
+                                ->count();
+
         $allTypes = ProjectType::all()->load('projects');
         
         $typesProgress = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')->get()->groupBy('type_name');
@@ -41,7 +45,7 @@ class DashboardController extends Controller
         if ($requestTotal === 0) {
             $progressRequests = 0;
         } else {
-            $progressRequests = (int) (($completedRequestTotal / $requestTotal) * 100);
+            $progressRequests = (int) (($completedRequestTotal / $requestTotalWithOutRejected) * 100);
         }
 
         return view('dashboard.index', [
@@ -52,6 +56,7 @@ class DashboardController extends Controller
             'requests' => $requestTotal,
             'completedRequests' => $completedRequestTotal,
             'rejectedRequests' => $rejectedRequestTotal,
+            'numberRequestWithOutRejected' => $requestTotalWithOutRejected,
             'progress' => $progressRequests,
             'types' => $allTypes,
             'typeProgress' => $typesProgress,

@@ -1,33 +1,31 @@
 <?php
 
-use App\Http\Controllers\RequestListController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use Illuminate\Support\Facades\Password;
-use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\AlbumController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ArtistController;
 use App\Http\Controllers\SignUpController;
-use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AIModelController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TutorialController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\InformationController;
 use App\Http\Controllers\ProjectTypeController;
+use App\Http\Controllers\RequestListController;
 use App\Http\Controllers\DashboardSongController;
+use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\DashboardAlbumController;
 use App\Http\Controllers\DashboardArtistController;
 use App\Http\Controllers\DashboardAIModelController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
+use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardProjectTypeController;
-use App\Http\Controllers\EmailVerificationController;
-use App\Http\Controllers\ResetPasswordController;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,9 +70,19 @@ Route::get('/gallery/videos/', function () {
 
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
-// TODO: Tambahkan Album Songs
+Route::get('/about-us', [InformationController::class, 'aboutUs'])->name('about-us');
 
-// TODO: Lanjutin disini
+Route::get('/privacy-and-policy', [InformationController::class, 'privacyAndPolicy'])->name('privacy-and-policy');
+
+Route::get('/terms-and-conditions', [InformationController::class, 'termsAndConditions'])->name('terms-and-conditions');
+
+Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorials');
+
+Route::get('/explore', [AlbumController::class, 'index'])->name('explore-album');
+
+Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist']);
+
+Route::get('/albums/{album:id}', [AlbumController::class, 'show']);
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
@@ -118,9 +126,8 @@ Route::get('/account/requests', [AccountController::class, 'requests'])->middlew
 
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
+// TODO: Lanjutin disini dan Tambahkan error bukan cuma di input, namun di textarea select maupun radio (jika ada)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
-
-Route::post('/dashboard/backup', [DashboardController::class, 'backup'])->middleware('admin')->name('dashboard.backup');
 
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 
@@ -137,6 +144,3 @@ Route::resource('/dashboard/projects', DashboardProjectController::class)->middl
 Route::resource('/dashboard/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
 Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');
-
-// TODO: Nanti Pindahin ke atas lagi
-Route::get('/about-us', [AboutUsController::class, 'index'])->name('about-us');

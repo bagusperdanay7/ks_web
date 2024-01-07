@@ -21,16 +21,16 @@ $secondary-40: #9dd5fc;
 $secondary-30: #b6dffc;
 $secondary-20: #ceeafd;
 $secondary-10: #e6f4fe;
-$tertiary: #b93160;
-$tertiary-90: #c0456f;
-$tertiary-80: #c75a7f;
-$tertiary-70: #ce6e8f;
-$tertiary-60: #d5839f;
-$tertiary-50: #dc98af;
-$tertiary-40: #e3acbf;
-$tertiary-30: #eac1cf;
-$tertiary-20: #f1d5df;
-$tertiary-10: #f8eaef;
+$tertiary: #e60452;
+$tertiary-90: #e81d63;
+$tertiary-80: #eb3674;
+$tertiary-70: #ed4f85;
+$tertiary-60: #f06897;
+$tertiary-50: #f281a8;
+$tertiary-40: #f59ab9;
+$tertiary-30: #f7b3cb;
+$tertiary-20: #faccdc;
+$tertiary-10: #fce5ed;
 $text-color: #1f1f1f;
 $text-color-90: #353535;
 $text-color-80: #4b4b4b;
@@ -41,29 +41,30 @@ $text-color-40: #a5a5a5;
 $text-color-30: #bbb;
 $text-color-20: #d2d2d2;
 $text-color-10: #e8e8e8;
-$success: #198754;
-$success-10: #D1E7DD;
-$warning: #FFC107;
-$warning-10: #FFF3CD;
-$alert: #DC3545;
-$alert-10: #F8D7DA;
 $white: #ffffff;
 $background-color: #f1f5f9;
-$background-color-dark: #191427;
 $background-color-secondary: #fff;
-$ranking-battle: #f615a5;
+$ranking-battle-100: #f615a5;
 $ranking-battle-10: #fee5f5;
-$how-would: #fc3a00;
+$how-would-100: #fc3a00;
 $how-would-10: #ffeee8;
-$center-distribution: #1426ff;
+$center-distribution-100: #1426ff;
 $center-distribution-10: #e7e9ff;
-$header-background: #1b1829;
 $hugepro: #673ab7;
 $hugepro-10: #e1d7f2;
 $nostalgic-vibes: #034283;
 $nostalgic-vibes-10: #e5ecf2;
 $youtube-comment: #ff0000;
 $youtube-comment-10: #ffe5e5;
+$non-project-100: #07769d;
+$non-project-10: #bcecfb;
+$success: #d1e7dd;
+$success-10: #a3cfbb;
+$warning: #ffc107;
+$warning-10: #fff3cd;
+$alert: #dc3545;
+$alert-10: #f8d7da;
+$background-color-dark: #191427;
 
 // Typography String, And Number
 $main-font: "Poppins", sans-serif;
@@ -98,12 +99,12 @@ $text-colors: (
     "80": $text-color-80,
     "ad": $alert,
     "ae": $secondary,
-    "cd": $center-distribution,
-    "hw": $how-would,
+    "cd": $center-distribution-100,
+    "hw": $how-would-100,
     "hs": $success,
     "ld": $primary,
     "le": $tertiary,
-    "rb": $ranking-battle,
+    "rb": $ranking-battle-100,
 );
 
 $bg-colors: (
@@ -133,7 +134,6 @@ $spaces: (
 );
 
 $padding-spaces: (
-    "5": 5px,
     "10": 10px,
     "15": 15px,
     "25": 25px,
@@ -157,7 +157,7 @@ $font-sizes: (
     color: $color;
     font-weight: 600;
     font-size: map-get($map: $font-sizes, $key: "12");
-    border-radius: map-get($map: $spaces, $key: "5");
+    border-radius: map-get($map: $spaces, $key: "10");
     width: map-get($map: $spaces, $key: "100");
     cursor: default;
 }
@@ -168,7 +168,7 @@ $font-sizes: (
     font-size: map-get($map: $font-sizes, $key: "14");
     color: $text-color;
     background-color: $bg-color;
-    border-radius: map-get($map: $spaces, $key: "5");
+    border-radius: map-get($map: $spaces, $key: "10");
 }
 
 @mixin border-button($text-color, $border-color) {
@@ -177,7 +177,7 @@ $font-sizes: (
     font-size: map-get($map: $font-sizes, $key: "14");
     color: $text-color;
     background-color: transparent;
-    border-radius: map-get($map: $spaces, $key: "5");
+    border-radius: map-get($map: $spaces, $key: "10");
     border: 1px solid $border-color;
 }
 
@@ -283,11 +283,8 @@ body {
     }
 }
 
-@each $namesize, $size in $font-sizes {
-    .fs-inter-#{$namesize} {
-        font-family: $secondary-font;
-        font-size: $size;
-    }
+.font-inter {
+    font-family: 'Inter', sans-serif;
 }
 
 /* Text Color */
@@ -317,7 +314,7 @@ body {
 
 /* Border Radius */
 @each $radius, $size in $padding-spaces {
-    .rounded-all-#{$radius} {
+    .rounded-#{$radius} {
         border-radius: $size;
     }
 }
@@ -326,15 +323,26 @@ body {
     border-radius: 0 0 10px 10px;
 }
 
+.rounded-bottom-8 {
+    border-radius: 0 0 8px 8px;
+}
+
 .rounded-top-10 {
     border-radius: 10px 10px 0 0;
+}
+
+.rounded-top-8 {
+    border-radius: 8px 8px 0 0;
 }
 
 /* Button*/
 
 @each $status, $color, $color-10 in $status-colors {
     .btn-#{$status},
-    .btn-#{$status}:hover {
+    .btn-#{$status}:hover,
+    .btn-#{$status}:active,
+    .btn-#{$status}:active:focus,
+    .btn-#{$status}:first-child:active {
         @include button-status($color, $color-10);
     }
 }
@@ -343,7 +351,10 @@ body {
     .btn-#{$theme}-color {
         @include button($white, $color);
 
-        &:hover {
+        &:hover,
+        &:active,
+        &:active:focus,
+        &:first-child:active {
             background-color: $color;
             color: $white;
         }
@@ -399,13 +410,25 @@ select option:hover {
 input.form-control,
 select.form-select,
 textarea.form-control {
+    background-color: $background-color-secondary;
     font-size: 14px;
     font-weight: 400;
     color: $text-color;
     caret-color: $primary;
     padding: 12px 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid $text-color-90;
+}
+
+input.form-control:focus,
+select.form-select:focus,
+textarea.form-control:focus {
+    color: var($text-color);
+}
+
+select:hover,
+select:focus {
+    cursor: pointer;
 }
 
 .form-control:focus,
@@ -442,6 +465,17 @@ textarea.form-control {
 .pagination > li.page-item > a {
     color: $primary;
 }
+
+.pagination {
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem $primary-20;
+}
+
+.btn-close:focus {
+    outline: 0;
+    box-shadow: none;
+    opacity: var(--bs-btn-close-focus-opacity);
+}
+
 /* End of Modified Boostrap Style */
 
 /* Sidebar */
@@ -665,7 +699,7 @@ main {
     height: 100%;
     min-height: min-content;
     max-height: max-content;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 .card-info {
@@ -725,7 +759,7 @@ main {
 
 .upcoming-schedule-card {
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid $text-color-30;
 
     div,
@@ -789,7 +823,7 @@ main {
     width: 100px;
     aspect-ratio: 1/1;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 /* Dibawah 1125px */

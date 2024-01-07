@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
             <div class="toast-container top-0 end-0 p-3">
-                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
-                    <div class="toast-header bg-success-10 text-color-100">
-                        <strong class="me-auto"><i class="las la-check-circle text-color-hs fs-18"></i> Kpop
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-success-10 text-color-100 rounded-top-8">
+                        <strong class="me-auto"><i class="las la-check-circle text-success fs-18"></i> Kpop
                             Soulmate</strong>
                         <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
-                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100">
+                    <div class="toast-body bg-success-10 fs-inter-14 text-color-100 rounded-bottom-8">
                         {{ session('success') }}
                     </div>
                 </div>
@@ -49,7 +49,6 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
                                     <th scope="col">Genre</th>
-                                    <th scope="col">Category</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Composer</th>
                                     <th scope="col">Arranger</th>
@@ -67,7 +66,6 @@
                                         <td class="align-middle text-color-100">
                                             {{ $song->genre }}
                                         </td>
-                                        <td class="align-middle">{{ $song->category }}</td>
                                         <td class="align-middle">{{ $song->author }}</td>
                                         <td class="align-middle">{{ $song->composer }}</td>
                                         <td class="align-middle">{{ $song->arranger }}</td>

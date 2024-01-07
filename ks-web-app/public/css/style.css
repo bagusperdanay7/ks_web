@@ -62,8 +62,7 @@
     --secondary-font: "Inter", sans-serif;
 }
 
-/* Dark Mode
-/* TODO: Add data-theme="dark" into body html */
+/* Dark Mode */
 [data-theme="dark"] {
     --primary: #9b85ff;
     --primary-90: #8c78e6;
@@ -770,6 +769,10 @@ input.filter-search {
     color: var(--primary);
 }
 
+.pagination {
+    --bs-pagination-focus-box-shadow: 0 0 0 0.25rem $primary-20;
+}
+
 .accordion-button:focus {
     box-shadow: 0px 0px 5px 2px rgba(101, 40, 247, 0.26);
 }
@@ -1349,15 +1352,23 @@ table td.title-with-progress {
     color: var(--text-color);
 }
 
-.artist-card p {
+.artist-card p, .album-card p {
     font-weight: 600;
     font-size: 14px;
     margin: 5px 0 0 0;
+    color: var(--text-color);
 }
 
 .artist-card span {
     font-family: var(--secondary-font);
     font-weight: 600;
+    font-size: 14px;
+}
+
+.album-card span {
+    font-family: var(--secondary-font);
+    font-weight: 500;
+    color: var(--text-color-80);
     font-size: 14px;
 }
 
@@ -1460,6 +1471,13 @@ table td.title-with-progress {
     white-space: normal;
 }
 
+.text-truncate-2-line {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    white-space: normal;
+}
+
 /* Penutup Gallery */
 
 /* AI Models Page */
@@ -1479,17 +1497,20 @@ section#sign-up {
 
 .btn-primary-form {
     background-color: var(--primary);
+    color: var(--white);
     font-weight: 600;
     font-size: 18px;
-    color: var(--white);
     padding: 10px 0;
     border-radius: 10px;
     transition: all 300ms;
 }
 
-.btn-primary-form:hover {
-    color: var(--white);
+.btn-primary-form:hover,
+.btn-primary-form:active,
+.btn-primary-form:active:focus,
+.btn-primary-form:first-child:active {
     background-color: var(--primary);
+    color: var(--white);
 }
 
 .btn-secondary-form {
@@ -1502,7 +1523,10 @@ section#sign-up {
     transition: all 300ms;
 }
 
-.btn-secondary-form:hover {
+.btn-secondary-form:hover,
+.btn-secondary-form:active,
+.btn-secondary-form:active:focus,
+.btn-secondary-form:first-child:active {
     background-color: var(--primary-20);
     color: var(--primary);
 }
@@ -1518,7 +1542,10 @@ section#sign-up {
     transition: all 300ms;
 }
 
-.btn-border-form:hover {
+.btn-border-form:hover,
+.btn-border-form:active,
+.btn-border-form:active:focus,
+.btn-border-form:first-child:active {
     border: 1px solid var(--primary);
     color: var(--primary);
 }
@@ -1527,6 +1554,21 @@ section#sign-up {
     border: 1px solid var(--text-color-30);
     background-color: transparent;
     color: var(--text-color);
+}
+
+.text-underline-hover {
+    text-decoration: none;
+}
+
+.text-underline-hover:hover {
+    text-decoration: underline;
+}
+
+.btn-border-30:hover,
+.btn-border-30:active,
+.btn-border-30:active:focus,
+.btn-border-30:first-child:active {
+    color: pink;
 }
 
 span.input-group-text {
@@ -1562,6 +1604,26 @@ span.input-group-text i {
     background-color: var(--primary);
 }
 /* End of My Requests Page */
+
+/* Tutorials Page */
+#tutorials a.tutorial-link {
+    text-decoration: none;
+}
+
+#tutorials a.tutorial-link img {
+    opacity: 0.9;
+}
+
+#tutorials a.tutorial-link:hover img {
+    opacity: 1;
+}
+
+#tutorials a.tutorial-link:hover h3 {
+    text-decoration: underline;
+    color: var(--primary);
+}
+
+/* End of Tutorials Page */
 
 @media only screen and (max-width: 369.9px) {
     /* Requests */

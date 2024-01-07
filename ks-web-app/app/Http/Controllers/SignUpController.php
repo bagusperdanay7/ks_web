@@ -42,6 +42,6 @@ class SignUpController extends Controller
 
         event (new Registered(User::create($validatedData)));
 
-        return redirect(route('verify-email'))->with('success', 'Your account has been successfully created, Check your email for verification!');
+        return redirect(route('verify-email'))->with('success', 'Your account has been successfully created, Check your inbox or spam for verification!');
     }
 }

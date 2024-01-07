@@ -91,7 +91,6 @@ class GalleryController extends Controller
             'allCategory' => $allCategoryQuery,
             'allType' => $allTypeQuery,
             // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
-            // $collection->take(3);
         ]);
     }
 
@@ -116,7 +115,6 @@ class GalleryController extends Controller
      */
     public function show(Project $project)
     {
-        // TODO: Related Random jika limit < 6
         $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
         ->select('projects.*', 'artists.codename')
         ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.is_exclusive', 'No']])

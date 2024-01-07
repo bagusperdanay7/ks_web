@@ -10,7 +10,7 @@
                         <div class="m-bottom-15">
                             <label for="artist"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
-                            <select class="form-select" aria-label="Select Artist" id="artist" name="artist_id">
+                            <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
                                 @foreach ($artists as $artist)
                                     <option value="{{ $artist->id }}"
                                         {{ old('artist_id') == $artist->id ? ' selected' : ' ' }}>
@@ -18,6 +18,11 @@
                                     </option>
                                 @endforeach
                             </select>
+                            @error('artist_id')
+                                <div id="artistFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="album_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Album
@@ -33,7 +38,7 @@
                         </div>
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
-                            <select class="form-select" aria-label="Select Type" id="type" name="type">
+                            <select class="form-select @error('type') is-invalid @enderror" aria-label="Select Type" id="type" name="type">
                                 @if (old('type') === 'Album')
                                     <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
                                     <option value="EP">EP</option>
@@ -52,6 +57,11 @@
                                     <option value="Single">Single</option>
                                 @endif
                             </select>
+                            @error('type')
+                                <div id="typeFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="release"
