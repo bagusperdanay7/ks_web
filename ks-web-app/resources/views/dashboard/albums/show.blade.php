@@ -8,7 +8,7 @@
                     href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="/dashboard/albums">Albums</a>
             </li>
-            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium" aria-current="page">
+            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page" title="{{ $album->album_name }}">
                 {{ $album->album_name }}</li>
         </ol>
     </nav>
@@ -16,7 +16,7 @@
     <section id="album-single-dashboard">
         <div class="row m-bottom-25">
             <div class="col">
-                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                <div class="d-flex justify-content-between flex-lg-row flex-column">
                     <div class="title-heading">
                         <h2 class="fw-bold text-color-100">{{ $album->album_name }}</h2>
                     </div>
@@ -37,7 +37,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-10 border">
+                <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Album Name</p>
@@ -76,7 +76,7 @@
                     <img src="{{ asset('img/unknown_album.jpg') }}" alt="{{ $album->album_name }} cover"
                         class="img-fluid img-square rounded-top-10 shadow-sm">
                 @endif
-                <div class="bg-white p-15 border rounded-bottom-10">
+                <div class="bg-white p-15 rounded-bottom-10">
                     <p class="m-0 text-color-100 fw-medium fs-14">Cover</p>
                     <p class="m-0 text-color-80 fs-12 text-break">{{ $album->cover }}</p>
                 </div>
@@ -88,7 +88,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -104,7 +104,7 @@
                     <form action="/dashboard/albums/{{ $album->id }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete album</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

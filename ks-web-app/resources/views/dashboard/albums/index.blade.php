@@ -91,7 +91,7 @@
                                                     aria-expanded="false">
                                                     <i class="las la-ellipsis-v"> </i>
                                                 </button>
-                                                <ul class="dropdown-menu fs-14">
+                                                <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="/dashboard/albums/{{ $album->id }}"><i
@@ -126,7 +126,9 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $albums->links() }}
+                    <div class="pagination-container mt-3">    
+                        {{ $albums->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -136,7 +138,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -152,7 +154,7 @@
                     <form action="/dashboard/albums/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete Album</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

@@ -77,7 +77,7 @@
                 </li> --}}
                 <li>
                     <a href="{{ route('my-request') }}" class="menu-nav">
-                        <i class="las la-clipboard-list"></i>
+                        <i class="las la-list-alt"></i>
                         My Request
                     </a>
                 </li>
@@ -94,6 +94,13 @@
             </div>
             <ul>
                 <li>
+                    <a href="/dashboard/ai-models"
+                        class="menu-nav {{ Request::is('dashboard/ai-models*') ? 'text-active' : '' }}">
+                        <i class="las la-user-clock"></i>
+                        AI Model
+                    </a>
+                </li>
+                <li>
                     <a href="/dashboard/albums"
                         class="menu-nav {{ Request::is('dashboard/albums') ? 'text-active' : '' }}">
                         <i class="las la-compact-disc"></i>
@@ -103,7 +110,7 @@
                 <li>
                     <a href="/dashboard/album-songs"
                         class="menu-nav {{ Request::is('dashboard/album-songs') ? 'text-active' : '' }}">
-                        <i class="las la-compact-disc"></i>
+                        <i class="las la-record-vinyl"></i>
                         Albums Songs
                     </a>
                 </li>
@@ -112,13 +119,6 @@
                         class="menu-nav {{ Request::is('dashboard/artists*') ? 'text-active' : '' }}">
                         <i class="las la-user"></i>
                         Artists
-                    </a>
-                </li>
-                <li>
-                    <a href="/dashboard/ai-models"
-                        class="menu-nav {{ Request::is('dashboard/ai-models*') ? 'text-active' : '' }}">
-                        <i class="las la-user-clock"></i>
-                        AI Model
                     </a>
                 </li>
                 <li>

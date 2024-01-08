@@ -38,7 +38,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md">
-                <div class="bg-white p-25 rounded-10 border">
+                <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
                         <div class="col-6 col-sm">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category Name</p>
@@ -64,7 +64,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -80,7 +80,7 @@
                     <form action="/dashboard/project-types/{{ $type->slug }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete Type</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

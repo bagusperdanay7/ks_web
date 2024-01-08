@@ -1,4 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+h1, h2, h3, h4, h5, h6 {
+  color: #1f1f1f;
+}
+
 /* Blok Text Selection */
 ::-moz-selection {
   /* Code for Firefox */
@@ -686,7 +690,7 @@ nav.sidebar {
   height: 100vh;
   padding: 25px;
   color: #ffffff;
-  transition: left 300ms;
+  transition: left 400ms;
   overflow-y: auto;
 }
 nav.sidebar::-webkit-scrollbar {
@@ -793,7 +797,7 @@ header {
   z-index: 10;
   background: #fff;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
-  transition: all 300ms;
+  transition: all 400ms;
 }
 header .menu-toggle label {
   display: grid;
@@ -821,7 +825,7 @@ header .header-icons i {
 }
 header .header-icons i:hover {
   color: #6528f7;
-  transition: 0.5s;
+  transition: 400ms;
 }
 
 /* Penutup Header */
@@ -833,7 +837,7 @@ main {
 
 .main-content {
   margin-left: 250px;
-  transition: margin-left 300ms;
+  transition: margin-left 400ms;
   padding: 25px;
 }
 

@@ -25,7 +25,7 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item text-color-100"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('projects') }}">Projects</a></li>
-            <li class="breadcrumb-item breadcumb-active text-truncate text-nowrap" aria-current="page">
+            <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page" title="{{ $project->project_title }}">
                 {{ $project->project_title }}
             </li>
         </ol>
