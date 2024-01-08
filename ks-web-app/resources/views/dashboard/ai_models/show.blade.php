@@ -9,7 +9,7 @@
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="/dashboard/ai-models">AI
                     Models</a>
             </li>
-            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium" aria-current="page">
+            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page">
                 {{ $aiModel->model_name }}</li>
         </ol>
     </nav>
@@ -19,10 +19,10 @@
             <div class="col">
                 <div class="d-flex justify-content-between flex-md-row flex-column">
                     <div class="title-heading">
-                        <h2 class="fw-bold text-color-100">{{ $aiModel->model_name }}</h2>
+                        <h2 class="fw-bold text-color-100 mb-0">{{ $aiModel->model_name }}</h2>
                     </div>
 
-                    <div class="button-group">
+                    <div class="button-group mt-2 mt-md-0">
                         <a href="/dashboard/ai-models/{{ $aiModel->id }}/edit" class="btn btn-light-border">
                             <i class="las la-edit fs-18 m-right-5"></i>
                             Update
@@ -38,7 +38,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-10 border">
+                <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Model Name</p>
@@ -81,7 +81,7 @@
                     <img src="{{ asset('img/unknown_artist.jpg') }}" alt="{{ $aiModel->model_name }} picture"
                         class="img-fluid img-square rounded-top-10 shadow-sm">
                 @endif
-                <div class="bg-white p-15 border rounded-bottom-10">
+                <div class="bg-white p-15 rounded-bottom-10">
                     <p class="m-0 text-color-100 fw-medium fs-14">Cover Model</p>
                     <p class="m-0 text-color-80 fs-12 text-break">{{ $aiModel->cover_model }}</p>
                     <p class="m-bottom-0 m-top-15 text-color-100 fw-medium fs-14">URL</p>
@@ -99,7 +99,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -115,7 +115,7 @@
                     <form action="/dashboard/ai-models/{{ $aiModel->id }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete Model</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

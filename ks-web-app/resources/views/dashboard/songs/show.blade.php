@@ -8,7 +8,7 @@
                     href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="/dashboard/songs">Songs</a>
             </li>
-            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium" aria-current="page">
+            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page" title="{{ $song->title }}">
                 {{ $song->title }}</li>
         </ol>
     </nav>
@@ -16,7 +16,7 @@
     <section id="song-single-dashboard">
         <div class="row m-bottom-25">
             <div class="col">
-                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                <div class="d-flex justify-content-between flex-sm-row flex-column flex-wrap">
                     <div class="title-heading">
                         <h2 class="fw-bold text-color-100">{{ $song->title }}</h2>
                     </div>
@@ -37,7 +37,7 @@
 
         <div class="row m-bottom-25">
             <div class="col-12 col-md order-md-1 order-2">
-                <div class="bg-white p-25 rounded-10 border">
+                <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Title</p>
@@ -73,7 +73,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -89,7 +89,7 @@
                     <form action="/dashboard/songs/{{ $song->id }}" method="post">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete song</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

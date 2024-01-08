@@ -22,7 +22,7 @@
     <section id="header-analytics">
         <div class="row m-bottom-30">
             <div class="col">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between flex-wrap">
                     <div>
                         <h1 class="fw-bold">Project Types</h1>
                     </div>
@@ -71,7 +71,7 @@
                                                     aria-expanded="false">
                                                     <i class="las la-ellipsis-v"> </i>
                                                 </button>
-                                                <ul class="dropdown-menu fs-14">
+                                                <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="/dashboard/project-types/{{ $type->slug }}"><i
@@ -114,7 +114,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -130,7 +130,7 @@
                     <form action="/dashboard/project-types/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete type</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

@@ -126,14 +126,13 @@ Route::get('/account/requests', [AccountController::class, 'requests'])->middlew
 
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
-// TODO: Lanjutin disini dan Tambahkan error bukan cuma di input, namun di textarea select maupun radio (jika ada)
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+
+Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
 
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 
 Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');
-
-Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
 
 Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('admin');
 

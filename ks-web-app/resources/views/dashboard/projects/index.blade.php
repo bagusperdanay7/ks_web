@@ -22,9 +22,9 @@
     <section id="header-analytics">
         <div class="row m-bottom-30">
             <div class="col">
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between flex-wrap">
                     <div>
-                        <h1 class="fw-bold text-color-100">Projects</h1>
+                        <h1 class="fw-bold text-color-100 mb-0">Projects</h1>
                     </div>
 
                     <div>
@@ -139,7 +139,7 @@
                                                     aria-expanded="false">
                                                     <i class="las la-ellipsis-v"> </i>
                                                 </button>
-                                                <ul class="dropdown-menu fs-14">
+                                                <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
                                                             href="/dashboard/projects/{{ $project->id }}"><i
@@ -182,7 +182,9 @@
                             </tbody>
                         </table>
                     </div>
-                    {{ $projects->links() }}
+                    <div class="pagination-container mt-3">
+                        {{ $projects->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -192,7 +194,7 @@
     <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
+            <div class="modal-content rounded-10">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -208,7 +210,7 @@
                     <form action="/dashboard/projects/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
-                        <button type="submit" class="btn btn-alert-color">Yes, Delete Project</button>
+                        <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
             </div>

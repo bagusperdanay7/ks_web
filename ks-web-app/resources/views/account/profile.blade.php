@@ -260,7 +260,7 @@
             <form action="{{ route('account.profile.update') }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
-                <div class="modal-content bg-second">
+                <div class="modal-content rounded-10 bg-second">
                     <div class="modal-header">
                         <h3 class="modal-title text-color-100 fw-semibold" id="uploadModalLabel">Upload Profile</h3>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -299,7 +299,7 @@
     <div class="modal fade" id="confirmRemoveProfileModal" tabindex="-1"
         aria-labelledby="confirmDRemoveProfileModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content bg-second">
+            <div class="modal-content rounded-10 bg-second">
                 <div class="modal-header">
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>

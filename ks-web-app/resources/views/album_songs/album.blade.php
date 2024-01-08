@@ -106,7 +106,7 @@
             <div class="modal fade" id="songInfoModal{{ $trackDetails->id }}" tabindex="-1"
                 aria-labelledby="songInfoModalLabel{{ $trackDetails->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content bg-second">
+                    <div class="modal-content rounded-10 bg-second">
                         <div class="modal-header">
                             <h3 class="modal-title text-color-100 fw-semibold" id="uploadModalLabel">Song Details</h3>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>

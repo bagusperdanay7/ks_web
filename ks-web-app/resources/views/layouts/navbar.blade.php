@@ -9,8 +9,8 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navbarNav">
-            <ul class="navbar-nav text-center text-start">
-                <li class="nav-item">
+            <ul class="navbar-nav text-start">
+                <li class="nav-item mt-3 mt-lg-0">
                     <a class="nav-link {{ Request::is('/') ? 'active' : '' }}" href="{{ route('home') }}">Home</a>
                 </li>
                 <li class="nav-item">
@@ -37,11 +37,11 @@
                                 model
                             </a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <hr class="dropdown-divider">
-                        </li>
-                        <li><a class="dropdown-item fs-14" href="#">Exclusive Video</a>
-                        </li>
+                        </li> --}}
+                        {{-- <li><a class="dropdown-item fs-14" href="#">Exclusive Video</a>
+                        </li> --}}
                     </ul>
                 </li>
                 @auth
@@ -51,16 +51,16 @@
                     <li class="nav-item dropdown">
                         @if (auth()->user()->profile_picture === null)
                             <img src="{{ asset('img/user-default.png') }}"
-                                class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
+                                class="rounded-circle nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @elseif (str_starts_with(auth()->user()->profile_picture, $example_google_avatar))
                             <img src="{{ auth()->user()->profile_picture }}"
-                                class="rounded-circle  nav-link dropdown-toggle" alt="User Picture" id="profileDropdown"
+                                class="rounded-circle nav-link dropdown-toggle" alt="User Picture" id="profileDropdown"
                                 role="button" data-bs-toggle="dropdown" aria-expanded="false" width="45px">
                         @else
                             <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}"
-                                class="rounded-circle img-square nav-link dropdown-toggle" alt="User Picture"
+                                class="rounded-circle nav-link dropdown-toggle" alt="User Picture"
                                 id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
                                 width="45px">
                         @endif
@@ -127,10 +127,10 @@
             <i class='bx bxs-user-voice bx-xs'></i>
             <span class="mx-2">AI Model</span>
         </a>
-        <a href="#" class="text-decoration-none d-flex">
+        {{-- <a href="#" class="text-decoration-none d-flex">
             <i class='bx bxs-videos bx-xs'></i>
             <span class="mx-2">Exclusive Video</span>
-        </a>
+        </a> --}}
         @auth
             @can('admin')
                 <a href="{{ route('dashboard') }}" class="text-decoration-none d-flex">

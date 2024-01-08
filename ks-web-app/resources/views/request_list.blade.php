@@ -419,7 +419,7 @@
                                 <p class="fs-14 fw-medium mt-1 mb-0"></p>No Data found!
                             </div>
                         @endforelse
-                        <div class="pagination-container">
+                        <div class="pagination-container mt-3">
                             {{ $projects->onEachSide(0)->links() }}
                         </div>
                     </div>
