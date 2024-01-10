@@ -234,12 +234,14 @@ img {
 .button {
     font-weight: 600;
     -webkit-text-size-adjust: none;
-    border-radius: 5px;
+    border-radius: 10px;
     color: #fff;
     display: inline-block;
     overflow: hidden;
     text-decoration: none;
     text-align: center;
+    padding: 5px 10px;
+    font-size: 16px;
 }
 
 .button-blue,

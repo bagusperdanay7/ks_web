@@ -44,7 +44,7 @@ Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
 Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
 
-Route::put('/projects/{project:id}', [ProjectController::class, 'upvote'])->middleware('auth')->name('upvote-project');
+Route::put('/projects/{project:id}', [ProjectController::class, 'upvote'])->middleware(['auth', 'throttle:upvote'])->name('upvote-project');
 
 Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'index']);
 
@@ -98,7 +98,7 @@ Route::get('/email/verify', [EmailVerificationController::class, 'sentEmailVerif
 
 Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'verificationSuccess'])->middleware(['auth', 'signed'])->name('verification.verify');
 
-Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendVerification'])->middleware(['throttle:6,1'])->name('verification.send');
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 

@@ -68,6 +68,6 @@ class ProjectController extends Controller
 
         Project::where('id', $project->id)->update(['votes' => $upvote]);
 
-        return redirect('/projects/' . $project->id)->with('upvoteSuccess', "Upvote successful!");
+        return redirect('/projects/' . $project->id)->with('upvoteSuccess', "Upvote successful!. You are only able upvote a project three times per day!.");
     }
 }

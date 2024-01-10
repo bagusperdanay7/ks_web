@@ -31,7 +31,7 @@
                             @csrf
                             <div class="mb-30">
                                 <label for="email" class="form-label fs-14 text-color-100">Please enter your email
-                                    address to proceed. We'll send you an email to reset your password.</label>
+                                    address to proceed. We'll send you an email to reset your password. If your account is <strong>Linked to Google</strong>. Please return to the <a href="{{ route('login') }}" class="text-decoration-none text-color-secondary">login page</a>, and click Login with Google instead.</label>
                                 <input type="email"
                                     class="form-control @error('email') is-invalid @enderror @error('password') is-invalid @enderror"
                                     id="email" name="email" aria-describedby="emailHelp"

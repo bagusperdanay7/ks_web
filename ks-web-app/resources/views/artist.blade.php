@@ -22,8 +22,8 @@
                     <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="img-square rounded-10 shadow img-fluid"
                         alt="{{ $artist->artist_pict }} picture">
                 @endif
-
             </div>
+
             <div class="col-12 col-md-6 col-lg-7 col-xl-8 align-self-center">
                 <h2 class="fw-bold text-color-100 mb-10 fs-sm-24">{{ $artist->artist_name }}</h2>
                 <p class="artist-about">{{ $artist->about }}</p>
@@ -65,66 +65,76 @@
                         <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Total Video</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artists->count() }}</p>
+                        <p class="m-0 text-color-100 fs-lg-14">{{ $artistVideos }}</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    @php
-        // $category_le = $artists->where('category_id', '=', 2)->sortBy('project_title');
-        $videos = $artists->sortBy('project_title');
-    @endphp
-
-    <section id="videos-artist">
-        <div class="row">
-            <h3 class="fw-semibold text-color-100 mb-10">Video</h3>
-            @forelse ($videos as $video)
-                <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
-                    <div class="video-card">
-                        <a href="/gallery/videos/{{ $video->id }}">
-                            @if ($video->thumbnail !== null)
-                                <img src="{{ $video->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                    alt="{{ $video->project_title }} thumbnail">
-                            @else
-                                <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
-                                    alt="{{ $video->project_title }} thumbnail">
-                            @endif
-                            <div class="video-desc-card">
-                                <a href="gallery?category={{ $video->category->slug }}">
-                                    <p @class([
-                                        'mb5',
-                                        'fs-14',
-                                        'font-inter',
-                                        'fw-semibold',
-                                        'text-color-ad' => $video->category->category_name === 'Album Distribution',
-                                        'text-color-ae' => $video->category->category_name === 'Album Evolution',
-                                        'text-color-cd' =>
-                                            $video->category->category_name === 'Center Distribution',
-                                        'text-color-hs' => $video->category->category_name === 'How Should',
-                                        'text-color-hw' => $video->category->category_name === 'How Would',
-                                        'text-color-ld' => $video->category->category_name === 'Line Distribution',
-                                        'text-color-le' => $video->category->category_name === 'Line Evolution',
-                                        'text-color-rb' => $video->category->category_name === 'Ranking Battle',
-                                    ])>
-                                        {{ $video->category->category_name }}
-                                    </p>
-                                </a>
-                                <h4>{{ $video->project_title }}</h4>
-                                <p class="date-text mb-0">
-                                    {{ \Carbon\Carbon::createFromTimeStamp(strtotime($video->date))->diffForHumans() }}
-                                    &#8226; <a href="/gallery?type={{ urlencode($video->type->type_name) }}"
-                                        class="p-0 m-0 text-decoration-none"><span
-                                            class="type-tag">{{ $video->type->type_name }}</span>
+    <section class="mt-5" id="video-artist">
+        @forelse ($projectsByGroup as $projectByGroup)
+            <div class="row {{ $loop->last ? '' : 'mb-50' }}">
+                <h3 class="fw-semibold text-color-100 mb-10">{{ $projectByGroup->first()->category->category_name }}</h3>
+                @forelse ($projectByGroup as $project)
+                    <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
+                        <div class="video-card">
+                            <a href="/gallery/videos/{{ $project->id }}">
+                                @if ($project->thumbnail !== null)
+                                    <img src="{{ $project->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
+                                        alt="{{ $project->project_title }} thumbnail">
+                                @else
+                                    <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
+                                        alt="{{ $project->project_title }} thumbnail">
+                                @endif
+                                <div class="video-desc-card">
+                                    <a href="gallery?category={{ $project->category->slug }}">
+                                        <p @class([
+                                            'mb5',
+                                            'fs-14',
+                                            'font-inter',
+                                            'fw-semibold',
+                                            'text-color-ad' =>
+                                                $project->category->category_name === 'Album Distribution',
+                                            'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                                            'text-color-cd' =>
+                                                $project->category->category_name === 'Center Distribution',
+                                            'text-color-hs' => $project->category->category_name === 'How Should',
+                                            'text-color-hw' => $project->category->category_name === 'How Would',
+                                            'text-color-ld' =>
+                                                $project->category->category_name === 'Line Distribution',
+                                            'text-color-le' => $project->category->category_name === 'Line Evolution',
+                                            'text-color-rb' => $project->category->category_name === 'Ranking Battle',
+                                        ])>
+                                            {{ $project->category->category_name }}
+                                        </p>
                                     </a>
-                                </p>
-                            </div>
-                        </a>
+                                    <h4>{{ $project->project_title }}</h4>
+                                    <p class="date-text mb-0">
+                                        {{ \Carbon\Carbon::createFromTimeStamp(strtotime($project->date))->diffForHumans() }}
+                                        &#8226; <a href="/gallery?type={{ urlencode($project->type->type_name) }}"
+                                            class="p-0 m-0 text-decoration-none"><span
+                                                class="type-tag">{{ $project->type->type_name }}</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
                     </div>
-                </div>
-            @empty
-                <div class="col-12">
+                @empty
+                    <div class="col-12">
+                        <div class="text-color-100 text-center">
+                            <i class="las la-photo-video fs-1"></i>
+                            <p class="mt-1 fs-14 fw-medium mb-0">
+                                No Video Found!
+                            </p>
+                        </div>
+                    </div>
+                @endforelse
+            </div>
+        @empty
+            <div class="row">
+                <div class="col">
                     <div class="text-color-100 text-center">
                         <i class="las la-photo-video fs-1"></i>
                         <p class="mt-1 fs-14 fw-medium mb-0">
@@ -132,7 +142,7 @@
                         </p>
                     </div>
                 </div>
-            @endforelse
-        </div>
+            </div>
+        @endforelse
     </section>
 @endsection

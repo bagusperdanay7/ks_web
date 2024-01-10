@@ -477,6 +477,7 @@ table td.text-color-cd,
 .btn-outline-main:first-child:active {
     background-color: transparent !important;
     color: var(--primary) !important;
+    border: solid 1px var(--primary);
 }
 
 .btn-upload-picture,
@@ -895,7 +896,6 @@ input.filter-search {
 .content-mobile-menu button:hover,
 .content-mobile-menu button:active {
     color: var(--primary);
-    border: 1px solid var(--white);
 }
 
 .show-mobile-menu {
@@ -1352,7 +1352,8 @@ table td.title-with-progress {
     color: var(--text-color);
 }
 
-.artist-card p, .album-card p {
+.artist-card p,
+.album-card p {
     font-weight: 600;
     font-size: 14px;
     margin: 5px 0 0 0;
@@ -1698,7 +1699,7 @@ span.input-group-text i {
     .mobile-nav {
         display: inherit;
     }
-    
+
     /* Footer */
     .py-footer {
         padding-top: 50px;

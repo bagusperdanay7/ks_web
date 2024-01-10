@@ -1,4 +1,23 @@
 @extends('layouts.main')
+@if (Auth::user()->hasVerifiedEmail() === false)
+    <div class="container">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-0" style="margin-top: 80px">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-bs-warning-bg-subtle text-color-100 rounded-top-8">
+                        <strong class="me-auto"><i class="las la-exclamation-triangle fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-bs-warning-bg-subtle fs-14 font-inter text-color-100 rounded-bottom-8">
+                        The verification process for your account has not yet been completed. <a href="{{ route('verification.notice') }}" class="fw-bold text-decoration-none text-color-secondary">Click here</a> to proceed.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @if (session()->has('updateSuccess'))
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
@@ -95,7 +114,6 @@
         </div>
     </div>
 @endif
-
 @section('content')
     <section id="profile" class="mb-50">
         <h2 class="mb-15 fw-bold text-color-100">My Profile</h2>
@@ -202,13 +220,18 @@
                     <form action="{{ route('password.change') }}" method="post" class="col-12 p-0 mb-0">
                         @method('put')
                         @csrf
-                        <h3 class="fw-semibold text-color-100 mb-30">Change Password</h3>
+                        <h3 class="fw-semibold text-color-100 {{ auth()->user()->google_id !== null ? 'mb-3' : 'mb-30' }}">Change Password</h3>
+                        @if (auth()->user()->google_id !== null)
+                        <div class="alert bg-main-10 text-color-80 fs-14 mt-2" role="alert">
+                            <i class="las la-info-circle"></i> Passwords are not required because the account is <span class="fw-semibold text-color-100">Linked to Google</span>.
+                        </div>
+                        @endif
                         <div class="mb-15">
                             <label for="old-password" class="form-label fs-18 fw-medium text-color-100">Old
                                 Password</label>
                             <div class="input-group input-old-password">
                                 <input type="password" class="form-control @error('old-password') is-invalid @enderror"
-                                    id="old-password" name="old-password" placeholder="Enter Your old password" required>
+                                    id="old-password" name="old-password" placeholder="Enter Your old password" required {{ auth()->user()->google_id !== null ? 'disabled' : '' }}>
                                 <span class="input-group-text"><i class="las la-eye old-password-icon"></i></span>
                                 @error('old-password')
                                     <div id="oldPasswordValidationFeedback" class="invalid-feedback">
@@ -221,7 +244,7 @@
                             <label for="password" class="form-label fs-18 fw-medium text-color-100">New Password</label>
                             <div class="input-group input-confirm-password">
                                 <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    id="password" name="password" placeholder="Enter Your New password" required>
+                                    id="password" name="password" placeholder="Enter Your New password" required {{ auth()->user()->google_id !== null ? 'disabled' : '' }}>
                                 <span class="input-group-text"><i class="las la-eye password-confirm-icon"></i></span>
                                 @error('password')
                                     <div id="passwordValidationFeedback" class="invalid-feedback">
@@ -237,7 +260,7 @@
                                 <input type="password"
                                     class="form-control @error('confirm-password') is-invalid @enderror"
                                     id="confirm-password" name="confirm-password"
-                                    placeholder="Enter Your Confirm New password" required>
+                                    placeholder="Enter Your Confirm New password" required {{ auth()->user()->google_id !== null ? 'disabled' : '' }}>
                                 <span class="input-group-text"><i class="las la-eye password-icon"></i></span>
                                 @error('confirm-password')
                                     <div id="confirmPasswordValidationFeedback" class="invalid-feedback">
@@ -247,7 +270,11 @@
                             </div>
                         </div>
                         <div class="text-end">
+                            @if (auth()->user()->google_id !== null)
+                            <button type="submit" class="btn btn-main px-4 disabled" disabled aria-disabled="true">Change Password</button>
+                            @else
                             <button type="submit" class="btn btn-main px-4">Change Password</button>
+                            @endif
                         </div>
                     </form>
                 </div>

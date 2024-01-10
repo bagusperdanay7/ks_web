@@ -118,13 +118,13 @@
     </section>
 
     <div class="toast-container position-fixed top-0 end-0 p-3">
-        <div id="toastLiveCopy" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header">
+        <div id="toastLiveCopy" class="toast rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header rounded-top-8 bg-main-10">
                 <strong class="me-auto">Kpop Soulmate</strong>
                 <small>just now</small>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body">
+            <div class="toast-body bg-main-10 rounded-bottom-8">
                 Link Copied
             </div>
         </div>

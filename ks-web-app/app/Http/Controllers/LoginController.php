@@ -64,7 +64,7 @@ class LoginController extends Controller
 
         $existUser = User::where('email', $googleUser->email)->first();
 
-        $message = "Welcome to Kpop Soulmates!";
+        $message = "Welcome to Kpop Soulmate!";
 
         if ($existUser != null && $existUser->google_id == null) {
             return redirect('/login')->with('loginError', 'This account is not connected to Google. Please login with email instead!');

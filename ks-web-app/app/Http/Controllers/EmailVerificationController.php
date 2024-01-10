@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 class EmailVerificationController extends Controller
 {
     public function sentEmailVerification() {
-        return view('auth.verify-email');
+        return view('auth.verify-email', ['title' => 'Verify Email']);
     }
 
     public function verificationSuccess(EmailVerificationRequest $request) {
