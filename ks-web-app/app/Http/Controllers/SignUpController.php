@@ -16,12 +16,6 @@ class SignUpController extends Controller
         ]);
     }
 
-    public function verification() {
-        return view('sign-up.verification', [
-            'title' => "Verify Email Address Sign Up",
-        ]);
-    }
-
     public function store(Request $request) {
 
         $validatedData = $request->validate([
@@ -43,5 +37,11 @@ class SignUpController extends Controller
         event (new Registered(User::create($validatedData)));
 
         return redirect(route('verify-email'))->with('success', 'Your account has been successfully created, Check your inbox or spam for verification!');
+    }
+
+    public function verification() {
+        return view('sign-up.verification', [
+            'title' => "Verify Email Address Sign Up",
+        ]);
     }
 }

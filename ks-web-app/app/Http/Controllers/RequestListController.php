@@ -132,7 +132,8 @@ class RequestListController extends Controller
 
         $allCategoryQuery = Category::all()->sortBy('category_name');
 
-        $allTypeQuery = ProjectType::all()->sortBy('type_name');
+        $allTypeQuery = ProjectType::all()->except(['id', '1'])->sortBy('type_name');
+
 
         return view('request_list', [
             'title' => 'Request List',

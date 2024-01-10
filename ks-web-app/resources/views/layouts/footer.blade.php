@@ -23,10 +23,10 @@
             <div class="col-6 col-sm-6 col-md-4 col-lg-3">
                 <h4 class="mb-3 fw-bold text-color-100">Support Us</h4>
                 <ul>
-                    <li class="mb-10"><a href="https://www.youtube.com/channel/UCeSgNMXPV1263WUwV-BTkIQ"
+                    <li class="mb-10"><a href="https://www.youtube.com/@KpopSoulmate"
                             target="_blank" class="text-decoration-none">Subscribe on
                             Youtube </a></li>
-                    <li class="mb-10"><a href="https://paypal.me/bagusperdanq" target="_blank"
+                    <li class="mb-10"><a href="https://www.paypal.com/paypalme/kpopsoulmate" target="_blank"
                             class="text-decoration-none">Paypal</a>
                     </li>
                     <li class="mb-10"><a href="https://saweria.co/kpopsoulmate" target="_blank"
@@ -39,10 +39,10 @@
                 <a href="mailto:bgkfuntastic@gmail.com" class="text-decoration-none text-color-80" aria-label="Link to contact us via email">
                     <i class='bx bxl-gmail bx-sm mr-15'></i>
                 </a>
-                <a href="" class="text-decoration-none text-color-80" aria-label="Link to discord server"><i
+                <a href="https://discord.gg/W5Serw289E" class="text-decoration-none text-color-80" aria-label="Link to discord server"><i
                         class='bx bxl-discord-alt bx-sm mr-15'></i>
                 </a>
-                <a href="" class="text-decoration-none text-color-80" aria-label="Link to Kpop Soulmate Spotify List"><i class='bx bxl-spotify bx-sm'></i>
+                <a href="https://open.spotify.com/user/8y2ow34d7bxgklpo638ovxv8v?si=99fb9ff306654772" class="text-decoration-none text-color-80" aria-label="Link to Kpop Soulmate Spotify List"><i class='bx bxl-spotify bx-sm'></i>
                 </a>
             </div>
         </div>

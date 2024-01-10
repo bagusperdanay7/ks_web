@@ -106,9 +106,7 @@ class AccountController extends Controller
             'old-password' => 'required',
             'password' => ['required', 'max:191', Password::min(8)->letters()
                         ->mixedCase()
-                        ->numbers()
-                        ->symbols()
-                        ->uncompromised()],
+                        ->numbers()],
             'confirm-password' => 'required|min:8|same:password'
         ], [
             'confirm-password.same' => 'The Confirm Password does not match password'

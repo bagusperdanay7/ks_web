@@ -1,4 +1,5 @@
 @extends('layouts.main')
+
 @if (session()->has('validationSuccess'))
     <div class="container">
         <div aria-live="polite" aria-atomic="true" class="position-relative">
@@ -86,13 +87,13 @@
                 </a>
             </div>
             <div class="col-12 col-sm mb-sm-30">
-                <a href="https://paypal.me/bagusperdanq" target="_blank">
+                <a href="https://www.paypal.com/paypalme/kpopsoulmate" target="_blank">
                     <i class='bx bxl-paypal bx-lg' style="color: #009CDE;"></i>
                     <p class="socmed-home-text">SUPPORT</p>
                 </a>
             </div>
             <div class="col-12 col-sm mb-sm-30">
-                <a href="">
+                <a href="https://discord.gg/W5Serw289E">
                     <i class='bx bxl-discord-alt bx-lg' style="color: #8A9CFE;"></i>
                     <p class="socmed-home-text">JOIN US</p>
                 </a>

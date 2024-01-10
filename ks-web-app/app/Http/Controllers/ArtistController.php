@@ -33,13 +33,17 @@ class ArtistController extends Controller
     {
         $artistQuery = $artist->projects->load('category', 'artist', 'type')
                             ->where('status', 'Completed')->where('is_exclusive', 'No')
-                            ->sortBy('project_title');
+                            ->sortBy('project_title')->count();
+
+        $artistVideoByGroup = $artist->projects->load('category', 'artist', 'type')
+                            ->where('status', 'Completed')->where('is_exclusive', 'No')
+                            ->sortBy('project_title')->groupBy('category_id');
 
         return view('artist', [
             'title' => $artist->artist_name . " Gallery",
             'artist' => $artist,
-            'artists' => $artistQuery
-            // 'artists' => Project::with('artist')->where('artist_id', $artist->id)->where('status', 'Completed')->where('is_exclusive', 'no')->orderByDesc('date')->paginate(5)
+            'artistVideos' => $artistQuery,
+            'projectsByGroup' => $artistVideoByGroup
         ]);
     }
 }

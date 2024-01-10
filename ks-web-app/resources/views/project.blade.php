@@ -139,7 +139,7 @@
                                     <form method="post" action="/projects/{{ $project->id }}">
                                         @method('put')
                                         @csrf
-                                        <button type="submit" class="btn btn-main col-12">Upvote</button>
+                                        <button type="submit" class="btn btn-main col-12" title="Only one upvote per day is permitted.">Upvote</button>
                                     </form>
                                 </div>
                             </div>

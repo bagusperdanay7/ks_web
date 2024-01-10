@@ -1,6 +1,9 @@
 @extends('layouts.main')
 
 @section('content')
+    <div class="alert alert-warning fs-14 rounded-10" role="alert">
+        <strong><i class="las la-exclamation-triangle fs-18 mb-0"></i> This page is still experimental!</strong>. We are still working on entering the album data into this page, so it may not have the content you are searching for right now.
+    </div>
     <section id="searchForm" class="mb-30">
         <div class="row">
             <div class="col">
@@ -32,7 +35,7 @@
                             </span>
                         </div>
                         <div class="filter-clear">
-                            <a href="{{ route('gallery') }}"
+                            <a href="{{ route('explore-album') }}"
                                 class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
                                 <i class="las la-times-circle"></i> Clear Filter
                             </a>
@@ -42,8 +45,7 @@
             </div>
             <div class="row my-2">
                 @forelse ($searchResults as $result)
-                    <div
-                        class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="album-card">
                             <a href="/albums/{{ $result->id ?? '' }}" class="text-decoration-none">
                                 @if ($result->cover)
@@ -109,30 +111,32 @@
                             </div>
                         </div>
                     @endforelse
-                @endforelse
-            </div>
-            <div class="row">
-                <div class="gallery-cards-head">
-                    <h3>Artists</h3>
-                </div>
-                @foreach ($searchResults->load('artist')->unique('artist_id') as $artistResult)
-                    <div
-                        class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
-                        <div class="artist-card">
-                            <a href="/artists/{{ $artistResult->artist->codename ?? '' }}">
-                                @if ($artistResult->artist->artist_pict)
-                                    <img src="{{ asset('storage/' . $artistResult->artist->artist_pict ?? '') }}"
-                                        class="rounded artist-image img-fluid"
-                                        alt="{{ $artistResult->artist->artist_name }}">
-                                @else
-                                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
-                                        alt="{{ $artistResult->artist->artist_name ?? '' }}">
-                                @endif
-                                <p>{{ $artistResult->artist->artist_name ?? '' }}</p>
-                            </a>
+                @else
+                    <div class="row">
+                        <div class="gallery-cards-head">
+                            <h3>Artists</h3>
                         </div>
+                        @foreach ($searchResults->load('artist')->unique('artist_id') as $artistResult)
+                            <div
+                                class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
+                                <div class="artist-card">
+                                    <a href="/artists/{{ $artistResult->artist->codename ?? '' }}">
+                                        @if ($artistResult->artist->artist_pict)
+                                            <img src="{{ asset('storage/' . $artistResult->artist->artist_pict ?? '') }}"
+                                                class="rounded artist-image img-fluid"
+                                                alt="{{ $artistResult->artist->artist_name }}">
+                                        @else
+                                            <img src="{{ asset('img/unknown_artist.jpg') }}"
+                                                class="rounded artist-image img-fluid"
+                                                alt="{{ $artistResult->artist->artist_name ?? '' }}">
+                                        @endif
+                                        <p>{{ $artistResult->artist->artist_name ?? '' }}</p>
+                                    </a>
+                                </div>
+                            </div>
+                        @endforeach
                     </div>
-                @endforeach
+                @endforelse
             </div>
         </section>
     @else
