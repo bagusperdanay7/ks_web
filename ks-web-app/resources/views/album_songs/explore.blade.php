@@ -176,7 +176,7 @@
         </section>
 
         <section id="rec-video">
-            <div class="row justify-content-between">
+            <div class="row">
                 <div class="gallery-cards-head">
                     <h3 class="mb-10">Recommended Albums</h3>
                 </div>

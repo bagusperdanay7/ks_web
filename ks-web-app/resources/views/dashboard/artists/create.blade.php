@@ -131,12 +131,6 @@
 
             const blob = URL.createObjectURL(artistPicture.files[0]);
             picturePreview.src = blob;
-
-            // const oFReader = new FileReader();
-            // OFReader.readAsDataURL(artistPicture.files[0]);
-            // OFReader.onload() = function(OFREvent) {
-            //     picturePreview.src = OFREvent.target.result;
-            // }
         }
     </script>
 @endsection

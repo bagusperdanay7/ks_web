@@ -18,7 +18,7 @@
                     class="img-square">
             @endif
             <div class="user-name my-3">
-                <h6 class="fw-semibold">{{ auth()->user()->name }}</h6>
+                <h6 class="fw-semibold text-white">{{ auth()->user()->name }}</h6>
             </div>
         </div>
 

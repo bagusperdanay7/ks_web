@@ -561,6 +561,14 @@ body.body-dark {
   color: #ffffff;
 }
 
+.background-color {
+  background-color: #f1f5f9;
+}
+
+.background-color-secondary {
+  background-color: #fff;
+}
+
 .btn-light-border {
   padding: 8px 10px;
   font-weight: 600;
@@ -677,6 +685,12 @@ select:focus {
   outline: 0;
   box-shadow: none;
   opacity: var(--bs-btn-close-focus-opacity);
+}
+
+span.input-group-text {
+  color: #1f1f1f;
+  background-color: #fff;
+  border: 1px solid #1f1f1f !important;
 }
 
 /* End of Modified Boostrap Style */
@@ -931,6 +945,10 @@ main {
 .dropdown-menu button:hover {
   background-color: #6528f7;
   color: #ffffff;
+}
+
+.filter-clear a:hover {
+  color: #dc3545 !important;
 }
 
 /* Create Projects */

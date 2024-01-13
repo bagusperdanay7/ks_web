@@ -47,8 +47,9 @@
                             <thead>
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
-                                    <th scope="col">Track Number</th>
                                     <th scope="col">Album</th>
+                                    <th scope="col">Artist</th>
+                                    <th scope="col">Track</th>
                                     <th scope="col">Song</th>
                                     <th scope="col">Category</th>
                                     <th>
@@ -66,10 +67,13 @@
                                         <tr class="fs-12">
                                             <td class="align-middle">{{ $no++ }}</td>
                                             </td>
-                                            <td class="align-middle">{{ $item->pivot->track_number }}</td>
                                             <td class="align-middle text-color-100">
                                                 {{ $album->album_name }}
                                             </td>
+                                            <td class="align-middle text-color-100">
+                                                {{ $album->artist->artist_name }}
+                                            </td>
+                                            <td class="align-middle">{{ $item->pivot->track_number }}</td>
                                             <td class="align-middle text-color-100">
                                                 {{ $item->title }}
                                             </td>
@@ -118,6 +122,9 @@
                                 @endforelse
                             </tbody>
                         </table>
+                    </div>
+                    <div class="pagination-container mt-3">
+                        {{ $albumSongs->links() }}
                     </div>
                 </div>
             </div>

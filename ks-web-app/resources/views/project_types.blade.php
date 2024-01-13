@@ -196,11 +196,13 @@
                                                 </span>
                                             </td>
                                             <td class="align-middle text-color-100">{{ $pro->votes }}</td>
-                                            <td class="align-middle"><a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-secondary"><i
+                                            <td class="align-middle">
+                                                <a href="/projects/{{ $pro->id }}"
+                                                    class="text-decoration-none text-color-secondary"
+                                                    aria-label="Details about {{ $pro->project_title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top"
-                                                        data-bs-title="Show Detail Project"></i></a>
+                                                        data-bs-placement="top" data-bs-title="Show Detail Project"></i>
+                                                </a>
                                             </td>
                                         </tr>
                                     @empty
@@ -253,7 +255,7 @@
                                             </td>
                                             <td class="align-middle text-color-100">{{ $pro->votes }}</td>
                                             <td class="align-middle"><a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary"><i
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
                                                         data-bs-title="Show Detail Project"></i></a>
@@ -358,7 +360,7 @@
                                             @endif
                                             <div>
                                                 <a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary">
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>
@@ -421,7 +423,7 @@
                                             @endif
                                             <div>
                                                 <a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary">
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>

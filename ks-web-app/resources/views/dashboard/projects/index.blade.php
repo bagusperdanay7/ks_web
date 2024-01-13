@@ -19,8 +19,8 @@
 @endif
 
 @section('content')
-    <section id="header-analytics">
-        <div class="row m-bottom-30">
+    <section id="header-analytics" class="m-bottom-15">
+        <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-between flex-wrap">
                     <div>
@@ -34,6 +34,30 @@
                         </a>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="search-project" class="m-bottom-30">
+        <div class="row">
+            <div class="col">
+                <form action="/dashboard/projects" method="GET">
+                    <div class="input-group">
+                        <span class="input-group-text background-color-secondary border"><i
+                                class='bx bx-search fs-18'></i></span>
+                        <input type="search" class="form-control" id="searchProject" placeholder="Search Project" name="search"
+                            autocomplete="off" aria-label="Search Project" value="{{ request('search') }}" accesskey="/" autofocus>
+                    </div>
+                </form>
+
+                @if (request('search'))
+                <div class="filter-clear m-top-5 text-end">
+                    <a href="{{ route('projects.index') }}"
+                        class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
+                        <i class="las la-times-circle"></i> Clear Filter
+                    </a>
+                </div>
+                @endif
             </div>
         </div>
     </section>

@@ -94,8 +94,6 @@
         const alerts = [...alertList].map((element) => new bootstrap.Alert(element));
     </script>
 
-    <script src="{{ asset('js/dashboard.js') }}"></script>
-
 </body>
 
 </html>

@@ -4,11 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use App\Models\Artist;
-use App\Http\Requests\StoreAlbumRequest;
-use App\Http\Requests\UpdateAlbumRequest;
-use App\Models\AlbumSong;
 use Illuminate\Contracts\Database\Eloquent\Builder;
-use App\Models\Song;
 
 class AlbumController extends Controller
 {
@@ -18,9 +14,6 @@ class AlbumController extends Controller
         $recAlbum = Album::with('artist')->get()->shuffle()->take(6);
 
         if (request('search')) {
-            // $searchResult = Album::with('artist')
-            //                     ->where('album_name', 'like', '%' . request('search') . '%')
-            //                     ->get();
             $searchResult = Album::whereHas('artist', function($q) {
                 $q->where('artist_name', 'like', '%' . request('search') . '%');
             })->orWhere('album_name', 'like', '%' . request('search') . '%')->get();
@@ -56,29 +49,5 @@ class AlbumController extends Controller
             'album' => $album,
             'songs' => $albumSongsQuery,
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Album $album)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateAlbumRequest $request, Album $album)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Album $album)
-    {
-        //
     }
 }
