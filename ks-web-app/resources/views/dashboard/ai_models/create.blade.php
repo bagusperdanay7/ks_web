@@ -31,7 +31,7 @@
                                 </div>
                             @enderror
                             <p class="fs-14 fw-medium m-top-15 mb-0 d-none" id="previewImageText">Picture Preview:</p>
-                            <img class="img-square rounded-circle preview-pict img-fluid m-top-5 d-none">
+                            <img class="img-square preview-pict img-fluid m-top-5 d-none">
                         </div>
                         <div class="m-bottom-15">
                             <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>

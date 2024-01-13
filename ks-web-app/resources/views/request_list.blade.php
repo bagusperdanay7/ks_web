@@ -26,7 +26,7 @@
                 @if ($projectCompletedProgress < 80)
                     <a class="btn btn-outline-main align-self-center fw-semibold fs-18 col-12 col-md-auto dis order-3"
                         aria-disabled="true" data-bs-toggle="tooltip" data-bs-placement="bottom"
-                        data-bs-title="Sorry Couldn't Fulfill Requests Until 80% Completed">
+                        data-bs-title="Sorry Couldn't Fulfill Requests Until 80% Completed" href="#">
                         <i class="las la-plus"></i> Make A
                         Request</a>
                 @else
@@ -113,7 +113,7 @@
                     </div>
                     <div class="progress bg-main-20 rounded-pill">
                         <div class="progress-bar bg-main rounded-pill" role="progressbar"
-                            style="width: {{ $projectCompletedProgress }}%;" aria-valuemin="0" aria-valuemax="100">
+                            style="width: {{ $projectCompletedProgress }}%;" aria-valuemin="0" aria-valuemax="100" aria-label="Progress of Completed Project" aria-labelledby="labelCompletedProject" title="Progres of Completed Project">
                             {{ $projectCompletedProgress }}%
                         </div>
                     </div>
@@ -318,7 +318,7 @@
                                         </td>
                                         <td class="align-middle text-color-100">{{ $project->votes }}</td>
                                         <td class="align-middle"><a href="/projects/{{ $project->project_id }}"
-                                                class="text-decoration-none text-color-primary"><i
+                                                class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->project_title }}"><i
                                                     class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project"></i></a>
                                         </td>
@@ -360,7 +360,7 @@
                                             </div>
                                             <div>
                                                 <a href="/projects/{{ $project->project_id }}"
-                                                    class="text-decoration-none text-color-primary">
+                                                    class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->project_title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>

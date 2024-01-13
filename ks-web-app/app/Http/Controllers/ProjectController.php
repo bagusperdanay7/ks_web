@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Project;
 use App\Models\ProjectType;
-use App\Http\Requests\UpdateProjectRequest;
 
 class ProjectController extends Controller
 {
@@ -47,7 +46,6 @@ class ProjectController extends Controller
             "nostalgicVibesProjects" => $nostalgicVibesQuery,
             "youtubeCommentProjects" => $youtubeCommentQuery,
             "nonProjects" => $nonProjectQuery,
-            // "posts" => Project::latest()->filter(request(['search', 'category', 'author']))->paginate(7)->withQueryString()
         ]);
     }
 

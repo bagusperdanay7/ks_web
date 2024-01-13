@@ -88,8 +88,7 @@
                     <a href="{{ $aiModel->url }}" target="_blank"
                         class="text-decoration-none text-color-secondary fs-12 text-break">{{ $aiModel->url }}</a>
                     <p class="m-bottom-0 m-top-15 text-color-100 fw-medium fs-14">Sample Location</p>
-                    <a href="{{ $aiModel->url }}" target="_blank"
-                        class="text-decoration-none text-color-secondary fs-12 text-break">{{ $aiModel->sample }}</a>
+                    <p class="fs-12 text-break m-0">{{ $aiModel->sample }}</p>
                 </div>
             </div>
         </div>

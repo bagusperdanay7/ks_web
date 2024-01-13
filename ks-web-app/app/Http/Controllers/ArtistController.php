@@ -3,9 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
-use App\Models\Project;
-use App\Http\Requests\StoreArtistRequest;
-use App\Http\Requests\UpdateArtistRequest;
 
 class ArtistController extends Controller
 {

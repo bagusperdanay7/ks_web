@@ -365,6 +365,14 @@ body {
     }
 }
 
+.background-color {
+    background-color: $background-color;
+}
+
+.background-color-secondary {
+    background-color: $background-color-secondary;
+}
+
 .btn-light-border {
     @include border-button($text-color, $text-color-40);
 
@@ -478,6 +486,12 @@ select:focus {
     outline: 0;
     box-shadow: none;
     opacity: var(--bs-btn-close-focus-opacity);
+}
+
+span.input-group-text {
+    color: $text-color;
+    background-color: $background-color-secondary;
+    border: 1px solid $text-color !important;
 }
 
 /* End of Modified Boostrap Style */
@@ -790,7 +804,7 @@ main {
     background: $background-color-secondary;
     padding: map-get($map: $spaces, $key: "25");
     border-radius: 10px;
-
+    
     th,
     td {
         color: $text-color;
@@ -803,6 +817,10 @@ main {
         background-color: $primary;
         color: $white;
     }
+}
+
+.filter-clear a:hover {
+    color: $alert !important;
 }
 
 /* Create Projects */

@@ -5,10 +5,10 @@
         <div class="row mb-6">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-xl-0 mb-15">
                 @if ($album->cover === null)
-                    <img src="{{ asset('img/unknown_album.jpg') }}" class="img-square rounded-10 shadow img-fluid"
+                    <img src="{{ asset('img/unknown_album.jpg') }}" class="img-square rounded-10 shadow img-fluid w-100"
                         alt="{{ $album->cover }} picture">
                 @else
-                    <img src="{{ asset('storage/' . $album->cover) }}" class="img-square rounded-10 shadow img-fluid"
+                    <img src="{{ asset('storage/' . $album->cover) }}" class="img-square rounded-10 shadow img-fluid w-100"
                         alt="{{ $album->cover }} picture">
                 @endif
 

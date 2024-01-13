@@ -12,9 +12,15 @@ class DashboardSongController extends Controller
      */
     public function index()
     {
+        $songQuery = Song::orderBy('title')->paginate(50);
+
+        if (request('search')) {
+            $songQuery = Song::orderBy('title')->where('title','like','%'. request('search') . '%')->paginate(50);
+        }
+
         return view('dashboard.songs.index', [
             'title' => 'Songs Table',
-            'songs' => Song::orderBy('title')->paginate(50),
+            'songs' => $songQuery,
         ]);
     }
 

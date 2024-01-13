@@ -32,11 +32,11 @@
                             @enderror
                             @if ($aiModel->cover_model)
                                 <p class="fs-14 fw-medium m-top-15 mb-0" id="previewImageText">Picture Preview:</p>
-                                <img class="img-square rounded-circle preview-pict img-fluid m-top-5"
+                                <img class="img-square preview-pict img-fluid m-top-5"
                                     src="{{ asset('storage/' . $aiModel->cover_model) }}">
                             @else
                                 <p class="fs-14 fw-medium m-top-15 mb-0 d-none" id="previewImageText">Picture Preview:</p>
-                                <img class="img-square rounded-circle preview-pict img-fluid m-top-5 d-none">
+                                <img class="img-square preview-pict img-fluid m-top-5 d-none">
                             @endif
                         </div>
                         <div class="m-bottom-15">

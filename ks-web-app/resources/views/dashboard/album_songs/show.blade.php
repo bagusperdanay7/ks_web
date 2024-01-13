@@ -45,12 +45,12 @@
                             <div class="bg-white p-25 rounded-10">
                                 <div class="row m-bottom-15">
                                     <div class="col">
-                                        <p class="m-bottom-10 text-color-100 fw-medium fs-14">Id</p>
-                                        <p class="m-0 text-color-100 fs-14">{{ $albumSong->id }}</p>
-                                    </div>
-                                    <div class="col">
                                         <p class="m-bottom-10 text-color-100 fw-medium fs-14">Track Number</p>
                                         <p class="m-0 text-color-100 fs-14">{{ $albumSong->track_number }}</p>
+                                    </div>
+                                    <div class="col">
+                                        <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
+                                        <p class="m-0 text-color-100 fs-14">{{ $albumSong->category }}</p>
                                     </div>
                                 </div>
                                 <div class="row m-bottom-15">
@@ -75,8 +75,8 @@
                                 </div>
                                 <div class="row m-bottom-15">
                                     <div class="col">
-                                        <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
-                                        <p class="m-0 text-color-100 fs-14">{{ $albumSong->category }}</p>
+                                        <p class="m-bottom-10 text-color-100 fw-medium fs-14">Artist</p>
+                                        <p class="m-0 text-color-100 fs-14">{{ $albumItem->artist->artist_name }}</p>
                                     </div>
                                 </div>
                             </div>

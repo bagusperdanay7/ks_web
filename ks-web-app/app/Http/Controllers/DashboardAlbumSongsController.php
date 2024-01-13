@@ -14,11 +14,12 @@ class DashboardAlbumSongsController extends Controller
      */
     public function index()
     {
-        $album = Album::with('songs')->orderBy('album_name')->get();
+        // $album = Album::with('songs')->orderBy('album_name')->paginate(50);
+        $album = Album::with(['songs:id,title', 'artist:id,artist_name'])->orderBy('album_name')->paginate(10);
 
         return view('dashboard.album_songs.index', [
             'title' => 'Album Songs Table',
-            'albumSongs' => $album
+            'albumSongs' => $album,
         ]);
     }
 
@@ -58,7 +59,7 @@ class DashboardAlbumSongsController extends Controller
      */
     public function show(AlbumSong $albumSong)
     {
-        $albumSongsQ = Album::with('songs')->orderBy('album_name')->get();
+        $albumSongsQ = Album::with(['songs:id,title', 'artist:id,artist_name'])->orderBy('album_name')->get();
 
         return view('dashboard.album_songs.show', [
             'title' => $albumSong->id,

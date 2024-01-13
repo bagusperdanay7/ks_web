@@ -45,7 +45,7 @@
                         </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/categories" class="btn btn-light-border m-right-15">Cancel</a>
-                            <button type="submit" class="btn btn-primary-color px-4">Create</button>
+                            <button type="submit" class="btn btn-primary-color px-4">Update</button>
                         </div>
                     </form>
                 </div>

@@ -35,11 +35,11 @@
                                 <audio src="{{ asset('storage/' . $model->sample) }}" class="col-12" controls></audio>
                             </div>
                             <div class="col-12 col-lg-2 col-xxl-1 text-end">
-                                <button class="btn p-0 me-3 text-color-100 btn-copy" data-url="{{ $model->url }}"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy to clipboard">
+                                <button type="button" class="btn p-0 me-3 text-color-100 btn-copy" data-url="{{ $model->url }}"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Copy to clipboard" role="button" aria-label="Copy {{ $model->model_name }} url to clipboard">
                                     <i class="las la-clipboard fs-4"></i>
                                 </button>
-                                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Model" href="{{ $model->url }}" class="btn p-0 text-decoration-none text-color-100">
+                                <a data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="Download Model" href="{{ $model->url }}" class="btn p-0 text-decoration-none text-color-100" aria-label="Download {{ $model->model_name }} model">
                                     <i class="las la-download fs-4"></i>
                                 </a>
                             </div>
@@ -50,6 +50,9 @@
                             <p class="mb-0 mt-1 fw-medium fs-14">No AI Models Found!</p>
                         </div>
                     @endforelse
+                    <div class="pagination-container mt-3">
+                        {{ $models->onEachSide(0)->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,26 +76,6 @@
                                     href=" https://docs.google.com/document/d/13ebnzmeEBc6uzYCMt-QVFQk-whVrK4zw8k7_Lw3Bv_A/edit#heading=h.bjzhhhcn3f69"
                                     target="_blank" class="text-color-secondary">link</a> to see details on how to use the
                                 model!
-                                {{-- <ol class="list-group list-group-numbered">
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Copy or Download by click the button</div>
-                                            Content for list item
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Subheading</div>
-                                            Content for list item
-                                        </div>
-                                    </li>
-                                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <div class="fw-bold">Subheading</div>
-                                            Content for list item
-                                        </div>
-                                    </li>
-                                </ol> --}}
                             </div>
                         </div>
                     </div>

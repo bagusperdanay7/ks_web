@@ -14,9 +14,15 @@ class DashboardAlbumController extends Controller
      */
     public function index()
     {
+        $album = Album::orderBy('album_name')->paginate(50);
+
+        if (request('search')) {
+            $album = Album::orderBy('album_name')->where('album_name','like','%'. request('search') . '%')->paginate(50);
+        }
+
         return view('dashboard.albums.index', [
             'title' => 'Albums Table',
-            'albums' => Album::orderBy('album_name')->paginate(50),
+            'albums' => $album,
         ]);
     }
 
