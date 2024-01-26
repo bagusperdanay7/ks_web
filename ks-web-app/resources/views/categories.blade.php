@@ -24,6 +24,7 @@
                             'bg-success-10' => $category->category_name === 'How Should',
                             'bg-hw-10' => $category->category_name === 'How Would',
                             'bg-rb-10' => $category->category_name === 'Ranking Battle',
+                            'bg-info-subtle' => $category->category_name === 'Other',
                         ])>
                             <div class="mb-sm-10">
                                 <i @class([
@@ -36,6 +37,7 @@
                                     'text-color-hs' => $category->category_name === 'How Should',
                                     'text-color-hw' => $category->category_name === 'How Would',
                                     'text-color-rb' => $category->category_name === 'Ranking Battle',
+                                    'text-info' => $category->category_name === 'Other',
                                 ])></i>
                             </div>
                             <div class="ml-10 ml-sm-0 text-center text-sm-start">

@@ -15,11 +15,11 @@ class DashboardProjectController extends Controller
      */
     public function index()
     {
-        $project = Project::orderBy('project_title')->paginate(50);
+        $project = Project::orderBy('project_title')->paginate(50)->withQueryString();
 
         if (request('search')) {
             $project = Project::where('project_title', 'like', '%' . request('search') . '%')
-                            ->orderBy('project_title')->paginate(50);
+                            ->orderBy('project_title')->paginate(50)->withQueryString();
         }
         
         return view('dashboard.projects.index', [

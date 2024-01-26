@@ -43,7 +43,7 @@
                             @forelse ($myrequests as $request)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
+                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
                                         {{ $request->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -133,7 +133,7 @@
                             @forelse ($myCompletedRequests as $completedRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
+                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
                                         {{ $completedRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -228,7 +228,7 @@
                             @forelse ($myOnProcessRequests as $OnProcessRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
+                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
                                         {{ $OnProcessRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -323,7 +323,7 @@
                             @forelse ($myPendingRequests as $pendingRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
+                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
                                         {{ $pendingRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -417,7 +417,7 @@
                             @forelse ($myRejectedRequests as $rejectedRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
+                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
                                         {{ $rejectedRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
