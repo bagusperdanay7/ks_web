@@ -121,7 +121,7 @@
 
             var buttons = buttonCopy[i];
             buttons.addEventListener('click', function() {
-                navigator.clipboard.writeText(this.attributes[1].value);
+                navigator.clipboard.writeText(this.attributes[2].value);
 
                 const toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastContainer);
                 toastBootstrap.show()
