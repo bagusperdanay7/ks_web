@@ -13,17 +13,10 @@ class DashboardArtistController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $artist = Artist::orderBy('artist_name')->paginate(50)->withQueryString();
 
         if (request('search')) {
-            $artist = Artist::where('artist_name','like','%'. request('search') . '%')->orderBy('artist_name')->paginate(50)->withQueryString();
-=======
-        $artist = Artist::orderBy('artist_name')->paginate(50);
-
-        if (request('search')) {
-            $artist = Artist::where('artist_name','like','%'. request('search') . '%')->orderBy('artist_name')->paginate(50);
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
+            $artist = Artist::where('artist_name', 'like', '%' . request('search') . '%')->orderBy('artist_name')->paginate(50)->withQueryString();
         }
 
         return view('dashboard.artists.index', [
@@ -51,7 +44,7 @@ class DashboardArtistController extends Controller
             'artist_name' => 'required|max:191',
             'codename' => 'required|unique:artists|max:191',
             'debut' => 'required|date',
-            'origin' => 'required|max:191' ,
+            'origin' => 'required|max:191',
             'artist_pict' => 'image|file|max:4096',
             'fandom' => 'required|max:191',
             'company' => 'required|max:191',
@@ -107,11 +100,11 @@ class DashboardArtistController extends Controller
         if ($request->codename !== $artist->codename) {
             $rules['codename'] = "required|unique:artists|max:191";
         }
-        
+
         $validateData = $request->validate($rules);
 
-        if($request->file('artist_pict')) {
-            if ($artist->artist_pict !== null) { 
+        if ($request->file('artist_pict')) {
+            if ($artist->artist_pict !== null) {
                 Storage::delete($artist->artist_pict);
             }
 

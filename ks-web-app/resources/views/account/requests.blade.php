@@ -43,11 +43,7 @@
                             @forelse ($myrequests as $request)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-<<<<<<< HEAD
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-=======
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                                         {{ $request->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -137,11 +133,7 @@
                             @forelse ($myCompletedRequests as $completedRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-<<<<<<< HEAD
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-=======
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                                         {{ $completedRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -236,11 +228,7 @@
                             @forelse ($myOnProcessRequests as $OnProcessRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-<<<<<<< HEAD
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-=======
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                                         {{ $OnProcessRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -335,11 +323,7 @@
                             @forelse ($myPendingRequests as $pendingRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-<<<<<<< HEAD
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-=======
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                                         {{ $pendingRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',
@@ -433,11 +417,7 @@
                             @forelse ($myRejectedRequests as $rejectedRequest)
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
-<<<<<<< HEAD
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-=======
-                                        class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0">
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                                         {{ $rejectedRequest->project_title }}</div>
                                     <div @class([
                                         'col-12',

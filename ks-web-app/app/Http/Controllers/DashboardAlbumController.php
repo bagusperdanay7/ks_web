@@ -14,17 +14,10 @@ class DashboardAlbumController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $album = Album::orderBy('album_name')->paginate(50)->withQueryString();
 
         if (request('search')) {
-            $album = Album::orderBy('album_name')->where('album_name','like','%'. request('search') . '%')->paginate(50)->withQueryString();
-=======
-        $album = Album::orderBy('album_name')->paginate(50);
-
-        if (request('search')) {
-            $album = Album::orderBy('album_name')->where('album_name','like','%'. request('search') . '%')->paginate(50);
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
+            $album = Album::orderBy('album_name')->where('album_name', 'like', '%' . request('search') . '%')->paginate(50)->withQueryString();
         }
 
         return view('dashboard.albums.index', [
@@ -106,8 +99,8 @@ class DashboardAlbumController extends Controller
 
         $validateData = $request->validate($rules);
 
-        if($request->file('cover')) {
-            if ($album->cover !== null) { 
+        if ($request->file('cover')) {
+            if ($album->cover !== null) {
                 Storage::delete($album->cover);
             }
 

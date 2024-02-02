@@ -15,21 +15,13 @@ class DashboardProjectController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $project = Project::orderBy('project_title')->paginate(50)->withQueryString();
 
         if (request('search')) {
             $project = Project::where('project_title', 'like', '%' . request('search') . '%')
-                            ->orderBy('project_title')->paginate(50)->withQueryString();
-=======
-        $project = Project::orderBy('project_title')->paginate(50);
-
-        if (request('search')) {
-            $project = Project::where('project_title', 'like', '%' . request('search') . '%')
-                            ->orderBy('project_title')->paginate(50);
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
+                ->orderBy('project_title')->paginate(50)->withQueryString();
         }
-        
+
         return view('dashboard.projects.index', [
             'title' => 'Projects Table',
             'projects' => $project,

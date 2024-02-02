@@ -12,17 +12,10 @@ class DashboardSongController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $songQuery = Song::orderBy('title')->paginate(50)->withQueryString();
 
         if (request('search')) {
-            $songQuery = Song::orderBy('title')->where('title','like','%'. request('search') . '%')->paginate(50)->withQueryString();
-=======
-        $songQuery = Song::orderBy('title')->paginate(50);
-
-        if (request('search')) {
-            $songQuery = Song::orderBy('title')->where('title','like','%'. request('search') . '%')->paginate(50);
->>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
+            $songQuery = Song::orderBy('title')->where('title', 'like', '%' . request('search') . '%')->paginate(50)->withQueryString();
         }
 
         return view('dashboard.songs.index', [
@@ -49,7 +42,7 @@ class DashboardSongController extends Controller
         $validateData = $request->validate([
             'title' => 'required|max:191',
             'genre' => 'required|max:191',
-            'author' => 'max:191' ,
+            'author' => 'max:191',
             'composer' => 'max:191',
             'arranger' => 'max:191',
         ]);
@@ -89,11 +82,11 @@ class DashboardSongController extends Controller
         $rules = [
             'title' => 'required|max:191',
             'genre' => 'required|max:191',
-            'author' => 'max:191' ,
+            'author' => 'max:191',
             'composer' => 'max:191',
             'arranger' => 'max:191',
         ];
-        
+
         $validateData = $request->validate($rules);
 
         Song::where('id', $song->id)->update($validateData);
