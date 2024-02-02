@@ -13,10 +13,17 @@ class DashboardArtistController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+        $artist = Artist::orderBy('artist_name')->paginate(50)->withQueryString();
+
+        if (request('search')) {
+            $artist = Artist::where('artist_name','like','%'. request('search') . '%')->orderBy('artist_name')->paginate(50)->withQueryString();
+=======
         $artist = Artist::orderBy('artist_name')->paginate(50);
 
         if (request('search')) {
             $artist = Artist::where('artist_name','like','%'. request('search') . '%')->orderBy('artist_name')->paginate(50);
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
         }
 
         return view('dashboard.artists.index', [

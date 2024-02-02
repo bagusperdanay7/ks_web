@@ -33,7 +33,11 @@ class RequestListController extends Controller
             ->select('*', 'projects.id as project_id')
             ->where('project_types.type_name', '!=', 'Non-Project')
             ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+            ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
             ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
 
         if (request('status') !== null) {
             if (request('sort') == 'title_asc') {
@@ -42,41 +46,65 @@ class RequestListController extends Controller
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderBy('project_title')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'oldest') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderBy('date')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'latest') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderByDesc('date')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'least') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderBy('votes')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'most') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderByDesc('votes')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } else {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             }
         } else {
             if (request('sort') == 'title_asc') {
@@ -85,35 +113,55 @@ class RequestListController extends Controller
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderBy('project_title')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'oldest') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderBy('date')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'latest') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderByDesc('date')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'least') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderBy('votes')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             } elseif (request('sort') == 'most') {
                 $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderByDesc('votes')
                     ->filter(request(['search', 'category', 'type']))
+<<<<<<< HEAD
+                    ->paginate(25, ['*'], 'requestListpage')->withQueryString();
+=======
                     ->paginate(25, ['*'], 'requestListpage');
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
             }
         }
 
