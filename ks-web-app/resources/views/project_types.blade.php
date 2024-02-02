@@ -27,8 +27,18 @@
         @elseif ($projectType->type_name === 'Huge Project Vol.#01')
             <div class="row huge-project-vol1-hero">
                 <div class="col-12 mb-3 col-lg-6 align-self-center order-2 order-lg-1">
+<<<<<<< HEAD
                     <h2 class="mb-3">{{ $projectType->type_name }}</h2>
                     <p class="huge-project-vol1-text">{{ $projectType->about }}</p>
+=======
+                    <h2 class="mb-3">Huge Project Vol.#01</h2>
+                    <p class="huge-project-vol1-text">Huge Project Vol.#01 is a project based on Google Forms requests,
+                        where the
+                        content
+                        will
+                        be the line evolution of
+                        the female group of your choice</p>
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                     <a href="#project-type-table-section" class="btn btn-huge-project-vol1 d-grid d-lg-inline-block">View
                         Details</a>
                 </div>
@@ -40,8 +50,15 @@
         @elseif ($projectType->type_name === 'Nostalgic Vibes')
             <div class="row nv-project-hero align-items-center">
                 <div class="col">
+<<<<<<< HEAD
                     <h2 class="mb-3">{{ $projectType->type_name }}/h2>
                     <p class="nv-project-text">{{ $projectType->about }}</p>
+=======
+                    <h2 class="mb-3">Nostalgic Vibes</h2>
+                    <p class="nv-project-text">Nostalgic Vibes is a project that is planned to be uploaded every weekend.
+                        Where the
+                        video contains the line distribution of old songs.</p>
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                     <a href="#project-type-table-section" class="btn btn-nv-project d-grid d-lg-inline-block">View
                         Details</a>
                 </div>
@@ -49,8 +66,13 @@
         @elseif ($projectType->type_name === 'Youtube Comment')
             <div class="row youtube-project-hero">
                 <div class="col-12 col-lg-6 order-2 order-lg-1">
+<<<<<<< HEAD
                     <h2 class="mb-3">{{ $projectType->type_name }}</h2>
                     <p class="youtube-project-text">{{ $projectType->about }}</p>
+=======
+                    <h2 class="mb-3">Youtube Comments</h2>
+                    <p class="youtube-project-text">This project is retrieved from youtube comments.</p>
+>>>>>>> f18853d370fd6012683fb0fcdcc189fe71f044e4
                     <a href="#project-type-table-section" class="btn btn-youtube-project d-grid d-md-inline-block">View
                         Details</a>
                 </div>
