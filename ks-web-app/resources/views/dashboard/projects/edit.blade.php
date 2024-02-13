@@ -212,7 +212,7 @@
                         <div class="m-bottom-15">
                             <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created
                                 At</label>
-                            <input type="datetime-local @error('created_at') is-invalid @enderror" class="form-control"
+                            <input type="datetime-local" class="form-control @error('created_at') is-invalid @enderror"
                                 name="created_at" id="created_at" value="{{ old('created_at', $project->created_at) }}">
                             @error('created_at')
                                 <div id="createdAtFeedback" class="invalid-feedback">
