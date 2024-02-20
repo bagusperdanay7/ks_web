@@ -56,19 +56,14 @@
             <div class="col-12 col-lg-6 mb-3 mb-lg-0">
                 <h3 class="fw-semibold text-color-100">Our First Video</h3>
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-10" src="https://www.youtube.com/embed/Vm5dJvx4V90"
-                        title="Hello Venus (헬로비너스) - &#39;Runway (아니길)&#39; (Line Distribution)"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen>
-                    </iframe>
+                    <iframe class="rounded-10" src="https://www.youtube.com/embed/Vm5dJvx4V90" title="HELLOVENUS (헬로비너스 ) - Runway (아니길) (Line Distribution)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                 </div>
 
             </div>
             <div class="col-12 col-lg-6">
                 <h3 class="fw-semibold text-color-100">Our Latest Video</h3>
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-10" src="https://www.youtube.com/embed/EZXp-Gj8iP8"
-                        title="Dreamcatcher - July 7th (약속해 우리) (Line Distribution)"
+                    <iframe class="rounded-10" src="https://www.youtube.com/embed/{{ $latestVideo }}"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>
@@ -89,10 +84,10 @@
                             </button>
                         </h2>
                         <div id="flush-first-faq" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
-                            <div class="accordion-body text-color-100 bg-second fs-sm-14"><strong>Sony Vegas Pro 15</strong> to edit video bars and time, and insert the lyrics.
+                            <div class="accordion-body text-color-100 bg-second fs-sm-14"><strong>Magix Vegas Pro 18</strong> to edit video bars and time, and insert the lyrics.
                                 <strong>Adobe Photoshop</strong> to edit member images, create layouts, lyrics, and thumbnails. <strong>Figma</strong> for editing
                                 intro layouts. <strong>Adobe After Effects</strong> to create animation effects and transitions in the video and
-                                outro along with the charts. </div>
+                                outro along with the charts.</div>
                         </div>
                     </div>
                     <div class="accordion-item">
@@ -105,6 +100,19 @@
                         <div id="flush-timezone" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
                             <div class="accordion-body text-color-100 bg-second fs-sm-14">
                                 We use Korea Standard Time <strong>(KST)</strong>, since its related to K-Pop.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#flush-date-format" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                What date format do we use?
+                            </button>
+                        </h2>
+                        <div id="flush-date-format" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
+                            <div class="accordion-body text-color-100 bg-second fs-sm-14">
+                                We use British Date Format <strong>(D M Y)</strong>, since its the same date format as My Country (Indonesia).
                             </div>
                         </div>
                     </div>

@@ -104,7 +104,7 @@
                                             <td class="align-middle text-color-ad fw-medium">
                                                 {{ $project->category->category_name }}
                                             </td>
-                                        @elseif ($project->category->category_name === 'Album Evolution')
+                                        @elseif ($project->category->category_name === 'Total Line Evolution')
                                             <td class="align-middle text-color-ae fw-medium">
                                                 {{ $project->category->category_name }}
                                             </td>
@@ -122,6 +122,10 @@
                                             </td>
                                         @elseif ($project->category->category_name === 'Ranking Battle')
                                             <td class="align-middle text-color-rb fw-medium">
+                                                {{ $project->category->category_name }}
+                                            </td>
+                                        @elseif ($project->category->category_name === 'Other')
+                                            <td class="align-middle text-info fw-medium">
                                                 {{ $project->category->category_name }}
                                             </td>
                                         @else

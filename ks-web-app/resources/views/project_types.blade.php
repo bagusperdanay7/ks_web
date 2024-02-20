@@ -158,11 +158,12 @@
                                                 'text-color-ld' => $pro->category->category_name === 'Line Distribution',
                                                 'text-color-le' => $pro->category->category_name === 'Line Evolution',
                                                 'text-color-ad' => $pro->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $pro->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $pro->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $pro->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $pro->category->category_name === 'How Should',
                                                 'text-color-hw' => $pro->category->category_name === 'How Would',
                                                 'text-color-cd' => $pro->category->category_name === 'Center Distribution',
+                                                'text-info' => $pro->category->category_name === 'Other',
                                             ])>
                                                 {{ $pro->category->category_name }}
                                             </td>
@@ -216,11 +217,12 @@
                                                 'text-color-ld' => $pro->category->category_name === 'Line Distribution',
                                                 'text-color-le' => $pro->category->category_name === 'Line Evolution',
                                                 'text-color-ad' => $pro->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $pro->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $pro->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $pro->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $pro->category->category_name === 'How Should',
                                                 'text-color-hw' => $pro->category->category_name === 'How Would',
                                                 'text-color-cd' => $pro->category->category_name === 'Center Distribution',
+                                                'text-info' => $pro->category->category_name === 'Other',
                                             ])>
                                                 {{ $pro->category->category_name }}
                                             </td>
@@ -378,11 +380,12 @@
                                                 'text-color-ld' => $pro->category->category_name === 'Line Distribution',
                                                 'text-color-le' => $pro->category->category_name === 'Line Evolution',
                                                 'text-color-ad' => $pro->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $pro->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $pro->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $pro->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $pro->category->category_name === 'How Should',
                                                 'text-color-hw' => $pro->category->category_name === 'How Would',
                                                 'text-color-cd' => $pro->category->category_name === 'Center Distribution',
+                                                'text-info' => $pro->category->category_name === 'Other',
                                             ])>
                                                 {{ $pro->category->category_name }}</span>
                                         </div>
@@ -441,11 +444,12 @@
                                                 'text-color-ld' => $pro->category->category_name === 'Line Distribution',
                                                 'text-color-le' => $pro->category->category_name === 'Line Evolution',
                                                 'text-color-ad' => $pro->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $pro->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $pro->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $pro->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $pro->category->category_name === 'How Should',
                                                 'text-color-hw' => $pro->category->category_name === 'How Would',
                                                 'text-color-cd' => $pro->category->category_name === 'Center Distribution',
+                                                'text-info' => $pro->category->category_name === 'Other',
                                             ])>
                                                 {{ $pro->category->category_name }}</span>
                                         </div>

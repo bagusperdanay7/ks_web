@@ -63,7 +63,7 @@
                                 <p class="text-color-ad fs-14 m-0 fw-medium">
                                     {{ $project->category->category_name }}
                                 </p>
-                            @elseif ($project->category->category_name === 'Album Evolution')
+                            @elseif ($project->category->category_name === 'Total Line Evolution')
                                 <p class="text-color-ae fs-14 m-0 fw-medium">
                                     {{ $project->category->category_name }}
                                 </p>
@@ -81,6 +81,10 @@
                                 </p>
                             @elseif ($project->category->category_name === 'Ranking Battle')
                                 <p class="text-color-rb fs-14 m-0 fw-medium">
+                                    {{ $project->category->category_name }}
+                                </p>
+                            @elseif ($project->category->category_name === 'Other')
+                                <p class="text-info fs-14 m-0 fw-medium">
                                     {{ $project->category->category_name }}
                                 </p>
                             @else

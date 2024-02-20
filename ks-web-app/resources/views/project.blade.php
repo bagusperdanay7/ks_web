@@ -58,12 +58,12 @@
                             'text-color-le' => $project->category->category_name === 'Line Evolution',
                             'text-color-ad' =>
                                 $project->category->category_name === 'Album Distribution',
-                            'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                            'text-color-ae' => $project->category->category_name === 'Total Line Evolution',
                             'text-color-rb' => $project->category->category_name === 'Ranking Battle',
                             'text-color-hs' => $project->category->category_name === 'How Should',
                             'text-color-hw' => $project->category->category_name === 'How Would',
-                            'text-color-cd' =>
-                                $project->category->category_name === 'Center Distribution',
+                            'text-color-cd' => $project->category->category_name === 'Center Distribution',
+                            'text-info' => $project->category->category_name === 'Other',
                         ])>{{ $project->category->category_name }}
                         </div>
                     </div>

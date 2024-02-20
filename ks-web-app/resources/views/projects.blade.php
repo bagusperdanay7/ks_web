@@ -59,12 +59,13 @@
                                             'text-color-le' => $project->category->category_name === 'Line Evolution',
                                             'text-color-ad' =>
                                                 $project->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $project->category->category_name === 'Total Line Evolution',
                                             'text-color-rb' => $project->category->category_name === 'Ranking Battle',
                                             'text-color-hs' => $project->category->category_name === 'How Should',
                                             'text-color-hw' => $project->category->category_name === 'How Would',
                                             'text-color-cd' =>
-                                                $project->category->category_name === 'Center Distribution',
+                                            $project->category->category_name === 'Center Distribution',
+                                            'text-info' => $project->category->category_name === 'Other',
                                         ])> {{ $project->category->category_name }}</td>
                                         @if ($project->date == null)
                                             <td class="align-middle fw-medium text-color-100"><i
@@ -144,12 +145,13 @@
                                                 'text-color-le' => $project->category->category_name === 'Line Evolution',
                                                 'text-color-ad' =>
                                                     $project->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $project->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $project->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $project->category->category_name === 'How Should',
                                                 'text-color-hw' => $project->category->category_name === 'How Would',
                                                 'text-color-cd' =>
-                                                    $project->category->category_name === 'Center Distribution',
+                                                $project->category->category_name === 'Center Distribution',
+                                                'text-info' => $project->category->category_name === 'Other',
                                             ])>
                                                 {{ $project->category->category_name }}</span> •
                                             <span class="text-color-100">{{ $project->type->type_name }}</span>
@@ -227,13 +229,14 @@
                                             'text-color-ad' =>
                                                 $nonProject->category->category_name === 'Album Distribution',
                                             'text-color-ae' =>
-                                                $nonProject->category->category_name === 'Album Evolution',
+                                                $nonProject->category->category_name === 'Total Line Evolution',
                                             'text-color-rb' =>
                                                 $nonProject->category->category_name === 'Ranking Battle',
                                             'text-color-hs' => $nonProject->category->category_name === 'How Should',
                                             'text-color-hw' => $nonProject->category->category_name === 'How Would',
                                             'text-color-cd' =>
                                                 $nonProject->category->category_name === 'Center Distribution',
+                                            'text-info' => $nonProject->category->category_name === 'Other',
                                         ])> {{ $nonProject->category->category_name }}</td>
                                         @if ($nonProject->date == null)
                                             <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
@@ -314,13 +317,14 @@
                                                 'text-color-ad' =>
                                                     $nonProject->category->category_name === 'Album Distribution',
                                                 'text-color-ae' =>
-                                                    $nonProject->category->category_name === 'Album Evolution',
+                                                    $nonProject->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' =>
                                                     $nonProject->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $nonProject->category->category_name === 'How Should',
                                                 'text-color-hw' => $nonProject->category->category_name === 'How Would',
                                                 'text-color-cd' =>
-                                                    $nonProject->category->category_name === 'Center Distribution',
+                                                $nonProject->category->category_name === 'Center Distribution',
+                                                'text-info' => $nonProject->category->category_name === 'Other',
                                             ])>
                                                 {{ $nonProject->category->category_name }}</span>
                                         </div>
@@ -390,12 +394,13 @@
                                             'text-color-le' => $hugeProj->category->category_name === 'Line Evolution',
                                             'text-color-ad' =>
                                                 $hugeProj->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $hugeProj->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $hugeProj->category->category_name === 'Total Line Evolution',
                                             'text-color-rb' => $hugeProj->category->category_name === 'Ranking Battle',
                                             'text-color-hs' => $hugeProj->category->category_name === 'How Should',
                                             'text-color-hw' => $hugeProj->category->category_name === 'How Would',
                                             'text-color-cd' =>
-                                                $hugeProj->category->category_name === 'Center Distribution',
+                                            $hugeProj->category->category_name === 'Center Distribution',
+                                            'text-info' => $hugeProj->category->category_name === 'Other',
                                         ])> {{ $hugeProj->category->category_name }}</td>
                                         @if ($hugeProj->date == null)
                                             <td class="align-middle text-color-100"><i class="lar la-calendar"></i>
@@ -474,12 +479,13 @@
                                                 'text-color-le' => $hugeProj->category->category_name === 'Line Evolution',
                                                 'text-color-ad' =>
                                                     $hugeProj->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $hugeProj->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $hugeProj->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $hugeProj->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $hugeProj->category->category_name === 'How Should',
                                                 'text-color-hw' => $hugeProj->category->category_name === 'How Would',
                                                 'text-color-cd' =>
-                                                    $hugeProj->category->category_name === 'Center Distribution',
+                                                $hugeProj->category->category_name === 'Center Distribution',
+                                                'text-info' => $hugeProj->category->category_name === 'Other',
                                             ])>
                                                 {{ $hugeProj->category->category_name }}</span>
                                         </div>
@@ -548,12 +554,13 @@
                                             'text-color-le' => $nvProj->category->category_name === 'Line Evolution',
                                             'text-color-ad' =>
                                                 $nvProj->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $nvProj->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $nvProj->category->category_name === 'Total Line Evolution',
                                             'text-color-rb' => $nvProj->category->category_name === 'Ranking Battle',
                                             'text-color-hs' => $nvProj->category->category_name === 'How Should',
                                             'text-color-hw' => $nvProj->category->category_name === 'How Would',
                                             'text-color-cd' =>
-                                                $nvProj->category->category_name === 'Center Distribution',
+                                            $nvProj->category->category_name === 'Center Distribution',
+                                            'text-info' => $nvProj->category->category_name === 'Other',
                                         ])>
                                             {{ $nvProj->category->category_name }}</td>
                                         @if ($nvProj->date == null)
@@ -632,12 +639,13 @@
                                                 'text-color-le' => $nvProj->category->category_name === 'Line Evolution',
                                                 'text-color-ad' =>
                                                     $nvProj->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $nvProj->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $nvProj->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $nvProj->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $nvProj->category->category_name === 'How Should',
                                                 'text-color-hw' => $nvProj->category->category_name === 'How Would',
                                                 'text-color-cd' =>
-                                                    $nvProj->category->category_name === 'Center Distribution',
+                                                $nvProj->category->category_name === 'Center Distribution',
+                                                'text-info' => $nvProj->category->category_name === 'Other',
                                             ])>
                                                 {{ $nvProj->category->category_name }}</span>
                                         </div>
@@ -708,12 +716,13 @@
                                             'text-color-le' => $ytComPro->category->category_name === 'Line Evolution',
                                             'text-color-ad' =>
                                                 $ytComPro->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $ytComPro->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $ytComPro->category->category_name === 'Total Line Evolution',
                                             'text-color-rb' => $ytComPro->category->category_name === 'Ranking Battle',
                                             'text-color-hs' => $ytComPro->category->category_name === 'How Should',
                                             'text-color-hw' => $ytComPro->category->category_name === 'How Would',
                                             'text-color-cd' =>
-                                                $ytComPro->category->category_name === 'Center Distribution',
+                                            $ytComPro->category->category_name === 'Center Distribution',
+                                            'text-info' => $ytComPro->category->category_name === 'Other',
                                         ])>
                                             {{ $ytComPro->category->category_name }}</td>
                                         @if ($ytComPro->date == null)
@@ -794,12 +803,13 @@
                                                 'text-color-le' => $ytComPro->category->category_name === 'Line Evolution',
                                                 'text-color-ad' =>
                                                     $ytComPro->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $ytComPro->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $ytComPro->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $ytComPro->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $ytComPro->category->category_name === 'How Should',
                                                 'text-color-hw' => $ytComPro->category->category_name === 'How Would',
                                                 'text-color-cd' =>
-                                                    $ytComPro->category->category_name === 'Center Distribution',
+                                                $ytComPro->category->category_name === 'Center Distribution',
+                                                'text-info' => $ytComPro->category->category_name === 'Other',
                                             ])>
                                                 {{ $ytComPro->category->category_name }}</span>
                                         </div>

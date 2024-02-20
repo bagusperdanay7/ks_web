@@ -4,9 +4,11 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    {{-- https://www.w3schools.com/tags/tag_meta.asp --}}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Welcome to Kpop Soulmate Website. K-Pop Line Distribution & More. Explore the video & Enjoy Your Journey on Our Website">
+    <meta name="description" content="Kpop Soulmate Website is a website from the Kpop Soulmate YouTube Channel that discusses Kpop, especially Kpop line distribution. Besides Line distribution, the content made are line evolution, album distribution and etc. ">
+    <meta name="keywords" content="Kpop Soulmate,Kpop,Website,Line Distribution,Korea,Lyrics,Color Coded Lyrics">
+    <meta name="author" content="Kpop Soulmate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -32,6 +34,16 @@
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
     <title>{{ $title }} - Kpop Soulmate</title>
+
+    <!-- Google tag (gtag.js) - Active kan ketika deploy -->
+    {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-586T4HCWK2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-586T4HCWK2');
+    </script> --}}
 </head>
 
 <body class="bg-color-light">
@@ -87,6 +99,10 @@
     </script>
 
     <script src="{{ asset('js/script.js') }}"></script>
+
+    <!--Google Adsense - Aktifkan Ketika Deploy-->
+    {{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9138729091125895"
+    crossorigin="anonymous"></script> --}}
 
 </body>
 

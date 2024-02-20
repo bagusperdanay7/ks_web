@@ -197,13 +197,14 @@
                                 'text-color-ad' =>
                                     $scheduleItems->category->category_name === 'Album Distribution',
                                 'text-color-ae' =>
-                                    $scheduleItems->category->category_name === 'Album Evolution',
+                                    $scheduleItems->category->category_name === 'Total Line Evolution',
                                 'text-color-rb' =>
                                     $scheduleItems->category->category_name === 'Ranking Battle',
                                 'text-color-hs' => $scheduleItems->category->category_name === 'How Should',
                                 'text-color-hw' => $scheduleItems->category->category_name === 'How Would',
                                 'text-color-cd' =>
                                     $scheduleItems->category->category_name === 'Center Distribution',
+                                'text-info' => $scheduleItems->category->category_name === 'Other',
                             ])> {{ $scheduleItems->category->category_name }}
                             </div>
                             @if ($scheduleItems->date)
@@ -290,13 +291,14 @@
                                         'text-color-ad' =>
                                             $scheduleItems->category->category_name === 'Album Distribution',
                                         'text-color-ae' =>
-                                            $scheduleItems->category->category_name === 'Album Evolution',
+                                            $scheduleItems->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' =>
                                             $scheduleItems->category->category_name === 'Ranking Battle',
                                         'text-color-hs' => $scheduleItems->category->category_name === 'How Should',
                                         'text-color-hw' => $scheduleItems->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $scheduleItems->category->category_name === 'Center Distribution',
+                                        'text-info' => $scheduleItems->category->category_name === 'Other',
                                     ])>
                                         {{ $scheduleItems->category->category_name }}</span> •
                                     <span class="text-color-100">{{ $scheduleItems->type->type_name }}</span>

@@ -111,7 +111,7 @@
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $gallery->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $gallery->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $gallery->category->category_name === 'Total Line Evolution',
                                             'text-color-cd' =>
                                                 $gallery->category->category_name === 'Center Distribution',
                                             'text-color-hs' => $gallery->category->category_name === 'How Should',
@@ -120,6 +120,7 @@
                                                 $gallery->category->category_name === 'Line Distribution',
                                             'text-color-le' => $gallery->category->category_name === 'Line Evolution',
                                             'text-color-rb' => $gallery->category->category_name === 'Ranking Battle',
+                                            'text-info' => $gallery->category->category_name === 'Other',
                                         ])>
                                             {{ $gallery->category->category_name }}
                                         </p>
@@ -199,7 +200,7 @@
                                                 'fw-semibold',
                                                 'text-color-ad' =>
                                                     $recVideo->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $recVideo->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $recVideo->category->category_name === 'Total Line Evolution',
                                                 'text-color-cd' =>
                                                     $recVideo->category->category_name === 'Center Distribution',
                                                 'text-color-hs' => $recVideo->category->category_name === 'How Should',
@@ -208,6 +209,7 @@
                                                     $recVideo->category->category_name === 'Line Distribution',
                                                 'text-color-le' => $recVideo->category->category_name === 'Line Evolution',
                                                 'text-color-rb' => $recVideo->category->category_name === 'Ranking Battle',
+                                                'text-info' => $recVideo->category->category_name === 'Other',
                                             ])>
                                                 {{ $recVideo->category->category_name }}
                                             </p>
@@ -286,20 +288,21 @@
                                 'category-card',
                                 'bg-alert-10' =>
                                     $category->category->category_name === 'Album Distribution',
-                                'bg-second-10' => $category->category->category_name === 'Album Evolution',
+                                'bg-second-10' => $category->category->category_name === 'Total Line Evolution',
                                 'bg-main-10' => $category->category->category_name === 'Line Distribution',
                                 'bg-tertiary-10' => $category->category->category_name === 'Line Evolution',
                                 'bg-cd-10' => $category->category->category_name === 'Center Distribution',
                                 'bg-success-10' => $category->category->category_name === 'How Should',
                                 'bg-hw-10' => $category->category->category_name === 'How Would',
                                 'bg-rb-10' => $category->category->category_name === 'Ranking Battle',
+                                'bg-info-subtle' => $category->category->category_name === 'Other',
                             ])>
                                 <div class="mb-sm-10">
                                     <i @class([
                                         $category->category->icon_class,
                                         'text-color-ad' =>
                                             $category->category->category_name === 'Album Distribution',
-                                        'text-color-ae' => $category->category->category_name === 'Album Evolution',
+                                        'text-color-ae' => $category->category->category_name === 'Total Line Evolution',
                                         'text-color-ld' =>
                                             $category->category->category_name === 'Line Distribution',
                                         'text-color-le' => $category->category->category_name === 'Line Evolution',
@@ -308,6 +311,7 @@
                                         'text-color-hs' => $category->category->category_name === 'How Should',
                                         'text-color-hw' => $category->category->category_name === 'How Would',
                                         'text-color-rb' => $category->category->category_name === 'Ranking Battle',
+                                        'text-info' => $category->category->category_name === 'Other',
                                     ])></i>
                                 </div>
                                 <div class="ml-10 ml-sm-0 text-center text-sm-start">
@@ -395,7 +399,7 @@
                                             'text-color-ad' =>
                                                 $latestVid->category->category_name === 'Album Distribution',
                                             'text-color-ae' =>
-                                                $latestVid->category->category_name === 'Album Evolution',
+                                                $latestVid->category->category_name === 'Total Line Evolution',
                                             'text-color-cd' =>
                                                 $latestVid->category->category_name === 'Center Distribution',
                                             'text-color-hs' => $latestVid->category->category_name === 'How Should',
@@ -404,6 +408,7 @@
                                                 $latestVid->category->category_name === 'Line Distribution',
                                             'text-color-le' => $latestVid->category->category_name === 'Line Evolution',
                                             'text-color-rb' => $latestVid->category->category_name === 'Ranking Battle',
+                                            'text-info' => $latestVid->category->category_name === 'Other',
                                         ])>
                                             {{ $latestVid->category->category_name }}
                                         </p>
@@ -479,7 +484,7 @@
                                             'fw-semibold',
                                             'text-color-ad' =>
                                                 $recVideo->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $recVideo->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $recVideo->category->category_name === 'Total Line Evolution',
                                             'text-color-cd' =>
                                                 $recVideo->category->category_name === 'Center Distribution',
                                             'text-color-hs' => $recVideo->category->category_name === 'How Should',
@@ -488,6 +493,7 @@
                                                 $recVideo->category->category_name === 'Line Distribution',
                                             'text-color-le' => $recVideo->category->category_name === 'Line Evolution',
                                             'text-color-rb' => $recVideo->category->category_name === 'Ranking Battle',
+                                            'text-info' => $recVideo->category->category_name === 'Other',
                                         ])>
                                             {{ $recVideo->category->category_name }}
                                         </p>

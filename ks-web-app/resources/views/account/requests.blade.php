@@ -57,12 +57,13 @@
                                         'text-color-le' => $request->category->category_name === 'Line Evolution',
                                         'text-color-ad' =>
                                             $request->category->category_name === 'Album Distribution',
-                                        'text-color-ae' => $request->category->category_name === 'Album Evolution',
+                                        'text-color-ae' => $request->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' => $request->category->category_name === 'Ranking Battle',
                                         'text-color-hs' => $request->category->category_name === 'How Should',
                                         'text-color-hw' => $request->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $request->category->category_name === 'Center Distribution',
+                                        'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $request->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
                                             {{ $request->type->type_name }}</span></div>
@@ -149,7 +150,7 @@
                                         'text-color-ad' =>
                                             $completedRequest->category->category_name === 'Album Distribution',
                                         'text-color-ae' =>
-                                            $completedRequest->category->category_name === 'Album Evolution',
+                                            $completedRequest->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' =>
                                             $completedRequest->category->category_name === 'Ranking Battle',
                                         'text-color-hs' =>
@@ -158,6 +159,7 @@
                                             $completedRequest->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $completedRequest->category->category_name === 'Center Distribution',
+                                        'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $completedRequest->category->category_name }}
                                         <span class="d-inline d-md-none text-color-100 fw-medium">•
                                             {{ $completedRequest->type->type_name }}</span></div>
@@ -244,7 +246,7 @@
                                         'text-color-ad' =>
                                             $OnProcessRequest->category->category_name === 'Album Distribution',
                                         'text-color-ae' =>
-                                            $OnProcessRequest->category->category_name === 'Album Evolution',
+                                            $OnProcessRequest->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' =>
                                             $OnProcessRequest->category->category_name === 'Ranking Battle',
                                         'text-color-hs' =>
@@ -253,6 +255,7 @@
                                             $OnProcessRequest->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $OnProcessRequest->category->category_name === 'Center Distribution',
+                                        'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $OnProcessRequest->category->category_name }}
                                         <span class="d-inline d-md-none text-color-100 fw-medium">•
                                             {{ $OnProcessRequest->type->type_name }}</span></div>
@@ -339,7 +342,7 @@
                                         'text-color-ad' =>
                                             $pendingRequest->category->category_name === 'Album Distribution',
                                         'text-color-ae' =>
-                                            $pendingRequest->category->category_name === 'Album Evolution',
+                                            $pendingRequest->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' =>
                                             $pendingRequest->category->category_name === 'Ranking Battle',
                                         'text-color-hs' =>
@@ -347,6 +350,7 @@
                                         'text-color-hw' => $pendingRequest->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $pendingRequest->category->category_name === 'Center Distribution',
+                                        'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $pendingRequest->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
                                             {{ $pendingRequest->type->type_name }}</span></div>
@@ -433,7 +437,7 @@
                                         'text-color-ad' =>
                                             $rejectedRequest->category->category_name === 'Album Distribution',
                                         'text-color-ae' =>
-                                            $rejectedRequest->category->category_name === 'Album Evolution',
+                                            $rejectedRequest->category->category_name === 'Total Line Evolution',
                                         'text-color-rb' =>
                                             $rejectedRequest->category->category_name === 'Ranking Battle',
                                         'text-color-hs' =>
@@ -442,6 +446,7 @@
                                             $rejectedRequest->category->category_name === 'How Would',
                                         'text-color-cd' =>
                                             $rejectedRequest->category->category_name === 'Center Distribution',
+                                        'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $rejectedRequest->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
                                             {{ $rejectedRequest->type->type_name }}</span></div>

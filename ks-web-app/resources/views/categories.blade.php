@@ -17,7 +17,7 @@
                             'align-items-center',
                             'category-card',
                             'bg-alert-10' => $category->category_name === 'Album Distribution',
-                            'bg-second-10' => $category->category_name === 'Album Evolution',
+                            'bg-second-10' => $category->category_name === 'Total Line Evolution',
                             'bg-main-10' => $category->category_name === 'Line Distribution',
                             'bg-tertiary-10' => $category->category_name === 'Line Evolution',
                             'bg-cd-10' => $category->category_name === 'Center Distribution',
@@ -30,7 +30,7 @@
                                 <i @class([
                                     $category->icon_class,
                                     'text-color-ad' => $category->category_name === 'Album Distribution',
-                                    'text-color-ae' => $category->category_name === 'Album Evolution',
+                                    'text-color-ae' => $category->category_name === 'Total Line Evolution',
                                     'text-color-ld' => $category->category_name === 'Line Distribution',
                                     'text-color-le' => $category->category_name === 'Line Evolution',
                                     'text-color-cd' => $category->category_name === 'Center Distribution',

@@ -28,7 +28,7 @@
                         'font-inter',
                         'fw-semibold',
                         'text-color-ad' => $video->category->category_name === 'Album Distribution',
-                        'text-color-ae' => $video->category->category_name === 'Album Evolution',
+                        'text-color-ae' => $video->category->category_name === 'Total Line Evolution',
                         'text-color-cd' =>
                             $video->category->category_name === 'Center Distribution',
                         'text-color-hs' => $video->category->category_name === 'How Should',
@@ -36,6 +36,7 @@
                         'text-color-ld' => $video->category->category_name === 'Line Distribution',
                         'text-color-le' => $video->category->category_name === 'Line Evolution',
                         'text-color-rb' => $video->category->category_name === 'Ranking Battle',
+                        'text-info' => $video->category->category_name === 'Other',
                     ])>
                         {{ $video->category->category_name }}
                     </p>
@@ -96,7 +97,7 @@
                                         'fw-semibold',
                                         'text-color-ad' =>
                                             $related->category->category_name === 'Album Distribution',
-                                        'text-color-ae' => $related->category->category_name === 'Album Evolution',
+                                        'text-color-ae' => $related->category->category_name === 'Total Line Evolution',
                                         'text-color-cd' =>
                                             $related->category->category_name === 'Center Distribution',
                                         'text-color-hs' => $related->category->category_name === 'How Should',
@@ -105,6 +106,7 @@
                                             $related->category->category_name === 'Line Distribution',
                                         'text-color-le' => $related->category->category_name === 'Line Evolution',
                                         'text-color-rb' => $related->category->category_name === 'Ranking Battle',
+                                        'text-info' => $related->category->category_name === 'Other',
                                     ])>
                                         {{ $related->category->category_name }}
                                     </p>
