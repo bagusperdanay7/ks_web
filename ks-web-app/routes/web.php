@@ -78,6 +78,8 @@ Route::get('/terms-and-conditions', [InformationController::class, 'termsAndCond
 
 Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorials');
 
+// TODO: Bikin Halaman Baru (Support Page) tambahkan Button atau widget dari buy me a coffee dan ko-fi
+
 Route::get('/explore', [AlbumController::class, 'index'])->name('explore-album');
 
 Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist']);
