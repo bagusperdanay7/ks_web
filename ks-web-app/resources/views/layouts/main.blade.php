@@ -34,6 +34,7 @@
     <link rel="manifest" href="{{ asset('favicon/site.webmanifest') }}">
 
     <title>{{ $title }} - Kpop Soulmate</title>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 
     <!-- Google tag (gtag.js) - Active kan ketika deploy -->
     {{-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-586T4HCWK2"></script>

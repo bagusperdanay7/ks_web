@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('company_id');
             $table->string('artist_name');
             $table->string('codename')->unique();
             $table->date('debut');
             $table->string('origin');
             $table->string('artist_pict')->nullable();
             $table->string('fandom');
-            $table->string('company');
             $table->text('about')->nullable();
             $table->timestamps();
         });

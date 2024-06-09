@@ -18,6 +18,11 @@ class Album extends Model
         return $this->belongsTo(Artist::class);
     }
 
+    public function publisher(): BelongsTo
+    {
+        return $this->belongsTo(Company::class);
+    }
+
     public function songs(): BelongsToMany
     {
         return $this->belongsToMany(Song::class)->using(AlbumSong::class)->withPivot('id', 'track_number', 'category')->withTimestamps()->orderByPivot('track_number', 'asc');
