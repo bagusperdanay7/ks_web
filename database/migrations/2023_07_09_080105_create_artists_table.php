@@ -13,15 +13,15 @@ return new class extends Migration
     {
         Schema::create('artists', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('company_id');
             $table->string('artist_name');
             $table->string('codename')->unique();
             $table->enum('classification', ['Group', 'Singer', 'Musician']);
-            $table->date('birthdate');
-            $table->string('origin');
+            $table->date('birthdate')->nullable();
+            $table->string('origin')->nullable();
             $table->string('artist_picture')->nullable();
             $table->string('fandom')->nullable();
             $table->text('about')->nullable();
+            $table->foreignId('company_id')->constrained(table: 'companies', indexName: 'artists_company_id');
             $table->timestamps();
         });
     }

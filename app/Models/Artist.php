@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Artist extends Model
 {
@@ -13,19 +15,43 @@ class Artist extends Model
 
     protected $guarded = ['id'];
 
-    public function projects(): HasMany
+    public function projects(): BelongsToMany
     {
-        return $this->hasMany(Project::class);
+        return $this->belongsToMany(Project::class)->using(ProjectArtist::class)->withTimestamps();
     }
 
-    public function albums(): HasMany
+    public function albums(): BelongsToMany
     {
-        return $this->hasMany(Album::class);
+        return $this->belongsToMany(Album::class)->using(AlbumArtist::class)->withTimestamps();
     }
 
-    public function publisher(): BelongsTo
+    public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class);
+    }
+
+    public function idol(): HasOne
+    {
+        return $this->hasOne(Idol::class);
+    }
+
+    public function collabtracks(): BelongsToMany
+    {
+        return $this->belongsToMany(Song::class)->using(Collaboration::class)->withPivot('role')->withTimestamps();
+    }
+    public function songs(): BelongsToMany
+    {
+        return $this->belongsToMany(Song::class)->using(Songwriter::class)->withPivot('role')->withTimestamps();
+    }
+
+    public function aimodels(): HasMany
+    {
+        return $this->hasMany(AIModel::class);
+    }
+
+    public function members(): BelongsToMany
+    {
+        return $this->belongsToMany(Idol::class)->using(MemberGroup::class)->withPivot('status')->withTimestamps();
     }
 
     public function getRouteKeyName()

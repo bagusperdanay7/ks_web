@@ -9,16 +9,11 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-
     public function up(): void
     {
-        Schema::create('songs', function (Blueprint $table) {
+        Schema::create('playlists', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->integer('duration')->nullable();
-            $table->enum('category', ['Track', 'Title Track'])->default('Track');
-            $table->text('lyrics');
-            $table->foreignId('album_id')->constrained(table: 'albums', indexName: 'songs_album_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -28,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('songs');
+        Schema::dropIfExists('playlists');
     }
 };

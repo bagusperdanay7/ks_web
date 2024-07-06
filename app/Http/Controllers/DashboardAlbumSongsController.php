@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class DashboardAlbumSongsController extends Controller
 {
+
+    const DASHBOARD_ALBUM_SONG_PATH = "/dashboard/album-songs";
     /**
      * Display a listing of the resource.
      */
@@ -51,7 +53,7 @@ class DashboardAlbumSongsController extends Controller
 
         $album->songs()->attach($validateData['song_id'],  ['track_number' => $validateData['track_number'], 'category' => $validateData['category']]);
 
-        return redirect('/dashboard/album-songs')->with('success', "The Relation has been created!");
+        return redirect(self::DASHBOARD_ALBUM_SONG_PATH)->with('success', "The Relation has been created!");
     }
 
     /**
@@ -97,7 +99,7 @@ class DashboardAlbumSongsController extends Controller
 
         AlbumSong::where('id', $albumSong->id)->update($validateData);
 
-        return redirect('/dashboard/album-songs')->with('success', "The Album Song has been updated!");
+        return redirect(self::DASHBOARD_ALBUM_SONG_PATH)->with('success', "The Album Song has been updated!");
     }
 
     /**
@@ -106,7 +108,7 @@ class DashboardAlbumSongsController extends Controller
     public function destroy(string $id)
     {
         AlbumSong::destroy($id);
-    
-        return redirect('/dashboard/album-songs')->with('success', "The Relation has been deleted!");
+
+        return redirect(self::DASHBOARD_ALBUM_SONG_PATH)->with('success', "The Relation has been deleted!");
     }
 }

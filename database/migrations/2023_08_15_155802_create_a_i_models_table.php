@@ -14,12 +14,11 @@ return new class extends Migration
         Schema::create('a_i_models', function (Blueprint $table) {
             $table->id();
             $table->string('model_name');
-            $table->string('cover_model', 100)->nullable();
             $table->string('url')->nullable();
             $table->enum('status', ['Completed', 'Pending', 'On Process', 'Rejected'])->nullable()->default('Pending');
             $table->text('description')->nullable();
-            $table->string('audio_sample', 100)->nullable(); #atau jadi url dan upload ke soundcloud
-            $table->foreignId('artist_id');
+            $table->string('audio_sample', 100)->nullable();
+            $table->foreignId('artist_id')->constrained('artists', indexName: 'aimodels_artist_id');
             $table->timestamps();
         });
     }

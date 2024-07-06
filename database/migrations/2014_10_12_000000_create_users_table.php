@@ -17,11 +17,11 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('profile_picture')->nullable();
-            $table->enum('role', ['user', 'admin'])->nullable()->default('user');
+            $table->enum('role', ['user', 'admin', 'editor'])->default('user');
             $table->string('google_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->integer('credit');
+            $table->integer('credit')->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

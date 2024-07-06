@@ -14,25 +14,30 @@ class ProjectController extends Controller
     public function index()
     {
 
-        $hugeProjectsQuery = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
-                                    ->where('project_types.type_name', 'Huge Project Vol.#01')
-                                    ->limit(10)
-                                    ->get();
+        // TODO: Jikalau bisa ubah script di bawah ini
+        // $users = User::with(['posts' => function (Builder $query) {
+        //     $query->where('title', 'like', '%code%');
+        // }])->get();
 
-        $nostalgicVibesQuery = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
-                                    ->where('project_types.type_name', 'Nostalgic Vibes')
-                                    ->limit(10)
-                                    ->get();
+        $hugeProjectsQuery = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
+            ->where('project_types.type_name', 'Huge Project Vol.#01')
+            ->limit(10)
+            ->get();
 
-        $youtubeCommentQuery = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
-                                    ->where('project_types.type_name', 'Youtube Comment')
-                                    ->limit(10)
-                                    ->get();
-                                    
-        $nonProjectQuery = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
-                                    ->where('project_types.type_name', 'Non-Project')
-                                    ->limit(10)
-                                    ->get();
+        $nostalgicVibesQuery = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
+            ->where('project_types.type_name', 'Nostalgic Vibes')
+            ->limit(10)
+            ->get();
+
+        $youtubeCommentQuery = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
+            ->where('project_types.type_name', 'Youtube Comment')
+            ->limit(10)
+            ->get();
+
+        $nonProjectQuery = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
+            ->where('project_types.type_name', 'Non-Project')
+            ->limit(10)
+            ->get();
 
         return view('projects', [
             "title" => "All Projects",
@@ -60,7 +65,8 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function upvote(Project $project) {
+    public function upvote(Project $project)
+    {
 
         $upvote = $project->votes + 1;
 

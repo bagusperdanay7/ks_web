@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Project extends Model
 {
@@ -13,7 +14,7 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // Eager loading menangani masalah n+1
-    protected $with = ['artist', 'category', 'type'];
+    protected $with = ['category', 'type'];
 
     public function scopeFilter($query, array $filters)
     {
@@ -38,9 +39,9 @@ class Project extends Model
         });
     }
 
-    public function artist(): BelongsTo
+    public function artists(): BelongsToMany
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsToMany(Artist::class)->using(ProjectArtist::class)->withTimestamps();
     }
 
     public function category(): BelongsTo
@@ -51,5 +52,10 @@ class Project extends Model
     public function type(): BelongsTo
     {
         return $this->belongsTo(ProjectType::class);
+    }
+
+    public function playlists(): BelongsToMany
+    {
+        return $this->belongsToMany(Playlist::class)->using(PlaylistVideo::class)->withTimestamps();
     }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Album extends Model
 {
@@ -13,18 +14,20 @@ class Album extends Model
 
     protected $guarded = ['id'];
 
-    public function artist(): BelongsTo
-    {
-        return $this->belongsTo(Artist::class);
-    }
-
     public function publisher(): BelongsTo
     {
         return $this->belongsTo(Company::class);
     }
 
-    public function songs(): BelongsToMany
+    public function songs(): HasMany
     {
-        return $this->belongsToMany(Song::class)->using(AlbumSong::class)->withPivot('id', 'track_number', 'category')->withTimestamps()->orderByPivot('track_number', 'asc');
+        return $this->hasMany(Song::class);
+    }
+
+    // ? contoh ke many to many
+    //         return $this->belongsToMany(Artist::class)->using(AlbumArtist::class)->withPivot('id', 'track_number', 'category')->withTimestamps()->orderByPivot('track_number', 'asc');
+    public function artists(): BelongsToMany
+    {
+        return $this->belongsToMany(Artist::class)->using(AlbumArtist::class)->withTimestamps();
     }
 }

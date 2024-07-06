@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Artist;
 use App\Models\ProjectType;
 
 class GalleryController extends Controller
@@ -13,54 +13,58 @@ class GalleryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    
+
     public function index()
     {
         $galleryQuery = Project::latest()
-                                ->where([['status', 'Completed'], ['is_exclusive', 'No']])
-                                ->filter(request(['search', 'category', 'type']))
-                                ->get();
-                                
+            ->where([['status', 'Completed'], ['exclusive', false]])
+            ->filter(request(['search', 'category', 'type']))
+            ->get();
+
         if (request('sort') == 'title_asc') {
             $galleryQuery = Project::orderBy('project_title')
-            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
-            ->filter(request(['search', 'category', 'type']))
-            ->get();
+                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->filter(request(['search', 'category', 'type']))
+                ->get();
         } elseif (request('sort') == 'latest') {
             $galleryQuery = Project::orderByDesc('date')
-            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
-            ->filter(request(['search', 'category', 'type']))
-            ->get();
+                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->filter(request(['search', 'category', 'type']))
+                ->get();
         } elseif (request('sort') == 'oldest') {
             $galleryQuery = Project::orderBy('date')
-            ->where([['status', 'Completed'], ['is_exclusive', 'No']])
-            ->filter(request(['search', 'category', 'type']))
-            ->get();
+                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->filter(request(['search', 'category', 'type']))
+                ->get();
         }
 
-        $artistTotalQuery = Project::where([['status', 'Completed'], ['is_exclusive', 'No']])
-                                    ->groupBy('artist_id')
-                                    ->select('artist_id', Project::raw('count(*) as total'))
-                                    ->inRandomOrder()
-                                    ->get()
-                                    ->take(6);
+        $query = Project::all();
+        dd($query);
 
-        $categoriesQuery = Project::where([['status', 'Completed'], ['is_exclusive', 'No']])
-                                    ->groupBy('category_id')
-                                    ->select('category_id', Project::raw('count(*) as total'))
-                                    ->get()
-                                    ->sort()
-                                    ->take(4);
+        $artistTotalQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
+            ->groupBy('artist_id')
+            ->select('artist_id', Project::raw('count(*) as total'))
+            ->inRandomOrder()
+            ->get()
+            ->take(6);
 
-        $latestVideoQuery = Project::where([['status', 'Completed'], ['is_exclusive', 'No']])
-                                    ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
-                                    ->sortByDesc('date')
-                                    ->take(3);
 
-        $recVideoQuery = Project::where([['status', 'completed'], ['is_exclusive', 'No']])
-                                ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
-                                ->shuffle()
-                                ->take(6);
+        $categoriesQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
+            ->groupBy('category_id')
+            ->select('category_id', Project::raw('count(*) as total'))
+            ->get()
+            ->sort()
+            ->take(4);
+
+        $latestVideoQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
+            ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
+            ->sortByDesc('date')
+            ->take(3);
+
+        $recVideoQuery = Project::where([['status', 'completed'], ['exclusive', false]])
+            ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
+            ->shuffle()
+            ->take(6);
 
         $allCategoryQuery = Category::all()->sortBy('category_name');
 
@@ -75,13 +79,12 @@ class GalleryController extends Controller
             }
 
             $preTitle = "Explore ";
-
         } else {
             $preTitle = "Gallery";
         }
 
         return view('gallery', [
-            "title" => $preTitle . $title ,
+            "title" => $preTitle . $title,
             "galleries" => $galleryQuery,
             'artistsTotal' => $artistTotalQuery,
             'categories' =>  $categoriesQuery,
@@ -98,14 +101,14 @@ class GalleryController extends Controller
     public function show(Project $project)
     {
         $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
-        ->select('projects.*', 'artists.codename')
-        ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.is_exclusive', 'No']])
-        ->limit(6)
-        ->get()->shuffle();
+            ->select('projects.*', 'artists.codename')
+            ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.exclusive', true]])
+            ->limit(6)
+            ->get()->shuffle();
 
         // $user->posts()->where('active', 1)->get(); # has many
 
-        if ($project->status !== "Completed" || $project->is_exclusive !== "No") {
+        if ($project->status !== "Completed" || $project->exclusive === true) {
             abort(404);
         }
 

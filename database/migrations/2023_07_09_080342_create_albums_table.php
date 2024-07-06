@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('albums', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('artist_id');
-            $table->foreignId('publisher');
             $table->string('name');
             $table->enum('type', ['Single', 'EP', 'Album'])->default('EP');
             $table->date('release');
             $table->string('cover')->nullable();
+            $table->foreignId('artist_id')->constrained(table: 'artists', indexName: 'albums_artist_id');
+            $table->foreignId('publisher')->constrained(table: 'companies', indexName: 'albums_publisher_id');
             $table->timestamps();
         });
     }

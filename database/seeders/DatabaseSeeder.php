@@ -133,10 +133,13 @@ class DatabaseSeeder extends Seeder
         //     'votes' => 3,
         // ]);
 
-        Artist::factory(10)->create();
-        Album::factory(10)->create();
-        Song::factory(10)->create();
-        Project::factory(10)->create();
-        AIModel::factory(10)->create();
+        // Artist::factory(10)->create();
+        // Album::factory(10)->create();
+        // Song::factory(10)->create();
+        // Project::factory(10)->create();
+        // AIModel::factory(10)->create();
+
+        // * New
+        $this->call([UserSeeder::class]);
     }
 }
