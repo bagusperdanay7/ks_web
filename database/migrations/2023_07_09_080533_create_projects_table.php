@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('requester')->default("Unknown Google Forms Requester");
             $table->datetime('date')->nullable();
-            $table->enum('status', ['Completed', 'On Process', 'Pending', 'Rejected'])->default('Pending');
+            $table->enum('status', ['Completed', 'In Progress', 'Pending', 'Rejected'])->default('Pending');
             $table->string('youtube_id')->nullable();
             $table->integer('progress')->nullable()->default(0);
             $table->text('notes')->nullable();

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Relations\Pivot;
 
 class AlbumArtist extends Pivot
 {
-    // protected $table = 'my_flights';
+    //
 }

@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
@@ -26,6 +27,11 @@ class UserSeeder extends Seeder
             'remember_token' => Str::random(10)
         ]);
 
-        User::factory(5)->create();
+        User::factory(5)
+            ->state(new Sequence(
+                ['role' => 'admin'],
+                ['role' => 'editor'],
+                ['role' => 'user'],
+            ))->create();
     }
 }

@@ -17,7 +17,7 @@ class PlaylistFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->lexify('?????????? - ??????????'),
         ];
     }
 }

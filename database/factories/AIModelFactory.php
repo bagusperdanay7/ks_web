@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Artist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,8 +18,11 @@ class AIModelFactory extends Factory
     public function definition(): array
     {
         return [
-            'model_name' => $this->faker->sentence(3),
-            'description' => $this->faker->paragraph(2),
+            'model_name' => fake()->sentence(3),
+            'url' => fake()->url(),
+            'status' => fake()->randomElement(['Completed', 'In Progress', 'Pending', 'Rejected']),
+            'description' => fake()->paragraph(2),
+            'artist_id' => Artist::factory()
         ];
     }
 }

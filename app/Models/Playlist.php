@@ -10,8 +10,8 @@ class Playlist extends Model
 {
     use HasFactory;
 
-    public function videos(): BelongsToMany
+    public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class)->using(PlaylistVideo::class)->withTimestamps();
+        return $this->belongsToMany(Project::class)->using(PlaylistProject::class)->withPivot('order', 'main')->withTimestamps();
     }
 }

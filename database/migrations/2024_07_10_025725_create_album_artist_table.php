@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('album_artists', function (Blueprint $table) {
+        Schema::create('album_artist', function (Blueprint $table) {
             $table->timestamps();
             $table->foreignId('album_id')->constrained('albums', indexName: 'aa_album_id');
             $table->foreignId('artist_id')->constrained('artists', indexName: 'aa_artist_id');
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('album_artists');
+        Schema::dropIfExists('album_artist');
     }
 };

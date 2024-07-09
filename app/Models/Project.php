@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\PlaylistProject;
 
 class Project extends Model
 {
@@ -56,6 +57,6 @@ class Project extends Model
 
     public function playlists(): BelongsToMany
     {
-        return $this->belongsToMany(Playlist::class)->using(PlaylistVideo::class)->withTimestamps();
+        return $this->belongsToMany(Playlist::class)->using(PlaylistProject::class)->withPivot('order', 'main')->withTimestamps();
     }
 }

@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
-class PlaylistVideo extends Pivot
+class PlaylistProject extends Pivot
 {
     //
 }

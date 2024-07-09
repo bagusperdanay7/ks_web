@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,10 +18,10 @@ class AlbumFactory extends Factory
     public function definition(): array
     {
         return [
-            'artist_id' => mt_rand(1, 20),
-            'album_name' => $this->faker->word(),
-            'release' => $this->faker->dateTime(),
-            'publisher' => $this->faker->company()
+            'name' => fake()->word(),
+            'type' => fake()->randomElement(['Single', 'Ep', 'Album']),
+            'release' => fake()->dateTime(),
+            'publisher' => Company::factory(),
         ];
     }
 }

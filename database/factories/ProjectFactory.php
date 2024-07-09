@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
+use App\Models\ProjectType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,17 +19,17 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'project_title' => $this->faker->lexify('?????? - ??????'),
+            'title' => fake()->lexify('?????? - ??????'),
+            'requester' => fake()->name(),
+            'date' => fake()->dateTime(),
+            'status' => fake()->randomElement(['Completed', 'In Progress', 'Pending', 'Rejected']),
+            'youtube_id' => fake()->md5(),
+            'progress' => fake()->numberBetween(0, 100),
+            'notes' => fake()->sentence(),
+            'votes' => fake()->numberBetween(1, 10),
+            'exclusive' => fake()->boolean(),
             'category_id' => mt_rand(1, 4),
-            'artist_id' => mt_rand(1, 10),
-            'type_id' => mt_rand(1, 4),
-            'requester' => $this->faker->name(),
-            'date' => $this->faker->dateTime(),
-            'status' => implode($this->faker->randomElements(['Completed', 'On Process', 'Pending', 'Rejected'])),
-            'url' => $this->faker->url(),
-            'progress' => $this->faker->numberBetween(0, 100),
-            'notes' => $this->faker->sentence(),
-            'votes' => $this->faker->numberBetween(1, 10),
+            'project_type_id' => mt_rand(1, 3),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Album;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,11 +18,11 @@ class SongFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->word(),
-            'genre' => implode($this->faker->randomElements(['Pop', 'Retro', 'EDM', 'Rock', 'Jazz', 'Dance', 'R&B'])),
-            'author' => $this->faker->name(),
-            'composer' => $this->faker->name(),
-            'arranger' => $this->faker->name(),
+            'title' => fake()->word(),
+            'duration' => fake()->randomNumber(3),
+            'category' => fake()->randomElement(['Track', 'Title Track']),
+            'lyrics' => fake()->realText(),
+            'album_id' => Album::factory(),
         ];
     }
 }

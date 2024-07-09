@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('playlist_videos', function (Blueprint $table) {
+        Schema::create('playlist_project', function (Blueprint $table) {
             $table->integer('order');
             $table->boolean('main_video');
             $table->timestamps();
-            $table->foreignId('playlist_id')->constrained('playlists', indexName: 'pv_playlist_id');
-            $table->foreignId('project_id')->constrained('projects', indexName: 'pv_project_id');
+            $table->foreignId('playlist_id')->constrained('playlists', indexName: 'pp_playlist_id');
+            $table->foreignId('project_id')->constrained('projects', indexName: 'pp_project_id');
             $table->primary(['playlist_id', 'project_id']);
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('playlist_videos');
+        Schema::dropIfExists('playlist_project');
     }
 };

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->integer('duration')->nullable();
             $table->enum('category', ['Track', 'Title Track'])->default('Track');
-            $table->text('lyrics');
+            $table->text('lyrics')->nullable();
             $table->foreignId('album_id')->constrained(table: 'albums', indexName: 'songs_album_id');
             $table->timestamps();
         });

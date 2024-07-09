@@ -17,7 +17,6 @@ return new class extends Migration
             $table->enum('type', ['Single', 'EP', 'Album'])->default('EP');
             $table->date('release');
             $table->string('cover')->nullable();
-            $table->foreignId('artist_id')->constrained(table: 'artists', indexName: 'albums_artist_id');
             $table->foreignId('publisher')->constrained(table: 'companies', indexName: 'albums_publisher_id');
             $table->timestamps();
         });

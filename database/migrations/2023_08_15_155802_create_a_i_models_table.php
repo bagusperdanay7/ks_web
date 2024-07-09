@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('model_name');
             $table->string('url')->nullable();
-            $table->enum('status', ['Completed', 'Pending', 'On Process', 'Rejected'])->nullable()->default('Pending');
+            $table->enum('status', ['Completed', 'Pending', 'In Progress', 'Rejected'])->nullable()->default('Pending');
             $table->text('description')->nullable();
             $table->string('audio_sample', 100)->nullable();
             $table->foreignId('artist_id')->constrained('artists', indexName: 'aimodels_artist_id');
