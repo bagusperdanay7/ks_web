@@ -20,16 +20,11 @@ class Song extends Model
 
     public function genres(): BelongsToMany
     {
-        return $this->belongsToMany(Genre::class)->using(SongGenre::class)->withTimestamps();
+        return $this->belongsToMany(Genre::class, 'song_genre')->using(SongGenre::class)->withTimestamps();
     }
 
     public function artists(): BelongsToMany
     {
-        return $this->belongsToMany(Artist::class)->using(Collaboration::class)->withPivot('role')->withTimestamps();
-    }
-
-    public function writers(): BelongsToMany
-    {
-        return $this->belongsToMany(Artist::class)->using(Songwriter::class)->withPivot('role')->withTimestamps();
+        return $this->belongsToMany(Artist::class, 'song_artist')->using(SongArtist::class)->withPivot('role')->withTimestamps();
     }
 }

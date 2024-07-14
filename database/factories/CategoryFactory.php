@@ -2,13 +2,12 @@
 
 namespace Database\Factories;
 
-use App\Models\Artist;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Idol>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Category>
  */
-class IdolFactory extends Factory
+class CategoryFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,9 +17,9 @@ class IdolFactory extends Factory
     public function definition(): array
     {
         return [
-            'stage_name' => fake()->firstName(),
-            'birth_name' => fake()->name(),
-            'artist_id' => Artist::factory()
+            'category_name' => fake()->safeColorName(),
+            'slug' => fake()->slug(),
+            'icon_class' => fake()->word()
         ];
     }
 }

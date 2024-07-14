@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('song_genres', function (Blueprint $table) {
+        Schema::create('song_genre', function (Blueprint $table) {
             $table->foreignId('song_id')->constrained('songs', indexName: 'sg_song_id');
             $table->foreignId('genre_id')->constrained('genres', indexName: 'sg_genre_id');
-            $table->primary(['song_id', 'genre_id']);
             $table->timestamps();
+            $table->primary(['song_id', 'genre_id']);
         });
     }
 

@@ -13,6 +13,8 @@ class PlaylistSeeder extends Seeder
      */
     public function run(): void
     {
-        // Playlist::factory(10)->create();
+        Playlist::create([
+            'name' => 'WJSN - Neverland (Album)'
+        ]);
     }
 }

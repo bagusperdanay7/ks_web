@@ -12,6 +12,6 @@ class Genre extends Model
 
     public function songs(): BelongsToMany
     {
-        return $this->belongsToMany(Song::class)->using(SongGenre::class)->withTimestamps();
+        return $this->belongsToMany(Song::class, 'song_genre')->using(SongGenre::class)->withTimestamps();
     }
 }

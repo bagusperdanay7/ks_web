@@ -42,7 +42,7 @@ class Project extends Model
 
     public function artists(): BelongsToMany
     {
-        return $this->belongsToMany(Artist::class)->using(ProjectArtist::class)->withTimestamps();
+        return $this->belongsToMany(Artist::class, 'project_artist')->using(ProjectArtist::class)->withTimestamps();
     }
 
     public function category(): BelongsTo

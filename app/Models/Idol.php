@@ -19,6 +19,6 @@ class Idol extends Model
 
     public function groups(): BelongsToMany
     {
-        return $this->belongsToMany(Artist::class)->using(MemberGroup::class)->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(Artist::class, 'member_group')->using(MemberGroup::class)->withPivot('status')->withTimestamps();
     }
 }

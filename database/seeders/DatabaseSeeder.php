@@ -7,14 +7,16 @@ namespace Database\Seeders;
 use App\Models\Song;
 use App\Models\User;
 use App\Models\Album;
+use App\Models\Genre;
 use App\Models\Artist;
 use App\Models\AIModel;
 use App\Models\Company;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\Playlist;
-use App\Models\PlaylistVideo;
 use App\Models\ProjectType;
+use App\Models\Idol;
+use App\Models\PlaylistVideo;
 use Illuminate\Database\Seeder;
 use Database\Seeders\SongSeeder;
 use Database\Seeders\UserSeeder;
@@ -45,10 +47,11 @@ class DatabaseSeeder extends Seeder
             ProjectSeeder::class,
             AIModelSeeder::class,
             GenreSeeder::class,
-            PlaylistSeeder::class
+            PlaylistSeeder::class,
+            IdolSeeder::class
         ]);
 
-        // Coba pindahkan ke seeder
+        // TODO: pindahkan ke seeder
         Artist::factory(10)->recycle([
             Company::all()
         ])->create();
@@ -61,9 +64,15 @@ class DatabaseSeeder extends Seeder
             Album::all()
         ])->create();
 
-        // Playlist Project & Project
+        // Idol
+        Artist::factory(3)->recycle([
+            Company::all()
+        ])->has(
+            Idol::factory()
+        )->create();
 
-        Playlist::factory()
+        // Playlist Project & Project
+        Playlist::factory(3)
             ->hasAttached(
                 Project::factory(10)->recycle([
                     Category::all(),
@@ -74,8 +83,40 @@ class DatabaseSeeder extends Seeder
             ->create();
 
 
+        // Album Artist
         Artist::factory()
             ->has(Album::factory()->count(3))
             ->create();
+
+        // Song Genre
+        Song::factory()
+            ->has(Genre::factory(3))
+            ->create();
+
+        // Song Artist
+        Artist::factory()->recycle([
+            Company::all()
+        ])->hasAttached(
+            Song::factory(3),
+            ['role' => 'Primary Artist'],
+        )->create();
+
+        // Project Artist
+        Artist::factory()
+            ->hasAttached(
+                Project::factory(5)->recycle([
+                    Category::all(),
+                    ProjectType::all()
+                ]),
+            )
+            ->create();
+
+        // Member Group
+        Artist::factory()
+            ->hasAttached(
+                Idol::factory(3),
+                ['status' => 'Active'],
+                'members'
+            )->create();
     }
 }

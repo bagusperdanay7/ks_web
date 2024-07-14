@@ -17,7 +17,7 @@ class Artist extends Model
 
     public function projects(): BelongsToMany
     {
-        return $this->belongsToMany(Project::class)->using(ProjectArtist::class)->withTimestamps();
+        return $this->belongsToMany(Project::class, 'project_artist')->using(ProjectArtist::class)->withTimestamps();
     }
 
     public function albums(): BelongsToMany
@@ -35,13 +35,9 @@ class Artist extends Model
         return $this->hasOne(Idol::class);
     }
 
-    public function collabtracks(): BelongsToMany
-    {
-        return $this->belongsToMany(Song::class)->using(Collaboration::class)->withPivot('role')->withTimestamps();
-    }
     public function songs(): BelongsToMany
     {
-        return $this->belongsToMany(Song::class)->using(Songwriter::class)->withPivot('role')->withTimestamps();
+        return $this->belongsToMany(Song::class, 'song_artist')->using(SongArtist::class)->withPivot('role')->withTimestamps();
     }
 
     public function aimodels(): HasMany
@@ -51,7 +47,7 @@ class Artist extends Model
 
     public function members(): BelongsToMany
     {
-        return $this->belongsToMany(Idol::class)->using(MemberGroup::class)->withPivot('status')->withTimestamps();
+        return $this->belongsToMany(Idol::class, 'member_group')->using(MemberGroup::class)->withPivot('status')->withTimestamps();
     }
 
     public function getRouteKeyName()

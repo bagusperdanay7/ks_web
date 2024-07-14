@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('album_artist', function (Blueprint $table) {
-            $table->timestamps();
             $table->foreignId('album_id')->constrained('albums', indexName: 'aa_album_id');
             $table->foreignId('artist_id')->constrained('artists', indexName: 'aa_artist_id');
+            $table->timestamps();
             $table->primary(['album_id', 'artist_id']);
         });
     }

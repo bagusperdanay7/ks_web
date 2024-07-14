@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('collaborations', function (Blueprint $table) {
-            $table->enum('role', ['Primary Artist', 'Featured Artist']);
-            $table->timestamps();
+        Schema::create('song_artist', function (Blueprint $table) {
             $table->foreignId('song_id')->constrained('songs', indexName: 'collaborations_song_id');
             $table->foreignId('artist_id')->constrained('artists', indexName: 'collaborations_artist_id');
+            $table->enum('role', ['Primary Artist', 'Featured Artist', 'Lyricist', 'Composer', 'Arranger', 'Conductor', 'Producer']);
+            $table->timestamps();
             $table->primary(['song_id', 'artist_id']);
         });
     }
