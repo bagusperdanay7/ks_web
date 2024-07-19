@@ -168,7 +168,7 @@
                                         </div>
                                         <div class="col-12 col-sm-6 col-lg col-xl-auto mb-3 mb-lg-0">
                                             @php
-                                                $statusProjects = ['Completed', 'On Process', 'Pending', 'Rejected'];
+                                                $statusProjects = ['Completed', 'In Progress', 'Pending', 'Rejected'];
                                             @endphp
                                             <label for="status"
                                                 class="form-label fs-14 fw-medium text-color-100 mb5 d-xl-none mb-xl-0">Status</label>
@@ -245,7 +245,7 @@
                                     </div>
                                     <datalist id="datalistOptions">
                                         @foreach ($allProjectTitle as $projectTitleItem)
-                                            <option value="{{ $projectTitleItem->project_title }}">
+                                            <option value="{{ $projectTitleItem->title }}">
                                         @endforeach
                                     </datalist>
                                 </div>
@@ -279,13 +279,13 @@
                             <tbody>
                                 @forelse ($projects as $project)
                                     <tr>
-                                        <td class="align-middle text-color-100">{{ $project->project_title }}</td>
+                                        <td class="align-middle text-color-100">{{ $project->title }}</td>
                                         <td @class([
                                             'align-middle',
                                             'fw-medium',
                                             'text-color-ad' =>
                                                 $project->category->category_name === 'Album Distribution',
-                                            'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                                            'text-color-ae' => $project->category->category_name === 'Total Line Evolution',
                                             'text-color-cd' =>
                                                 $project->category->category_name === 'Center Distribution',
                                             'text-color-hs' => $project->category->category_name === 'How Should',
@@ -303,14 +303,14 @@
                                                 Coming Soon
                                             @endif
                                         </td>
-                                        <td class="align-middle text-color-100">{{ $project->type->type_name }}
+                                        <td class="align-middle text-color-100">{{ $project->projectType->type_name }}
                                         </td>
                                         <td class="align-middle text-color-100">{{ $project->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $project->status == 'Completed',
-                                                'btn-onprocess' => $project->status == 'On Process',
+                                                'btn-onprocess' => $project->status == 'In Progress',
                                                 'btn-pending' => $project->status == 'Pending',
                                                 'btn-rejected' => $project->status == 'Rejected',
                                             ])>{{ $project->status }}
@@ -318,7 +318,7 @@
                                         </td>
                                         <td class="align-middle text-color-100">{{ $project->votes }}</td>
                                         <td class="align-middle"><a href="/projects/{{ $project->project_id }}"
-                                                class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->project_title }}"><i
+                                                class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->title }}"><i
                                                     class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project"></i></a>
                                         </td>
@@ -360,7 +360,7 @@
                                             </div>
                                             <div>
                                                 <a href="/projects/{{ $project->project_id }}"
-                                                    class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->project_title }}">
+                                                    class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>
@@ -370,14 +370,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $project->status === 'Completed',
-                                                'btn-onprocess' => $project->status === 'On Process',
+                                                'btn-onprocess' => $project->status === 'In Progress',
                                                 'btn-pending' => $project->status === 'Pending',
                                                 'btn-rejected' => $project->status === 'Rejected',
                                             ])> {{ $project->status }}</span>
                                         </div>
                                         <div class="fs-12 mb5">
                                             <p class="fs-12 m-0 fw-semibold text-color-100">
-                                                {{ $project->project_title }}
+                                                {{ $project->title }}
                                             </p>
                                         </div>
                                         <div class="fs-12 fw-medium mb5">
@@ -387,7 +387,7 @@
                                                 'text-color-le' => $project->category->category_name === 'Line Evolution',
                                                 'text-color-ad' =>
                                                     $project->category->category_name === 'Album Distribution',
-                                                'text-color-ae' => $project->category->category_name === 'Album Evolution',
+                                                'text-color-ae' => $project->category->category_name === 'Total Line Evolution',
                                                 'text-color-rb' => $project->category->category_name === 'Ranking Battle',
                                                 'text-color-hs' => $project->category->category_name === 'How Should',
                                                 'text-color-hw' => $project->category->category_name === 'How Would',
@@ -395,7 +395,7 @@
                                                     $project->category->category_name === 'Center Distribution',
                                             ])>
                                                 {{ $project->category->category_name }}</span> •
-                                            <span class="text-color-100">{{ $project->type->type_name }}</span>
+                                            <span class="text-color-100">{{ $project->projectType->type_name }}</span>
                                         </div>
                                         <div class="text-color-100 fs-12 fw-medium">
                                             <i class="las la-user-alt"></i> {{ $project->requester }} |

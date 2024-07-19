@@ -29,7 +29,7 @@ class ProjectFactory extends Factory
             'votes' => fake()->numberBetween(1, 10),
             'exclusive' => fake()->boolean(),
             'category_id' => mt_rand(1, 4),
-            'project_type_id' => mt_rand(1, 3),
+            'project_type_id' => mt_rand(1, 4),
         ];
     }
 }

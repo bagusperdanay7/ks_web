@@ -175,7 +175,7 @@
                         <div class="row mt-3">
                             <div class="col-3">
                                 <div class="d-flex justify-content-between">
-                                    <p class="m-0 fs-14 fw-semibold text-color-100">{{ $scheduleItems->project_title }}</p>
+                                    <p class="m-0 fs-14 fw-semibold text-color-100">{{ $scheduleItems->title }}</p>
                                     <span class="fs-14 fw-semibold text-color-100">{{ $scheduleItems->progress }}%</span>
                                 </div>
                                 <div class="progress bg-main-20" role="progressbar" style="height: 10px"
@@ -205,7 +205,7 @@
                                 'text-color-cd' =>
                                     $scheduleItems->category->category_name === 'Center Distribution',
                                 'text-info' => $scheduleItems->category->category_name === 'Other',
-                            ])> {{ $scheduleItems->category->category_name }}
+                            ])>{{ $scheduleItems->category->category_name }}
                             </div>
                             @if ($scheduleItems->date)
                                 <div class="col align-self-center fw-medium fs-14 text-color-80"><i
@@ -219,7 +219,7 @@
                                 </div>
                             @endif
                             <div class="col align-self-center text-color-100 fs-14 fw-normal">
-                                {{ $scheduleItems->type->type_name }}
+                                {{ $scheduleItems->projectType->type_name }}
                             </div>
                             <div class="col align-self-center text-color-100 fs-14 fw-normal">
                                 <i class="las la-user-alt"></i> {{ $scheduleItems->requester }}
@@ -228,7 +228,7 @@
                                 <span @class([
                                     'btn',
                                     'btn-complete' => $scheduleItems->status === 'Completed',
-                                    'btn-onprocess' => $scheduleItems->status === 'On Process',
+                                    'btn-onprocess' => $scheduleItems->status === 'In Progress',
                                     'btn-pending' => $scheduleItems->status === 'Pending',
                                     'btn-rejected' => $scheduleItems->status === 'Rejected',
                                 ])> {{ $scheduleItems->status }}</span>
@@ -273,13 +273,13 @@
                                     <span @class([
                                         'btn',
                                         'btn-complete' => $scheduleItems->status === 'Completed',
-                                        'btn-onprocess' => $scheduleItems->status === 'On Process',
+                                        'btn-onprocess' => $scheduleItems->status === 'In Progress',
                                         'btn-pending' => $scheduleItems->status === 'Pending',
                                         'btn-rejected' => $scheduleItems->status === 'Rejected',
                                     ])> {{ $scheduleItems->status }}</span>
                                 </div>
                                 <div class="mb5">
-                                    <p class="fs-14 fw-semibold text-color-100 m-0">{{ $scheduleItems->project_title }}
+                                    <p class="fs-14 fw-semibold text-color-100 m-0">{{ $scheduleItems->title }}
                                     </p>
                                 </div>
                                 <div class="fs-14 fw-medium mb5">
@@ -301,7 +301,7 @@
                                         'text-info' => $scheduleItems->category->category_name === 'Other',
                                     ])>
                                         {{ $scheduleItems->category->category_name }}</span> •
-                                    <span class="text-color-100">{{ $scheduleItems->type->type_name }}</span>
+                                    <span class="text-color-100">{{ $scheduleItems->projectType->type_name }}</span>
                                 </div>
                                 <div class="text-color-100 fs-14 fw-normal mb5">
                                     <i class="las la-user-alt"></i> {{ $scheduleItems->requester }} |

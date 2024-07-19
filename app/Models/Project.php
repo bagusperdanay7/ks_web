@@ -15,14 +15,14 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // Eager loading menangani masalah n+1
-    protected $with = ['category', 'type'];
+    protected $with = ['category', 'projectType'];
 
     public function scopeFilter($query, array $filters)
     {
         // null
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return  $query->where(function ($query) use ($search) {
-                $query->where('project_title', 'like', '%' . $search . '%');
+                $query->where('title', 'like', '%' . $search . '%');
             });
         });
 
@@ -50,7 +50,7 @@ class Project extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function type(): BelongsTo
+    public function projectType(): BelongsTo
     {
         return $this->belongsTo(ProjectType::class);
     }

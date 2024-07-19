@@ -25,8 +25,8 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item text-color-100"><a href="{{ route('home') }}">Home</a></li>
             <li class="breadcrumb-item"><a href="{{ route('projects') }}">Projects</a></li>
-            <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page" title="{{ $project->project_title }}">
-                {{ $project->project_title }}
+            <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page" title="{{ $project->title }}">
+                {{ $project->title }}
             </li>
         </ol>
     </nav>
@@ -36,16 +36,16 @@
             <div class="col-12 col-md-6">
                 @if ($project->thumbnail)
                     <img src="{{ $project->thumbnail }}" class="img-fluid thumbnail"
-                        alt="{{ $project->project_title }} thumbnail">
+                        alt="{{ $project->title }} thumbnail">
                 @else
                     <img src="{{ asset('img/no_thumbnail.jpg') }}" class="img-fluid thumbnail"
-                        alt="{{ $project->project_title }} thumbnail">
+                        alt="{{ $project->title }} thumbnail">
                 @endif
 
             </div>
             <div class="col-12 col-md-6">
                 <div class="detail-card">
-                    <h3 class="fw-semibold mb-15 fs-sm-18 text-color-100">{{ $project->project_title }}</h3>
+                    <h3 class="fw-semibold mb-15 fs-sm-18 text-color-100">{{ $project->title }}</h3>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Category</div>
                         <div @class([
@@ -79,7 +79,7 @@
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Project Type</div>
-                        <div class="col-8 fs-14 font-inter text-color-100">{{ $project->type->type_name }}</div>
+                        <div class="col-8 fs-14 font-inter text-color-100">{{ $project->projectType->type_name }}</div>
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Requester</div>
@@ -96,7 +96,7 @@
                             <span @class([
                                 'btn',
                                 'btn-complete' => $project->status === 'Completed',
-                                'btn-onprocess' => $project->status === 'On Process',
+                                'btn-onprocess' => $project->status === 'In Progress',
                                 'btn-pending' => $project->status === 'Pending',
                                 'btn-rejected' => $project->status === 'Rejected',
                             ])>{{ $project->status }}</span>
@@ -104,7 +104,13 @@
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Artist</div>
-                        <div class="col-8 fs-14 font-inter text-color-100">{{ $project->artist->artist_name }}</div>
+                        <div class="col-8 fs-14 font-inter text-color-100">
+                            @forelse ($project->artists as $artist)
+                                <span>{{ $artist->artist_name }}</span>
+                            @empty
+                            Unknown Artist
+                            @endforelse
+                        </div>
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Votes</div>
@@ -112,7 +118,7 @@
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Exclusive</div>
-                        <div class="col-8 fs-14 font-inter text-color-100">{{ $project->is_exclusive }}</div>
+                        <div class="col-8 fs-14 font-inter text-color-100">{{ $project->exclusive }}</div>
                     </div>
                     <div class="row mb-10">
                         <div class="col-4 fs-14 font-inter fw-semibold text-color-100">Notes</div>

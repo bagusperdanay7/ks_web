@@ -39,7 +39,7 @@ class CategorySeeder extends Seeder
                     'updated_at' => now()
                 ],
                 [
-                    'category_name' => 'Album Evolution',
+                    'category_name' => 'Total Line Evolution',
                     'slug' => 'all-evolution',
                     'icon_class' => 'las la-file-audio',
                     'created_at' => now(),

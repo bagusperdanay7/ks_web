@@ -6,12 +6,13 @@ use App\Models\Project;
 
 class HomeController extends Controller
 {
-    
-    public function index() {
 
-        $scheduleQuery = Project::where('status', 'On Process')
-                                ->get()
-                                ->sortBy('date');
+    public function index()
+    {
+
+        $scheduleQuery = Project::where('status', 'In Progress')
+            ->get()
+            ->sortBy('date');
 
         return view('home', [
             "title" => "Home",

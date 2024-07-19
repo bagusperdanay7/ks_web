@@ -75,7 +75,7 @@
                                     <div class="row">
                                         <div class="col-auto">
                                             @php
-                                                $statusProjects = ['Completed', 'On Process', 'Pending', 'Rejected'];
+                                                $statusProjects = ['Completed', 'In Progress', 'Pending', 'Rejected'];
                                             @endphp
                                             <select class="form-select filter-select" aria-label="Select Status"
                                                 name="status" onchange="if(this.value != '') { this.form.submit(); }">
@@ -150,7 +150,7 @@
                                 @if (!request('sort') && !request('status'))
                                     @forelse ($projectTypes->projects as $pro)
                                         <tr>
-                                            <td class="align-middle fw-medium text-color-100">{{ $pro->project_title }}
+                                            <td class="align-middle fw-medium text-color-100">{{ $pro->title }}
                                             </td>
                                             <td @class([
                                                 'align-middle',
@@ -193,7 +193,7 @@
                                             <td class="align-middle">
                                                 <a href="/projects/{{ $pro->id }}"
                                                     class="text-decoration-none text-color-secondary"
-                                                    aria-label="Details about {{ $pro->project_title }}"><i
+                                                    aria-label="Details about {{ $pro->title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>
@@ -209,7 +209,7 @@
                                 @else
                                     @forelse ($projectTypes as $pro)
                                         <tr>
-                                            <td class="align-middle fw-medium text-color-100">{{ $pro->project_title }}
+                                            <td class="align-middle fw-medium text-color-100">{{ $pro->title }}
                                             </td>
                                             <td @class([
                                                 'align-middle',
@@ -250,7 +250,7 @@
                                             </td>
                                             <td class="align-middle text-color-100">{{ $pro->votes }}</td>
                                             <td class="align-middle"><a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}"><i
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
                                                         data-bs-title="Show Detail Project"></i></a>
@@ -355,7 +355,7 @@
                                             @endif
                                             <div>
                                                 <a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}">
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>
@@ -372,7 +372,7 @@
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $pro->project_title }}
+                                                {{ $pro->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">
@@ -419,7 +419,7 @@
                                             @endif
                                             <div>
                                                 <a href="/projects/{{ $pro->id }}"
-                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->project_title }}">
+                                                    class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
                                                 </a>
@@ -436,7 +436,7 @@
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $pro->project_title }}
+                                                {{ $pro->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">

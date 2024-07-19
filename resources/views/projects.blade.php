@@ -36,7 +36,7 @@
                                             <div>
                                                 <div class="d-flex justify-content-between fw-medium fs-14">
                                                     <p class="p-0 m-0">
-                                                        {{ $project->project_title }}
+                                                        {{ $project->title }}
                                                     </p>
                                                     <span class="p-0 m-0 text-color-100">
                                                         {{ $project->progress }}%
@@ -78,13 +78,13 @@
                                                 {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
                                             </td>
                                         @endif
-                                        <td class="align-middle text-color-100">{{ $project->type->type_name }}</td>
+                                        <td class="align-middle text-color-100">{{ $project->projectType->type_name }}</td>
                                         <td class="align-middle text-color-100">{{ $project->requester }}</td>
                                         <td class="align-middle">
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $project->status === 'Completed',
-                                                'btn-onprocess' => $project->status === 'On Process',
+                                                'btn-onprocess' => $project->status === 'In Progress',
                                                 'btn-pending' => $project->status === 'Pending',
                                                 'btn-rejected' => $project->status === 'Rejected',
                                             ])> {{ $project->status }}</span>
@@ -128,14 +128,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $project->status === 'Completed',
-                                                'btn-onprocess' => $project->status === 'On Process',
+                                                'btn-onprocess' => $project->status === 'In Progress',
                                                 'btn-pending' => $project->status === 'Pending',
                                                 'btn-rejected' => $project->status === 'Rejected',
                                             ])> {{ $project->status }}</span>
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $project->project_title }}
+                                                {{ $project->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">
@@ -154,7 +154,7 @@
                                                 'text-info' => $project->category->category_name === 'Other',
                                             ])>
                                                 {{ $project->category->category_name }}</span> •
-                                            <span class="text-color-100">{{ $project->type->type_name }}</span>
+                                            <span class="text-color-100">{{ $project->projectType->type_name }}</span>
                                         </div>
                                         <div class="text-color-100 fs-14 fw-medium mb5">
                                             <i class="las la-user-alt"></i> {{ $project->requester }} |
@@ -185,7 +185,7 @@
                                         d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                         fill="#787878" />
                                 </svg>
-                                <p class="fs-14 fw-medium mt-1 mb-0"></p>No Upcoming Project!
+                                <p class="fs-14 fw-medium mt-1 mb-0">No Upcoming Project!</p>
                             </div>
                         @endforelse
                     </div>
@@ -193,6 +193,7 @@
             </div>
         </div>
     </section>
+
 
     <section id="non-projects" class="mb-30">
         <div class="row">
@@ -217,7 +218,7 @@
                             <tbody>
                                 @forelse ($nonProjects as $nonProject)
                                     <tr>
-                                        <td class="align-middle fw-medium text-color-100">{{ $nonProject->project_title }}
+                                        <td class="align-middle fw-medium text-color-100">{{ $nonProject->title }}
                                         </td>
                                         <td @class([
                                             'align-middle',
@@ -252,7 +253,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $nonProject->status === 'Completed',
-                                                'btn-onprocess' => $nonProject->status === 'On Process',
+                                                'btn-onprocess' => $nonProject->status === 'In Progress',
                                                 'btn-pending' => $nonProject->status === 'Pending',
                                                 'btn-rejected' => $nonProject->status === 'Rejected',
                                             ])> {{ $nonProject->status }}</span>
@@ -298,14 +299,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $nonProject->status === 'Completed',
-                                                'btn-onprocess' => $nonProject->status === 'On Process',
+                                                'btn-onprocess' => $nonProject->status === 'In Progress',
                                                 'btn-pending' => $nonProject->status === 'Pending',
                                                 'btn-rejected' => $nonProject->status === 'Rejected',
                                             ])> {{ $nonProject->status }}</span>
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $nonProject->project_title }}
+                                                {{ $nonProject->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">
@@ -384,7 +385,7 @@
                             <tbody>
                                 @forelse ($hugeProjects as $hugeProj)
                                     <tr>
-                                        <td class="align-middle fw-medium text-color-100">{{ $hugeProj->project_title }}
+                                        <td class="align-middle fw-medium text-color-100">{{ $hugeProj->title }}
                                         </td>
                                         <td @class([
                                             'align-middle',
@@ -416,7 +417,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $hugeProj->status === 'Completed',
-                                                'btn-onprocess' => $hugeProj->status === 'On Process',
+                                                'btn-onprocess' => $hugeProj->status === 'In Progress',
                                                 'btn-pending' => $hugeProj->status === 'Pending',
                                                 'btn-rejected' => $hugeProj->status === 'Rejected',
                                             ])> {{ $hugeProj->status }}</span>
@@ -462,14 +463,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $hugeProj->status === 'Completed',
-                                                'btn-onprocess' => $hugeProj->status === 'On Process',
+                                                'btn-onprocess' => $hugeProj->status === 'In Progress',
                                                 'btn-pending' => $hugeProj->status === 'Pending',
                                                 'btn-rejected' => $hugeProj->status === 'Rejected',
                                             ])> {{ $hugeProj->status }}</span>
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $hugeProj->project_title }}
+                                                {{ $hugeProj->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">
@@ -545,7 +546,7 @@
                             <tbody>
                                 @forelse ($nostalgicVibesProjects as $nvProj)
                                     <tr>
-                                        <td class="align-middle fw-medium text-color-100">{{ $nvProj->project_title }}
+                                        <td class="align-middle fw-medium text-color-100">{{ $nvProj->title }}
                                         </td>
                                         <td @class([
                                             'align-middle',
@@ -577,7 +578,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $nvProj->status === 'Completed',
-                                                'btn-onprocess' => $nvProj->status === 'On Process',
+                                                'btn-onprocess' => $nvProj->status === 'In Progress',
                                                 'btn-pending' => $nvProj->status === 'Pending',
                                                 'btn-rejected' => $nvProj->status === 'Rejected',
                                             ])> {{ $nvProj->status }}</span>
@@ -623,14 +624,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $nvProj->status === 'Completed',
-                                                'btn-onprocess' => $nvProj->status === 'On Process',
+                                                'btn-onprocess' => $nvProj->status === 'In Progress',
                                                 'btn-pending' => $nvProj->status === 'Pending',
                                                 'btn-rejected' => $nvProj->status === 'Rejected',
                                             ])> {{ $nvProj->status }}</span>
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $nvProj->project_title }}
+                                                {{ $nvProj->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">
@@ -706,7 +707,7 @@
                             <tbody>
                                 @forelse ($youtubeCommentProjects as $ytComPro)
                                     <tr>
-                                        <td class="align-middle fw-medium text-color-100">{{ $ytComPro->project_title }}
+                                        <td class="align-middle fw-medium text-color-100">{{ $ytComPro->title }}
                                         </td>
                                         <td @class([
                                             'align-middle',
@@ -740,7 +741,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $ytComPro->status === 'Completed',
-                                                'btn-onprocess' => $ytComPro->status === 'On Process',
+                                                'btn-onprocess' => $ytComPro->status === 'In Progress',
                                                 'btn-pending' => $ytComPro->status === 'Pending',
                                                 'btn-rejected' => $ytComPro->status === 'Rejected',
                                             ])> {{ $ytComPro->status }}</span>
@@ -786,14 +787,14 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $ytComPro->status === 'Completed',
-                                                'btn-onprocess' => $ytComPro->status === 'On Process',
+                                                'btn-onprocess' => $ytComPro->status === 'In Progress',
                                                 'btn-pending' => $ytComPro->status === 'Pending',
                                                 'btn-rejected' => $ytComPro->status === 'Rejected',
                                             ])> {{ $ytComPro->status }}</span>
                                         </div>
                                         <div class="mb5">
                                             <p class="fs-14 m-0 fw-semibold text-color-100">
-                                                {{ $ytComPro->project_title }}
+                                                {{ $ytComPro->title }}
                                             </p>
                                         </div>
                                         <div class="fs-14 fw-medium mb5">

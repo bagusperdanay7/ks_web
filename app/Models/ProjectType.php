@@ -14,7 +14,7 @@ class ProjectType extends Model
 
     public function projects(): HasMany
     {
-        return $this->hasMany(Project::class, 'type_id');
+        return $this->hasMany(Project::class);
     }
 
     public function getRouteKeyName()

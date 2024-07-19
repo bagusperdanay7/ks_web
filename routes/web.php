@@ -50,6 +50,7 @@ Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, '
 
 Route::get('/request-list', [RequestListController::class, 'index'])->name('request-list');
 
+// TODO: Lanjut Sini
 Route::get('/request-list/form', [RequestListController::class, 'create'])->middleware(['auth', 'verified'])->name('request-form');
 
 Route::post('/request-list/form', [RequestListController::class, 'store'])->name('request-form-post');

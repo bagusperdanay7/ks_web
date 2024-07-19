@@ -22,14 +22,17 @@ class RequestListController extends Controller
         $subscriber = $fetchApiResult['items'][0]['statistics']['subscriberCount'];
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
 
-        $allRequestProject = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+        $allRequestProject = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
             ->where('project_types.type_name', '!=', 'Non-Project')->get();
+        // $nonProjectType = ProjectType::where('type_name', '!=', 'Non-Project')->get();
+        // $projects = Project::whereBelongsTo($nonProjectType)->get();
+        // dd($projects);
 
-        $requestListTitle = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+        $requestListTitle = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
             ->where('project_types.type_name', '!=', 'Non-Project')
-            ->orderBy('project_title')->get('project_title');
+            ->orderBy('title')->get('title');
 
-        $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+        $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
             ->select('*', 'projects.id as project_id')
             ->where('project_types.type_name', '!=', 'Non-Project')
             ->filter(request(['search', 'category', 'type']))
@@ -37,42 +40,42 @@ class RequestListController extends Controller
 
         if (request('status') !== null) {
             if (request('sort') == 'title_asc') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
-                    ->orderBy('project_title')
+                    ->orderBy('title')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'oldest') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderBy('date')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'latest') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderByDesc('date')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'least') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderBy('votes')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'most') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->orderByDesc('votes')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } else {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where([['project_types.type_name', '!=', 'Non-Project'], ['status', request('status')]])
                     ->filter(request(['search', 'category', 'type']))
@@ -80,35 +83,35 @@ class RequestListController extends Controller
             }
         } else {
             if (request('sort') == 'title_asc') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
-                    ->orderBy('project_title')
+                    ->orderBy('title')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'oldest') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderBy('date')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'latest') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderByDesc('date')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'least') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderBy('votes')
                     ->filter(request(['search', 'category', 'type']))
                     ->paginate(25, ['*'], 'requestListpage')->withQueryString();
             } elseif (request('sort') == 'most') {
-                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+                $requestList = Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
                     ->select('*', 'projects.id as project_id')
                     ->where('project_types.type_name', '!=', 'Non-Project')
                     ->orderByDesc('votes')
@@ -120,9 +123,9 @@ class RequestListController extends Controller
         $projectNumber = $allRequestProject->count();
         $projectNumberWithOutRejected = $allRequestProject->where('status', '!=', 'Rejected')->count();
         $projectCompletedNumber = $allRequestProject->where('status', 'Completed')->count();
-        $projectRejectedNumber =  Project::join('project_types', 'project_types.id', '=', 'projects.type_id')
+        $projectRejectedNumber =  Project::join('project_types', 'project_types.id', '=', 'projects.project_type_id')
             ->where([['status', 'Rejected'], ['project_types.type_name', '!=', 'Non-Project']])
-            ->orderBy('project_title')->count();
+            ->orderBy('title')->count();
 
         if ($projectNumber == 0) {
             $projectCompletedProgress = 0;
@@ -166,12 +169,12 @@ class RequestListController extends Controller
         $validateData = $request->validate([
             'artist_id' => 'required',
             'category_id' => 'required',
-            'project_title' => 'required|max:191',
+            'title' => 'required|max:191',
             'requester' => 'required|max:191',
         ]);
 
         $validateData['notes'] = strip_tags($request->notes);
-        $validateData['type_id'] = 1;
+        $validateData['project_type_id'] = 1;
         $validateData['votes'] = 1;
 
         Project::create($validateData);
