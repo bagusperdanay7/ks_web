@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Artist;
 use App\Models\ProjectType;
+use Illuminate\Database\Eloquent\Builder;
 
 class GalleryController extends Controller
 {
@@ -22,7 +23,7 @@ class GalleryController extends Controller
             ->get();
 
         if (request('sort') == 'title_asc') {
-            $galleryQuery = Project::orderBy('project_title')
+            $galleryQuery = Project::orderBy('title')
                 ->where([['status', 'Completed'], ['exclusive', false]])
                 ->filter(request(['search', 'category', 'type']))
                 ->get();
@@ -38,16 +39,14 @@ class GalleryController extends Controller
                 ->get();
         }
 
-        $query = Project::all();
-        dd($query);
+        // $artistTotalQuery = Project::with(['artists'])->withCount('artists')->where([['status', 'Completed'], ['exclusive', false]])
+        //     ->inRandomOrder()
+        //     ->get()
+        //     ->take(6);
 
-        $artistTotalQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
-            ->groupBy('artist_id')
-            ->select('artist_id', Project::raw('count(*) as total'))
-            ->inRandomOrder()
-            ->get()
-            ->take(6);
-
+        $artistTotalQuery = Artist::with('projects')->withCount(['projects' => function (Builder $query) {
+            $query->where('status', 'Completed');
+        }])->get()->take(6);
 
         $categoriesQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
             ->groupBy('category_id')
@@ -57,12 +56,12 @@ class GalleryController extends Controller
             ->take(4);
 
         $latestVideoQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
-            ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
+            ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status'])
             ->sortByDesc('date')
             ->take(3);
 
         $recVideoQuery = Project::where([['status', 'completed'], ['exclusive', false]])
-            ->get(['id', 'project_title', 'category_id', 'date', 'thumbnail', 'type_id', 'artist_id', 'status'])
+            ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status'])
             ->shuffle()
             ->take(6);
 
@@ -113,7 +112,7 @@ class GalleryController extends Controller
         }
 
         return view('video', [
-            "title" => $project->project_title,
+            "title" => $project->title,
             "video" => $project,
             "relatedVideo" => $relatedVideoQ
         ]);

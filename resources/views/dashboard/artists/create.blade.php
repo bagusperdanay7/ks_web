@@ -14,7 +14,7 @@
                                 name="artist_name" id="artist_name" placeholder="OH MY GIRL"
                                 value="{{ old('artist_name') }}">
                             @error('artist_name')
-                                <div id="artistTitleFeedback" class="invalid-feedback">
+                                <div id="artistNameFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -32,12 +32,28 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="debut"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Debut</label>
-                            <input type="date" class="form-control @error('debut') is-invalid @enderror" name="debut"
-                                id="debut" value="{{ old('debut') }}">
-                            @error('debut')
-                                <div id="debutFeedback" class="invalid-feedback">
+                            <label for="classification" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Classification</label>
+                            <select class="form-select @error('classification') is-invalid @enderror" aria-label="Select Classification" id="classification" name="classification">
+                                @foreach ($classifications as $class)
+                                    <option value="{{ $class->value }}"
+                                        {{ old('classification') == $class->value ? ' selected' : ' ' }}>
+                                        {{ $class->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('classification')
+                                <div id="classificationFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="m-bottom-15">
+                            <label for="birthdate"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Birthdate</label>
+                            <input type="date" class="form-control @error('birthdate') is-invalid @enderror" name="birthdate"
+                                id="birthdate" value="{{ old('birthdate') }}">
+                            @error('birthdate')
+                                <div id="birthdateFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -54,11 +70,11 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="artist_pict" class="form-label text-color-100">Artist Picture</label>
-                            <input class="form-control @error('artist_pict') is-invalid @enderror" type="file"
-                                id="artist_pict" accept="image/*" name="artist_pict" onchange="previewPicture()">
-                            @error('artist_pict')
-                                <div id="artistPictFeedback" class="invalid-feedback">
+                            <label for="artist_picture" class="form-label text-color-100">Artist Picture</label>
+                            <input class="form-control @error('artist_picture') is-invalid @enderror" type="file"
+                                id="artist_picture" accept="image/*" name="artist_picture" onchange="previewPicture()">
+                            @error('artist_picture')
+                                <div id="artistPictureFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -77,12 +93,17 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="company"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Company</label>
-                            <input type="text" class="form-control @error('company') is-invalid @enderror" name="company"
-                                id="company" value="{{ old('company') }}" placeholder="Ex: SM Entertainment">
-                            @error('company')
-                                <div id="companyFeedback" class="invalid-feedback">
+                            <label for="company" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Company</label>
+                            <select class="form-select @error('company_id') is-invalid @enderror" aria-label="Select Artist" id="company" name="company_id">
+                                @foreach ($companies as $company)
+                                    <option value="{{ $company->id }}"
+                                        {{ old('company_id') == $company->id ? ' selected' : ' ' }}>
+                                        {{ $company->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('company_id')
+                                <div id="artistFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -122,7 +143,7 @@
         };
 
         function previewPicture() {
-            const artistPicture = document.querySelector('#artist_pict');
+            const artistPicture = document.querySelector('#artist_picture');
             const picturePreview = document.querySelector('.preview-pict');
             const previewImageText = document.querySelector('#previewImageText');
 

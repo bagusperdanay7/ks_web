@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\ArtistClassification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -14,6 +15,12 @@ class Artist extends Model
     use HasFactory;
 
     protected $guarded = ['id'];
+
+    protected $casts = [
+        'classification' => ArtistClassification::class
+    ];
+
+    protected $with = ['company'];
 
     public function projects(): BelongsToMany
     {

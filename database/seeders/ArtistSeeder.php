@@ -20,7 +20,7 @@ class ArtistSeeder extends Seeder
             "classification" => "Group",
             "birthdate" => date("2015-04-21"),
             "origin" => "Seoul, South Korea",
-            "artist_picture" => "ohmygirl.jpg",
+            "artist_picture" => "hero_img1.jpg",
             "fandom" => "Miracle",
             "about" => "OH MY GIRL (Korean: 오마이걸, Japanese: オーマイガール) is a South Korean girl group, that debuted on April 20, 2015, with a mini album entitled 'OH MY GIRL'. OH MY GIRL originally consisted of eight members, namely Hyojung (효정), JinE (진이), Mimi (미미), YooA (유아), Seunghee (승희), Jiho (지호), Yubin (유빈), and Arin (아린). Sadly, JinE left the group in October 2017, followed by Jiho who left the group on May 9, 2022. So the members now consist of 6 members. The last album was 'Golden Hourglass' released on July 24, 2023.",
             "company_id" => 4,

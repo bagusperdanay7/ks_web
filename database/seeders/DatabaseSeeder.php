@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $exampleNumber = 50;
 
         // * New
         $this->call([
@@ -52,29 +53,29 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // TODO: pindahkan ke seeder
-        Artist::factory(10)->recycle([
+        Artist::factory($exampleNumber)->recycle([
             Company::all()
         ])->create();
 
-        Album::factory(10)->recycle([
+        Album::factory($exampleNumber)->recycle([
             Company::all()
         ])->create();
 
-        Song::factory(10)->recycle([
+        Song::factory($exampleNumber)->recycle([
             Album::all()
         ])->create();
 
         // Idol
-        Artist::factory(3)->recycle([
+        Artist::factory($exampleNumber)->recycle([
             Company::all()
         ])->has(
             Idol::factory()
         )->create();
 
         // Playlist Project & Project
-        Playlist::factory(3)
+        Playlist::factory($exampleNumber)
             ->hasAttached(
-                Project::factory(10)->recycle([
+                Project::factory($exampleNumber)->recycle([
                     Category::all(),
                     ProjectType::all()
                 ])->create(),
@@ -82,15 +83,14 @@ class DatabaseSeeder extends Seeder
             )
             ->create();
 
-
         // Album Artist
         Artist::factory()
-            ->has(Album::factory()->count(3))
+            ->has(Album::factory()->count($exampleNumber))
             ->create();
 
         // Song Genre
         Song::factory()
-            ->has(Genre::factory(3))
+            ->has(Genre::factory($exampleNumber))
             ->create();
 
         // Song Artist
@@ -102,9 +102,11 @@ class DatabaseSeeder extends Seeder
         )->create();
 
         // Project Artist
+        $artist = Artist::find(1);
+        $artist->projects()->attach(1);
         Artist::factory()
             ->hasAttached(
-                Project::factory(5)->recycle([
+                Project::factory($exampleNumber)->recycle([
                     Category::all(),
                     ProjectType::all()
                 ]),
@@ -114,7 +116,7 @@ class DatabaseSeeder extends Seeder
         // Member Group
         Artist::factory()
             ->hasAttached(
-                Idol::factory(3),
+                Idol::factory($exampleNumber),
                 ['status' => 'Active'],
                 'members'
             )->create();

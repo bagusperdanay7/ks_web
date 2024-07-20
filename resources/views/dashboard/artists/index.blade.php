@@ -18,6 +18,25 @@
     </div>
 @endif
 
+@if (session()->has('danger'))
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-danger fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100">
+                        {{ session('danger') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
     <section id="header-analytics" class="m-bottom-15">
         <div class="row">
@@ -72,9 +91,10 @@
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
                                     <th scope="col">Picture</th>
-                                    <th scope="col">Artist Name</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Codename</th>
-                                    <th scope="col">Debut</th>
+                                    <th scope="col">Classification</th>
+                                    <th scope="col">Birthdate</th>
                                     <th scope="col">Origin</th>
                                     <th scope="col">Fandom</th>
                                     <th scope="col">Company</th>
@@ -89,8 +109,8 @@
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $artists->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">
-                                            @if ($artist->artist_pict)
-                                                <img src="{{ asset('storage/' . $artist->artist_pict) }}"
+                                            @if ($artist->artist_picture)
+                                                <img src="{{ asset('storage/' . $artist->artist_picture) }}"
                                                     alt="{{ $artist->artist_name }} Picture" class="img-fluid img-avatar">
                                             @else
                                                 <img src="{{ asset('img/unknown_artist.jpg') }}"
@@ -101,12 +121,13 @@
                                         <td class="align-middle text-color-100">
                                             {{ $artist->codename }}
                                         </td>
+                                        <td class="align-middle">{{ $artist->classification }}</td>
                                         <td class="align-middle">
-                                            {{ \Carbon\Carbon::parse($artist->debut)->format('d F Y') }}
+                                            {{ \Carbon\Carbon::parse($artist->birthdate)->format('d F Y') }}
                                         </td>
                                         <td class="align-middle">{{ $artist->origin }}</td>
                                         <td class="align-middle">{{ $artist->fandom }}</td>
-                                        <td class="align-middle">{{ $artist->company }}</td>
+                                        <td class="align-middle">{{ $artist->company->name }}</td>
                                         <td class="align-middle">
                                             <div class="btn-group dropstart">
                                                 <button class="btn p-0" type="button" data-bs-toggle="dropdown"

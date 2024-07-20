@@ -14,6 +14,8 @@ class Album extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = ['publisher'];
+
     public function publisher(): BelongsTo
     {
         return $this->belongsTo(Company::class);

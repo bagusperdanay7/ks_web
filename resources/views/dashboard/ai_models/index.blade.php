@@ -62,8 +62,8 @@
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $aiModels->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">
-                                            @if ($aiModel->cover_model)
-                                                <img src="{{ asset('storage/' . $aiModel->cover_model) }}"
+                                            @if ($aiModel->artist->artist_picture)
+                                                <img src="{{ asset('storage/' . $aiModel->artist->artist_picture) }}"
                                                     alt="{{ $aiModel->model_name }} Picture" class="img-fluid img-avatar">
                                             @else
                                                 <img src="{{ asset('img/unknown_artist.jpg') }}"
@@ -75,7 +75,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-completed' => $aiModel->status === 'Completed',
-                                                'btn-onprocess' => $aiModel->status === 'On Process',
+                                                'btn-onprocess' => $aiModel->status === 'In Progress',
                                                 'btn-pending' => $aiModel->status === 'Pending',
                                                 'btn-rejected' => $aiModel->status === 'Rejected',
                                             ])>{{ $aiModel->status }}</span>

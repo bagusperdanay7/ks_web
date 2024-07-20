@@ -22,7 +22,7 @@
                             <div class="col-12 col-lg-6 col-xxl-7 mb-lg-0 mb-10">
                                 <div class="d-flex align-items-xl-center align-items-start">
                                     <div class="mr-10">
-                                        <img src="{{ asset('storage/' . $model->cover_model) }}"
+                                        <img src="{{ asset('storage/' . $model->artist->artist_picture) }}"
                                             alt="{{ $model->model_name }} cover" class="rounded-10 img-square">
                                     </div>
                                     <div class="mb-0">
@@ -32,7 +32,7 @@
                                 </div>
                             </div>
                             <div class="col-12 col-lg-4 mb-10 mb-lg-0">
-                                <audio src="{{ asset('storage/' . $model->sample) }}" class="col-12" controls></audio>
+                                <audio src="{{ asset('storage/' . $model->audio_sample) }}" class="col-12" controls></audio>
                             </div>
                             <div class="col-12 col-lg-2 col-xxl-1 text-end">
                                 <button type="button" class="btn p-0 me-3 text-color-100 btn-copy" data-url="{{ $model->url }}"

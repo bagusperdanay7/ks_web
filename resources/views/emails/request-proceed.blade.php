@@ -7,14 +7,13 @@
 <x-mail::table style="text-align: start">
 | Here are the request details                        |
 | ----------------------------------------------------|
-| Title : {{ $project->project_title }}               |
-| Artist : {{ $project->artist->artist_name }}        |
-| Category : {{ $project->category->category_name }}  |
+| Title     : {{ $project->title }}                   |
+| Category  : {{ $project->category->category_name }} |
 | Requester : {{ $project->requester }}               |
-| Notes : {{ $project->notes }}                       |
+| Notes     : {{ $project->notes }}                   |
 </x-mail::table>
 
-<a href="https://paypal.me/bagusperdanq" class="button button-main fw-semibold text-center">
+<a href="https://www.paypal.com/paypalme/kpopsoulmate" class="button button-main fw-semibold text-center">
     Support Us
 </a>
 

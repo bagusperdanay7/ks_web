@@ -208,13 +208,13 @@
                                             ({{ \Carbon\Carbon::parse($upcoming->date)->diffForHumans() }})
                                         </div>
                                         <div class="m-bottom-5">
-                                            <h6 class="fw-semibold m-0">{{ $upcoming->project_title }}
+                                            <h6 class="fw-semibold m-0">{{ $upcoming->title }}
                                                 ({{ $upcoming->category->category_name }})
                                             </h6>
                                         </div>
                                         <div class="m-bottom-5">
                                             <i class="las la-user-alt"></i> {{ $upcoming->requester }} |
-                                            {{ $upcoming->type->type_name }}
+                                            {{ $upcoming->projectType->type_name }}
                                         </div>
                                         <div class="d-flex justify-content-between fw-medium">
                                             <p class="m-0 m-bottom-5">Progress</p>
@@ -271,10 +271,10 @@
                             <tbody>
                                 @forelse ($requestList as $list)
                                     <tr>
-                                        <td class="align-middle">{{ $list->project_title }}</td>
+                                        <td class="align-middle">{{ $list->title }}</td>
                                         <td class="align-middle">{{ $list->category->category_name }}</td>
-                                        <td class="align-middle">{{ $list->type?->type_name }}</td>
-                                        <td class="align-middle">{{ $list->date !== null ? $list->date : 'Coming Soon' }}
+                                        <td class="align-middle">{{ $list->projectType?->type_name }}</td>
+                                        <td class="align-middle">{{ $list->date !== null ? \Carbon\Carbon::parse($list->date)->format('d F Y, G:i T') : 'Coming Soon' }}
                                         </td>
                                         <td class="align-middle">{{ $list->requester }}</td>
                                         <td class="align-middle">

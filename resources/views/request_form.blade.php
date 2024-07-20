@@ -9,7 +9,7 @@
                     <div class="row justify-content-center align-items-center m-0">
                         <form action="{{ route('request-form-post') }}" method="post" class="mt-30 col-12 p-0">
                             @csrf
-                            <div class="mb-15">
+                            {{-- <div class="mb-15">
                                 <label for="artist" class="form-label fs-18 fw-medium text-color-100">Artist</label>
                                 <select class="form-select" aria-label="Select Artist" id="artist" name="artist_id">
                                     @foreach ($artists as $artist)
@@ -19,7 +19,7 @@
                                         </option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
                             <div class="mb-15">
                                 <label for="category" class="form-label fs-18 fw-medium text-color-100">Category</label>
                                 <select class="form-select" aria-label="Select Category" id="category" name="category_id">
@@ -32,13 +32,13 @@
                                 </select>
                             </div>
                             <div class="mb-15">
-                                <label for="project_title" class="form-label fs-18 fw-medium text-color-100">Project
+                                <label for="title" class="form-label fs-18 fw-medium text-color-100">Project
                                     Title</label>
-                                <input type="text" class="form-control @error('project_title') is-invalid @enderror"
-                                    id="project_title" name="project_title" aria-describedby="project_title_Help"
-                                    placeholder="Ex: OH MY GIRL - Celebrate" value="{{ old('project_title') }}" required>
-                                @error('project_title')
-                                    <div id="project_title_Help" class="invalid-feedback">
+                                <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                    id="title" name="title" aria-describedby="title_Help"
+                                    placeholder="Ex: OH MY GIRL - Celebrate" value="{{ old('title') }}" required>
+                                @error('title')
+                                    <div id="title_Help" class="invalid-feedback">
                                         {{ $message }}
                                     </div>
                                 @enderror
@@ -74,7 +74,7 @@
     </section>
 
     <script>
-        const projectTitle = document.querySelector('#project_title');
+        const projectTitle = document.querySelector('#title');
         const artist = document.querySelector('#artist');
 
         artist.onchange = (e) => {

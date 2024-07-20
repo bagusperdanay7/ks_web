@@ -97,10 +97,10 @@
                             <a href="/gallery/videos/{{ $gallery->id }}">
                                 @if ($gallery->thumbnail !== null)
                                     <img src="{{ $gallery->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $gallery->project_title }} thumbnail">
+                                        alt="{{ $gallery->title }} thumbnail">
                                 @else
                                     <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $gallery->project_title }} thumbnail">
+                                        alt="{{ $gallery->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
                                     <a href="gallery?category={{ $gallery->category->slug }}">
@@ -125,20 +125,20 @@
                                             {{ $gallery->category->category_name }}
                                         </p>
                                     </a>
-                                    <h4>{{ $gallery->project_title }}</h4>
+                                    <h4>{{ $gallery->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($gallery->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $gallery->type->slug }}"
+                                        &#8226; <a href="gallery?type={{ $gallery->projectType->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
-                                                class="type-tag">{{ $gallery->type->type_name }}</span>
+                                                class="type-tag">{{ $gallery->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     <a href="/gallery/artists/{{ $gallery->artist->codename ?? '' }}">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                @if ($gallery->artist->artist_pict)
+                                                @if ($gallery->artist->artist_picture)
                                                     <img class="rounded-circle"
-                                                        src="{{ asset('storage/' . $gallery->artist->artist_pict) }}"
+                                                        src="{{ asset('storage/' . $gallery->artist->artist_picture) }}"
                                                         alt="{{ $gallery->artist->artist_name }} thumbnail" width="40px"
                                                         height="40px">
                                                 @else
@@ -185,11 +185,11 @@
                                 <a href="/gallery/videos/{{ $recVideo->id }}">
                                     @if ($recVideo->thumbnail !== null)
                                         <img src="{{ $recVideo->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                            alt="{{ $recVideo->project_title }} thumbnail">
+                                            alt="{{ $recVideo->title }} thumbnail">
                                     @else
                                         <img src="{{ asset('img/no_thumbnail.jpg') }}"
                                             class="thumbnail m-0 p-0 img-fluid"
-                                            alt="{{ $recVideo->project_title }} thumbnail">
+                                            alt="{{ $recVideo->title }} thumbnail">
                                     @endif
                                     <div class="video-desc-card">
                                         <a href="gallery?category={{ $recVideo->category->slug }}">
@@ -214,20 +214,20 @@
                                                 {{ $recVideo->category->category_name }}
                                             </p>
                                         </a>
-                                        <h4>{{ $recVideo->project_title }}</h4>
+                                        <h4>{{ $recVideo->title }}</h4>
                                         <p class="date-text">
                                             {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                            &#8226; <a href="gallery?type={{ $recVideo->type->slug }}"
+                                            &#8226; <a href="gallery?type={{ $recVideo->projectType->slug }}"
                                                 class="p-0 m-0 text-decoration-none"><span
-                                                    class="type-tag">{{ $recVideo->type->type_name }}</span>
+                                                    class="type-tag">{{ $recVideo->projectType->type_name }}</span>
                                             </a>
                                         </p>
                                         <a href="/gallery/artists/{{ $recVideo->artist->codename ?? '' }}">
                                             <div class="d-flex flex-row align-items-center">
                                                 <div>
-                                                    @if ($recVideo->artist->artist_pict)
+                                                    @if ($recVideo->artist->artist_picture)
                                                         <img class="rounded-circle"
-                                                            src="{{ asset('storage/' . $recVideo->artist->artist_pict) }}"
+                                                            src="{{ asset('storage/' . $recVideo->artist->artist_picture) }}"
                                                             alt="{{ $recVideo->artist->artist_name }} thumbnail"
                                                             width="40px" height="40px">
                                                     @else
@@ -344,20 +344,21 @@
                         </a>
                     </div>
                 </div>
+                <p>{{ $artistsTotal }}</p>
                 @forelse ($artistsTotal as $artistTotal)
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="artist-card">
-                            <a href="/gallery/artists/{{ $artistTotal->artist->codename ?? '' }}">
-                                @if ($artistTotal->artist?->artist_pict)
-                                    <img src="{{ asset('storage/' . $artistTotal->artist->artist_pict ?? '') }}"
+                            <a href="/gallery/artists/{{ $artistTotal->codename ?? '' }}">
+                                @if ($artistTotal?->artist_picture)
+                                    <img src="{{ asset('storage/' . $artistTotal->artist_picture ?? '') }}"
                                         class="rounded artist-image img-fluid"
-                                        alt="{{ $artistTotal->artist->artist_name }}">
+                                        alt="{{ $artistTotal->artist_name }}">
                                 @else
                                     <img src="{{ asset('img/unknown_artist.jpg') }}"
                                         class="rounded artist-image img-fluid"
-                                        alt="{{ $artistTotal->artist->artist_name ?? '' }}">
+                                        alt="{{ $artistTotal->artist_name ?? '' }}">
                                 @endif
-                                <p>{{ $artistTotal->artist->artist_name ?? '' }}</p>
+                                <p>{{ $artistTotal->artist_name ?? '' }}</p>
                                 <span>{{ $artistTotal->total ?? '' }} Videos</span>
                             </a>
                         </div>
@@ -384,10 +385,10 @@
                             <a href="/gallery/videos/{{ $latestVid->id }}">
                                 @if ($latestVid->thumbnail !== null)
                                     <img src="{{ $latestVid->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $latestVid->project_title }} thumbnail">
+                                        alt="{{ $latestVid->title }} thumbnail">
                                 @else
                                     <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $latestVid->project_title }} thumbnail">
+                                        alt="{{ $latestVid->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
                                     <a href="gallery?category={{ $latestVid->category->slug }}">
@@ -413,20 +414,20 @@
                                             {{ $latestVid->category->category_name }}
                                         </p>
                                     </a>
-                                    <h4>{{ $latestVid->project_title }}</h4>
+                                    <h4>{{ $latestVid->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($latestVid->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $latestVid->type->slug }}"
+                                        &#8226; <a href="gallery?type={{ $latestVid->projectType->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
-                                                class="type-tag">{{ $latestVid->type->type_name }}</span>
+                                                class="type-tag">{{ $latestVid->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     <a href="/gallery/artists/{{ $latestVid->artist->codename ?? '' }}">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                @if ($latestVid->artist?->artist_pict)
+                                                @if ($latestVid->artist?->artist_picture)
                                                     <img class="rounded-circle"
-                                                        src="{{ asset('storage/' . $latestVid->artist->artist_pict) }}"
+                                                        src="{{ asset('storage/' . $latestVid->artist->artist_picture) }}"
                                                         alt="{{ $latestVid->artist->artist_name }} thumbnail"
                                                         width="40px" height="40px">
                                                 @else
@@ -470,10 +471,10 @@
                             <a href="/gallery/videos/{{ $recVideo->id }}">
                                 @if ($recVideo->thumbnail !== null)
                                     <img src="{{ $recVideo->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $recVideo->project_title }} thumbnail">
+                                        alt="{{ $recVideo->title }} thumbnail">
                                 @else
                                     <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $recVideo->project_title }} thumbnail">
+                                        alt="{{ $recVideo->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
                                     <a href="gallery?category={{ $recVideo->category->slug }}">
@@ -498,20 +499,20 @@
                                             {{ $recVideo->category->category_name }}
                                         </p>
                                     </a>
-                                    <h4>{{ $recVideo->project_title }}</h4>
+                                    <h4>{{ $recVideo->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $recVideo->type->slug }}"
+                                        &#8226; <a href="gallery?type={{ $recVideo->projectType->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
-                                                class="type-tag">{{ $recVideo->type->type_name }}</span>
+                                                class="type-tag">{{ $recVideo->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     <a href="/gallery/artists/{{ $recVideo->artist->codename ?? '' }}">
                                         <div class="d-flex flex-row align-items-center">
                                             <div>
-                                                @if ($recVideo->artist?->artist_pict)
+                                                @if ($recVideo->artist?->artist_picture)
                                                     <img class="rounded-circle"
-                                                        src="{{ asset('storage/' . $recVideo->artist?->artist_pict) }}"
+                                                        src="{{ asset('storage/' . $recVideo->artist?->artist_picture) }}"
                                                         alt="{{ $recVideo->artist->artist_name }} thumbnail"
                                                         width="40px" height="40px">
                                                 @else

@@ -50,11 +50,11 @@ Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, '
 
 Route::get('/request-list', [RequestListController::class, 'index'])->name('request-list');
 
-// TODO: Lanjut Sini
 Route::get('/request-list/form', [RequestListController::class, 'create'])->middleware(['auth', 'verified'])->name('request-form');
 
 Route::post('/request-list/form', [RequestListController::class, 'store'])->name('request-form-post');
 
+// TODO: Lanjut Sini
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
 
 Route::get('/gallery/categories', [CategoryController::class, 'index'])->name('categories');
@@ -133,6 +133,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
 
+// TODO: dashboard lanjut sini, artist sudah
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 
 Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');

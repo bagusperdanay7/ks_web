@@ -59,14 +59,19 @@
                             @endif
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row m-bottom-15">
+                        <div class="col"><p class="m-bottom-10 text-color-100 fw-medium fs-14">Artist</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $aiModel->artist->artist_name }} ({{ $aiModel->artist->id }})</p>
+                        </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Description</p>
                             <p class="m-0 text-color-100 fs-14">{{ $aiModel->description }}</p>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12 col-md">
-                            <p class="m-bottom-10 mt-3 mt-md-0 text-color-100 fw-medium fs-14">Sample</p>
-                            <audio id="audio" class="col-12" controls src="{{ asset('storage/' . $aiModel->sample) }}">
+                            <p class="m-bottom-10 mt-3 mt-md-0 text-color-100 fw-medium fs-14">Audio Sample</p>
+                            <audio id="audio" class="col-12" controls src="{{ asset('storage/' . $aiModel->audio_sample) }}">
                             </audio>
                         </div>
                     </div>
@@ -74,21 +79,19 @@
             </div>
 
             <div class="col-12 col-md-4 order-md-2 order-1 m-bottom-30">
-                @if ($aiModel->cover_model !== null)
-                    <img src="{{ asset('storage/' . $aiModel->cover_model) }}" alt="{{ $aiModel->model_name }} picture"
+                @if ($aiModel->artist->artist_picture !== null)
+                    <img src="{{ asset('storage/' . $aiModel->artist->artist_picture) }}" alt="{{ $aiModel->model_name }} picture"
                         class="img-fluid img-square rounded-top-10 shadow-sm" width="100%">
                 @else
                     <img src="{{ asset('img/unknown_artist.jpg') }}" alt="{{ $aiModel->model_name }} picture"
                         class="img-fluid img-square rounded-top-10 shadow-sm">
                 @endif
                 <div class="bg-white p-15 rounded-bottom-10">
-                    <p class="m-0 text-color-100 fw-medium fs-14">Cover Model</p>
-                    <p class="m-0 text-color-80 fs-12 text-break">{{ $aiModel->cover_model }}</p>
-                    <p class="m-bottom-0 m-top-15 text-color-100 fw-medium fs-14">URL</p>
+                    <p class="m-0 text-color-100 fw-medium fs-14">URL</p>
                     <a href="{{ $aiModel->url }}" target="_blank"
                         class="text-decoration-none text-color-secondary fs-12 text-break">{{ $aiModel->url }}</a>
                     <p class="m-bottom-0 m-top-15 text-color-100 fw-medium fs-14">Sample Location</p>
-                    <p class="fs-12 text-break m-0">{{ $aiModel->sample }}</p>
+                    <p class="fs-12 text-break m-0">{{ $aiModel->audio_sample }}</p>
                 </div>
             </div>
         </div>

@@ -58,7 +58,7 @@ class DashboardProjectController extends Controller
             'thumbnail' => 'max:191',
             'progress' => 'integer',
             'votes' => 'integer',
-            'is_exclusive' => 'required',
+            'exclusive' => 'required',
             'created_at' => 'nullable|date'
         ]);
 

@@ -34,7 +34,7 @@ class Project extends Model
         });
 
         $query->when($filters['type'] ?? false, function ($query, $type) {
-            return $query->whereHas('type', function ($query) use ($type) {
+            return $query->whereHas('projectType', function ($query) use ($type) {
                 $query->where('slug', $type);
             });
         });

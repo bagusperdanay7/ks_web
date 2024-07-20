@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
+use App\Models\Artist;
 use App\Models\AIModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rules\File;
+use Illuminate\Support\Facades\Storage;
 
 class DashboardAIModelController extends Controller
 {
+    // TODO: Ubah nanti saja
+    // public $maxCharacterValidate = "max:191";
     /**
      * Display a listing of the resource.
      */
@@ -27,6 +31,8 @@ class DashboardAIModelController extends Controller
     {
         return view('dashboard.ai_models.create', [
             'title' => 'Create AI Model',
+            'statuses' => Status::cases(),
+            'artists' => Artist::all()->sortBy('artist_name'),
         ]);
     }
 
@@ -36,19 +42,15 @@ class DashboardAIModelController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'model_name' => 'required|max:191',
-            'cover_model' => [File::image()->max('1mb')],
-            'url' => 'url|max:191',
-            'status' => 'required|max:10' ,
-            'sample' => [File::types(['mp3', 'wav', 'mp4a'])->max('5mb')],
+            'model_name' => ['required', 'max:191'],
+            'url' => ['url', 'max:191'],
+            'status' => ['required'],
+            'audio_sample' => [File::types(['mp3', 'wav', 'mp4a'])->max('5mb')],
+            'artist_id' => ['required']
         ]);
 
-        if ($request->file('cover_model')) {
-            $validateData['cover_model'] = $request->file('cover_model')->store('img/ai-models/cover');
-        }
-
-        if ($request->file('sample')) {
-            $validateData['sample'] = $request->file('sample')->store('audio/ai-models/sample');
+        if ($request->file('audio_sample')) {
+            $validateData['audio_sample'] = $request->file('audio_sample')->store('audio/ai-models/sample');
         }
 
         $validateData['description'] = strip_tags($request->description);
@@ -77,6 +79,8 @@ class DashboardAIModelController extends Controller
         return view('dashboard.ai_models.edit', [
             'title' => 'Update AI Model',
             'aiModel' => $aiModel,
+            'statuses' => Status::cases(),
+            'artists' => Artist::all()->sortBy('artist_name'),
         ]);
     }
 
@@ -86,29 +90,21 @@ class DashboardAIModelController extends Controller
     public function update(Request $request, AIModel $aiModel)
     {
         $rules = [
-            'model_name' => 'required|max:191',
-            'cover_model' => [File::image()->max('1mb')],
-            'url' => 'url|max:191',
-            'status' => 'required|max:10' ,
+            'model_name' => ['required', 'max:191'],
+            'url' => ['url', 'max:191'],
+            'status' => ['required'],
             'sample' => [File::types(['mp3', 'wav', 'mp4a'])->max('5mb')],
+            'artist_id' => ['required']
         ];
 
         $validateData = $request->validate($rules);
 
-        if ($request->file('cover_model')) {
-            if($aiModel->cover_model !== null) {
-                Storage::delete($aiModel->cover_model);
+        if ($request->file('audio_sample')) {
+            if ($aiModel->audio_sample !== null) {
+                Storage::delete($aiModel->audio_sample);
             }
 
-            $validateData['cover_model'] = $request->file('cover_model')->store('img/ai-models/cover');
-        }
-
-        if ($request->file('sample')) {
-            if($aiModel->sample !== null) {
-                Storage::delete($aiModel->sample);
-            }
-
-            $validateData['sample'] = $request->file('sample')->store('audio/ai-models/sample');
+            $validateData['audio_sample'] = $request->file('audio_sample')->store('audio/ai-models/audio_sample');
         }
 
         $validateData['description'] = strip_tags($request->description);
@@ -123,12 +119,8 @@ class DashboardAIModelController extends Controller
      */
     public function destroy(AIModel $aiModel)
     {
-        if($aiModel->cover_model !== null) {
-            Storage::delete($aiModel->cover_model);
-        }
-
-        if($aiModel->sample !== null) {
-            Storage::delete($aiModel->sample);
+        if ($aiModel->audio_sample !== null) {
+            Storage::delete($aiModel->audio_sample);
         }
 
         AIModel::destroy($aiModel->id);

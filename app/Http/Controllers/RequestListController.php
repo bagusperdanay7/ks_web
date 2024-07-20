@@ -158,29 +158,29 @@ class RequestListController extends Controller
     public function create()
     {
         return view('request_form', [
-            'title' => 'Form Request',
-            'artists' => Artist::orderBy('artist_name')->get(),
-            "categories" => Category::orderBy('category_name')->get(),
+            "title" => "Form Request",
+            "artists" => Artist::orderBy("artist_name")->get(),
+            "categories" => Category::orderBy("category_name")->get(),
         ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validateData = $request->validate([
-            'artist_id' => 'required',
-            'category_id' => 'required',
-            'title' => 'required|max:191',
-            'requester' => 'required|max:191',
+            "category_id" => "required",
+            "title" => "required|max:191",
+            "requester" => "required|max:191",
         ]);
 
-        $validateData['notes'] = strip_tags($request->notes);
-        $validateData['project_type_id'] = 1;
-        $validateData['votes'] = 1;
+        $validateData["notes"] = strip_tags($request->notes);
+        $validateData["project_type_id"] = 1;
+        $validateData["votes"] = 1;
 
         Project::create($validateData);
 
         $project = Project::latest()->first();
 
+        // TODO: Betulkan ketika sudah diaktivasi akunnya
         // return (new RequestProcessed($project))->render(); #debug html
         Mail::to($request->user())->send(new RequestProcessed($project));
 

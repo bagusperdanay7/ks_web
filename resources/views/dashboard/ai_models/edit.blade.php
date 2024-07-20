@@ -21,23 +21,21 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="cover_model" class="form-label text-color-100  m-bottom-10 fs-18 fw-medium">Cover
-                                Model</label>
-                            <input class="form-control @error('cover_model') is-invalid @enderror" type="file"
-                                id="cover_model" accept="image/*" name="cover_model" onchange="previewPicture()">
-                            @error('cover_model')
-                                <div id="modelCoverFeedback" class="invalid-feedback">
+                            <label for="artist" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
+                            <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist"
+                                id="artist" name="artist_id">
+                                @foreach ($artists as $artist)
+                                    <option value="{{ $artist->id }}"
+                                        {{ old('artist_id', $aiModel->artist_id) == $artist->id ? ' selected' : ' ' }}>
+                                        {{ $artist->artist_name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('artist_id')
+                                <div id="artistFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
-                            @if ($aiModel->cover_model)
-                                <p class="fs-14 fw-medium m-top-15 mb-0" id="previewImageText">Picture Preview:</p>
-                                <img class="img-square preview-pict img-fluid m-top-5"
-                                    src="{{ asset('storage/' . $aiModel->cover_model) }}">
-                            @else
-                                <p class="fs-14 fw-medium m-top-15 mb-0 d-none" id="previewImageText">Picture Preview:</p>
-                                <img class="img-square preview-pict img-fluid m-top-5 d-none">
-                            @endif
                         </div>
                         <div class="m-bottom-15">
                             <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
@@ -51,40 +49,14 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="status"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select status"
-                                id="status" name="status">
-                                @if (old('status', $aiModel->status) === 'Completed')
-                                    <option value="{{ old('status', $aiModel->status) }}" selected>
-                                        {{ old('status', $aiModel->status) }}</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $aiModel->status) === 'On Process')
-                                    <option value="Completed">Completed</option>
-                                    <option value="{{ old('status', $aiModel->status) }}" selected>
-                                        {{ old('status', $aiModel->status) }}</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $aiModel->status) === 'Pending')
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="{{ old('status', $aiModel->status) }}" selected>
-                                        {{ old('status', $aiModel->status) }}</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $aiModel->status) === 'Rejected')
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="{{ old('status', $aiModel->status) }}" selected>
-                                        {{ old('status', $aiModel->status) }}</option>
-                                @else
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @endif
+                            <label for="status" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status" id="status" name="status">
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status->value }}"
+                                        {{ old('status', $aiModel->status) == $status->value ? ' selected' : ' ' }}>
+                                        {{ $status->value }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('status')
                                 <div id="statusFeedback" class="invalid-feedback">
@@ -104,19 +76,19 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="sample"
-                                class="form-label text-color-100  m-bottom-10 fs-18 fw-medium">Sample</label>
-                            <input class="form-control @error('sample') is-invalid @enderror" type="file" id="sample"
-                                accept="audio/*" name="sample" onchange="previewAudio()">
-                            @error('sample')
-                                <div id="sampleFeedback" class="invalid-feedback">
+                            <label for="audio_sample"
+                                class="form-label text-color-100  m-bottom-10 fs-18 fw-medium">Audio Sample</label>
+                            <input class="form-control @error('audio_sample') is-invalid @enderror" type="file" id="audio_sample"
+                                accept="audio/*" name="audio_sample" onchange="previewAudio()">
+                            @error('audio_sample')
+                                <div id="audioSampleFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
-                            @if ($aiModel->sample)
+                            @if ($aiModel->audio_sample)
                                 <p class="fs-14 fw-medium m-top-15 mb-0" id="previewAudio">Audio Preview:</p>
                                 <audio id="audio" class="col-12 m-top-10 preview-audio"
-                                    src="{{ asset('storage/' . $aiModel->sample) }}" controls>
+                                    src="{{ asset('storage/' . $aiModel->audio_sample) }}" controls>
                                 </audio>
                             @else
                                 <p class="fs-14 fw-medium m-top-15 mb-0 d-none" id="previewAudio">Audio Preview:</p>
@@ -135,27 +107,15 @@
     </section>
 
     <script>
-        function previewPicture() {
-            const modelCover = document.querySelector('#cover_model');
-            const picturePreview = document.querySelector('.preview-pict');
-            const previewImageText = document.querySelector('#previewImageText');
-
-            picturePreview.classList.remove("d-none");
-            previewImageText.classList.remove("d-none");
-
-            const blob = URL.createObjectURL(modelCover.files[0]);
-            picturePreview.src = blob;
-        }
-
         function previewAudio() {
-            const sample = document.querySelector('#sample');
+            const audioSample = document.querySelector('#audio_sample');
             const previewAudio = document.querySelector('.preview-audio');
             const previewAudioText = document.querySelector('#previewAudio');
 
             previewAudio.classList.remove("d-none");
             previewAudioText.classList.remove("d-none");
 
-            const blob = URL.createObjectURL(sample.files[0]);
+            const blob = URL.createObjectURL(audioSample.files[0]);
             previewAudio.src = blob;
         }
     </script>

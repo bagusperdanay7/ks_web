@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Artist;
+use App\Enums\ArtistClassification;
+use App\Models\Company;
+use Exception;
+use Illuminate\Database\QueryException;
+use Illuminate\Validation\Rule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -32,6 +37,8 @@ class DashboardArtistController extends Controller
     {
         return view('dashboard.artists.create', [
             'title' => 'Create Artist',
+            'classifications' => ArtistClassification::cases(),
+            'companies' => Company::all()->sortBy('name')
         ]);
     }
 
@@ -41,17 +48,18 @@ class DashboardArtistController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'artist_name' => 'required|max:191',
-            'codename' => 'required|unique:artists|max:191',
-            'debut' => 'required|date',
-            'origin' => 'required|max:191',
-            'artist_pict' => 'image|file|max:4096',
-            'fandom' => 'required|max:191',
-            'company' => 'required|max:191',
+            'artist_name' => ['required', 'max:191'],
+            'codename' => ['required', 'unique:artists', 'max:191'],
+            'classification' => ['required', Rule::enum(ArtistClassification::class)],
+            'birthdate' => ['nullable', 'date'],
+            'origin' => ['nullable', 'max:191'],
+            'artist_picture' => ['image', 'file', 'max:2048'],
+            'fandom' => ['nullable', 'max:191'],
+            'company_id' => ['required'],
         ]);
 
-        if ($request->file('artist_pict')) {
-            $validateData['artist_pict'] = $request->file('artist_pict')->store('img/artist');
+        if ($request->file('artist_picture')) {
+            $validateData['artist_picture'] = $request->file('artist_picture')->store('img/artist');
         }
 
         $validateData['about'] = strip_tags($request->about);
@@ -80,6 +88,8 @@ class DashboardArtistController extends Controller
         return view('dashboard.artists.edit', [
             'title' => 'Update Artist',
             'artist' => $artist,
+            'classifications' => ArtistClassification::cases(),
+            'companies' => Company::all()->sortBy('name')
         ]);
     }
 
@@ -89,12 +99,13 @@ class DashboardArtistController extends Controller
     public function update(Request $request, Artist $artist)
     {
         $rules = [
-            'artist_name' => 'required|max:191',
-            'debut' => 'required|date',
-            'origin' => 'required|max:191',
-            'artist_pict' => 'image|file|max:4096',
-            'fandom' => 'required|max:191',
-            'company' => 'required|max:191',
+            'artist_name' => ['required', 'max:191'],
+            'classification' => ['required', Rule::enum(ArtistClassification::class)],
+            'birthdate' => ['nullable', 'date'],
+            'origin' => ['nullable', 'max:191'],
+            'artist_picture' => ['image', 'file', 'max:2048'],
+            'fandom' => ['nullable', 'max:191'],
+            'company_id' => ['required'],
         ];
 
         if ($request->codename !== $artist->codename) {
@@ -103,12 +114,12 @@ class DashboardArtistController extends Controller
 
         $validateData = $request->validate($rules);
 
-        if ($request->file('artist_pict')) {
-            if ($artist->artist_pict !== null) {
-                Storage::delete($artist->artist_pict);
+        if ($request->file('artist_picture')) {
+            if ($artist->artist_picture !== null) {
+                Storage::delete($artist->artist_picture);
             }
 
-            $validateData['artist_pict'] = $request->file('artist_pict')->store('img/artist');
+            $validateData['artist_picture'] = $request->file('artist_picture')->store('img/artist');
         }
 
         $validateData['about'] = strip_tags($request->about);
@@ -124,12 +135,18 @@ class DashboardArtistController extends Controller
     public function destroy(Artist $artist)
     {
 
-        if ($artist->artist_pict != null) {
-            Storage::delete($artist->artist_pict);
+        if ($artist->artist_picture != null) {
+            Storage::delete($artist->artist_picture);
         }
 
-        Artist::destroy($artist->id);
-
-        return redirect('/dashboard/artists')->with('success', "The artist has been deleted!");
+        // TODO: Bikin sesuai laravel try catchnya
+        try {
+            Artist::destroy($artist->id);
+            return redirect('/dashboard/artists')->with('success', "The artist has been deleted!");
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                return redirect('/dashboard/artists')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            }
+        }
     }
 }

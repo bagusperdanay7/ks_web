@@ -13,6 +13,8 @@ class Song extends Model
 
     protected $guarded = ['id'];
 
+    protected $with = ['album'];
+
     public function album(): BelongsTo
     {
         return $this->belongsTo(Album::class);

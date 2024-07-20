@@ -50,28 +50,32 @@
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Debut</p>
-                            <p class="text-color-100 fs-14 m-0">
-                                {{ \Carbon\Carbon::parse($artist->debut)->format('d F Y') }}
-                            </p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Classification</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $artist->classification }}</p>
                         </div>
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Origin</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $artist->origin }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Birthdate</p>
+                            <p class="text-color-100 fs-14 m-0">
+                                {{ \Carbon\Carbon::parse($artist->birthdate)->format('d F Y') }}
+                            </p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Fandom</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $artist->fandom }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Origin</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $artist->origin }}</p>
                         </div>
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Company</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $artist->company }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Fandom</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $artist->fandom }}</p>
                         </div>
                     </div>
 
                     <div class="row">
+                        <div class="col">
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Company</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $artist->company->name }}</p>
+                        </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">About</p>
                             <p class="m-0 text-color-100 fs-14">{{ $artist->about }}</p>
@@ -81,16 +85,16 @@
             </div>
 
             <div class="col-12 col-md-4 order-md-2 order-1 m-bottom-30">
-                @if ($artist->artist_pict !== null)
-                    <img src="{{ asset('storage/' . $artist->artist_pict) }}" alt="{{ $artist->artist_name }} picture"
+                @if ($artist->artist_picture !== null)
+                    <img src="{{ asset('storage/' . $artist->artist_picture) }}" alt="{{ $artist->artist_name }} picture"
                         class="img-fluid img-square rounded-top-10 shadow-sm" width="100%">
                 @else
                     <img src="{{ asset('img/unknown_artist.jpg') }}" alt="{{ $artist->artist_name }} thumbnail"
                         class="img-fluid img-square rounded-top-10 shadow-sm">
                 @endif
                 <div class="bg-white p-15 rounded-bottom-10">
-                    <p class="m-0 text-color-100 fw-medium fs-14">Picture</p>
-                    <p class="m-0 text-color-80 fs-12 text-break">{{ $artist->artist_pict }}</p>
+                    <p class="m-0 text-color-100 fw-medium fs-14">Picture (Path)</p>
+                    <p class="m-0 text-color-80 fs-12 text-break">{{ $artist->artist_picture }}</p>
                 </div>
             </div>
         </div>

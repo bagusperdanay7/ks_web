@@ -12,6 +12,8 @@ class Idol extends Model
 {
     use HasFactory;
 
+    protected $with = ['artist'];
+
     public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);

@@ -12,7 +12,9 @@ class AIModel extends Model
 
     protected $guarded = ['id'];
 
-    public function artists(): BelongsTo
+    protected $with = ['artist'];
+
+    public function artist(): BelongsTo
     {
         return $this->belongsTo(Artist::class);
     }
