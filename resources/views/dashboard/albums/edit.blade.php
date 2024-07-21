@@ -8,7 +8,7 @@
                     <form method="post" action="/dashboard/albums/{{ $album->id }}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        <div class="m-bottom-15">
+                        {{-- <div class="m-bottom-15">
                             <label for="artist"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
@@ -24,15 +24,14 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="m-bottom-15">
-                            <label for="album_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Album
-                                Name</label>
-                            <input type="text" class="form-control @error('album_name') is-invalid @enderror"
-                                name="album_name" id="album_name" placeholder="Ex: Neverland"
-                                value="{{ old('album_name', $album->album_name) }}">
-                            @error('album_name')
-                                <div id="artistTitleFeedback" class="invalid-feedback">
+                            <label for="name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" id="name" placeholder="Ex: Neverland"
+                                value="{{ old('name', $album->name) }}">
+                            @error('name')
+                                <div id="albumTitleFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -40,26 +39,12 @@
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
                             <select class="form-select @error('type') is-invalid @enderror" aria-label="Select Type" id="type" name="type">
-                                @if (old('type', $album->type) === 'Album')
-                                    <option value="{{ old('type', $album->type) }}" selected>{{ old('type', $album->type) }}
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}"
+                                        {{ old('type', $album->type) == $type->value ? ' selected' : ' ' }}>
+                                        {{ $type->value }}
                                     </option>
-                                    <option value="EP">EP</option>
-                                    <option value="Single">Single</option>
-                                @elseif (old('type', $album->type) === 'EP')
-                                    <option value="Album">Album</option>
-                                    <option value="{{ old('type', $album->type) }}" selected>{{ old('type', $album->type) }}
-                                    </option>
-                                    <option value="Single">Single</option>
-                                @elseif (old('type', $album->type) === 'Single')
-                                    <option value="Album">Album</option>
-                                    <option value="EP">EP</option>
-                                    <option value="{{ old('type', $album->type) }}" selected>
-                                        {{ old('type', $album->type) }}</option>
-                                @else
-                                    <option value="Album">Album</option>
-                                    <option value="EP">EP</option>
-                                    <option value="Single">Single</option>
-                                @endif
+                                @endforeach
                             </select>
                             @error('type')
                                 <div id="typeFeedback" class="invalid-feedback">
@@ -79,7 +64,7 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="cover" class="form-label text-color-100">Album Cover</label>
+                            <label for="cover" class="form-label text-color-100">Cover</label>
                             <input class="form-control @error('cover') is-invalid @enderror" type="file" id="cover"
                                 accept="image/*" name="cover" onchange="previewPicture()">
                             @error('cover')
@@ -97,12 +82,16 @@
                             @endif
                         </div>
                         <div class="m-bottom-15">
-                            <label for="publisher"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Publisher</label>
-                            <input type="text" class="form-control @error('publisher') is-invalid @enderror"
-                                name="publisher" id="publisher" placeholder="Enter the Publisher Name"
-                                value="{{ old('publisher', $album->publisher) }}">
-                            @error('publisher')
+                            <label for="publisher_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Publisher</label>
+                            <select class="form-select @error('publisher_id') is-invalid @enderror" aria-label="Select Publisher" id="publisher_id" name="publisher_id">
+                                @foreach ($publishers as $publisher)
+                                    <option value="{{ $publisher->id }}"
+                                        {{ old('publisher_id', $album->publisher_id) == $publisher->id ? ' selected' : ' ' }}>
+                                        {{ $publisher->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('publisher_id')
                                 <div id="publisherFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -120,14 +109,14 @@
 
     <script>
         function previewPicture() {
-            const albumCover = document.querySelector('#cover');
+            const cover = document.querySelector('#cover');
             const picturePreview = document.querySelector('.preview-pict');
             const previewImageText = document.querySelector('#previewImageText');
 
             picturePreview.classList.remove("d-none");
             previewImageText.classList.remove("d-none");
 
-            const blob = URL.createObjectURL(albumCover.files[0]);
+            const blob = URL.createObjectURL(cover.files[0]);
             picturePreview.src = blob;
         }
     </script>

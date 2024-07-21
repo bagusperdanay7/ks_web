@@ -23,7 +23,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('song_genre');
+        Schema::dropIfExists('song_genre');
         Schema::dropIfExists('genres');
     }
 };

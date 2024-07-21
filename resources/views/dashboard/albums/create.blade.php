@@ -7,7 +7,7 @@
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Create Album Form</h4>
                     <form method="post" action="/dashboard/albums" enctype="multipart/form-data">
                         @csrf
-                        <div class="m-bottom-15">
+                        {{-- <div class="m-bottom-15">
                             <label for="artist"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
@@ -23,15 +23,14 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="m-bottom-15">
-                            <label for="album_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Album
-                                Name</label>
-                            <input type="text" class="form-control @error('album_name') is-invalid @enderror"
-                                name="album_name" id="album_name" placeholder="Ex: Neverland"
-                                value="{{ old('album_name') }}">
-                            @error('album_name')
-                                <div id="albumNameFeedback" class="invalid-feedback">
+                            <label for="name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror"
+                                name="name" id="name" placeholder="Ex: Neverland"
+                                value="{{ old('name') }}">
+                            @error('name')
+                                <div id="nameFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -39,23 +38,12 @@
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
                             <select class="form-select @error('type') is-invalid @enderror" aria-label="Select Type" id="type" name="type">
-                                @if (old('type') === 'Album')
-                                    <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
-                                    <option value="EP">EP</option>
-                                    <option value="Single">Single</option>
-                                @elseif (old('type') === 'EP')
-                                    <option value="Album">Album</option>
-                                    <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
-                                    <option value="Single">Single</option>
-                                @elseif (old('type') === 'Single')
-                                    <option value="Album">Album</option>
-                                    <option value="EP">EP</option>
-                                    <option value="{{ old('type') }}" selected>{{ old('type') }}</option>
-                                @else
-                                    <option value="Album">Album</option>
-                                    <option value="EP">EP</option>
-                                    <option value="Single">Single</option>
-                                @endif
+                                @foreach ($types as $type)
+                                    <option value="{{ $type->value }}"
+                                        {{ old('type') == $type->value ? ' selected' : ' ' }}>
+                                        {{ $type->value }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('type')
                                 <div id="typeFeedback" class="invalid-feedback">
@@ -87,12 +75,16 @@
                             <img class="img-square rounded-all-5 preview-pict img-fluid m-top-5 d-none">
                         </div>
                         <div class="m-bottom-15">
-                            <label for="publisher"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Publisher</label>
-                            <input type="text" class="form-control @error('publisher') is-invalid @enderror"
-                                name="publisher" id="publisher" placeholder="Enter the Publisher Name"
-                                value="{{ old('publisher') }}">
-                            @error('publisher')
+                            <label for="publisher_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Publisher</label>
+                            <select class="form-select @error('publisher_id') is-invalid @enderror" aria-label="Select Publisher" id="publisher_id" name="publisher_id">
+                                @foreach ($publishers as $publisher)
+                                    <option value="{{ $publisher->id }}"
+                                        {{ old('publisher_id') == $publisher->id ? ' selected' : ' ' }}>
+                                        {{ $publisher->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('publisher_id')
                                 <div id="publisherFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>

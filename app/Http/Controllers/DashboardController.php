@@ -11,7 +11,8 @@ class DashboardController extends Controller
     public function index()
     {
         // $this->authorize('admin'); #pake gate untuk contoh
-        $endPoint = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=";
+        // TODO: Masukkin env saja biar, idnya tidak terdeteksi
+        $endPoint = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=';
 
         $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
 

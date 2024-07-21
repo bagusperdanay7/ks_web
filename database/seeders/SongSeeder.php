@@ -26,6 +26,7 @@ class SongSeeder extends Seeder
         Song::create([
             'title' => 'Bungee',
             'duration' => 185,
+            'track_number' => 1,
             'category' => 'Title Track',
             'album_id' => 1
         ]);
@@ -33,6 +34,7 @@ class SongSeeder extends Seeder
         Song::create([
             'title' => 'Oh!',
             'duration' => 189,
+            'track_number' => 1,
             'category' => 'Title Track',
             'album_id' => 1
         ]);

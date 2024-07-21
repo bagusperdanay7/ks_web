@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Models\Artist;
-use App\Models\Category;
 use App\Models\Project;
+use App\Models\Category;
 use App\Models\ProjectType;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DashboardProjectController extends Controller
 {
@@ -15,11 +17,11 @@ class DashboardProjectController extends Controller
      */
     public function index()
     {
-        $project = Project::orderBy('project_title')->paginate(50)->withQueryString();
+        $project = Project::orderBy('title')->paginate(50)->withQueryString();
 
         if (request('search')) {
-            $project = Project::where('project_title', 'like', '%' . request('search') . '%')
-                ->orderBy('project_title')->paginate(50)->withQueryString();
+            $project = Project::where('title', 'like', '%' . request('search') . '%')
+                ->orderBy('title')->paginate(50)->withQueryString();
         }
 
         return view('dashboard.projects.index', [
@@ -36,8 +38,9 @@ class DashboardProjectController extends Controller
         return view('dashboard.projects.create', [
             'title' => 'Create Project',
             'artists' => Artist::all()->sortBy('artist_name'),
-            "categories" => Category::all()->sortBy('category_name'),
-            "types" => ProjectType::all()->sortBy('type_name'),
+            'statuses' => Status::cases(),
+            'categories' => Category::all()->sortBy('category_name'),
+            'types' => ProjectType::all()->sortBy('type_name'),
         ]);
     }
 
@@ -47,26 +50,27 @@ class DashboardProjectController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'artist_id' => 'required',
-            'category_id' => 'required',
-            'type_id' => 'required',
-            'project_title' => 'required|max:191',
-            'date' => 'nullable|date',
-            'requester' => 'required|max:191',
-            'status' => 'required',
-            'url' => 'max:191',
-            'thumbnail' => 'max:191',
-            'progress' => 'integer',
-            'votes' => 'integer',
-            'exclusive' => 'required',
-            'created_at' => 'nullable|date'
+            'category_id' => ['required'],
+            'project_type_id' => ['required'],
+            'title' => ['required', 'max:191'],
+            'date' => ['nullable', 'date'],
+            'requester' => ['required', 'max:191'],
+            'status' => ['required', Rule::enum(Status::class)],
+            'youtube_id' => ['nullable', 'max:191'],
+            'progress' => ['integer'],
+            'votes' => ['integer'],
+            'exclusive' => ['nullable'],
+            'created_at' => ['date']
         ]);
 
+        $request->exclusive == 'on' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
+
+        // TODO: Kalau kosong biarkan
         $validateData['notes'] = strip_tags($request->notes);
 
         Project::create($validateData);
 
-        return redirect('/dashboard/projects')->with('success', "New Project has been created!");
+        return redirect('/dashboard/projects')->with('success', 'New Project has been created!');
     }
 
     /**
@@ -75,7 +79,7 @@ class DashboardProjectController extends Controller
     public function show(Project $project)
     {
         return view('dashboard.projects.show', [
-            'title' => $project->project_title,
+            'title' => $project->title,
             'project' => $project,
         ]);
     }
@@ -88,9 +92,9 @@ class DashboardProjectController extends Controller
         return view('dashboard.projects.edit', [
             'title' => 'Update Project',
             'project' => $project,
-            'artists' => Artist::all()->sortBy('artist_name'),
-            "categories" => Category::all()->sortBy('category_name'),
-            "types" => ProjectType::all()->sortBy('type_name'),
+            'statuses' => Status::cases(),
+            'categories' => Category::all()->sortBy('category_name'),
+            'types' => ProjectType::all()->sortBy('type_name'),
         ]);
     }
 
@@ -101,19 +105,17 @@ class DashboardProjectController extends Controller
     {
 
         $rules = [
-            'artist_id' => 'required',
-            'category_id' => 'required',
-            'type_id' => 'required',
-            'project_title' => 'required|max:191',
-            'requester' => 'required|max:191',
-            'date' => 'nullable|date',
-            'status' => 'required',
-            'url' => 'max:191',
-            'thumbnail' => 'max:191',
-            'progress' => 'integer',
-            'votes' => 'integer',
-            'is_exclusive' => 'required',
-            'created_at' => 'nullable|date'
+            'category_id' => ['required'],
+            'project_type_id' => ['required'],
+            'title' => ['required', 'max:191'],
+            'date' => ['nullable', 'date'],
+            'requester' => ['required', 'max:191'],
+            'status' => ['required', Rule::enum(Status::class)],
+            'youtube_id' => ['max:191'],
+            'progress' => ['integer', 'nullable'],
+            'votes' => ['integer', 'nullable'],
+            'exclusive' => ['required', 'boolean'],
+            'created_at' => ['nullable', 'date']
         ];
 
         $validateData = $request->validate($rules);
@@ -122,7 +124,7 @@ class DashboardProjectController extends Controller
 
         Project::where('id', $project->id)->update($validateData);
 
-        return redirect('/dashboard/projects')->with('success', "The Project has been updated!");
+        return redirect('/dashboard/projects')->with('success', 'The Project has been updated!');
     }
 
     /**
@@ -132,6 +134,6 @@ class DashboardProjectController extends Controller
     {
         Project::destroy($project->id);
 
-        return redirect('/dashboard/projects')->with('success', "The Project has been deleted!");
+        return redirect('/dashboard/projects')->with('success', 'The Project has been deleted!');
     }
 }

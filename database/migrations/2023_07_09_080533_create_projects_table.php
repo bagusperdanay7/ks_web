@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,12 +17,12 @@ return new class extends Migration
             $table->string('title');
             $table->string('requester')->default("Unknown Google Forms Requester");
             $table->datetime('date')->nullable();
-            $table->enum('status', ['Completed', 'In Progress', 'Pending', 'Rejected'])->default('Pending');
+            $table->enum('status',  Status::toArray())->default(Status::PENDING->value);
             $table->string('youtube_id')->nullable();
             $table->integer('progress')->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->integer('votes')->nullable()->default(0);
-            $table->boolean('exclusive')->default(false);
+            $table->boolean('exclusive')->nullable()->default(false);
             $table->foreignId('category_id')->constrained(table: 'categories', indexName: 'projects_category_id');
             $table->foreignId('project_type_id')->constrained(table: 'project_types', indexName: 'projects_type_id');
             $table->timestamps();
@@ -33,7 +34,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('project_artist');
+        Schema::dropIfExists('project_artist');
         Schema::dropIfExists('projects');
     }
 };

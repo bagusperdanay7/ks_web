@@ -6,10 +6,10 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
-            <li class="breadcrumb-item"><a
-                    href="/gallery/artists/{{ $video->artist->codename }}">{{ $video->artist->artist_name }}</a></li>
+            {{-- <li class="breadcrumb-item"><a
+                    href="/gallery/artists/{{ $video->artists->codename }}">{{ $video->artists->artist_name }}</a></li> --}}
             <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page">
-                {{ $video->project_title }}
+                {{ $video->title }}
             </li>
         </ol>
     </nav>
@@ -18,8 +18,8 @@
         <div class="row mb-5">
             <div class="col-12 col-lg-8 mb-lg-30">
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-10" src="{{ $video->url }}"
-                        title="{{ $video->project_title }} YouTube video" allowfullscreen></iframe>
+                    <iframe class="rounded-10" src="{{ 'https://www.youtube.com/embed/' . $video->youtube_id }}"
+                        title="{{ $video->title }} YouTube video" allowfullscreen></iframe>
                 </div>
                 <div class="detail-video-description">
                     <p @class([
@@ -28,7 +28,8 @@
                         'font-inter',
                         'fw-semibold',
                         'text-color-ad' => $video->category->category_name === 'Album Distribution',
-                        'text-color-ae' => $video->category->category_name === 'Total Line Evolution',
+                        'text-color-ae' =>
+                            $video->category->category_name === 'Total Line Evolution',
                         'text-color-cd' =>
                             $video->category->category_name === 'Center Distribution',
                         'text-color-hs' => $video->category->category_name === 'How Should',
@@ -40,37 +41,52 @@
                     ])>
                         {{ $video->category->category_name }}
                     </p>
-                    <h3 class="fw-semibold text-color-100 mb-10">{{ $video->project_title }}</h3>
-                    <p class="fs-14 mb-10 text-color-100"><i class="las la-calendar"></i>
+                    <h3 class="fw-semibold text-color-100 mb-10">{{ $video->title }}</h3>
+                    <p class="fs-14 text-color-100 mb-10"><i class="las la-calendar"></i>
                         <span
                             class="fs-14 font-inter fw-medium">{{ \Carbon\Carbon::parse($video->date)->format('d F Y, G:i T') }}</span>
                         •
-                        <span class="fw-semibold fs-14">{{ $video->type->type_name }}</span>
+                        <span class="fw-semibold fs-14">{{ $video->projectType->type_name }}</span>
                     </p>
-                    <p class="fs-14 font-inter fw-medium mb-10 text-color-100"><i class="las la-user-alt"></i>
+                    <p class="fs-14 font-inter fw-medium text-color-100 mb-10"><i class="las la-user-alt"></i>
                         {{ $video->requester }} |
                         {{ $video->votes }} votes</p>
-                    <p class="mb-10 fw-medium fs-14 font-inter text-color-100">Request Created at
+                    <p class="fw-medium fs-14 font-inter text-color-100 mb-10">Request Created at
                         {{ \Carbon\Carbon::parse($video->created_at)->format('d F Y, G:i T') }}
                     </p>
-                    <p class="mb-10 fs-14 font-inter text-color-100">{{ $video->notes }}</p>
+                    <p class="fs-14 font-inter text-color-100 mb-10">{{ $video->notes }}</p>
                     <a class="text-decoration-none" href="/gallery/artists/{{ $video->artist->codename ?? '' }}">
-                        <div class="d-flex flex-row align-items-center">
-                            <div>
-                                @if ($video->artist->artist_pict)
-                                    <img class="rounded-circle img-square"
-                                        src="{{ asset('storage/' . $video->artist->artist_pict) }}"
-                                        alt="{{ $video->artist->artist_name }} thumbnail" width="40px">
-                                @else
-                                    <img class="rounded-circle img-square" src="{{ asset('img/unknown_artist.jpg') }}"
-                                        alt="{{ $video->artist->artist_name }} thumbnail" width="40px">
-                                @endif
+                        @if ($video->artists->count() < 2)
+                            <div class="d-flex align-items-center flex-row">
+                                @foreach ($video->artists as $artists)
+                                    <div>
+                                        @if ($artists->artist_picture)
+                                            <img class="rounded-circle img-square"
+                                                src="{{ asset('storage/' . $artists->artist_picture) }}"
+                                                alt="{{ $artists->artist_name }} thumbnail" width="40px">
+                                        @else
+                                            <img class="rounded-circle img-square"
+                                                src="{{ asset('img/unknown_artist.jpg') }}"
+                                                alt="{{ $artists->artist_name }} thumbnail" width="40px">
+                                        @endif
+                                    </div>
+                                    <div>
+                                        <p class="fw-medium text-color-100 mb-0 ml-10">
+                                            {{ $artists->artist_name }}</p>
+                                    </div>
+                                @endforeach
                             </div>
-                            <div>
-                                <p class="ml-10 mb-0 fw-medium text-color-100">
-                                    {{ $video->artist->artist_name }}</p>
+                        @else
+                            <div class="d-flex align-items-center flex-row">
+                                @foreach ($video->artists as $artists)
+                                    <div>
+                                        <p class="fw-medium text-color-100 mb-0">
+                                            {{ $artists->artist_name }}</p>
+                                    </div>
+                                @endforeach
                             </div>
-                        </div>
+                        @endif
+
                     </a>
                 </div>
             </div>
@@ -81,11 +97,11 @@
                         <div class="row {{ $loop->last ? '' : 'mb-15' }}">
                             <div class="col-12 col-xl-6 pe-xl-0">
                                 @if ($related->thumbnail)
-                                    <img src="{{ $related->thumbnail }}" alt="{{ $related->project_title }} thumbnail"
-                                        class="img-fluid thumbnail-mini">
+                                    <img src="{{ 'https://i3.ytimg.com/vi/' . $related->thumbnail . '/maxresdefault.jpg' }}"
+                                        alt="{{ $related->title }} thumbnail" class="img-fluid thumbnail-mini">
                                 @else
-                                    <img src="{{ asset('img/no_thumbnail.jpg') }}"
-                                        alt="{{ $related->project_title }} thumbnail" class="img-fluid thumbnail-mini">
+                                    <img src="{{ asset('img/no_thumbnail.jpg') }}" alt="{{ $related->title }} thumbnail"
+                                        class="img-fluid thumbnail-mini">
                                 @endif
                             </div>
                             <div class="col-12 col-xl-6 ps-xl-0">
@@ -97,7 +113,8 @@
                                         'fw-semibold',
                                         'text-color-ad' =>
                                             $related->category->category_name === 'Album Distribution',
-                                        'text-color-ae' => $related->category->category_name === 'Total Line Evolution',
+                                        'text-color-ae' =>
+                                            $related->category->category_name === 'Total Line Evolution',
                                         'text-color-cd' =>
                                             $related->category->category_name === 'Center Distribution',
                                         'text-color-hs' => $related->category->category_name === 'How Should',
@@ -110,10 +127,11 @@
                                     ])>
                                         {{ $related->category->category_name }}
                                     </p>
-                                    <h5 class="fw-semibold text-color-100 mb5 text-truncate" title="{{ $related->project_title }}">{{ $related->project_title }}</h5>
-                                    <p class="m-0 text-color-80 p-0 fs-12 font-inter fw-medium">
+                                    <h5 class="fw-semibold text-color-100 mb5 text-truncate" title="{{ $related->title }}">
+                                        {{ $related->title }}</h5>
+                                    <p class="text-color-80 fs-12 font-inter fw-medium m-0 p-0">
                                         {{ \Carbon\Carbon::parse($related->date)->diffForHumans() }} •
-                                        {{ $related->type->type_name }}
+                                        {{ $related->projectType->type_name }}
                                     </p>
                                 </div>
                             </div>
@@ -122,7 +140,7 @@
                 @empty
                     <div class="text-color-100 text-center">
                         <i class="las la-photo-video fs-1"></i>
-                        <p class="mt-1 fs-14 fw-medium mb-0">
+                        <p class="fs-14 fw-medium mb-0 mt-1">
                             No Video Found!
                         </p>
                     </div>

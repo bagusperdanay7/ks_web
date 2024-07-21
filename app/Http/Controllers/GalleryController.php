@@ -99,12 +99,14 @@ class GalleryController extends Controller
      */
     public function show(Project $project)
     {
-        $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
-            ->select('projects.*', 'artists.codename')
-            ->where([['artists.id', $project->artist_id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.exclusive', true]])
-            ->limit(6)
-            ->get()->shuffle();
+        // $relatedVideoQ = $project::join('artists', 'artists.id', '=', 'projects.artist_id')
+        //     ->select('projects.*', 'artists.codename')
+        //     ->where([['artists.id', $project->artists->id], ['projects.id', '!=', $project->id], ['projects.status', 'Completed'], ['projects.exclusive', true]])
+        //     ->limit(6)
+        //     ->get()->shuffle();
 
+
+        $relatedVideoQ = $project::where([['status', 'Completed'], ['exclusive', false], ['id', '!=', $project->id]])->limit(6)->get()->shuffle();
         // $user->posts()->where('active', 1)->get(); # has many
 
         if ($project->status !== "Completed" || $project->exclusive === true) {

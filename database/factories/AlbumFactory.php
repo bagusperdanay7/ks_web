@@ -21,7 +21,7 @@ class AlbumFactory extends Factory
             'name' => fake()->word(),
             'type' => fake()->randomElement(['Single', 'Ep', 'Album']),
             'release' => fake()->dateTime(),
-            'publisher' => Company::factory(),
+            'publisher_id' => Company::factory(),
         ];
     }
 }

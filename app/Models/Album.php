@@ -26,8 +26,6 @@ class Album extends Model
         return $this->hasMany(Song::class);
     }
 
-    // ? contoh ke many to many
-    //         return $this->belongsToMany(Artist::class)->using(AlbumArtist::class)->withPivot('id', 'track_number', 'category')->withTimestamps()->orderByPivot('track_number', 'asc');
     public function artists(): BelongsToMany
     {
         return $this->belongsToMany(Artist::class)->using(AlbumArtist::class)->withTimestamps();

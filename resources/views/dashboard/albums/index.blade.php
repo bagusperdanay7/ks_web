@@ -18,6 +18,25 @@
     </div>
 @endif
 
+@if (session()->has('danger'))
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show rounded-10" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100 rounded-top-8">
+                        <strong class="me-auto"><i class="las la-check-circle text-alert fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100 rounded-bottom-8">
+                        {{ session('danger') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
     <section id="header-analytics" class="m-bottom-15">
         <div class="row">
@@ -72,8 +91,7 @@
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
                                     <th scope="col">Cover</th>
-                                    <th scope="col">Artist</th>
-                                    <th scope="col">Album Name</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Type</th>
                                     <th scope="col">Release</th>
                                     <th scope="col">Publisher</th>
@@ -84,21 +102,20 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($albums as $album)
+                            @forelse ($albums as $album)
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $albums->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">
                                             @if ($album->cover)
                                                 <img src="{{ asset('storage/' . $album->cover) }}"
-                                                    alt="{{ $album->album_name }} Cover" class="img-fluid img-album">
+                                                    alt="{{ $album->name }} Cover" class="img-fluid img-album">
                                             @else
                                                 <img src="{{ asset('img/unknown_album.jpg') }}"
-                                                    alt="{{ $album->album_name }} Cover" class="img-fluid img-album">
+                                                    alt="{{ $album->name }} Cover" class="img-fluid img-album">
                                             @endif
                                         </td>
-                                        <td class="align-middle">{{ $album->artist->artist_name ?? 'No Artist' }}</td>
                                         <td class="align-middle text-color-100">
-                                            {{ $album->album_name }}
+                                            {{ $album->name }}
                                         </td>
                                         <td class="align-middle text-color-100">
                                             {{ $album->type }}
@@ -107,7 +124,7 @@
                                             {{ \Carbon\Carbon::parse($album->release)->format('d F Y') }}
                                         </td>
                                         <td class="align-middle text-color-100">
-                                            {{ $album->publisher }}
+                                            {{ $album->publisher->name }}
                                         </td>
                                         <td class="align-middle">
                                             <div class="btn-group dropstart">
@@ -130,7 +147,7 @@
                                                         <button class="dropdown-item button-delete" type="button"
                                                             data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                                                             data-id="{{ $album->id }}"
-                                                            data-title="{{ $album->album_name }}"><i
+                                                            data-title="{{ $album->name }}"><i
                                                                 class="las la-trash-alt"
                                                                 id="buttonDelete{{ $album->id }}"></i>
                                                             Delete</button>

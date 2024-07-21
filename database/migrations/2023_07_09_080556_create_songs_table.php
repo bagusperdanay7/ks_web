@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\SongCategory;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('duration')->nullable();
-            $table->enum('category', ['Track', 'Title Track'])->default('Track');
+            $table->integer('track_number')->default(1);
+            $table->enum('category',  SongCategory::toArray())->default(SongCategory::TRACK->value);
             $table->text('lyrics')->nullable();
             $table->foreignId('album_id')->constrained(table: 'albums', indexName: 'songs_album_id');
             $table->timestamps();
@@ -28,7 +30,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::drop('song_artist');
+        Schema::dropIfExists('song_artist');
         Schema::dropIfExists('songs');
     }
 };

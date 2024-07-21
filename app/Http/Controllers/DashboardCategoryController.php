@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
 
 class DashboardCategoryController extends Controller
 {
@@ -34,9 +35,9 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'category_name' => 'required|max:50',
-            'slug' => 'required|unique:categories|max:50',
-            'icon_class' => 'required|max:50',
+            'category_name' => ['required', 'max:50'],
+            'slug' => ['required', 'unique:categories', 'max:50'],
+            'icon_class' => ['required', 'max:50'],
         ]);
 
         Category::create($validateData);
@@ -72,19 +73,19 @@ class DashboardCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $rules = [
-            'category_name' => 'required|max:50',
-            'icon_class' => 'required|max:50',
+            'category_name' => ['required', 'max:50'],
+            'icon_class' => ['required', 'max:50'],
         ];
 
         if ($request->slug !== $category->slug) {
-            $rules['slug'] = "required|unique:categories|max:50";
+            $rules['slug'] = ['required', 'unique:categories', 'max:50'];
         }
-        
+
         $validateData = $request->validate($rules);
 
         Category::where('id', $category->id)->update($validateData);
 
-        return redirect('/dashboard/categories')->with('success', "The Category has been updated!");
+        return redirect('/dashboard/categories')->with('success', 'The Category has been updated!');
     }
 
     /**
@@ -92,9 +93,14 @@ class DashboardCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-
-        Category::destroy($category->id);
-
-        return redirect('/dashboard/categories')->with('success', "The category has been deleted!");
+        // TODO: Bikin sesuai laravel try catchnya
+        try {
+            Category::destroy($category->id);
+            return redirect('/dashboard/categories')->with('success', 'The category has been deleted!');
+        } catch (QueryException $e) {
+            if ($e->getCode() == '23000') {
+                return redirect('/dashboard/categories')->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
+            }
+        }
     }
 }

@@ -71,10 +71,10 @@
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
                                     <th scope="col">Title</th>
-                                    <th scope="col">Genre</th>
-                                    <th scope="col">Author</th>
-                                    <th scope="col">Composer</th>
-                                    <th scope="col">Arranger</th>
+                                    <th scope="col">Track Number</th>
+                                    <th scope="col">Duration</th>
+                                    <th scope="col">Category</th>
+                                    <th scope="col">Album</th>
                                     <th>
                                         <i class="las la-ellipsis-v" id="songMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"></i>
@@ -86,12 +86,10 @@
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $songs->firstItem() + $loop->index }}</td>
                                         <td class="align-middle">{{ $song->title }}</td>
-                                        <td class="align-middle text-color-100">
-                                            {{ $song->genre }}
-                                        </td>
-                                        <td class="align-middle">{{ $song->author }}</td>
-                                        <td class="align-middle">{{ $song->composer }}</td>
-                                        <td class="align-middle">{{ $song->arranger }}</td>
+                                        <td class="align-middle">{{ $song->track_number }}</td>
+                                        <td class="align-middle">{{ $song->duration }}</td>
+                                        <td class="align-middle">{{ $song->category }}</td>
+                                        <td class="align-middle">{{ $song->album->name }}</td>
                                         <td class="align-middle">
                                             <div class="btn-group dropstart">
                                                 <button class="btn p-0" type="button" data-bs-toggle="dropdown"

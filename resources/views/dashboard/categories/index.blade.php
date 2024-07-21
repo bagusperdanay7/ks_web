@@ -18,6 +18,25 @@
     </div>
 @endif
 
+@if (session()->has('danger'))
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-danger fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100">
+                        {{ session('danger') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
     <section id="header-analytics">
         <div class="row m-bottom-30">

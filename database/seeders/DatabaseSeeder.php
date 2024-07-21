@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $exampleNumber = 50;
+        $exampleNumber = 25;
 
         // * New
         $this->call([

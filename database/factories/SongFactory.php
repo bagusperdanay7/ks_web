@@ -20,6 +20,7 @@ class SongFactory extends Factory
         return [
             'title' => fake()->word(),
             'duration' => fake()->randomNumber(3),
+            'track_number' => fake()->numberBetween(1, 15),
             'category' => fake()->randomElement(['Track', 'Title Track']),
             'lyrics' => fake()->realText(),
             'album_id' => Album::factory(),

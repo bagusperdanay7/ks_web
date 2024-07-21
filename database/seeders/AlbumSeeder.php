@@ -18,14 +18,14 @@ class AlbumSeeder extends Seeder
             'name' => 'Fall In Love',
             'type' => 'Album',
             'release' => date('2019-07-01'),
-            'publisher' => 4
+            'publisher_id' => 4
         ]);
 
         Album::create([
             'name' => 'Oh!',
             'type' => 'Album',
             'release' => date('2010-07-01'),
-            'publisher' => 1
+            'publisher_id' => 1
         ]);
     }
 }

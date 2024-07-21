@@ -10,7 +10,7 @@
                         <div class="m-bottom-15">
                             <label for="title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Title</label>
                             <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                                id="title" placeholder="Enter Title Song" value="{{ old('title') }}">
+                                id="title" placeholder="Enter Song Title" value="{{ old('title') }}">
                             @error('title')
                                 <div id="TitleFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -18,47 +18,66 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="genre"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Genre</label>
-                            <input type="text" class="form-control @error('genre') is-invalid @enderror" name="genre"
-                                id="genre" placeholder="K-Pop, Dance, Rock" value="{{ old('genre') }}">
-                            @error('genre')
-                                <div id="genreFeedback" class="invalid-feedback">
+                            <label for="duration"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Duration</label>
+                            <input type="number" class="form-control @error('duration') is-invalid @enderror" name="duration"
+                                id="duration" placeholder="Ex: 185 (in seconds)" value="{{ old('duration') }}">
+                            @error('duration')
+                                <div id="durationFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="author"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Author</label>
-                            <input type="text" class="form-control @error('author') is-invalid @enderror" name="author"
-                                id="author" value="{{ old('author') }}" placeholder="Ex: Soyeon ((G)I-DLE))">
-                            @error('author')
-                                <div id="authorFeedback" class="invalid-feedback">
+                            <label for="category" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Category</label>
+                            <select class="form-select @error('category') is-invalid @enderror" aria-label="Select category" id="category" name="category">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->value }}"
+                                        {{ old('category') == $category->value ? ' selected' : ' ' }}>
+                                        {{ $category->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                                <div id="categoryFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="composer"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Composer</label>
-                            <input type="text" class="form-control @error('composer') is-invalid @enderror"
-                                name="composer" id="composer" value="{{ old('composer') }}"
-                                placeholder="Enter the Composer">
-                            @error('composer')
-                                <div id="composerFeedback" class="invalid-feedback">
+                            <label for="track_number"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Track Number</label>
+                            <input type="number" class="form-control @error('track_number') is-invalid @enderror" name="track_number"
+                                id="track_number" placeholder="Enter Track Number" value="{{ old('track_number') }}">
+                            @error('track_number')
+                                <div id="trackNumberFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="arranger"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Arranger</label>
-                            <input type="text" class="form-control @error('arranger') is-invalid @enderror"
-                                name="arranger" id="arranger" value="{{ old('arranger') }}"
-                                placeholder="Enter the Arranger">
-                            @error('arranger')
-                                <div id="arrangerFeedback" class="invalid-feedback">
+                            <label for="album_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Album</label>
+                            <select class="form-select @error('album_id') is-invalid @enderror" aria-label="Select Publisher" id="album_id" name="album_id">
+                                @foreach ($albums as $album)
+                                    <option value="{{ $album->id }}"
+                                        {{ old('album_id') == $album->id ? ' selected' : ' ' }}>
+                                        {{ $album->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('album_id')
+                                <div id="albumFeedback" class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                        <div class="m-bottom-15">
+                            <label for="lyrics"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('lyrics') is-invalid @enderror">Lyrics</label>
+                            <textarea class="form-control" id="lyrics" rows="3" name="lyrics"
+                                placeholder="Enter the Lyrics">{{ old('lyrics') }}</textarea>
+                            @error('lyrics')
+                                <div id="lyricsFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror

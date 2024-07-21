@@ -41,7 +41,7 @@
                 <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
                         <div class="col-6 col-sm">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category Name</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Type Name</p>
                             <p class="m-0 text-color-100 fs-14">{{ $type->type_name }}</p>
                         </div>
                         <div class="col-6 col-sm">

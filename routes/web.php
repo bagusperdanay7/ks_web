@@ -133,9 +133,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 
 Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
 
-// TODO: dashboard lanjut sini, artist sudah
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 
+// TODO: dashboard lanjut sini, artist sudah, projects tinggal edit
 Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');
 
 Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('admin');

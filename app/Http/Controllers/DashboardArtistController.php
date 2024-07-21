@@ -134,14 +134,12 @@ class DashboardArtistController extends Controller
      */
     public function destroy(Artist $artist)
     {
-
-        if ($artist->artist_picture != null) {
-            Storage::delete($artist->artist_picture);
-        }
-
         // TODO: Bikin sesuai laravel try catchnya
         try {
             Artist::destroy($artist->id);
+            if ($artist->artist_picture != null) {
+                Storage::delete($artist->artist_picture);
+            }
             return redirect('/dashboard/artists')->with('success', "The artist has been deleted!");
         } catch (QueryException $e) {
             if ($e->getCode() == "23000") {

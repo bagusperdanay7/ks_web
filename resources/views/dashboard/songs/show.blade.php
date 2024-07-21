@@ -44,26 +44,56 @@
                             <p class="m-0 text-color-100 fs-14">{{ $song->title }}</p>
                         </div>
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Genre</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->genre }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $song->category }}</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Author</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->author }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Track Number</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $song->track_number }}</p>
                         </div>
+                        @php
+                            function intToDuration($integer) {
+                                $minutes = floor(($integer % 3600) / 60);
+                                $remainingSeconds = $integer % 60;
+
+                                $duration = [];
+
+                                if ($minutes > 0) {
+                                    $duration[] = ($minutes < 10 ? '0' : '') . $minutes;
+                                }
+                                if ($remainingSeconds > 0 || empty($duration)) {
+                                    $duration[] = ($remainingSeconds < 10 ? '0' : '') . $remainingSeconds;
+                                }
+
+                                return implode(':', $duration);
+                            }
+                        @endphp
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Composer</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->composer }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Duration</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $song->duration }} ({{ intToDuration($song->duration) }})</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Arranger</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->arranger }}</p>
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Lyrics</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $song->lyrics }}</p>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 order-md-2 order-1 m-bottom-30">
+                @if ($song->album->cover !== null)
+                    <img src="{{ asset('storage/' . $song->album->cover) }}" alt="{{ $song->album->name }} cover"
+                        class="img-fluid img-square rounded-top-10 shadow-sm" width="100%">
+                @else
+                    <img src="{{ asset('img/unknown_album.jpg') }}" alt="{{ $song->album->name }} cover"
+                        class="img-fluid img-square rounded-top-10 shadow-sm">
+                @endif
+                <div class="bg-white p-15 rounded-bottom-10">
+                    <p class="m-0 text-color-100 fw-medium fs-14">Album</p>
+                    <p class="m-0 text-color-80 fs-12 text-break">{{ $song->album->name }} ({{ $song->album_id }})</p>
                 </div>
             </div>
         </div>

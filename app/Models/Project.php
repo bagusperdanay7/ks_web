@@ -15,7 +15,7 @@ class Project extends Model
     protected $guarded = ['id'];
 
     // Eager loading menangani masalah n+1
-    protected $with = ['category', 'projectType'];
+    protected $with = ['category', 'projectType', 'artists'];
 
     public function scopeFilter($query, array $filters)
     {

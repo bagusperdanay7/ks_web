@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\SongCategory;
+use App\Models\Album;
 use App\Models\Song;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DashboardSongController extends Controller
 {
@@ -31,6 +34,8 @@ class DashboardSongController extends Controller
     {
         return view('dashboard.songs.create', [
             'title' => 'Create Song',
+            'categories' => SongCategory::cases(),
+            'albums' => Album::all()->sortBy('name'),
         ]);
     }
 
@@ -40,16 +45,17 @@ class DashboardSongController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'title' => 'required|max:191',
-            'genre' => 'required|max:191',
-            'author' => 'max:191',
-            'composer' => 'max:191',
-            'arranger' => 'max:191',
+            'title' => ['required', 'max:191'],
+            'duration' => ['integer', 'nullable'],
+            'track_number' => ['integer', 'required'],
+            'category' => ['required', Rule::enum(SongCategory::class)],
+            'album_id' => ['required'],
+            'lyrics' => ['nullable'],
         ]);
 
         Song::create($validateData);
 
-        return redirect('/dashboard/songs')->with('success', "New Song has been created!");
+        return redirect('/dashboard/songs')->with('success', 'New Song has been created!');
     }
 
     /**
@@ -71,27 +77,31 @@ class DashboardSongController extends Controller
         return view('dashboard.songs.edit', [
             'title' => 'Update Song',
             'song' => $song,
+            'categories' => SongCategory::cases(),
+            'albums' => Album::all()->sortBy('name')
         ]);
     }
 
     /**
      * Update the specified resource in storage.
+     * 
      */
     public function update(Request $request, Song $song)
     {
         $rules = [
-            'title' => 'required|max:191',
-            'genre' => 'required|max:191',
-            'author' => 'max:191',
-            'composer' => 'max:191',
-            'arranger' => 'max:191',
+            'title' => ['required', 'max:191'],
+            'duration' => ['integer', 'nullable'],
+            'track_number' => ['integer', 'required'],
+            'category' => ['required', Rule::enum(SongCategory::class)],
+            'album_id' => ['required'],
+            'lyrics' => ['nullable'],
         ];
 
         $validateData = $request->validate($rules);
 
         Song::where('id', $song->id)->update($validateData);
 
-        return redirect('/dashboard/songs')->with('success', "The Song has been updated!");
+        return redirect('/dashboard/songs')->with('success', 'The Song has been updated!');
     }
 
     /**
@@ -101,6 +111,6 @@ class DashboardSongController extends Controller
     {
         Song::destroy($song->id);
 
-        return redirect('/dashboard/songs')->with('success', "The song has been deleted!");
+        return redirect('/dashboard/songs')->with('success', 'The song has been deleted!');
     }
 }

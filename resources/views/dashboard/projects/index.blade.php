@@ -90,8 +90,14 @@
                                 @forelse ($projects as $project)
                                     <tr class="fs-12">
                                         <td class="align-middle">{{ $projects->firstItem() + $loop->index }}</td>
-                                        <td class="align-middle">{{ $project->project_title }}</td>
-                                        <td class="align-middle">{{ $project->artist->artist_name ?? 'No Artist' }}</td>
+                                        <td class="align-middle">{{ $project->title }}</td>
+                                        <td class="align-middle">
+                                            @forelse ($project->artists as $artists)
+                                                {{ $artists->artist_name }}
+                                            @empty
+                                                No Artist
+                                            @endforelse
+                                        </td>
                                         @if ($project->category->category_name === 'Line Distribution')
                                             <td class="align-middle text-color-ld fw-medium">
                                                 {{ $project->category->category_name }}
@@ -133,7 +139,7 @@
                                                 {{ $project->category->category_name }}
                                             </td>
                                         @endif
-                                        <td class="align-middle">{{ $project->type?->type_name }}</td>
+                                        <td class="align-middle">{{ $project->projectType?->type_name }}</td>
                                         <td class="align-middle">
                                             {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}
                                         </td>
@@ -141,7 +147,7 @@
                                         <td class="align-middle">
                                             @if ($project->status === 'Completed')
                                                 <span class="btn btn-completed">{{ $project->status }}</span>
-                                            @elseif ($project->status === 'On Process')
+                                            @elseif ($project->status === 'In Progress')
                                                 <span class="btn btn-onprocess">{{ $project->status }}</span>
                                             @elseif ($project->status === 'Pending')
                                                 <span class="btn btn-pending">{{ $project->status }}</span>
@@ -182,7 +188,7 @@
                                                         <button class="dropdown-item button-delete" type="button"
                                                             data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
                                                             data-id="{{ $project->id }}"
-                                                            data-title="{{ $project->project_title }}"><i
+                                                            data-title="{{ $project->title }}"><i
                                                                 class="las la-trash-alt"
                                                                 id="buttonDelete{{ $project->id }}"></i>
                                                             Delete</button>
