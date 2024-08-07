@@ -123,7 +123,7 @@
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Status</p>
                             @if ($project->status === 'Completed')
                                 <span class="btn btn-completed">{{ $project->status }}</span>
-                            @elseif ($project->status === 'On Process')
+                            @elseif ($project->status === 'In Progress')
                                 <span class="btn btn-onprocess">{{ $project->status }}</span>
                             @elseif ($project->status === 'Pending')
                                 <span class="btn btn-pending">{{ $project->status }}</span>
@@ -174,8 +174,8 @@
             </div>
 
             <div class="col-12 col-md-5 col-xl-4 order-md-2 order-1 m-bottom-30">
-                @if ($project->thumbnail !== null)
-                    <img src="{{ 'https://i3.ytimg.com/vi/' . $project->thumbnail . '/maxresdefault.jpg' }}" alt="{{ $project->title }} thumbnail"
+                @if ($project->youtube_id !== null)
+                    <img src="{{ 'https://i3.ytimg.com/vi/' . $project->youtube_id . '/maxresdefault.jpg' }}" alt="{{ $project->title }} thumbnail"
                         class="img-fluid rounded-top-10">
                 @else
                     <img src="{{ asset('img/no_thumbnail.jpg') }}" alt="{{ $project->title }} thumbnail"

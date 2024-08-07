@@ -63,7 +63,7 @@ class DashboardProjectController extends Controller
             'created_at' => ['date']
         ]);
 
-        $request->exclusive == 'on' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
+        $request->exclusive == 'true' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
 
         // TODO: Kalau kosong biarkan
         $validateData['notes'] = strip_tags($request->notes);
@@ -111,14 +111,16 @@ class DashboardProjectController extends Controller
             'date' => ['nullable', 'date'],
             'requester' => ['required', 'max:191'],
             'status' => ['required', Rule::enum(Status::class)],
-            'youtube_id' => ['max:191'],
-            'progress' => ['integer', 'nullable'],
-            'votes' => ['integer', 'nullable'],
-            'exclusive' => ['required', 'boolean'],
-            'created_at' => ['nullable', 'date']
+            'youtube_id' => ['nullable', 'max:191'],
+            'progress' => ['integer'],
+            'votes' => ['integer'],
+            'exclusive' => ['nullable'],
+            'created_at' => ['date']
         ];
 
         $validateData = $request->validate($rules);
+
+        $request->exclusive == 'true' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
 
         $validateData['notes'] = strip_tags($request->notes);
 

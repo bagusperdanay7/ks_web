@@ -135,9 +135,6 @@ Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->midd
 
 Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
 
-// TODO: dashboard lanjut sini, artist sudah, projects tinggal edit
-Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');
-
 Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('admin');
 
 Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('admin');
@@ -146,4 +143,8 @@ Route::resource('/dashboard/projects', DashboardProjectController::class)->middl
 
 Route::resource('/dashboard/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
+// TODO: dashboard lanjut sini
 Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');
+
+
+Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');

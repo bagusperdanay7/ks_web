@@ -28,28 +28,28 @@
                         </div>
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
-                            <select class="form-select @error('type_id') is-invalid @enderror" aria-label="Select Type"
-                                id="type" name="type_id">
+                            <select class="form-select @error('project_type_id') is-invalid @enderror" aria-label="Select Type"
+                                id="type" name="project_type_id">
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}"
-                                        {{ old('type_id', $project->type_id) == $type->id ? ' selected' : ' ' }}>
+                                        {{ old('project_type_id', $project->project_type_id) == $type->id ? ' selected' : ' ' }}>
                                         {{ $type->type_name }}
                                     </option>
                                 @endforeach
                             </select>
-                            @error('type_id')
+                            @error('project_type_id')
                                 <div id="typeFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="project_title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Project
+                            <label for="title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Project
                                 Title</label>
-                            <input type="text" class="form-control @error('project_title') is-invalid @enderror"
-                                name="project_title" id="project_title" placeholder="OH MY GIRL - Celebrate"
-                                value="{{ old('project_title', $project->project_title) }}">
-                            @error('project_title')
+                            <input type="text" class="form-control @error('title') is-invalid @enderror"
+                                name="title" id="title" placeholder="OH MY GIRL - Celebrate"
+                                value="{{ old('title', $project->title) }}">
+                            @error('title')
                                 <div id="projectTitleFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -76,68 +76,59 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="m-bottom-15">
-                            <label for="status"
+                        <div class="row m-bottom-15">
+                            <div class="col">
+                                <label for="status"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select status"
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
                                 id="status" name="status">
-                                @if (old('status', $project->status) === 'Completed')
-                                    <option value="{{ old('status', $project->status) }}" selected>
-                                        {{ old('status', $project->status) }}</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $project->status) === 'On Process')
-                                    <option value="Completed">Completed</option>
-                                    <option value="{{ old('status', $project->status) }}" selected>
-                                        {{ old('status', $project->status) }}</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $project->status) === 'Pending')
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="{{ old('status', $project->status) }}" selected>
-                                        {{ old('status', $project->status) }}</option>
-                                    <option value="Rejected">Rejected</option>
-                                @elseif (old('status', $project->status) === 'Rejected')
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="{{ old('status', $project->status) }}" selected>
-                                        {{ old('status', $project->status) }}</option>
-                                @else
-                                    <option value="Completed">Completed</option>
-                                    <option value="On Process">On Process</option>
-                                    <option value="Pending">Pending</option>
-                                    <option value="Rejected">Rejected</option>
-                                @endif
+                                @foreach ($statuses as $status)
+                                <option value="{{ $status->value }}"
+                                    {{ old('status', $project->status) == $status->value ? ' selected' : ' ' }}>
+                                    {{ $status->value }}
+                                </option>
+                            @endforeach
                             </select>
                             @error('status')
                                 <div id="statusFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
-                        <div class="m-bottom-15">
-                            <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
-                            <input type="url" class="form-control @error('url') is-invalid @enderror" name="url"
-                                id="url" maxlength="191" value="{{ old('url', $project->url) }}"
-                                placeholder="https://www.youtube.com/embed/{VIDEO_ID}">
-                            @error('url')
-                                <div id="urlFeedback" class="invalid-feedback">
-                                    {{ $message }}
+                            </div>
+                            <div class="col">
+                                <label for="exclusive"
+                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('exclusive') is-invalid @enderror">Exclusive</label>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
+                                        name="exclusive" id="exclusiveTrue" value="1"
+                                        @checked(old('exclusive', $project->exclusive == 1))
+                                        >
+                                    <label class="form-check-label" for="exclusiveTrue">
+                                        Yes
+                                    </label>
                                 </div>
-                            @enderror
+                                <div class="form-check">
+                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
+                                        name="exclusive" id="exclusiveFalse" value="0" @checked(old('exclusive', $project->exclusive == 0))>
+                                    <label class="form-check-label" for="exclusiveFalse">
+                                        No
+                                    </label>
+                                    @error('exclusive')
+                                        <div class="invalid-feedback" id="exclusiveFeedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="m-bottom-15">
-                            <label for="thumbnail"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Thumbnail</label>
-                            <input type="text" class="form-control @error('thumbnail') is-invalid @enderror"
-                                name="thumbnail" id="thumbnail" maxlength="191"
-                                value="{{ old('thumbnail', $project->thumbnail) }}"
-                                placeholder="https://i.ytimg.com/vi/{VIDEO_ID}/maxresdefault.jpg">
-                            @error('thumbnail')
-                                <div id="thumbnailFeedback" class="invalid-feedback">
+                            <label for="youtube_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Youtube
+                                Id</label>
+                            <input type="text" class="form-control @error('youtube_id') is-invalid @enderror"
+                                name="youtube_id" id="youtube_id" maxlength="191" value="{{ old('youtube_id', $project->youtube_id) }}"
+                                placeholder="https://www.youtube.com/embed/{VIDEO_ID}" data-bs-toggle="tooltip"
+                                data-bs-placement="bottom"
+                                data-bs-title="Press Alt+C on this Input to copy the example youtube_id">
+                            @error('youtube_id')
+                                <div id="youtube_idFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -167,30 +158,6 @@
                                     </div>
                                 @enderror
                             </div>
-                        </div>
-                        <div class="m-bottom-15">
-                            <label for="is_exclusive"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Exclusive Status</label>
-                            <select class="form-select @error('is_exclusive') is-invalid @enderror"
-                                aria-label="Select Exclusive Status" id="is_exclusive" name="is_exclusive">
-                                @if (old('is_exclusive', $project->is_exclusive) === 'No')
-                                    <option value="{{ old('is_exclusive', $project->is_exclusive) }}" selected>
-                                        {{ old('is_exclusive', $project->is_exclusive) }}</option>
-                                    <option value="Yes">Yes</option>
-                                @elseif (old('is_exclusive', $project->is_exclusive) === 'Yes')
-                                    <option value="No">No</option>
-                                    <option value="{{ old('is_exclusive', $project->is_exclusive) }}" selected>
-                                        {{ old('is_exclusive', $project->is_exclusive) }}</option>
-                                @else
-                                    <option value="No">No</option>
-                                    <option value="Yes">Yes</option>
-                                @endif
-                            </select>
-                            @error('is_exclusive')
-                                <div id="exclusiveFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
                         </div>
                         <div class="m-bottom-15">
                             <label for="created_at" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Created

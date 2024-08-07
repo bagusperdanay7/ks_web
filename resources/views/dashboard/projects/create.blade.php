@@ -75,23 +75,46 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="m-bottom-15">
-                            <label for="status"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
-                                id="status" name="status">
-                                @foreach ($statuses as $status)
-                                    <option value="{{ $status->value }}"
-                                        {{ old('status') == $status->value ? ' selected' : ' ' }}>
-                                        {{ $status->value }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('status')
-                                <div id="statusFeedback" class="invalid-feedback">
-                                    {{ $message }}
+                        <div class="row m-bottom-15">
+                            <div class="col">
+                                <label for="status"
+                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
+                                <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
+                                    id="status" name="status">
+                                    @foreach ($statuses as $status)
+                                        <option value="{{ $status->value }}"
+                                            {{ old('status') == $status->value ? ' selected' : ' ' }}>
+                                            {{ $status->value }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                @error('status')
+                                    <div id="statusFeedback" class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="col">
+                                <label for="exclusive"
+                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('exclusive') is-invalid @enderror">Exclusive</label>
+                                <div class="form-check">
+                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
+                                        name="exclusive" id="exclusiveTrue" value="1">
+                                    <label class="form-check-label" for="exclusiveTrue">
+                                        Yes
+                                    </label>
                                 </div>
-                            @enderror
+                                <div class="form-check">
+                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
+                                        name="exclusive" id="exclusiveFalse" value="0" checked>
+                                    <label class="form-check-label" for="exclusiveFalse">
+                                        No
+                                    </label>
+                                    @error('exclusive')
+                                        <div class="invalid-feedback" id="exclusiveFeedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="m-bottom-15">
                             <label for="youtube_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Youtube
@@ -155,19 +178,6 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="m-bottom-15">
-                            <div class="form-check form-switch">
-                                <input class="form-check-input @error('exclusive') is-invalid @enderror" type="checkbox"
-                                    role="switch" name="exclusive" id="exclusive" aria-checked="true"
-                                    {{ old('exclusive') === true ? 'checked' : '' }}>
-                                <label class="form-check-label" for="exclusive">Exclusive</label>
-                                @error('exclusive')
-                                    <div id="exclusiveFeedback" class="invalid-feedback">
-                                        <p>{{ $message }}</p>
-                                    </div>
-                                @enderror
-                            </div>
-                        </div>
                         <div class="button-grouping text-end">
                             <a href="/dashboard/projects" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>
@@ -179,7 +189,7 @@
     </section>
 
     <script>
-        const projectTitle = document.querySelector('#title');
+        const title = document.querySelector('#title');
         const artist = document.querySelector('#artist');
 
         artist.onchange = (e) => {
@@ -188,7 +198,7 @@
                 .call(artist.options, option => option.selected)
                 .map(option => option.text);
 
-            projectTitle.value = selectedValues + ' - ';
+            title.value = selectedValues + ' - ';
         };
 
         const url = document.querySelector('#url');
