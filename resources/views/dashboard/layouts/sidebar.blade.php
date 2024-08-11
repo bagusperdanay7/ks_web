@@ -108,13 +108,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/album-songs"
-                        class="menu-nav {{ Request::is('dashboard/album-songs') ? 'text-active' : '' }}">
-                        <i class="las la-record-vinyl"></i>
-                        Albums Songs
-                    </a>
-                </li>
-                <li>
                     <a href="/dashboard/artists"
                         class="menu-nav {{ Request::is('dashboard/artists*') ? 'text-active' : '' }}">
                         <i class="las la-user"></i>
@@ -147,6 +140,13 @@
                         class="menu-nav {{ Request::is('dashboard/songs*') ? 'text-active' : '' }}">
                         <i class="las la-music"></i>
                         Songs
+                    </a>
+                </li>
+                <li>
+                    <a href="/dashboard/song-artist"
+                        class="menu-nav {{ Request::is('dashboard/song-artist') ? 'text-active' : '' }}">
+                        <i class="las la-user-friends"></i>
+                        Song Artist
                     </a>
                 </li>
             </ul>

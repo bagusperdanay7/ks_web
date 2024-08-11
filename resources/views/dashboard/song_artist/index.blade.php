@@ -24,13 +24,13 @@
             <div class="col">
                 <div class="d-flex justify-content-between flex-wrap">
                     <div>
-                        <h1 class="fw-bold">Album Songs</h1>
+                        <h1 class="fw-bold">Song Artist</h1>
                     </div>
 
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/album-songs/create">
+                        <a class="btn btn-primary-color" href="/dashboard/song-artist/create">
                             <i class="las la-plus fs-18 m-right-5"></i>
-                            Add Album Songs
+                            Add Song Artist
                         </a>
                     </div>
                 </div>
@@ -47,11 +47,10 @@
                             <thead>
                                 <tr class="fs-14 fw-semibold">
                                     <th scope="col">#</th>
+                                    <th scope="col">Song</th>
                                     <th scope="col">Album</th>
                                     <th scope="col">Artist</th>
-                                    <th scope="col">Track</th>
-                                    <th scope="col">Song</th>
-                                    <th scope="col">Category</th>
+                                    <th scope="col">Role</th>
                                     <th>
                                         <i class="las la-ellipsis-v" id="albumMenu" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false"></i>
@@ -62,24 +61,21 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @forelse ($albumSongs as $album)
-                                    @foreach ($album->songs as $item)
+                                @forelse ($songArtist as $song)
+                                    @foreach ($song->artists as $item)
                                         <tr class="fs-12">
                                             <td class="align-middle">{{ $no++ }}</td>
                                             </td>
                                             <td class="align-middle text-color-100">
-                                                {{ $album->album_name }}
+                                                {{ $song->title }}
                                             </td>
                                             <td class="align-middle text-color-100">
-                                                {{ $album->artist->artist_name }}
-                                            </td>
-                                            <td class="align-middle">{{ $item->pivot->track_number }}</td>
-                                            <td class="align-middle text-color-100">
-                                                {{ $item->title }}
+                                                {{ $song->album->name }}
                                             </td>
                                             <td class="align-middle text-color-100">
-                                                {{ $item->pivot->category }}
+                                                {{ $item->artist_name }}
                                             </td>
+                                            <td class="align-middle">{{ $item->pivot->role }}</td>
                                             <td class="align-middle">
                                                 <div class="btn-group dropstart">
                                                     <button class="btn p-0" type="button" data-bs-toggle="dropdown"
@@ -88,23 +84,12 @@
                                                     </button>
                                                     <ul class="dropdown-menu rounded-10 fs-14">
                                                         <li>
-                                                            <a class="dropdown-item"
-                                                                href="/dashboard/album-songs/{{ $item->pivot->id }}"><i
-                                                                    class="las la-external-link-alt"></i> Detail</a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="/dashboard/album-songs/{{ $item->pivot->id }}/edit"
-                                                                class="dropdown-item" type="button"><i
-                                                                    class="las la-edit"></i>
-                                                                Update</a>
-                                                        </li>
-                                                        <li>
                                                             <button class="dropdown-item button-delete" type="button"
                                                                 data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"
-                                                                data-id="{{ $item->pivot->id }}"
-                                                                data-title="{{ $item->pivot->id }}"><i
+                                                                data-id="{{ $song->id }}"
+                                                                data-artist-id="{{ $item->id }}"><i
                                                                     class="las la-trash-alt"
-                                                                    id="buttonDelete{{ $item->pivot->id }}"></i>
+                                                                    id="buttonDelete{{ $song->id }}"></i>
                                                                 Delete</button>
                                                         </li>
                                                     </ul>
@@ -124,7 +109,7 @@
                         </table>
                     </div>
                     <div class="pagination-container mt-3">
-                        {{ $albumSongs->links() }}
+                        {{-- {{ $songArtist->links() }} --}}
                     </div>
                 </div>
             </div>
@@ -142,15 +127,16 @@
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center">
                         <i class="las la-trash-alt fs-24 text-color-ad rounded-circle p-2 bg-alert-10 m-bottom-15"></i>
-                        <h6 class="fw-semibold m-bottom-5">Delete Album Song</h6>
-                        <p class="fs-14">Are you sure you want to delete this album song?</p>
+                        <h6 class="fw-semibold m-bottom-5">Delete Song Artist</h6>
+                        <p class="fs-14">Are you sure you want to delete this?</p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/album-songs/" method="post" id="deleteForm">
+                    <form action="/dashboard/song-artist/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
+                        <input type="hidden" name="artist_id" id="artist_id">
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>
                     </form>
                 </div>
@@ -161,16 +147,18 @@
     <script>
         var buttonDelete = document.querySelectorAll('.button-delete');
         var modalTitle = document.querySelector('.modal-body h6')
+        var artistIdInput = document.querySelector('#artist_id')
+
 
         for (var i = 0; i < buttonDelete.length; i++) {
 
             var buttons = buttonDelete[i];
             buttonDelete[i].addEventListener('click', function() {
-
-                modalTitle.textContent = "Delete Relation Id " + this.attributes[5].value;
+                modalTitle.textContent = "Delete Relation";
+                artistIdInput.value = this.attributes[5].value
 
                 document.querySelector("#deleteForm").attributes[0].textContent =
-                    "/dashboard/album-songs/" + this
+                    "/dashboard/song-artist/" + this
                     .attributes[4].value;
             }, false);
         }

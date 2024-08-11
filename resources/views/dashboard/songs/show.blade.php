@@ -72,13 +72,13 @@
                         @endphp
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Duration</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->duration }} ({{ intToDuration($song->duration) }})</p>
+                            <p class="m-0 text-color-100 fs-14"><span class="fw-medium">{{ intToDuration($song->duration) }}</span> ({{ $song->duration }} seconds)</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Lyrics</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $song->lyrics }}</p>
+                            <pre class="m-0 text-color-100 fs-14">{{ $song->lyrics }}</pre>
                         </div>
                     </div>
                 </div>

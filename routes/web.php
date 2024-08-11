@@ -26,6 +26,7 @@ use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardProjectTypeController;
+use App\Http\Controllers\DashboardSongArtistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -143,8 +144,8 @@ Route::resource('/dashboard/projects', DashboardProjectController::class)->middl
 
 Route::resource('/dashboard/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
-// TODO: dashboard lanjut sini
 Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');
 
+Route::resource('/dashboard/song-artist', DashboardSongArtistController::class)->middleware('admin');
 
-Route::resource('/dashboard/album-songs', DashboardAlbumSongsController::class)->middleware('admin');
+// TODO: dashboard add company, genre dkk

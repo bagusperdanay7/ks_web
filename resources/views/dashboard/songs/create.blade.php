@@ -22,6 +22,7 @@
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Duration</label>
                             <input type="number" class="form-control @error('duration') is-invalid @enderror" name="duration"
                                 id="duration" placeholder="Ex: 185 (in seconds)" value="{{ old('duration') }}">
+                            <div id="durationReadable" class="fs-14 mt-1 font-inter fw-semibold"></div>
                             @error('duration')
                                 <div id="durationFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -91,4 +92,31 @@
             </div>
         </div>
     </section>
+
+    <script>
+        const durationInput = document.querySelector('#duration');
+        const readableDuration = document.querySelector('#durationReadable');
+
+        durationInput.onchange = (e) => {
+            e.preventDefault();
+            let durationNewValue = durationInput.value
+            readableDuration.innerHTML = intToDuration(durationNewValue);
+        };
+
+        function intToDuration(integer) {
+            minutes = Math.floor((integer % 3600) / 60);
+            remainingSeconds = integer % 60;
+
+            let duration = [];
+
+            if (minutes > 0) {
+                duration.push((minutes < 10 ? '0' : '') + minutes);
+            }
+
+            if (remainingSeconds > 0 || duration === null) {
+                duration.push((remainingSeconds < 10 ? '0' : '') + remainingSeconds);
+            }
+            return duration.join(':');
+        }
+    </script>
 @endsection
