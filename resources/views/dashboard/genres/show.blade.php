@@ -6,24 +6,23 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
                     href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="{{ route('project-types.index') }}">Project
-                    Type</a>
+            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="{{ route('genres.index') }}">Genre</a>
             </li>
-            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium" aria-current="page">
-                {{ $type->type_name }}</li>
+            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page" title="{{ $genre->name }}">
+                {{ $genre->name }}</li>
         </ol>
     </nav>
 
-    <section id="type-single-dashboard">
+    <section id="genre-single-dashboard">
         <div class="row m-bottom-25">
             <div class="col">
-                <div class="d-flex justify-content-between flex-sm-row flex-column">
+                <div class="d-flex justify-content-between flex-sm-row flex-column flex-wrap">
                     <div class="title-heading">
-                        <h2 class="fw-bold text-color-100">{{ $type->type_name }}</h2>
+                        <h2 class="fw-bold text-color-100">{{ $genre->name }}</h2>
                     </div>
 
                     <div class="button-group">
-                        <a href="{{ route('project-types.edit', $type->slug) }}" class="btn btn-light-border">
+                        <a href="{{ route('genres.edit', $genre->id) }}" class="btn btn-light-border">
                             <i class="las la-edit fs-18 m-right-5"></i>
                             Update
                         </a>
@@ -37,22 +36,12 @@
         </div>
 
         <div class="row m-bottom-25">
-            <div class="col-12 col-md">
+            <div class="col-12 col-md order-md-1 order-2">
                 <div class="bg-white p-25 rounded-10">
                     <div class="row m-bottom-15">
-                        <div class="col-6 col-sm">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Type Name</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $type->type_name }}</p>
-                        </div>
-                        <div class="col-6 col-sm">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Slug</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $type->slug }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-12">
-                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">About</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $type->about }}</p>
+                        <div class="col">
+                            <p class="m-bottom-10 text-color-100 fw-medium fs-14">Name</p>
+                            <p class="m-0 text-color-100 fs-14">{{ $genre->name }}</p>
                         </div>
                     </div>
                 </div>
@@ -71,13 +60,13 @@
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center">
                         <i class="las la-trash-alt fs-24 text-color-ad rounded-circle p-2 bg-alert-10 m-bottom-15"></i>
-                        <h6 class="fw-semibold m-bottom-5">Delete {{ $type->type_name }}</h6>
-                        <p class="fs-14">Are you sure you want to delete this type?</p>
+                        <h6 class="fw-semibold m-bottom-5">Delete {{ $genre->name }}</h6>
+                        <p class="fs-14">Are you sure you want to delete this genre?</p>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('project-types.destroy', $type->slug) }}" method="post">
+                    <form action="{{ route('genres.destroy', $genre->id) }}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

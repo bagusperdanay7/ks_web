@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container ">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Create Song Form</h4>
-                    <form method="post" action="/dashboard/songs">
+                    <form method="post" action="{{ route('songs.store') }}">
                         @csrf
                         <div class="m-bottom-15">
                             <label for="title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Title</label>
@@ -84,7 +84,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/songs" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('songs.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>
                         </div>
                     </form>

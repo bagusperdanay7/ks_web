@@ -7,7 +7,7 @@
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
                     href="{{ route('dashboard') }}">Dashboard</a></li>
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
-                    href="/dashboard/categories">Categories</a>
+                    href="{{ route('categories.index') }}">Categories</a>
             </li>
             <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium" aria-current="page">
                 {{ $category->category_name }}</li>
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="button-group">
-                        <a href="/dashboard/categories/{{ $category->slug }}/edit" class="btn btn-light-border">
+                        <a href="{{ route('categories.edit', $category->slug) }}" class="btn btn-light-border">
                             <i class="las la-edit fs-18 m-right-5"></i>
                             Update
                         </a>
@@ -80,7 +80,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/categories/{{ $category->slug }}" method="post">
+                    <form action="{{ route('categories.destroy', $category->slug) }}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

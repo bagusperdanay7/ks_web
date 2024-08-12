@@ -18,6 +18,25 @@
     </div>
 @endif
 
+@if (session()->has('danger'))
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-danger fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100">
+                        {{ session('danger') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
     <section id="header-analytics" class="m-bottom-15">
         <div class="row">
@@ -28,7 +47,7 @@
                     </div>
 
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/projects/create">
+                        <a class="btn btn-primary-color" href="{{ route('projects.create') }}">
                             <i class="las la-plus fs-18 m-right-5"></i>
                             Add Project
                         </a>
@@ -41,7 +60,7 @@
     <section id="search-project" class="m-bottom-30">
         <div class="row">
             <div class="col">
-                <form action="/dashboard/projects" method="GET">
+                <form action="{{ route('projects.index') }}" method="GET">
                     <div class="input-group">
                         <span class="input-group-text background-color-secondary border"><i
                                 class='bx bx-search fs-18'></i></span>
@@ -176,11 +195,11 @@
                                                 <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="/dashboard/projects/{{ $project->id }}"><i
+                                                            href="{{ route('projects.show', $project->id) }}"><i
                                                                 class="las la-external-link-alt"></i> Detail</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/dashboard/projects/{{ $project->id }}/edit"
+                                                        <a href="{{ route('projects.edit', $project->id) }}"
                                                             class="dropdown-item" type="button"><i class="las la-edit"></i>
                                                             Update</a>
                                                     </li>
@@ -241,7 +260,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Close</button>
-                    <form action="/dashboard/projects/" method="post" id="deleteForm">
+                    <form action="{{ route('projects.destroy', $project->id ?? '') }}/dashboard/projects/" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

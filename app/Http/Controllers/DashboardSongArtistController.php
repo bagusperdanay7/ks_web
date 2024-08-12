@@ -60,9 +60,9 @@ class DashboardSongArtistController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, string $songId)
+    public function destroy(Request $request, string $id)
     {
-        $song = Song::find($songId);
+        $song = Song::find($id);
 
         $song->artists()->detach($request->artist_id);
 

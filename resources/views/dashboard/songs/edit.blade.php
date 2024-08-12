@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Update Song Form</h4>
-                    <form method="post" action="/dashboard/songs/{{ $song->id }}">
+                    <form method="post" action="{{ route('songs.update', $song->id) }}">
                         @method('put')
                         @csrf
                         <div class="m-bottom-15">
@@ -85,7 +85,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/songs" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('songs.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Update</button>
                         </div>
                     </form>

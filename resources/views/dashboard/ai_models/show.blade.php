@@ -6,7 +6,7 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
                     href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="/dashboard/ai-models">AI
+            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="{{ route('ai-models.index') }}">AI
                     Models</a>
             </li>
             <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page">
@@ -23,7 +23,7 @@
                     </div>
 
                     <div class="button-group mt-2 mt-md-0">
-                        <a href="/dashboard/ai-models/{{ $aiModel->id }}/edit" class="btn btn-light-border">
+                        <a href="{{ route('ai-models.edit', $aiModel->id) }}" class="btn btn-light-border">
                             <i class="las la-edit fs-18 m-right-5"></i>
                             Update
                         </a>
@@ -114,7 +114,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/ai-models/{{ $aiModel->id }}" method="post">
+                    <form action="{{ route('ai-models.destroy', $aiModel->id) }}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

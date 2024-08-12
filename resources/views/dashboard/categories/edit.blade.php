@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container ">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Update Category Form</h4>
-                    <form method="post" action="/dashboard/categories/{{ $category->slug }}">
+                    <form method="post" action="{{ route('categories.update', $category->slug) }}">
                         @method('put')
                         @csrf
                         <div class="m-bottom-15">
@@ -44,7 +44,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/categories" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('categories.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Update</button>
                         </div>
                     </form>

@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\ProjectType;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\QueryException;
 
 class DashboardProjectController extends Controller
 {
@@ -62,8 +63,6 @@ class DashboardProjectController extends Controller
             'exclusive' => ['nullable'],
             'created_at' => ['date']
         ]);
-
-        $request->exclusive == 'true' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
 
         // TODO: Kalau kosong biarkan
         $validateData['notes'] = strip_tags($request->notes);
@@ -120,8 +119,6 @@ class DashboardProjectController extends Controller
 
         $validateData = $request->validate($rules);
 
-        $request->exclusive == 'true' ? $validateData['exclusive'] = true : $validateData['exclusive'] = false;
-
         $validateData['notes'] = strip_tags($request->notes);
 
         Project::where('id', $project->id)->update($validateData);
@@ -134,8 +131,14 @@ class DashboardProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        Project::destroy($project->id);
-
-        return redirect('/dashboard/projects')->with('success', 'The Project has been deleted!');
+        // TODO: Bikin sesuai laravel try catchnya
+        try {
+            Project::destroy($project->id);
+            return redirect('/dashboard/projects')->with('success', 'The Project has been deleted!');
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                return redirect('/dashboard/projects')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            }
+        }
     }
 }

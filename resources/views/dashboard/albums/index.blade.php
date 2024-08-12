@@ -47,7 +47,7 @@
                     </div>
 
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/albums/create">
+                        <a class="btn btn-primary-color" href="{{ route('albums.create') }}">
                             <i class="las la-plus fs-18 m-right-5"></i>
                             Add Album
                         </a>
@@ -60,7 +60,7 @@
     <section id="search-album" class="m-bottom-30">
         <div class="row">
             <div class="col">
-                <form action="/dashboard/albums" method="GET">
+                <form action="{{ route('albums.index') }}" method="GET">
                     <div class="input-group">
                         <span class="input-group-text background-color-secondary border"><i
                                 class='bx bx-search fs-18'></i></span>
@@ -135,11 +135,11 @@
                                                 <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="/dashboard/albums/{{ $album->id }}"><i
+                                                            href="{{ route('albums.show', $album->id) }}"><i
                                                                 class="las la-external-link-alt"></i> Detail</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/dashboard/albums/{{ $album->id }}/edit"
+                                                        <a href="{{ route('albums.edit', $album->id) }}"
                                                             class="dropdown-item" type="button"><i class="las la-edit"></i>
                                                             Update</a>
                                                     </li>
@@ -192,7 +192,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/albums/" method="post" id="deleteForm">
+                    <form action="{{ route('albums.destroy', $album->id ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

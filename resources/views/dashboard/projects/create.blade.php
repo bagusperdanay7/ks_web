@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container">
                     <h4 class="fw-bold m-bottom-30 text-color-100 text-center">Create Project Form</h4>
-                    <form method="post" action="/dashboard/projects">
+                    <form method="post" action="{{ route('projects.store') }}">
                         @csrf
                         <div class="m-bottom-15">
                             <label for="category"
@@ -99,14 +99,14 @@
                                     class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('exclusive') is-invalid @enderror">Exclusive</label>
                                 <div class="form-check">
                                     <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveTrue" value="1">
+                                        name="exclusive" id="exclusiveTrue" value="1" @checked(old('exclusive') == 1)>
                                     <label class="form-check-label" for="exclusiveTrue">
                                         Yes
                                     </label>
                                 </div>
                                 <div class="form-check">
                                     <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveFalse" value="0" checked>
+                                        name="exclusive" id="exclusiveFalse" value="0" @checked(old('exclusive') == 0)>
                                     <label class="form-check-label" for="exclusiveFalse">
                                         No
                                     </label>
@@ -179,7 +179,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/projects" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('projects.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>
                         </div>
                     </form>

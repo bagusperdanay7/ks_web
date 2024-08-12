@@ -12,8 +12,7 @@
                     </div>
 
                     <div>
-                        <button class="btn
-                            btn-primary-color" type="submit">
+                        <button class="btn btn-primary-color" type="submit">
                             <i class="las la-download fs-18 m-right-5"></i>
                             Back Up
                         </button>
@@ -27,11 +26,11 @@
         <div class="row mb-5">
             <div class="col col-sm-6 col-xl-3 m-bottom-15">
                 <div class="card-analytics">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex justify-content-between flex-row">
                         <div class="card-info">
                             <div class="card-head">
-                                <p class="title-card mx-0 m-bottom-5">Requests</p>
-                                <p class="number-title-card mx-0 m-bottom-5">Number of Requests</p>
+                                <p class="title-card m-bottom-5 mx-0">Requests</p>
+                                <p class="number-title-card m-bottom-5 mx-0">Number of Requests</p>
                             </div>
                             <h2 class="m-bottom-5 fw-bold">{{ $requests }}</h2>
                             <p class="text-color-80 fs-14">On Google Form and Youtube</p>
@@ -45,11 +44,11 @@
 
             <div class="col col-sm-6 col-xl-3 m-bottom-15">
                 <div class="card-analytics">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex justify-content-between flex-row">
                         <div class="card-info">
                             <div class="card-head">
-                                <p class="title-card mx-0 m-bottom-5">Video</p>
-                                <p class="number-title-card mx-0 m-bottom-5">Number of Videos</p>
+                                <p class="title-card m-bottom-5 mx-0">Video</p>
+                                <p class="number-title-card m-bottom-5 mx-0">Number of Videos</p>
                             </div>
                             <h2 class="m-bottom-5 fw-bolder">{{ $totalVideo }}</h2>
                             <p class="text-color-80 fs-14">Uploaded On Youtube</p>
@@ -63,11 +62,11 @@
 
             <div class="col col-sm-6 col-xl-3 m-bottom-15">
                 <div class="card-analytics">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex justify-content-between flex-row">
                         <div class="card-info">
                             <div class="card-head">
-                                <p class="title-card mx-0 m-bottom-5">Requests Completed</p>
-                                <p class="number-title-card mx-0 m-bottom-5">Number of Completed</p>
+                                <p class="title-card m-bottom-5 mx-0">Requests Completed</p>
+                                <p class="number-title-card m-bottom-5 mx-0">Number of Completed</p>
                             </div>
                             <h2 class="m-bottom-5 fw-bolder">{{ $completedRequests }} / {{ $numberRequestWithOutRejected }}
                             </h2>
@@ -87,11 +86,11 @@
 
             <div class="col col-sm-6 col-xl-3">
                 <div class="card-analytics">
-                    <div class="d-flex flex-row justify-content-between">
+                    <div class="d-flex justify-content-between flex-row">
                         <div class="card-info">
                             <div class="card-head">
-                                <p class="title-card mx-0 m-bottom-5">Requests Rejected</p>
-                                <p class="number-title-card mx-0 m-bottom-5">Number of Rejected</p>
+                                <p class="title-card m-bottom-5 mx-0">Requests Rejected</p>
+                                <p class="number-title-card m-bottom-5 mx-0">Number of Rejected</p>
                             </div>
                             <h2 class="m-bottom-5 fw-bolder">{{ $rejectedRequests }}</h2>
                             <p class="text-color-80 fs-14 mb-0">From {{ $requests }} Requests</p>
@@ -187,9 +186,9 @@
                             @endif
                         </div>
                     @empty
-                        <div class="text-center text-color-100">
+                        <div class="text-color-100 text-center">
                             <i class="las la-ban fs-36"></i>
-                            <p class="fs-14 fw-medium mt-1 mb-0"></p>No Progress of Project Type!
+                            <p class="fs-14 fw-medium mb-0 mt-1"></p>No Progress of Project Type!
                         </div>
                     @endforelse
                 </div>
@@ -199,41 +198,43 @@
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Upcoming Schedule</h4>
                     </div>
-                    <div class="row">
+                    <div class="row row-gap-3">
                         @forelse ($upcomings as $upcoming)
                             <div class="col-lg-6 col-xl-12">
-                                <div class="upcoming-schedule-card {{ $loop->last ? 'mb-0' : 'mb-4' }}">
-                                    <div class="d-flex flex-column">
-                                        <div class="mb-2">
-                                            <i class="lar la-calendar"></i>
-                                            {{ \Carbon\Carbon::parse($upcoming->date)->format('d F Y, G:i T') }}
-                                            ({{ \Carbon\Carbon::parse($upcoming->date)->diffForHumans() }})
-                                        </div>
-                                        <div class="m-bottom-5">
-                                            <h6 class="fw-semibold m-0">{{ $upcoming->title }}
-                                                ({{ $upcoming->category->category_name }})
-                                            </h6>
-                                        </div>
-                                        <div class="m-bottom-5">
-                                            <i class="las la-user-alt"></i> {{ $upcoming->requester }} |
-                                            {{ $upcoming->projectType->type_name }}
-                                        </div>
-                                        <div class="d-flex justify-content-between fw-medium">
-                                            <p class="m-0 m-bottom-5">Progress</p>
-                                            <p class="m-0 ">{{ $upcoming->progress }} %</p>
-                                        </div>
-                                        <div class="progress bg-main-20" role="progressbar" aria-label="progress project"
-                                            aria-valuenow="{{ $upcoming->progress }}" aria-valuemin="0"
-                                            aria-valuemax="100" style="height: 10px">
-                                            <div class="progress-bar bg-main rounded-pill"
-                                                style="width: {{ $upcoming->progress }}%;">
+                                <a href="{{ route('projects.show', $upcoming->id) }}" class="text-decoration-none text-color-100">
+                                    <div class="upcoming-schedule-card">
+                                        <div class="d-flex flex-column">
+                                            <div class="mb-2">
+                                                <i class="lar la-calendar"></i>
+                                                {{ \Carbon\Carbon::parse($upcoming->date)->format('d F Y, G:i T') }}
+                                                ({{ \Carbon\Carbon::parse($upcoming->date)->diffForHumans() }})
+                                            </div>
+                                            <div class="m-bottom-5">
+                                                <h6 class="fw-semibold m-0">{{ $upcoming->title }}
+                                                    ({{ $upcoming->category->category_name }})
+                                                </h6>
+                                            </div>
+                                            <div class="m-bottom-5">
+                                                <i class="las la-user-alt"></i> {{ $upcoming->requester }} |
+                                                {{ $upcoming->projectType->type_name }}
+                                            </div>
+                                            <div class="d-flex justify-content-between fw-medium">
+                                                <p class="m-bottom-5 m-0">Progress</p>
+                                                <p class="m-0">{{ $upcoming->progress }} %</p>
+                                            </div>
+                                            <div class="progress bg-main-20" role="progressbar"
+                                                aria-label="progress project" aria-valuenow="{{ $upcoming->progress }}"
+                                                aria-valuemin="0" aria-valuemax="100" style="height: 10px">
+                                                <div class="progress-bar bg-main rounded-pill"
+                                                    style="width: {{ $upcoming->progress }}%;">
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         @empty
-                            <div class="col text-center text-color-100">
+                            <div class="col text-color-100 text-center">
                                 <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path
@@ -243,7 +244,7 @@
                                         d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                         fill="#787878" />
                                 </svg>
-                                <p class="fs-14 fw-medium mt-1 mb-0"></p>No Upcoming Project!
+                                <p class="fs-14 fw-medium mb-0 mt-1"></p>No Upcoming Project!
                             </div>
                         @endforelse
                     </div>
@@ -259,7 +260,7 @@
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Reviewed Request List</h4>
                     </div>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table-hover table">
                             <thead>
                                 <tr class="text-color-100">
                                     <th scope="col">Project Title</th>
@@ -276,20 +277,21 @@
                                         <td class="align-middle">{{ $list->title }}</td>
                                         <td class="align-middle">{{ $list->category->category_name }}</td>
                                         <td class="align-middle">{{ $list->projectType?->type_name }}</td>
-                                        <td class="align-middle">{{ $list->date !== null ? \Carbon\Carbon::parse($list->date)->format('d F Y, G:i T') : 'Coming Soon' }}
+                                        <td class="align-middle">
+                                            {{ $list->date !== null ? \Carbon\Carbon::parse($list->date)->format('d F Y, G:i T') : 'Coming Soon' }}
                                         </td>
                                         <td class="align-middle">{{ $list->requester }}</td>
                                         <td class="align-middle">
                                             <span class="btn btn-pending">{{ $list->status }}</span>
                                         </td>
                                         <td class="align-middle">
-                                            <a href="/dashboard/projects/{{ $list->id }}" class="dropdown-item"><i
+                                            <a href="{{ route('projects.show', $list->id) }}" class="dropdown-item"><i
                                                     class="las la-external-link-alt fs-14"></i></a>
                                         </td>
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="6" class="text-center text-color-100">
+                                        <td colspan="6" class="text-color-100 text-center">
                                             <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
                                                 xmlns="http://www.w3.org/2000/svg">
                                                 <path
@@ -299,7 +301,7 @@
                                                     d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                                     fill="#787878" />
                                             </svg>
-                                            <p class="fs-14 fw-medium mt-1 mb-0">No Project Found!</p>
+                                            <p class="fs-14 fw-medium mb-0 mt-1">No Project Found!</p>
                                         </td>
                                     </tr>
                                 @endforelse
@@ -307,7 +309,8 @@
                         </table>
                     </div>
                     <div class="d-flex justify-content-center link-details">
-                        <a href="/dashboard/projects" class="text-decoration-none text-center fs-14 fw-medium">Show
+                        <a href="{{ route('projects.index') }}"
+                            class="text-decoration-none fs-14 fw-medium text-center">Show
                             All <i class="las la-arrow-right"> </i>
                         </a>
                     </div>

@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container ">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Update AI Model Form</h4>
-                    <form method="post" action="/dashboard/ai-models/{{ $aiModel->id }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('ai-models.update', $aiModel->id)}}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
                         <div class="m-bottom-15">
@@ -97,7 +97,7 @@
                             @endif
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/ai-models" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('ai-models.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Update</button>
                         </div>
                     </form>

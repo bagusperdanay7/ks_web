@@ -10,11 +10,11 @@
     <div class="sidebar-main">
         <div class="sidebar-user">
             @if (auth()->user()->profile_picture === null)
-                <img src="{{ asset('img/user-default.png') }}" alt="User Picture" class="img-square">
+                <img src="{{ asset('img/user-default.png') }}" alt="{{ auth()->user()->name }} avatar" class="img-square">
             @elseif (str_starts_with(auth()->user()->profile_picture, 'https://lh3.googleusercontent.com'))
-                <img src="{{ auth()->user()->profile_picture }}" alt="User Picture">
+                <img src="{{ auth()->user()->profile_picture }}" alt="{{ auth()->user()->name }} avatar">
             @else
-                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="User Picture"
+                <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="{{ auth()->user()->name }} avatar"
                     class="img-square">
             @endif
             <div class="user-name my-3">
@@ -94,56 +94,70 @@
             </div>
             <ul>
                 <li>
-                    <a href="/dashboard/ai-models"
+                    <a href="{{ route('ai-models.index') }}"
                         class="menu-nav {{ Request::is('dashboard/ai-models*') ? 'text-active' : '' }}">
                         <i class="las la-user-clock"></i>
                         AI Model
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/albums"
-                        class="menu-nav {{ Request::is('dashboard/albums') ? 'text-active' : '' }}">
+                    <a href="{{ route('albums.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/albums*') ? 'text-active' : '' }}">
                         <i class="las la-compact-disc"></i>
                         Albums
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/artists"
+                    <a href="{{ route('artists.index') }}"
                         class="menu-nav {{ Request::is('dashboard/artists*') ? 'text-active' : '' }}">
                         <i class="las la-user"></i>
                         Artists
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/categories"
+                    <a href="{{ route('categories.index') }}"
                         class="menu-nav {{ Request::is('dashboard/categories*') ? 'text-active' : '' }}">
                         <i class="las la-project-diagram"></i>
                         Categories
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/projects"
+                    <a href="{{ route('companies.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/companies*') ? 'text-active' : '' }}">
+                        <i class="las la-building"></i>
+                        Companies
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('genres.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/genres*') ? 'text-active' : '' }}">
+                        <i class="las la-list"></i>
+                        Genre
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('projects.index') }}"
                         class="menu-nav {{ Request::is('dashboard/projects*') ? 'text-active' : '' }}">
                         <i class="las la-chalkboard"></i>
                         Projects
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/project-types"
+                    <a href="{{ route('project-types.index') }}"
                         class="menu-nav {{ Request::is('dashboard/project-types*') ? 'text-active' : '' }}">
                         <i class="las la-project-diagram"></i>
                         Projects Types
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/songs"
+                    <a href="{{ route('songs.index') }}"
                         class="menu-nav {{ Request::is('dashboard/songs*') ? 'text-active' : '' }}">
                         <i class="las la-music"></i>
                         Songs
                     </a>
                 </li>
                 <li>
-                    <a href="/dashboard/song-artist"
+                    <a href="{{ route('song-artist.index') }}"
                         class="menu-nav {{ Request::is('dashboard/song-artist') ? 'text-active' : '' }}">
                         <i class="las la-user-friends"></i>
                         Song Artist

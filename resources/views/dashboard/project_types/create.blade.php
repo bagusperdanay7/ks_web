@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container ">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Create Project Type Form</h4>
-                    <form method="post" action="/dashboard/project-types">
+                    <form method="post" action="{{ route('project-types.store') }}">
                         @csrf
                         <div class="m-bottom-15">
                             <label for="type_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type
@@ -40,7 +40,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/project-types" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('project-types.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>
                         </div>
                     </form>

@@ -28,7 +28,7 @@
                     </div>
 
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/song-artist/create">
+                        <a class="btn btn-primary-color" href="{{ route('song-artist.create') }}">
                             <i class="las la-plus fs-18 m-right-5"></i>
                             Add Song Artist
                         </a>
@@ -133,7 +133,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/song-artist/" method="post" id="deleteForm">
+                    <form action="{{ route('song-artist.destroy', $song->id) }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <input type="hidden" name="artist_id" id="artist_id">

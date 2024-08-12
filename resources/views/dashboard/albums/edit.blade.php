@@ -5,10 +5,10 @@
             <div class="col-md-8 col-12">
                 <div class="form-container ">
                     <h4 class="fw-bold m-bottom-30 text-center text-color-100">Update Album Form</h4>
-                    <form method="post" action="/dashboard/albums/{{ $album->id }}" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('albums.update', $album->id) }}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        {{-- <div class="m-bottom-15">
+                        <div class="m-bottom-15">
                             <label for="artist"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
@@ -24,7 +24,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div> --}}
+                        </div>
                         <div class="m-bottom-15">
                             <label for="name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"
@@ -98,7 +98,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/albums" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('albums.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Update</button>
                         </div>
                     </form>

@@ -6,7 +6,7 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
                     href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="/dashboard/artists">Artists</a>
+            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="{{ route('artists.index') }}">Artists</a>
             </li>
             <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page" title="{{ $artist->artist_name }}">
                 {{ $artist->artist_name }}</li>
@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="button-group">
-                        <a href="/dashboard/artists/{{ $artist->codename }}/edit" class="btn btn-light-border">
+                        <a href="{{ route('artists.edit', $artist->codename)  }}" class="btn btn-light-border">
                             <i class="las la-edit fs-18 m-right-5"></i>
                             Update
                         </a>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/artists/{{ $artist->codename }}" method="post">
+                    <form action="{{ route('artists.destroy', $artist->codename) }}" method="post">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

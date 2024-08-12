@@ -5,7 +5,7 @@
             <div class="col-md-8 col-12">
                 <div class="form-container">
                     <h4 class="fw-bold m-bottom-30 text-color-100 text-center">Create Song Artist Form</h4>
-                    <form method="post" action="/dashboard/song-artist">
+                    <form method="post" action="{{ route('song-artist.store') }}">
                         @csrf
                         <div class="m-bottom-15">
                             <label for="song_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Song</label>
@@ -13,7 +13,7 @@
                                 @foreach ($songs as $song)
                                     <option value="{{ $song->id }}"
                                         {{ old('song_id') == $song->id ? ' selected' : ' ' }}>
-                                        {{ $song->title }} · Written by {{ $song->author }}
+                                        {{ $song->title }} · {{ $song->album->name }}
                                     </option>
                                 @endforeach
                             </select>
@@ -48,7 +48,7 @@
                             @enderror
                         </div>
                         <div class="button-grouping text-end">
-                            <a href="/dashboard/album-songs" class="btn btn-light-border m-right-15">Cancel</a>
+                            <a href="{{ route('song-artist.index') }}" class="btn btn-light-border m-right-15">Cancel</a>
                             <button type="submit" class="btn btn-primary-color px-4">Create</button>
                         </div>
                     </form>

@@ -7,6 +7,7 @@ use App\Models\Album;
 use App\Models\Song;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Database\QueryException;
 
 class DashboardSongController extends Controller
 {
@@ -109,8 +110,14 @@ class DashboardSongController extends Controller
      */
     public function destroy(Song $song)
     {
-        Song::destroy($song->id);
-
-        return redirect('/dashboard/songs')->with('success', 'The song has been deleted!');
+        // TODO: Bikin sesuai laravel try catchnya
+        try {
+            Song::destroy($song->id);
+            return redirect('/dashboard/songs')->with('success', 'The song has been deleted!');
+        } catch (QueryException $e) {
+            if ($e->getCode() == "23000") {
+                return redirect('/dashboard/songs')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            }
+        }
     }
 }

@@ -18,6 +18,25 @@
     </div>
 @endif
 
+@if (session()->has('danger'))
+    <div class="container-fluid">
+        <div aria-live="polite" aria-atomic="true" class="position-relative">
+            <div class="toast-container top-0 end-0 p-3">
+                <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                    <div class="toast-header bg-alert-10 text-color-100">
+                        <strong class="me-auto"><i class="las la-check-circle text-danger fs-18"></i> Kpop
+                            Soulmate</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                    </div>
+                    <div class="toast-body bg-alert-10 fs-14 font-inter text-color-100">
+                        {{ session('danger') }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+
 @section('content')
     <section id="header-analytics" class="m-bottom-15">
         <div class="row">
@@ -27,7 +46,7 @@
                         <h1 class="fw-bold text-color-100">Songs</h1>
                     </div>
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/songs/create">
+                        <a class="btn btn-primary-color" href="{{ route('songs.create') }}">
                             <i class="las la-plus fs-18 m-right-5"></i>
                             Add Song
                         </a>
@@ -40,7 +59,7 @@
     <section id="search-song" class="m-bottom-30">
         <div class="row">
             <div class="col">
-                <form action="/dashboard/songs" method="GET">
+                <form action="{{ route('songs.index') }}" method="GET">
                     <div class="input-group">
                         <span class="input-group-text background-color-secondary border"><i
                                 class='bx bx-search fs-18'></i></span>
@@ -99,11 +118,11 @@
                                                 <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="/dashboard/songs/{{ $song->id }}"><i
+                                                            href="{{ route('songs.show', $song->id) }}"><i
                                                                 class="las la-external-link-alt"></i> Detail</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/dashboard/songs/{{ $song->id }}/edit"
+                                                        <a href="{{ route('songs.edit', $song->id) }}"
                                                             class="dropdown-item" type="button"><i class="las la-edit"></i>
                                                             Update</a>
                                                     </li>
@@ -121,7 +140,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
+                                        <td colspan="7" class="text-center text-color-100">
                                             <i class="las la-music fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Song Found!</p>
                                         </td>
@@ -155,7 +174,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/songs/" method="post" id="deleteForm">
+                    <form action="{{ route('songs.destroy', $song->id ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

@@ -115,6 +115,11 @@ class DashboardAlbumController extends Controller
 
         Album::where('id', $album->id)->update($validateData);
 
+        // Many to Many Attach coba
+        // $album = Album::find($album->id);
+
+        // $album->artists()->attach($request->artist_id);
+
         return redirect('/dashboard/albums')->with('success', 'The album has been updated!');
     }
 

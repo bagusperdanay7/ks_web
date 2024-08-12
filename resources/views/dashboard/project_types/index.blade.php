@@ -47,7 +47,7 @@
                     </div>
 
                     <div>
-                        <a class="btn btn-primary-color" href="/dashboard/project-types/create">
+                        <a class="btn btn-primary-color" href="{{ route('project-types.create') }}">
                             <i class="las la-plus fs-18 m-right-5"></i>
                             Add Types
                         </a>
@@ -93,11 +93,11 @@
                                                 <ul class="dropdown-menu rounded-10 fs-14">
                                                     <li>
                                                         <a class="dropdown-item"
-                                                            href="/dashboard/project-types/{{ $type->slug }}"><i
+                                                            href="{{ route('project-types.show', $type->slug) }}"><i
                                                                 class="las la-external-link-alt"></i> Detail</a>
                                                     </li>
                                                     <li>
-                                                        <a href="/dashboard/project-types/{{ $type->slug }}/edit"
+                                                        <a href="{{ route('project-types.edit', $type->slug) }}"
                                                             class="dropdown-item" type="button"><i class="las la-edit"></i>
                                                             Update</a>
                                                     </li>
@@ -146,7 +146,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="/dashboard/project-types/" method="post" id="deleteForm">
+                    <form action="{{ route('project-types.destroy', $type->slug) }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

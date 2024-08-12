@@ -25,6 +25,8 @@ use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\DashboardAlbumSongsController;
+use App\Http\Controllers\DashboardCompanyController;
+use App\Http\Controllers\DashboardGenreController;
 use App\Http\Controllers\DashboardProjectTypeController;
 use App\Http\Controllers\DashboardSongArtistController;
 
@@ -39,6 +41,7 @@ use App\Http\Controllers\DashboardSongArtistController;
 |
 */
 
+// TODO: Ubah href dan form action menggunakan method route()
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
@@ -130,22 +133,30 @@ Route::get('/account/requests', [AccountController::class, 'requests'])->middlew
 
 Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
+// Dashboard
+Route::prefix('dashboard')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard')->middleware('admin');
 
-Route::resource('/dashboard/ai-models', DashboardAIModelController::class)->middleware('admin');
+    Route::resource('/ai-models', DashboardAIModelController::class)->middleware('admin');
 
-Route::resource('/dashboard/albums', DashboardAlbumController::class)->middleware('admin');
+    Route::resource('/albums', DashboardAlbumController::class)->middleware('admin');
 
-Route::resource('/dashboard/artists', DashboardArtistController::class)->middleware('admin');
+    Route::resource('/artists', DashboardArtistController::class)->middleware('admin');
 
-Route::resource('/dashboard/categories', DashboardCategoryController::class)->middleware('admin');
+    Route::resource('/categories', DashboardCategoryController::class)->middleware('admin');
 
-Route::resource('/dashboard/projects', DashboardProjectController::class)->middleware('auth');
+    Route::resource('/companies', DashboardCompanyController::class)->middleware('admin');
 
-Route::resource('/dashboard/project-types', DashboardProjectTypeController::class)->middleware('admin');
+    Route::resource('/genres', DashboardGenreController::class)->middleware('admin');
 
-Route::resource('/dashboard/songs', DashboardSongController::class)->middleware('admin');
+    Route::resource('/projects', DashboardProjectController::class)->middleware('admin');
 
-Route::resource('/dashboard/song-artist', DashboardSongArtistController::class)->middleware('admin');
+    Route::resource('/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
-// TODO: dashboard add company, genre dkk
+    Route::resource('/songs', DashboardSongController::class)->middleware('admin');
+
+    Route::resource('/song-artist', DashboardSongArtistController::class)->middleware('admin');
+
+    // TODO: Buat Dashboard Album Artist, Idols, Member Group, Playlist Project, Project Artist, Song Genre
+    // TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
+});
