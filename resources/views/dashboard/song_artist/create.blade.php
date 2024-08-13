@@ -9,7 +9,7 @@
                         @csrf
                         <div class="m-bottom-15">
                             <label for="song_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Song</label>
-                            <select class="form-select" aria-label="Select Song" id="artist" name="song_id">
+                            <select class="form-select" aria-label="Select Song" id="song_id" name="song_id">
                                 @foreach ($songs as $song)
                                     <option value="{{ $song->id }}"
                                         {{ old('song_id') == $song->id ? ' selected' : ' ' }}>

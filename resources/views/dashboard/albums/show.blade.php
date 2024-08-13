@@ -48,13 +48,15 @@
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Artist</p>
                             <p class="text-color-100 fs-14 m-0">
-                                @foreach ($album->artists as $albumArtists)
+                                @forelse ($album->artists as $albumArtists)
                                     @if ($album->artists-> count() > 1)
                                         <span>{{ $albumArtists->artist_name }}{{ $loop->last ? '' : ',' }}</span>
                                     @else
                                         {{ $albumArtists->artist_name }}
                                     @endif
-                                @endforeach
+                                @empty
+                                    <span class="text-danger fw-medium">No Artist</span>
+                                @endforelse
                             </p>
                         </div>
                     </div>

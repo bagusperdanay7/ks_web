@@ -32,7 +32,7 @@ class DashboardSongArtistController extends Controller
     public function create()
     {
         return view('dashboard.song_artist.create', [
-            'title' => 'Create Album Song',
+            'title' => 'Create Song Artist',
             'artists' => Artist::all()->sortBy('artist_name'),
             'songs' => Song::all()->sortBy('title'),
             'roles' => ArtistRole::cases(),

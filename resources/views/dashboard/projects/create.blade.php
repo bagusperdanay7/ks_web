@@ -116,6 +116,7 @@
                                 </div>
                             </div>
                         </div>
+                        {{-- TODO: Jika Status Completed, disable = false (alpine) --}}
                         <div class="m-bottom-15">
                             <label for="youtube_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Youtube
                                 Id</label>

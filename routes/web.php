@@ -27,6 +27,7 @@ use App\Http\Controllers\EmailVerificationController;
 use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardCompanyController;
 use App\Http\Controllers\DashboardGenreController;
+use App\Http\Controllers\DashboardProjectArtistController;
 use App\Http\Controllers\DashboardProjectTypeController;
 use App\Http\Controllers\DashboardSongArtistController;
 
@@ -67,7 +68,7 @@ Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artist
 
 Route::get('gallery/artists/{artist:codename}', [ArtistController::class, 'show']);
 
-Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show']);
+Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show'])->name('videos');
 
 Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
@@ -156,6 +157,8 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('/songs', DashboardSongController::class)->middleware('admin');
 
     Route::resource('/song-artist', DashboardSongArtistController::class)->middleware('admin');
+
+    Route::resource('/project-artist', DashboardProjectArtistController::class)->middleware('admin');
 
     // TODO: Buat Dashboard Album Artist, Idols, Member Group, Playlist Project, Project Artist, Song Genre
     // TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.

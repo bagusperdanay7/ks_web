@@ -17,43 +17,63 @@ class GalleryController extends Controller
 
     public function index()
     {
-        $galleryQuery = Project::latest()
-            ->where([['status', 'Completed'], ['exclusive', false]])
-            ->filter(request(['search', 'category', 'type']))
-            ->get();
-
-        if (request('sort') == 'title_asc') {
-            $galleryQuery = Project::orderBy('title')
+        // Match
+        $galleryQuery = match (request('sort')) {
+            'title_asc' => Project::orderBy('title')->where([['status', 'Completed'], ['exclusive', false]])
+                ->filter(request(['search', 'category', 'type']))
+                ->get(),
+            'latest' => Project::orderByDesc('date')
                 ->where([['status', 'Completed'], ['exclusive', false]])
                 ->filter(request(['search', 'category', 'type']))
-                ->get();
-        } elseif (request('sort') == 'latest') {
-            $galleryQuery = Project::orderByDesc('date')
+                ->get(),
+            'oldest' => Project::orderBy('date')
                 ->where([['status', 'Completed'], ['exclusive', false]])
                 ->filter(request(['search', 'category', 'type']))
-                ->get();
-        } elseif (request('sort') == 'oldest') {
-            $galleryQuery = Project::orderBy('date')
+                ->get(),
+            null => Project::latest()
                 ->where([['status', 'Completed'], ['exclusive', false]])
                 ->filter(request(['search', 'category', 'type']))
-                ->get();
-        }
+                ->get()
+        };
 
-        // $artistTotalQuery = Project::with(['artists'])->withCount('artists')->where([['status', 'Completed'], ['exclusive', false]])
-        //     ->inRandomOrder()
-        //     ->get()
-        //     ->take(6);
+        // switch (request('sort')) {
+        //     case 'title_asc':
+        //         $galleryQuery = Project::orderBy('title')
+        //             ->where([['status', 'Completed'], ['exclusive', false]])
+        //             ->filter(request(['search', 'category', 'type']))
+        //             ->get();
+        //         break;
+        //     case 'latest':
+        //         $galleryQuery = Project::orderByDesc('date')
+        //             ->where([['status', 'Completed'], ['exclusive', false]])
+        //             ->filter(request(['search', 'category', 'type']))
+        //             ->get();
+        //         break;
+        //     case 'oldest':
+        //         $galleryQuery = Project::orderBy('date')
+        //             ->where([['status', 'Completed'], ['exclusive', false]])
+        //             ->filter(request(['search', 'category', 'type']))
+        //             ->get();
+        //         break;
+        //     default:
+        //         $galleryQuery = Project::latest()
+        //             ->where([['status', 'Completed'], ['exclusive', false]])
+        //             ->filter(request(['search', 'category', 'type']))
+        //             ->get();
 
-        $artistTotalQuery = Artist::with('projects')->withCount(['projects' => function (Builder $query) {
-            $query->where('status', 'Completed');
-        }])->get()->take(6);
+        //         break;
+        // }
 
-        $categoriesQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
+        $artistWithProjectCount = Artist::with(['projects'])->withCount(['projects' => function (Builder $query) {
+            $query->where('status', 'Completed')->where('exclusive', false);
+        }])->having('projects_count', '>', 0)->inRandomOrder()->take(6)->get();
+
+        $projectCategoriesCount = Project::where([['status', 'Completed'], ['exclusive', false]])
             ->groupBy('category_id')
             ->select('category_id', Project::raw('count(*) as total'))
+            ->take(4)
             ->get()
-            ->sort()
-            ->take(4);
+            ->sort();
 
         $latestVideoQuery = Project::where([['status', 'Completed'], ['exclusive', false]])
             ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status'])
@@ -65,9 +85,9 @@ class GalleryController extends Controller
             ->shuffle()
             ->take(6);
 
-        $allCategoryQuery = Category::all()->sortBy('category_name');
+        $categoriesQuery = Category::all()->sortBy('category_name');
 
-        $allTypeQuery = ProjectType::all()->sortBy('type_name');
+        $typesQuery = ProjectType::all()->sortBy('type_name');
 
         $title = '';
 
@@ -77,20 +97,20 @@ class GalleryController extends Controller
                 $title = request('search');
             }
 
-            $preTitle = "Explore ";
+            $preTitle = 'Explore ';
         } else {
-            $preTitle = "Gallery";
+            $preTitle = 'Gallery ';
         }
 
         return view('gallery', [
-            "title" => $preTitle . $title,
-            "galleries" => $galleryQuery,
-            'artistsTotal' => $artistTotalQuery,
-            'categories' =>  $categoriesQuery,
+            'title' => $preTitle . $title,
+            'galleries' => $galleryQuery,
+            'artists' => $artistWithProjectCount,
+            'projectCategories' =>  $projectCategoriesCount,
             'latestVideo' => $latestVideoQuery,
             'recommendationVideo' =>  $recVideoQuery,
-            'allCategory' => $allCategoryQuery,
-            'allType' => $allTypeQuery,
+            'categories' => $categoriesQuery,
+            'types' => $typesQuery,
         ]);
     }
 
@@ -109,14 +129,14 @@ class GalleryController extends Controller
         $relatedVideoQ = $project::where([['status', 'Completed'], ['exclusive', false], ['id', '!=', $project->id]])->limit(6)->get()->shuffle();
         // $user->posts()->where('active', 1)->get(); # has many
 
-        if ($project->status !== "Completed" || $project->exclusive === true) {
+        if ($project->status !== 'Completed' || $project->exclusive === true) {
             abort(404);
         }
 
         return view('video', [
-            "title" => $project->title,
-            "video" => $project,
-            "relatedVideo" => $relatedVideoQ
+            'title' => $project->title,
+            'video' => $project,
+            'relatedVideo' => $relatedVideoQ
         ]);
     }
 }

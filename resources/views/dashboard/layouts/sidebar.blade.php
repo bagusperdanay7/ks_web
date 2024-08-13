@@ -143,6 +143,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('project-artist.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/project-artist') ? 'text-active' : '' }}">
+                        <i class="las la-user-friends"></i>
+                        Project Artist
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('project-types.index') }}"
                         class="menu-nav {{ Request::is('dashboard/project-types*') ? 'text-active' : '' }}">
                         <i class="las la-project-diagram"></i>

@@ -6,9 +6,11 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
                     href="{{ route('dashboard') }}">Dashboard</a></li>
-            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100" href="{{ route('projects.index') }}">Projects</a>
+            <li class="breadcrumb-item"><a class="text-decoration-none text-color-100"
+                    href="{{ route('projects.index') }}">Projects</a>
             </li>
-            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page" title="{{ $project->title }}">
+            <li class="breadcrumb-item text-decoration-none text-color-100 fw-medium text-truncate" aria-current="page"
+                title="{{ $project->title }}">
                 {{ $project->title }}</li>
         </ol>
     </nav>
@@ -37,59 +39,65 @@
 
         <div class="row m-bottom-30">
             <div class="col-12 col-md-7 col-xl-8 order-md-1 order-2">
-                <div class="bg-white p-25 rounded-10">
+                <div class="p-25 rounded-10 bg-white">
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Title</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->title }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->title }}</p>
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Artist</p>
-                            <p class="m-0 text-color-100 fs-14">
-                                @forelse ($project->artists as $artists)
-                                {{ $artists->artist_name }}</p>
+                            <p class="text-color-100 fs-14 m-0">
+                                @forelse ($project->artists->sortBy('artist_name') as $projectArtists)
+                                    @if ($project->artists->count() > 1)
+                                        <span>{{ $projectArtists->artist_name }}{{ $loop->last ? '' : ',' }}</span>
+                                    @else
+                                        {{ $projectArtists->artist_name }}
+                                    @endif
                                 @empty
-                                <span class="text-danger">No Artist</span>
+                                    <span class="text-danger fw-medium">No Artist</span>
                                 @endforelse
+
+                            </p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Category</p>
                             @if ($project->category->category_name === 'Line Distribution')
-                                <p class="text-color-ld fs-14 m-0 fw-medium">
+                                <p class="text-color-ld fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Line Evolution')
-                                <p class="text-color-le fs-14 m-0 fw-medium">
+                                <p class="text-color-le fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Album Distribution')
-                                <p class="text-color-ad fs-14 m-0 fw-medium">
+                                <p class="text-color-ad fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Total Line Evolution')
-                                <p class="text-color-ae fs-14 m-0 fw-medium">
+                                <p class="text-color-ae fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Center Distribution')
-                                <p class="text-color-cd fs-14 m-0 fw-medium">
+                                <p class="text-color-cd fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'How Would')
-                                <p class="text-color-hw fs-14 m-0 fw-medium">
+                                <p class="text-color-hw fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'How Should')
-                                <p class="text-color-hs fs-14 m-0 fw-medium">
+                                <p class="text-color-hs fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Ranking Battle')
-                                <p class="text-color-rb fs-14 m-0 fw-medium">
+                                <p class="text-color-rb fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @elseif ($project->category->category_name === 'Other')
-                                <p class="text-info fs-14 m-0 fw-medium">
+                                <p class="text-info fs-14 fw-medium m-0">
                                     {{ $project->category->category_name }}
                                 </p>
                             @else
@@ -100,24 +108,24 @@
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Type</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->projectType?->type_name }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->projectType?->type_name }}</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Date</p>
-                            <p class="m-0 text-color-100 fs-14">
+                            <p class="text-color-100 fs-14 m-0">
                                 {{ \Carbon\Carbon::parse($project->date)->format('d F Y, G:i T') }}</p>
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Created At</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->created_at }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->created_at }}</p>
                         </div>
                     </div>
                     <div class="row m-bottom-15">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Requester</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->requester }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->requester }}</p>
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Status</p>
@@ -153,48 +161,48 @@
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Votes</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->votes }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->votes }}</p>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Notes</p>
                             @if ($project->notes === null)
-                                <p class="m-0 text-color-100 fs-14">-</p>
+                                <p class="text-color-100 fs-14 m-0">-</p>
                             @else
-                                <p class="m-0 text-color-100 fs-14">{{ $project->notes }}</p>
+                                <p class="text-color-100 fs-14 m-0">{{ $project->notes }}</p>
                             @endif
                         </div>
                         <div class="col">
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Exclusive</p>
-                            <p class="m-0 text-color-100 fs-14">{{ $project->exclusive }}</p>
+                            <p class="text-color-100 fs-14 m-0">{{ $project->exclusive }}</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-12 col-md-5 col-xl-4 order-md-2 order-1 m-bottom-30">
+            <div class="col-12 col-md-5 col-xl-4 order-md-2 m-bottom-30 order-1">
                 @if ($project->youtube_id !== null)
-                    <img src="{{ 'https://i3.ytimg.com/vi/' . $project->youtube_id . '/maxresdefault.jpg' }}" alt="{{ $project->title }} thumbnail"
-                        class="img-fluid rounded-top-10">
+                    <img src="{{ 'https://i3.ytimg.com/vi/' . $project->youtube_id . '/maxresdefault.jpg' }}"
+                        alt="{{ $project->title }} thumbnail" class="img-fluid rounded-top-10">
                 @else
                     <img src="{{ asset('img/no_thumbnail.jpg') }}" alt="{{ $project->title }} thumbnail"
                         class="img-fluid rounded-top-10">
                 @endif
-                <div class="bg-white p-15 rounded-bottom-10">
-                    <p class="m-0 text-color-100 fw-medium fs-14">Youtube Id</p>
-                    <p class="m-0 text-color-100 fs-12 text-break">{{ $project->youtube_id }}</p>
+                <div class="p-15 rounded-bottom-10 bg-white">
+                    <p class="text-color-100 fw-medium fs-14 m-0">Youtube Id</p>
+                    <p class="text-color-100 fs-12 text-break m-0">{{ $project->youtube_id }}</p>
 
                     <p class="m-bottom-0 m-top-15 text-color-100 fw-medium fs-14">URL</p>
-                    <a href="{{ 'https://www.youtube.com/watch?v=' .  $project->youtube_id }}" target="_blank"
-                        class="text-decoration-none text-color-secondary fs-12 text-break">{{ 'https://www.youtube.com/watch?v=' .  $project->youtube_id }}</a>
+                    <a href="{{ 'https://www.youtube.com/watch?v=' . $project->youtube_id }}" target="_blank"
+                        class="text-decoration-none text-color-secondary fs-12 text-break">{{ 'https://www.youtube.com/watch?v=' . $project->youtube_id }}</a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Modal Confirm Delete -->
-    <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-10">
@@ -203,7 +211,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex flex-column align-items-center">
-                        <i class="las la-trash-alt fs-24 text-color-ad rounded-circle p-2 bg-alert-10 m-bottom-15"></i>
+                        <i class="las la-trash-alt fs-24 text-color-ad rounded-circle bg-alert-10 m-bottom-15 p-2"></i>
                         <h6 class="fw-semibold m-bottom-5">Delete {{ $project->title }}</h6>
                         <p class="fs-14">Are you sure you want to delete this project?</p>
                     </div>
