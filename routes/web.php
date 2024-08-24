@@ -59,8 +59,7 @@ Route::get('/request-list/form', [RequestListController::class, 'create'])->midd
 
 Route::post('/request-list/form', [RequestListController::class, 'store'])->name('request-form-post');
 
-// TODO: Lanjut Sini
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');;
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
 
 Route::get('/gallery/categories', [CategoryController::class, 'index'])->name('categories');
 
@@ -74,6 +73,7 @@ Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
 
+// TODO: Lanjut Sini
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
 Route::get('/about-us', [InformationController::class, 'aboutUs'])->name('about-us');

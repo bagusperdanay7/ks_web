@@ -95,7 +95,7 @@
                     <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
                             <a href="{{ route('videos', $gallery->id) }}">
-                                @if ($gallery->youtube_id !== null)
+                                @if ($gallery->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $gallery->youtube_id . '/maxresdefault.jpg' }}"
                                         class="thumbnail img-fluid m-0 p-0" alt="{{ $gallery->title }} thumbnail">
                                 @else
@@ -209,7 +209,7 @@
                         <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                             <div class="video-card">
                                 <a href="/gallery/videos/{{ $recVideo->id }}">
-                                    @if ($recVideo->youtube_id !== null)
+                                    @if ($recVideo->youtube_id)
                                         <img src="{{ 'https://i3.ytimg.com/vi/' . $recVideo->youtube_id . '/maxresdefault.jpg' }}"
                                             class="thumbnail img-fluid m-0 p-0" alt="{{ $recVideo->title }} thumbnail">
                                     @else
@@ -442,7 +442,7 @@
                     <div class="col-12 col-md-6 col-lg-4 mb-xl-0 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
                             <a href="/gallery/videos/{{ $latestVid->id }}">
-                                @if ($latestVid->youtube_id !== null)
+                                @if ($latestVid->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $latestVid->youtube_id . '/maxresdefault.jpg' }}"
                                         class="thumbnail img-fluid m-0 p-0" alt="{{ $latestVid->title }} thumbnail">
                                 @else
@@ -550,7 +550,7 @@
                     <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
                             <a href="/gallery/videos/{{ $recVideo->id }}">
-                                @if ($recVideo->youtube_id !== null)
+                                @if ($recVideo->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $recVideo->youtube_id . '/maxresdefault.jpg' }}"
                                         class="thumbnail img-fluid m-0 p-0" alt="{{ $recVideo->title }} thumbnail">
                                 @else

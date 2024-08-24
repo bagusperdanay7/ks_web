@@ -15,57 +15,57 @@
     <section id="artist-detail" class="mb-50">
         <div class="row mb-6">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-xl-0 mb-15">
-                @if ($artist->artist_pict === null)
-                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-10 shadow img-fluid w-100"
-                        alt="{{ $artist->artist_pict }} picture">
+                @if ($artist->artist_picture)
+                    <img src="{{ asset('storage/' . $artist->artist_picture) }}"
+                        class="img-square rounded-10 img-fluid w-100 shadow" alt="{{ $artist->artist_pict }} picture">
                 @else
-                    <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="img-square rounded-10 shadow img-fluid w-100"
-                        alt="{{ $artist->artist_pict }} picture">
+                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-10 img-fluid w-100 shadow"
+                        alt="{{ $artist->artist_picture }} picture">
                 @endif
             </div>
 
             <div class="col-12 col-md-6 col-lg-7 col-xl-8 align-self-center">
-                <h2 class="fw-bold text-color-100 mb-10 fs-sm-24">{{ $artist->artist_name }}</h2>
+                <h2 class="fw-bold text-color-100 fs-sm-24 mb-10">{{ $artist->artist_name }}</h2>
                 <p class="artist-about">{{ $artist->about }}</p>
                 <div class="row mb-10">
                     <div class="col-5 col-lg-4 col-xl-3 col-xxl-2">
-                        <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Debut</h4>
+                        <h4 class="fs-16 fw-medium text-color-100 fs-lg-14 m-0">Debut</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ \Carbon\Carbon::parse($artist->debut)->format('d F Y') }}
+                        <p class="text-color-100 fs-lg-14 m-0">{{ \Carbon\Carbon::parse($artist->birthdate)->format('d F Y') }}
                         </p>
                     </div>
                 </div>
                 <div class="row mb-10">
                     <div class="col-5 col-lg-4 col-xl-3 col-xxl-2">
-                        <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Fandom Name</h4>
+                        <h4 class="fs-16 fw-medium text-color-100 fs-lg-14 m-0">Fandom Name</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artist->fandom }}</p>
+                        <p class="text-color-100 fs-lg-14 m-0">{{ $artist->fandom }}</p>
                     </div>
                 </div>
                 <div class="row mb-10">
                     <div class="col-5 col-lg-4 col-xl-3 col-xxl-2">
-                        <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Origin</h4>
+                        <h4 class="fs-16 fw-medium text-color-100 fs-lg-14 m-0">Origin</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artist->origin }}</p>
+                        <p class="text-color-100 fs-lg-14 m-0">{{ $artist->origin }}</p>
                     </div>
                 </div>
                 <div class="row mb-10">
                     <div class="col-5 col-lg-4 col-xl-3 col-xxl-2">
-                        <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Company</h4>
+                        <h4 class="fs-16 fw-medium text-color-100 fs-lg-14 m-0">Company</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artist->company }}</p>
+                        <p class="text-color-100 fs-lg-14 m-0">{{ $artist->company->name }}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-5 col-lg-4 col-xl-3 col-xxl-2">
-                        <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Total Video</h4>
+                        <h4 class="fs-16 fw-medium text-color-100 fs-lg-14 m-0">Total Video</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artistVideos }}</p>
+                        <p class="text-color-100 fs-lg-14 m-0">{{ $artistVideos }}</p>
                     </div>
                 </div>
             </div>
@@ -80,12 +80,12 @@
                     <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
                             <a href="/gallery/videos/{{ $project->id }}">
-                                @if ($project->thumbnail !== null)
-                                    <img src="{{ $project->thumbnail }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $project->project_title }} thumbnail">
+                                @if ($project->youtube_id)
+                                    <img src="{{ 'https://i3.ytimg.com/vi/' . $project->youtube_id . '/maxresdefault.jpg' }}" class="thumbnail m-0 p-0 img-fluid"
+                                        alt="{{ $project->title }} thumbnail">
                                 @else
                                     <img src="{{ asset('img/no_thumbnail.jpg') }}" class="thumbnail m-0 p-0 img-fluid"
-                                        alt="{{ $project->project_title }} thumbnail">
+                                        alt="{{ $project->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
                                     <a href="/gallery?category={{ $project->category->slug }}">
@@ -110,12 +110,12 @@
                                             {{ $project->category->category_name }}
                                         </p>
                                     </a>
-                                    <h4>{{ $project->project_title }}</h4>
+                                    <h4>{{ $project->title }}</h4>
                                     <p class="date-text mb-0">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($project->date))->diffForHumans() }}
-                                        &#8226; <a href="/gallery?type={{ urlencode($project->type->type_name) }}"
+                                        &#8226; <a href="/gallery?type={{ $project->projectType->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
-                                                class="type-tag">{{ $project->type->type_name }}</span>
+                                                class="type-tag">{{ $project->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                 </div>

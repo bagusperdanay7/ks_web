@@ -6,8 +6,6 @@
         <ol class="breadcrumb fs-sm-12">
             <li class="breadcrumb-item"><a href="/">Home</a></li>
             <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
-            {{-- <li class="breadcrumb-item"><a
-                    href="/gallery/artists/{{ $video->artists->codename }}">{{ $video->artists->artist_name }}</a></li> --}}
             <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page">
                 {{ $video->title }}
             </li>
@@ -55,38 +53,41 @@
                         {{ \Carbon\Carbon::parse($video->created_at)->format('d F Y, G:i T') }}
                     </p>
                     <p class="fs-14 font-inter text-color-100 mb-10">{{ $video->notes }}</p>
-                    <a class="text-decoration-none" href="/gallery/artists/{{ $video->artist->codename ?? '' }}">
-                        @if ($video->artists->count() < 2)
-                            <div class="d-flex align-items-center flex-row">
-                                @foreach ($video->artists as $artists)
-                                    <div>
-                                        @if ($artists->artist_picture)
-                                            <img class="rounded-circle img-square"
-                                                src="{{ asset('storage/' . $artists->artist_picture) }}"
-                                                alt="{{ $artists->artist_name }} thumbnail" width="40px">
-                                        @else
-                                            <img class="rounded-circle img-square"
-                                                src="{{ asset('img/unknown_artist.jpg') }}"
-                                                alt="{{ $artists->artist_name }} thumbnail" width="40px">
-                                        @endif
+                    @if ($video->artists->count() >= 1)
+                        <div id="projectArtists" class="d-flex flex-column row-gap-2">
+                            @foreach ($video->artists->sortBy('artist_name') as $artists)
+                                <a class="text-decoration-none" href="/gallery/artists/{{ $artists->codename ?? '' }}">
+                                    <div class="d-flex align-items-center column-gap-2">
+                                        <div>
+                                            @if ($artists->artist_picture)
+                                                <img class="rounded-circle img-square"
+                                                    src="{{ asset('storage/' . $artists->artist_picture) }}"
+                                                    alt="{{ $artists->artist_name }} thumbnail" width="40px">
+                                            @else
+                                                <img class="rounded-circle img-square"
+                                                    src="{{ asset('img/unknown_artist.jpg') }}"
+                                                    alt="{{ $artists->artist_name }} thumbnail" width="40px">
+                                            @endif
+                                        </div>
+                                        <div>
+                                            <p class="fw-medium text-color-100 mb-0">
+                                                {{ $artists->artist_name }}</p>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <p class="fw-medium text-color-100 mb-0 ml-10">
-                                            {{ $artists->artist_name }}</p>
-                                    </div>
-                                @endforeach
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="d-flex align-items-center flex-row">
+                            <div>
+                                <img class="rounded-circle" src="{{ asset('img/unknown_artist.jpg') }}"
+                                    alt="unknown artist thumbnail" width="40px" height="40px">
                             </div>
-                        @else
-                            <div class="d-flex align-items-center flex-row">
-                                @foreach ($video->artists as $artists)
-                                    <div>
-                                        <p class="fw-medium text-color-100 mb-0">
-                                            {{ $artists->artist_name }}</p>
-                                    </div>
-                                @endforeach
+                            <div>
+                                <p class="fw-semibold fs-14 text-danger mb-0 ml-10">No Artist</p>
                             </div>
-                        @endif
-
+                        </div>
+                    @endif
                     </a>
                 </div>
             </div>
@@ -96,8 +97,8 @@
                     <a href="/gallery/videos/{{ $related->id }}" class="text-decoration-none">
                         <div class="row {{ $loop->last ? '' : 'mb-15' }}">
                             <div class="col-12 col-xl-6 pe-xl-0">
-                                @if ($related->thumbnail)
-                                    <img src="{{ 'https://i3.ytimg.com/vi/' . $related->thumbnail . '/maxresdefault.jpg' }}"
+                                @if ($related->youtube_id)
+                                    <img src="{{ 'https://i3.ytimg.com/vi/' . $related->youtube_id . '/maxresdefault.jpg' }}"
                                         alt="{{ $related->title }} thumbnail" class="img-fluid thumbnail-mini">
                                 @else
                                     <img src="{{ asset('img/no_thumbnail.jpg') }}" alt="{{ $related->title }} thumbnail"

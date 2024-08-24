@@ -12,15 +12,15 @@
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last ? '' : 'mb-15' }}">
                     <div class="artist-card">
                         <a href="/gallery/artists/{{ $artist->codename }}">
-                            @if ($artist->artist_pict)
-                                <img src="{{ asset('storage/' . $artist->artist_pict) }}"
+                            @if ($artist->artist_picture)
+                                <img src="{{ asset('storage/' . $artist->artist_picture) }}"
                                     class="rounded artist-image img-fluid" alt="{{ $artist->artist_name }} picture">
                             @else
                                 <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
                                     alt="{{ $artist->artist_name }} picture">
                             @endif
                             <p>{{ $artist->artist_name }}</p>
-                            <span>{{ $artist->projects->where('status', 'Completed')->where('is_exclusive', 'No')->count() }}
+                            <span>{{ $artist->projects->where('status', 'Completed')->where('exclusive', false)->count() }}
                                 Videos</span>
                         </a>
                     </div>

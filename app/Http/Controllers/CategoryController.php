@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Builder;
 
 class CategoryController extends Controller
 {
@@ -11,9 +13,19 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $categories = Category::with('projects')->withCount(['projects' => function (Builder $query) {
+        //     $query->where('status', 'Completed')->where('exclusive', false);
+        // }])->having('projects_count', '>', 0)->orderBy('category_name')->get();
+
+        $categories = Project::where([['status', 'Completed'], ['exclusive', false]])
+            ->groupBy('category_id')
+            ->select('category_id', Project::raw('count(*) as total'))
+            ->get()
+            ->sortByDesc('total');
+
         return view('categories', [
             'title' => 'All Content Categories',
-            'categories' => Category::all()->load('projects')->sortBy('category_name'),
+            'categories' => $categories,
         ]);
     }
 }
