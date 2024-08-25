@@ -127,11 +127,8 @@ class RequestListController extends Controller
             ->where([['status', 'Rejected'], ['project_types.type_name', '!=', 'Non-Project']])
             ->orderBy('title')->count();
 
-        if ($projectNumber == 0) {
-            $projectCompletedProgress = 0;
-        } else {
-            $projectCompletedProgress = (int) (($projectCompletedNumber / $projectNumberWithOutRejected) * 100);
-        }
+        $projectNumber == 0 ? $projectCompletedProgress = 0
+            : $projectCompletedProgress = (int) (($projectCompletedNumber / $projectNumberWithOutRejected) * 100);
 
         $allCategoryQuery = Category::all()->sortBy('category_name');
 

@@ -21,6 +21,7 @@ use App\Http\Controllers\ResetPasswordController;
 use App\Http\Controllers\DashboardAlbumController;
 use App\Http\Controllers\DashboardArtistController;
 use App\Http\Controllers\DashboardAIModelController;
+use App\Http\Controllers\DashboardAlbumArtistController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\EmailVerificationController;
@@ -73,7 +74,6 @@ Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
 
-// TODO: Lanjut Sini
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
 Route::get('/about-us', [InformationController::class, 'aboutUs'])->name('about-us');
@@ -90,8 +90,10 @@ Route::get('/explore', [AlbumController::class, 'index'])->name('explore-album')
 
 Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist']);
 
+// TODO: Bikin Song Detail Terpisah
 Route::get('/albums/{album:id}', [AlbumController::class, 'show']);
 
+// TODO: Lanjut Sini
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login-post');
@@ -160,6 +162,8 @@ Route::prefix('dashboard')->group(function () {
 
     Route::resource('/project-artist', DashboardProjectArtistController::class)->middleware('admin');
 
-    // TODO: Buat Dashboard Album Artist, Idols, Member Group, Playlist Project, Project Artist, Song Genre
+    Route::resource('/album-artist', DashboardAlbumArtistController::class)->middleware('admin');
+
+    // TODO: Buat Dashboard Idols, Member Group, Playlist Project, Project Artist, Song Genre
     // TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
 });

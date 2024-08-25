@@ -4,18 +4,19 @@
     <section id="product-info" class="mb-50">
         <div class="row mb-3">
             <div class="col">
-                <h1 class="fw-bold text-center text-color-100">About Us</h1>
+                <h1 class="fw-bold text-color-100 text-center">About Us</h1>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-12 col-md-6 text-center mb-15 mb-0-md">
+            <div class="col-12 col-md-6 mb-15 mb-0-md text-center">
                 <img class="img-fluid rounded-circle" src="{{ asset('img/logo.png') }}" alt="Logo Kpop Soulmate"
                     width="200px">
             </div>
             <div class="col-12 col-md-6 align-self-center">
-                <h4 class="fw-semibold text-color-100 text-center text-md-start">What Is Kpop Soulmate?</h4>
-                <p class="fs-14 fw-medium text-color-100 mb-0 lh-lg">Kpop Soulmate is a YouTube channel dedicated to K-pop videos;
+                <h4 class="fw-semibold text-color-100 text-md-start text-center">What Is Kpop Soulmate?</h4>
+                <p class="fs-14 fw-medium text-color-100 lh-lg mb-0">Kpop Soulmate is a YouTube channel dedicated to K-pop
+                    videos;
                     the
                     channel's
                     beginnings consist of the
@@ -53,12 +54,14 @@
 
     <section id="videos" class="mb-50">
         <div class="row">
-            <div class="col-12 col-lg-6 mb-3 mb-lg-0">
+            <div class="col-12 col-lg-6 mb-lg-0 mb-3">
                 <h3 class="fw-semibold text-color-100">Our First Video</h3>
                 <div class="ratio ratio-16x9">
-                    <iframe class="rounded-10" src="https://www.youtube.com/embed/Vm5dJvx4V90" title="HELLOVENUS (헬로비너스 ) - Runway (아니길) (Line Distribution)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <iframe class="rounded-10" src="https://www.youtube.com/embed/Vm5dJvx4V90"
+                        title="HELLOVENUS (헬로비너스 ) - Runway (아니길) (Line Distribution)"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen></iframe>
                 </div>
-
             </div>
             <div class="col-12 col-lg-6">
                 <h3 class="fw-semibold text-color-100">Our Latest Video</h3>
@@ -74,26 +77,32 @@
     <section id="faq">
         <div class="row">
             <div class="col">
-                <h2 class="fw-bold text-color-100 text-center mb-15">FAQ</h2>
+                <h2 class="fw-bold text-color-100 mb-15 text-center">FAQ</h2>
                 <div class="accordion accordion-flush" id="accordionFlushFAQ">
                     <div class="accordion-item rounded-10 fs-sm-14">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-first-faq" aria-expanded="false" aria-controls="flush-first-faq">
+                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#flush-first-faq"
+                                aria-expanded="false" aria-controls="flush-first-faq">
                                 What software do we use For Editing Video?
                             </button>
                         </h2>
                         <div id="flush-first-faq" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
-                            <div class="accordion-body text-color-100 bg-second fs-sm-14"><strong>Magix Vegas Pro 18</strong> to edit video bars and time, and insert the lyrics.
-                                <strong>Adobe Photoshop</strong> to edit member images, create layouts, lyrics, and thumbnails. <strong>Figma</strong> for editing
-                                intro layouts. <strong>Adobe After Effects</strong> to create animation effects and transitions in the video and
-                                outro along with the charts.</div>
+                            <div class="accordion-body text-color-100 bg-second fs-sm-14"><strong>Magix Vegas Pro
+                                    18</strong> to edit video bars and time, and insert the lyrics.
+                                <strong>Adobe Photoshop</strong> to edit member images, create layouts, lyrics, and
+                                thumbnails. <strong>Figma</strong> for editing
+                                intro layouts. <strong>Adobe After Effects</strong> to create animation effects and
+                                transitions in the video and
+                                outro along with the charts.
+                            </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-timezone" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#flush-timezone"
+                                aria-expanded="false" aria-controls="flush-collapseTwo">
                                 What timezone do we use?
                             </button>
                         </h2>
@@ -105,14 +114,16 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header">
-                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#flush-date-format" aria-expanded="false" aria-controls="flush-collapseTwo">
+                            <button class="accordion-button collapsed fw-medium text-color-100 bg-second fs-sm-14"
+                                type="button" data-bs-toggle="collapse" data-bs-target="#flush-date-format"
+                                aria-expanded="false" aria-controls="flush-collapseTwo">
                                 What date format do we use?
                             </button>
                         </h2>
                         <div id="flush-date-format" class="accordion-collapse collapse" data-bs-parent="#accordionFlushFAQ">
                             <div class="accordion-body text-color-100 bg-second fs-sm-14">
-                                We use British Date Format <strong>(D M Y)</strong>, since its the same date format as My Country (Indonesia).
+                                We use British Date Format <strong>(D M Y)</strong>, since its the same date format as My
+                                Country (Indonesia).
                             </div>
                         </div>
                     </div>

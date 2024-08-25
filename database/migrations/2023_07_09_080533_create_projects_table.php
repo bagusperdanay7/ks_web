@@ -22,7 +22,6 @@ return new class extends Migration
             $table->integer('progress')->nullable()->default(0);
             $table->text('notes')->nullable();
             $table->integer('votes')->nullable()->default(0);
-            $table->boolean('exclusive')->nullable()->default(false);
             $table->foreignId('category_id')->constrained(table: 'categories', indexName: 'projects_category_id');
             $table->foreignId('project_type_id')->constrained(table: 'project_types', indexName: 'projects_type_id');
             $table->timestamps();

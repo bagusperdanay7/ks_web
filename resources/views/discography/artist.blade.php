@@ -4,12 +4,12 @@
     <section id="artist-detail" class="mb-50">
         <div class="row mb-6">
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-xl-0 mb-15">
-                @if ($artist->artist_pict === null)
+                @if ($artist->artist_picture === null)
                     <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-10 shadow img-fluid w-100"
-                        alt="{{ $artist->artist_pict }} picture">
+                        alt="{{ $artist->artist_picture }} picture">
                 @else
-                    <img src="{{ asset('storage/' . $artist->artist_pict) }}" class="img-square rounded-10 shadow img-fluid w-100"
-                        alt="{{ $artist->artist_pict }} picture">
+                    <img src="{{ asset('storage/' . $artist->artist_picture) }}" class="img-square rounded-10 shadow img-fluid w-100"
+                        alt="{{ $artist->artist_picture }} picture">
                 @endif
 
             </div>
@@ -46,7 +46,7 @@
                         <h4 class="fs-16 fw-medium text-color-100 m-0 fs-lg-14">Company</h4>
                     </div>
                     <div class="col">
-                        <p class="m-0 text-color-100 fs-lg-14">{{ $artist->company }}</p>
+                        <p class="m-0 text-color-100 fs-lg-14">{{ $artist->company->name }}</p>
                     </div>
                 </div>
             </div>
@@ -63,12 +63,12 @@
                         <a href="/albums/{{ $itemAlbum->id ?? '' }}" class="text-decoration-none">
                             @if ($itemAlbum->cover)
                                 <img src="{{ asset('storage/' . $itemAlbum->cover ?? '') }}"
-                                    class="rounded artist-image img-fluid" alt="{{ $itemAlbum->album_name }}">
+                                    class="rounded artist-image img-fluid" alt="{{ $itemAlbum->name }}">
                             @else
                                 <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
-                                    alt="{{ $itemAlbum->album_name ?? '' }}">
+                                    alt="{{ $itemAlbum->name ?? '' }}">
                             @endif
-                            <p class="text-truncate-2-line text-truncate" title="{{ $itemAlbum->album_name }}">{{ $itemAlbum->album_name ?? '' }}</p>
+                            <p class="text-truncate-2-line text-truncate" title="{{ $itemAlbum->name }}">{{ $itemAlbum->name ?? '' }}</p>
                             <span>{{ \Carbon\Carbon::create($itemAlbum->release)->format('Y') }} • {{ $itemAlbum->type }}</span>
                         </a>
                     </div>

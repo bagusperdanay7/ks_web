@@ -8,7 +8,7 @@
                     <form method="post" action="{{ route('albums.update', $album->id) }}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        <div class="m-bottom-15">
+                        {{-- <div class="m-bottom-15">
                             <label for="artist"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
@@ -24,7 +24,7 @@
                                     {{ $message }}
                                 </div>
                             @enderror
-                        </div>
+                        </div> --}}
                         <div class="m-bottom-15">
                             <label for="name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"

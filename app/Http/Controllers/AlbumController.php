@@ -10,18 +10,19 @@ class AlbumController extends Controller
 {
     public function index()
     {
-        $recArtist = Artist::with('albums')->get()->shuffle()->take(6);
-        $recAlbum = Album::with('artist')->get()->shuffle()->take(6);
+        $recArtist = Artist::with('albums')->withCount(['albums'])->having('albums_count', '>=', 1)
+            ->inRandomOrder()->take(6)->get();
+        $recAlbum = Album::with('artists')->inRandomOrder()->take(6)->get();
 
         if (request('search')) {
-            $searchResult = Album::whereHas('artist', function($q) {
+            $searchResult = Album::with('artists')->whereHas('artists', function ($q) {
                 $q->where('artist_name', 'like', '%' . request('search') . '%');
-            })->orWhere('album_name', 'like', '%' . request('search') . '%')->get();
+            })->orWhere('name', 'like', '%' . request('search') . '%')->get();
         } else {
             $searchResult = null;
         }
 
-        return view('album_songs.explore', [
+        return view('discography.explore', [
             'title' => 'Explore Albums',
             'artists' => $recArtist,
             'albums' => $recAlbum,
@@ -31,7 +32,7 @@ class AlbumController extends Controller
 
     public function showArtist(Artist $artist)
     {
-        return view('album_songs.artist', [
+        return view('discography.artist', [
             'title' => $artist->artist_name,
             'artist' => $artist,
             'albumsArtist' => $artist->albums->sortByDesc('release'),
@@ -40,14 +41,9 @@ class AlbumController extends Controller
 
     public function show(Album $album)
     {
-        $albumSongsQuery = Album::with(['songs' => function (Builder $query) {
-            $query->orderBy('track_number');
-        }])->where('id', $album->id)->get();
-
-        return view('album_songs.album', [
-            'title' => $album->album_name,
+        return view('discography.album', [
+            'title' => $album->name,
             'album' => $album,
-            'songs' => $albumSongsQuery,
         ]);
     }
 }

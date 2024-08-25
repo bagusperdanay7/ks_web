@@ -13,7 +13,7 @@ class Song extends Model
 
     protected $guarded = ['id'];
 
-    protected $with = ['album'];
+    protected $with = ['album', 'artists'];
 
     public function album(): BelongsTo
     {

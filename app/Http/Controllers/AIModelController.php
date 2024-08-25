@@ -13,7 +13,6 @@ class AIModelController extends Controller
     {
         $modelsQuery = AIModel::orderBy('model_name')->paginate(25)->withQueryString();
 
-
         return view('ai_model', [
             "title" => "AI Models",
             "models" => $modelsQuery,

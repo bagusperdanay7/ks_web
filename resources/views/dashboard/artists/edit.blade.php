@@ -25,7 +25,7 @@
                                 Name</label>
                             <input type="text" class="form-control @error('codename') is-invalid @enderror"
                                 name="codename" id="codename" value="{{ old('codename', $artist->codename) }}"
-                                aria-label="Codename input Readonly" readonly>
+                                aria-label="Codename input Readonly">
                             @error('codename')
                                 <div id="codenameFeedback" class="invalid-feedback">
                                     {{ $message }}

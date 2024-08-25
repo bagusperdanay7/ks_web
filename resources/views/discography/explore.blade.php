@@ -2,7 +2,9 @@
 
 @section('content')
     <div class="alert alert-warning fs-14 rounded-10" role="alert">
-        <strong><i class="las la-exclamation-triangle fs-18 mb-0"></i> This page is still experimental!</strong>. We are still working on entering the album data into this page, so it may not have the content you are searching for right now.
+        <strong><i class="las la-exclamation-triangle fs-18 mb-0"></i> This page is still experimental!</strong>. We are
+        still working on entering the album data into this page, so it may not have the content you are searching for right
+        now.
     </div>
     <section id="searchForm" class="mb-30">
         <div class="row">
@@ -28,9 +30,9 @@
                 <div class="col">
                     <div class="d-flex justify-content-between">
                         <div class="gallery-cards-head d-flex align-items-center">
-                            <h4 class="m-0 fw-semibold text-color-100">Search Results
+                            <h4 class="fw-semibold text-color-100 m-0">Search Results
                             </h4>
-                            <span class="ms-2 align-middle badge font-inter fs-14 fw-medium bg-main text-white">
+                            <span class="badge font-inter fs-14 fw-medium bg-main ms-2 align-middle text-white">
                                 {{ $searchResults->count() }}
                             </span>
                         </div>
@@ -50,16 +52,35 @@
                             <a href="/albums/{{ $result->id ?? '' }}" class="text-decoration-none">
                                 @if ($result->cover)
                                     <img src="{{ asset('storage/' . $result->cover ?? '') }}"
-                                        class="rounded artist-image img-fluid" alt="{{ $result->album_name }}">
+                                        class="artist-image img-fluid rounded" alt="{{ $result->name }}">
                                 @else
-                                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
-                                        alt="{{ $result->album_name ?? '' }}">
+                                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="artist-image img-fluid rounded"
+                                        alt="{{ $result->name ?? '' }}">
                                 @endif
-                                <p class="text-truncate-2-line text-truncate text-color-100"
-                                    title="{{ $result->album_name }}">{{ $result->album_name ?? '' }}</p>
+                                <p class="text-truncate-2-line text-truncate text-color-100" title="{{ $result->name }}">
+                                    {{ $result->name ?? '' }}</p>
                                 <span>{{ \Carbon\Carbon::create($result->release)->format('Y') }} •
                                     {{ $result->type }}</span>
-                                <p class="fw-medium text-color-100 mt-0">{{ $result->artist->artist_name }}</p>
+                                @if ($result->artists->count() > 1)
+                                    <p class="fw-medium text-color-100 mt-0">
+                                        @foreach ($result->artists->sortBy('artist_name') as $resultArtist)
+                                            <a href="/artists/{{ $resultArtist->codename }}"
+                                                class="text-underline-hover text-color-100">
+                                                <span>{{ $resultArtist->artist_name }}{{ $loop->last ? '' : ',' }}</span>
+                                            </a>
+                                        @endforeach
+                                    </p>
+                                @elseif ($result->artists->count() == 1)
+                                    @foreach ($result->artists as $resultArtist)
+                                        <a href="/artists/{{ $resultArtist->codename }}"
+                                            class="text-underline-hover text-color-100">
+                                            <p class="fw-medium text-color-100 mt-0">
+                                                {{ $resultArtist->artist_name }}</p>
+                                        </a>
+                                    @endforeach
+                                @else
+                                    <p class="fw-medium text-danger mt-0">No Artist</p>
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -75,7 +96,7 @@
                                     d="M47.9745 8.0255C47.65 7.69985 47.2644 7.4416 46.8397 7.2656C46.415 7.0896 45.9597 6.99934 45.5 7H21C17.1395 7 14 10.1395 14 14V70C14 73.8605 17.1395 77 21 77H63C66.8605 77 70 73.8605 70 70V31.5C70.0007 31.0403 69.9104 30.585 69.7344 30.1603C69.5584 29.7356 69.3002 29.35 68.9745 29.0255L47.9745 8.0255ZM21 14H44.051L63 32.949L63.007 65.058L54.019 56.07C55.244 53.9875 56 51.5865 56 49C56 41.279 49.721 35 42 35C34.279 35 28 41.279 28 49C28 56.721 34.279 63 42 63C44.5865 63 46.9875 62.244 49.07 61.019L58.051 70H21V14ZM42 56C38.1395 56 35 52.8605 35 49C35 45.1395 38.1395 42 42 42C45.8605 42 49 45.1395 49 49C49 52.8605 45.8605 56 42 56Z"
                                     fill="#787878" />
                             </svg>
-                            <p class="mb-0 mt-1 fw-medium fs-14">No Search Results Found!</p>
+                            <p class="fw-medium fs-14 mb-0 mt-1">No Search Results Found!</p>
                         </div>
                     </div>
                     <div class="col-12 mt-30">
@@ -90,16 +111,30 @@
                                 <a href="/albums/{{ $album->id ?? '' }}" class="text-decoration-none">
                                     @if ($album->cover)
                                         <img src="{{ asset('storage/' . $album->cover ?? '') }}"
-                                            class="rounded artist-image img-fluid" alt="{{ $album->album_name }}">
+                                            class="artist-image img-fluid rounded" alt="{{ $album->name }}">
                                     @else
                                         <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                            class="rounded artist-image img-fluid" alt="{{ $album->album_name ?? '' }}">
+                                            class="artist-image img-fluid rounded" alt="{{ $album->name ?? '' }}">
                                     @endif
                                     <p class="text-truncate-2-line text-truncate text-color-100"
-                                        title="{{ $album->album_name }}">{{ $album->album_name ?? '' }}</p>
+                                        title="{{ $album->name }}">
+                                        {{ $album->name ?? '' }}</p>
                                     <span>{{ \Carbon\Carbon::create($album->release)->format('Y') }} •
                                         {{ $album->type }}</span>
-                                    <p class="fw-medium text-color-100 mt-0">{{ $album->artist->artist_name }}</p>
+                                    @if ($album->artists->count() > 1)
+                                        <p class="fw-medium text-color-100 mt-0">
+                                            @foreach ($album->artists->sortBy('artist_name') as $albumArtist)
+                                                <span>{{ $albumArtist->artist_name }}{{ $loop->last ? '' : ',' }}</span>
+                                            @endforeach
+                                        </p>
+                                    @elseif ($album->artists->count() == 1)
+                                        @foreach ($album->artists as $albumArtist)
+                                            <p class="fw-medium text-color-100 mt-0">
+                                                {{ $albumArtist->artist_name }}</p>
+                                        @endforeach
+                                    @else
+                                        <p class="fw-medium text-danger mt-0">No Artist</p>
+                                    @endif
                                 </a>
                             </div>
                         </div>
@@ -107,35 +142,10 @@
                         <div class="col">
                             <div class="text-color-100 text-center">
                                 <i class="las la-compact-disc fs-1"></i>
-                                <p class="mb-0 mt-1 fw-medium fs-14">No Album Found!</p>
+                                <p class="fw-medium fs-14 mb-0 mt-1">No Album Found!</p>
                             </div>
                         </div>
                     @endforelse
-                @else
-                    <div class="row">
-                        <div class="gallery-cards-head">
-                            <h3>Artists</h3>
-                        </div>
-                        @foreach ($searchResults->load('artist')->unique('artist_id') as $artistResult)
-                            <div
-                                class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
-                                <div class="artist-card">
-                                    <a href="/artists/{{ $artistResult->artist->codename ?? '' }}">
-                                        @if ($artistResult->artist->artist_pict)
-                                            <img src="{{ asset('storage/' . $artistResult->artist->artist_pict ?? '') }}"
-                                                class="rounded artist-image img-fluid"
-                                                alt="{{ $artistResult->artist->artist_name }}">
-                                        @else
-                                            <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                                class="rounded artist-image img-fluid"
-                                                alt="{{ $artistResult->artist->artist_name ?? '' }}">
-                                        @endif
-                                        <p>{{ $artistResult->artist->artist_name ?? '' }}</p>
-                                    </a>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
                 @endforelse
             </div>
         </section>
@@ -152,11 +162,11 @@
                         class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="artist-card">
                             <a href="/artists/{{ $artist->codename ?? '' }}">
-                                @if ($artist->artist_pict)
-                                    <img src="{{ asset('storage/' . $artist->artist_pict ?? '') }}"
-                                        class="rounded artist-image img-fluid" alt="{{ $artist->artist_name }}">
+                                @if ($artist->artist_picture)
+                                    <img src="{{ asset('storage/' . $artist->artist_picture ?? '') }}"
+                                        class="artist-image img-fluid rounded" alt="{{ $artist->artist_name }}">
                                 @else
-                                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
+                                    <img src="{{ asset('img/unknown_artist.jpg') }}" class="artist-image img-fluid rounded"
                                         alt="{{ $artist->artist_name ?? '' }}">
                                 @endif
                                 <p>{{ $artist->artist_name ?? '' }}</p>
@@ -168,7 +178,7 @@
                     <div class="col">
                         <div class="text-color-100 text-center">
                             <i class="las la-user-slash fs-1"></i>
-                            <p class="mb-0 mt-1 fw-medium fs-14">No Artist Found!</p>
+                            <p class="fw-medium fs-14 mb-0 mt-1">No Artist Found!</p>
                         </div>
                     </div>
                 @endforelse
@@ -187,16 +197,29 @@
                             <a href="/albums/{{ $album->id ?? '' }}" class="text-decoration-none">
                                 @if ($album->cover)
                                     <img src="{{ asset('storage/' . $album->cover ?? '') }}"
-                                        class="rounded artist-image img-fluid" alt="{{ $album->album_name }}">
+                                        class="artist-image img-fluid rounded" alt="{{ $album->name }}">
                                 @else
                                     <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                        class="rounded artist-image img-fluid" alt="{{ $album->album_name ?? '' }}">
+                                        class="artist-image img-fluid rounded" alt="{{ $album->name ?? '' }}">
                                 @endif
-                                <p class="text-truncate-2-line text-truncate text-color-100"
-                                    title="{{ $album->album_name }}">{{ $album->album_name ?? '' }}</p>
+                                <p class="text-truncate-2-line text-truncate text-color-100" title="{{ $album->name }}">
+                                    {{ $album->name ?? '' }}</p>
                                 <span>{{ \Carbon\Carbon::create($album->release)->format('Y') }} •
                                     {{ $album->type }}</span>
-                                <p class="fw-medium text-color-100 mt-0">{{ $album->artist->artist_name }}</p>
+                                @if ($album->artists->count() > 1)
+                                    <p class="fw-medium text-color-100 mt-0">
+                                        @foreach ($album->artists->sortBy('artist_name') as $albumArtist)
+                                            <span>{{ $albumArtist->artist_name }}{{ $loop->last ? '' : ',' }}</span>
+                                        @endforeach
+                                    </p>
+                                @elseif ($album->artists->count() == 1)
+                                    @foreach ($album->artists as $albumArtist)
+                                        <p class="fw-medium text-color-100 mt-0">
+                                            {{ $albumArtist->artist_name }}</p>
+                                    @endforeach
+                                @else
+                                    <p class="fw-medium text-danger mt-0">No Artist</p>
+                                @endif
                             </a>
                         </div>
                     </div>
@@ -204,7 +227,7 @@
                     <div class="col">
                         <div class="text-color-100 text-center">
                             <i class="las la-compact-disc fs-1"></i>
-                            <p class="mb-0 mt-1 fw-medium fs-14">No Album Found!</p>
+                            <p class="fw-medium fs-14 mb-0 mt-1">No Album Found!</p>
                         </div>
                     </div>
                 @endforelse

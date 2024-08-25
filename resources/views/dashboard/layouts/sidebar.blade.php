@@ -108,6 +108,13 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('album-artist.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/album-artist') ? 'text-active' : '' }}">
+                        <i class="las la-user-friends"></i>
+                        Album Artist
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('artists.index') }}"
                         class="menu-nav {{ Request::is('dashboard/artists*') ? 'text-active' : '' }}">
                         <i class="las la-user"></i>

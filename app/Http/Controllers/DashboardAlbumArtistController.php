@@ -2,16 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
+use App\Models\Artist;
 use Illuminate\Http\Request;
+use Illuminate\Database\UniqueConstraintViolationException;
 
 class DashboardAlbumArtistController extends Controller
 {
+    final public const DASHBOARD_ALBUM_ARTIST_PATH = "/dashboard/album-artist";
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $album = Album::with('artists')->orderBy('name')->get();
+
+        return view('dashboard.album_artist.index', [
+            'title' => 'Album Artists Table',
+            'albumArtist' => $album,
+        ]);
     }
 
     /**
@@ -19,7 +29,11 @@ class DashboardAlbumArtistController extends Controller
      */
     public function create()
     {
-        //
+        return view('dashboard.album_artist.create', [
+            'title' => 'Create Album Artist',
+            'artists' => Artist::orderBy('artist_name')->get(),
+            'albums' => Album::orderBy('name')->get(),
+        ]);
     }
 
     /**
@@ -27,38 +41,30 @@ class DashboardAlbumArtistController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validateData = $request->validate([
+            'artist_id' => 'required',
+            'album_id' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $album = Album::find($validateData['album_id']);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        try {
+            $album->artists()->attach($validateData['artist_id']);
+            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', "The Relation has been created!");
+        } catch (UniqueConstraintViolationException) {
+            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('warning', "This project has already associated with the artist!");
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, string $id)
     {
-        //
+        $album = Album::find($id);
+
+        $album->artists()->detach($request->artist_id);
+
+        return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', "The Relation has been deleted!");
     }
 }
