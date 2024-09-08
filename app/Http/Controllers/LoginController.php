@@ -64,14 +64,15 @@ class LoginController extends Controller
 
         $existUser = User::where('email', $googleUser->email)->first();
 
-        $message = "Welcome to Kpop Soulmate!";
+        $message = 'Welcome to Kpop Soulmate!';
 
         if ($existUser != null && $existUser->google_id == null) {
             return redirect('/login')->with('loginError', 'This account is not connected to Google. Please login with email instead!');
         }
 
         if ($existUser == null) {
-            $user = User::create([
+            $user = User::create(
+                [
                     'google_id' => $googleUser->id,
                     'name' => $googleUser->name,
                     'email' => $googleUser->email,
@@ -83,7 +84,7 @@ class LoginController extends Controller
             );
         } elseif ($existUser !== null && $existUser->google_id !== null) {
             $user = User::where('google_id', $existUser->google_id)->first();
-            $message = "Welcome Back!";
+            $message = 'Welcome Back!';
         }
 
         Auth::login($user);

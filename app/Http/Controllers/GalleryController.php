@@ -57,9 +57,9 @@ class GalleryController extends Controller
             ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status'])
             ->shuffle();
 
-        $categoriesQuery = Category::all()->sortBy('category_name');
+        $categoriesQuery = Category::orderBy('category_name')->get();
 
-        $typesQuery = ProjectType::all()->sortBy('type_name');
+        $typesQuery = ProjectType::orderBy('type_name')->get();
 
         $title = '';
 

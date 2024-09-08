@@ -57,7 +57,7 @@
         </div>
     </section>
 
-    <section id="table-category">
+    <section id="table-genre">
         <div class="row mb-5">
             <div class="col">
                 <div class="table-container">
@@ -111,8 +111,8 @@
                                 @empty
                                     <tr>
                                         <td colspan="8" class="text-center text-color-100">
-                                            <i class="las la-icons fs-48"></i>
-                                            <p class="fs-14 fw-medium mt-1 mb-0">No Category Found!</p>
+                                            <i class="las la-list fs-48"></i>
+                                            <p class="fs-14 fw-medium mt-1 mb-0">No Genre Found!</p>
                                         </td>
                                     </tr>
                                 @endforelse

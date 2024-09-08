@@ -31,7 +31,7 @@ class ArtistController extends Controller
             ->sortBy('title')->groupBy('category_id');
 
         return view('artist', [
-            'title' => $artist->artist_name . " Gallery",
+            'title' => $artist->artist_name . ' Gallery',
             'artist' => $artist,
             'artistVideos' => $artistQuery,
             'projectsByGroup' => $artistVideoByGroup

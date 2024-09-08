@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardAlbumController extends Controller
 {
+    final public const DASHBOARD_ALBUM_PATH = '/dashboard/albums';
+
     /**
      * Display a listing of the resource.
      */
@@ -37,9 +39,9 @@ class DashboardAlbumController extends Controller
     {
         return view('dashboard.albums.create', [
             'title' => 'Create Album',
-            'artists' => Artist::all()->sortBy('artist_name'),
+            'artists' => Artist::orderBy('artist_name')->get(),
             'types' => AlbumType::cases(),
-            'publishers' => Company::all()->sortBy('name')
+            'publishers' => Company::orderBy('name')->get()
         ]);
     }
 
@@ -62,7 +64,7 @@ class DashboardAlbumController extends Controller
 
         Album::create($validateData);
 
-        return redirect('/dashboard/albums')->with('success', 'New Album has been created!');
+        return redirect(self::DASHBOARD_ALBUM_PATH)->with('success', 'New Album has been created!');
     }
 
     /**
@@ -84,9 +86,9 @@ class DashboardAlbumController extends Controller
         return view('dashboard.albums.edit', [
             'title' => 'Update Album',
             'album' => $album,
-            'artists' => Artist::all()->sortBy('artist_name'),
+            'artists' => Artist::orderBy('artist_name')->get(),
             'types' => AlbumType::cases(),
-            'publishers' => Company::all()->sortBy('name')
+            'publishers' => Company::orderBy('name')->get()
         ]);
     }
 
@@ -115,12 +117,7 @@ class DashboardAlbumController extends Controller
 
         Album::where('id', $album->id)->update($validateData);
 
-        // Many to Many Attach coba
-        // $album = Album::find($album->id);
-
-        // $album->artists()->attach($request->artist_id);
-
-        return redirect('/dashboard/albums')->with('success', 'The album has been updated!');
+        return redirect(self::DASHBOARD_ALBUM_PATH)->with('success', 'The album has been updated!');
     }
 
     /**
@@ -134,10 +131,10 @@ class DashboardAlbumController extends Controller
             if ($album->cover != null) {
                 Storage::delete($album->cover);
             }
-            return redirect('/dashboard/albums')->with('success', 'The album has been deleted!');
+            return redirect(self::DASHBOARD_ALBUM_PATH)->with('success', 'The album has been deleted!');
         } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                return redirect('/dashboard/albums')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            if ($e->getCode() == '23000') {
+                return redirect(self::DASHBOARD_ALBUM_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

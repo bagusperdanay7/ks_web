@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardGenreController extends Controller
 {
+    final public const DASHBOARD_GENRE_PATH = '/dashboard/genres';
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +41,7 @@ class DashboardGenreController extends Controller
 
         Genre::create($validateData);
 
-        return redirect('/dashboard/genres')->with('success', 'New Genre has been created!');
+        return redirect(self::DASHBOARD_GENRE_PATH)->with('success', 'New Genre has been created!');
     }
 
     /**
@@ -78,7 +79,7 @@ class DashboardGenreController extends Controller
 
         Genre::where('id', $genre->id)->update($validateData);
 
-        return redirect('/dashboard/genres')->with('success', 'The Genre has been updated!');
+        return redirect(self::DASHBOARD_GENRE_PATH)->with('success', 'The Genre has been updated!');
     }
 
     /**
@@ -88,10 +89,10 @@ class DashboardGenreController extends Controller
     {
         try {
             Genre::destroy($genre->id);
-            return redirect('/dashboard/genres')->with('success', 'The genre has been deleted!');
+            return redirect(self::DASHBOARD_GENRE_PATH)->with('success', 'The genre has been deleted!');
         } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                return redirect('/dashboard/genres')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            if ($e->getCode() == '23000') {
+                return redirect(self::DASHBOARD_GENRE_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

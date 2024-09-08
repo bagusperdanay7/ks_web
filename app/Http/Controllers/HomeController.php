@@ -10,12 +10,10 @@ class HomeController extends Controller
     public function index()
     {
 
-        $scheduleQuery = Project::where('status', 'In Progress')
-            ->get()
-            ->sortBy('date');
+        $scheduleQuery = Project::where('status', 'In Progress')->orderBy('date')->get();
 
         return view('home', [
-            "title" => "Home",
+            'title' => 'Home',
             'schedules' => $scheduleQuery,
         ]);
     }

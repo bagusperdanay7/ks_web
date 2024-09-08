@@ -44,7 +44,7 @@
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-                                        {{ $request->project_title }}</div>
+                                        {{ $request->title }}</div>
                                     <div @class([
                                         'col-12',
                                         'col-md',
@@ -66,7 +66,7 @@
                                         'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $request->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
-                                            {{ $request->type->type_name }}</span></div>
+                                            {{ $request->projectType->type_name }}</span></div>
                                     <div
                                         class="col-12 col-md text-color-100 order-1 order-md-3 mb-10 mb-md-0 d-flex d-md-block justify-content-between">
                                         <div>
@@ -83,7 +83,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md d-none d-md-block text-color-100 order-4">
-                                        {{ $request->type->type_name }}</div>
+                                        {{ $request->projectType->type_name }}</div>
                                     <div class="col-12 col-md order-2 order-md-5 mb5 mb-md-0">
                                         <span @class([
                                             'btn',
@@ -135,7 +135,7 @@
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-                                        {{ $completedRequest->project_title }}</div>
+                                        {{ $completedRequest->title }}</div>
                                     <div @class([
                                         'col-12',
                                         'col-md',
@@ -162,7 +162,7 @@
                                         'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $completedRequest->category->category_name }}
                                         <span class="d-inline d-md-none text-color-100 fw-medium">•
-                                            {{ $completedRequest->type->type_name }}</span></div>
+                                            {{ $completedRequest->projectType->type_name }}</span></div>
                                     <div
                                         class="col-12 col-md text-color-100 order-1 order-md-3 mb-10 mb-md-0 d-flex d-md-block justify-content-between">
                                         <div>
@@ -179,7 +179,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md d-none d-md-block text-color-100 order-4">
-                                        {{ $completedRequest->type->type_name }}</div>
+                                        {{ $completedRequest->projectType->type_name }}</div>
                                     <div class="col-12 col-md order-2 order-md-5 mb5 mb-md-0">
                                         <span @class([
                                             'btn',
@@ -231,7 +231,7 @@
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-                                        {{ $OnProcessRequest->project_title }}</div>
+                                        {{ $OnProcessRequest->title }}</div>
                                     <div @class([
                                         'col-12',
                                         'col-md',
@@ -258,7 +258,7 @@
                                         'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $OnProcessRequest->category->category_name }}
                                         <span class="d-inline d-md-none text-color-100 fw-medium">•
-                                            {{ $OnProcessRequest->type->type_name }}</span></div>
+                                            {{ $OnProcessRequest->projectType->type_name }}</span></div>
                                     <div
                                         class="col-12 col-md text-color-100 order-1 order-md-3 mb-10 mb-md-0 d-flex d-md-block justify-content-between">
                                         <div>
@@ -275,7 +275,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md d-none d-md-block text-color-100 order-4">
-                                        {{ $OnProcessRequest->type->type_name }}</div>
+                                        {{ $OnProcessRequest->projectType->type_name }}</div>
                                     <div class="col-12 col-md order-2 order-md-5 mb5 mb-md-0">
                                         <span @class([
                                             'btn',
@@ -327,7 +327,7 @@
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-                                        {{ $pendingRequest->project_title }}</div>
+                                        {{ $pendingRequest->title }}</div>
                                     <div @class([
                                         'col-12',
                                         'col-md',
@@ -353,7 +353,7 @@
                                         'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $pendingRequest->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
-                                            {{ $pendingRequest->type->type_name }}</span></div>
+                                            {{ $pendingRequest->projectType->type_name }}</span></div>
                                     <div
                                         class="col-12 col-md text-color-100 order-1 order-md-3 mb-10 mb-md-0 d-flex d-md-block justify-content-between">
                                         <div>
@@ -370,7 +370,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md d-none d-md-block text-color-100 order-4">
-                                        {{ $pendingRequest->type->type_name }}</div>
+                                        {{ $pendingRequest->projectType->type_name }}</div>
                                     <div class="col-12 col-md order-2 order-md-5 mb5 mb-md-0">
                                         <span @class([
                                             'btn',
@@ -422,7 +422,7 @@
                                 <div class="row fs-12 align-items-center {{ $loop->last ? 'mb-0' : 'mb-4' }}">
                                     <div
                                         class="col-12 col-md-3 text-truncate text-color-100 order-3 order-md-1 mb5 mb-md-0 fw-semibold">
-                                        {{ $rejectedRequest->project_title }}</div>
+                                        {{ $rejectedRequest->title }}</div>
                                     <div @class([
                                         'col-12',
                                         'col-md',
@@ -449,7 +449,7 @@
                                         'text-info' => $request->category->category_name === 'Other',
                                     ])>{{ $rejectedRequest->category->category_name }} <span
                                             class="d-inline d-md-none text-color-100 fw-medium">•
-                                            {{ $rejectedRequest->type->type_name }}</span></div>
+                                            {{ $rejectedRequest->projectType->type_name }}</span></div>
                                     <div
                                         class="col-12 col-md text-color-100 order-1 order-md-3 mb-10 mb-md-0 d-flex d-md-block justify-content-between">
                                         <div>
@@ -466,7 +466,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md d-none d-md-block text-color-100 order-4">
-                                        {{ $rejectedRequest->type->type_name }}</div>
+                                        {{ $rejectedRequest->projectType->type_name }}</div>
                                     <div class="col-12 col-md order-2 order-md-5 mb5 mb-md-0">
                                         <span @class([
                                             'btn',

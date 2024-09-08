@@ -55,6 +55,6 @@ class Project extends Model
 
     public function playlists(): BelongsToMany
     {
-        return $this->belongsToMany(Playlist::class)->using(PlaylistProject::class)->withPivot('order', 'main')->withTimestamps();
+        return $this->belongsToMany(Playlist::class)->using(PlaylistProject::class)->withPivot('order', 'main_video')->withTimestamps();
     }
 }

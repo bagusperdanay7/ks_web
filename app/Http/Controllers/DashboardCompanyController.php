@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class DashboardCompanyController extends Controller
 {
+    final public const DASHBOARD_COMPANY_PATH = '/dashboard/companies';
     /**
      * Display a listing of the resource.
      */
@@ -40,7 +41,7 @@ class DashboardCompanyController extends Controller
 
         Company::create($validateData);
 
-        return redirect('/dashboard/companies')->with('success', 'New Company has been created!');
+        return redirect(self::DASHBOARD_COMPANY_PATH)->with('success', 'New Company has been created!');
     }
 
     /**
@@ -78,7 +79,7 @@ class DashboardCompanyController extends Controller
 
         Company::where('id', $company->id)->update($validateData);
 
-        return redirect('/dashboard/companies')->with('success', 'The Company has been updated!');
+        return redirect(self::DASHBOARD_COMPANY_PATH)->with('success', 'The Company has been updated!');
     }
 
     /**
@@ -86,13 +87,12 @@ class DashboardCompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        // TODO: Bikin sesuai laravel try catchnya
         try {
             Company::destroy($company->id);
-            return redirect('/dashboard/companies')->with('success', 'The company has been deleted!');
+            return redirect(self::DASHBOARD_COMPANY_PATH)->with('success', 'The company has been deleted!');
         } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                return redirect('/dashboard/companies')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            if ($e->getCode() == '23000') {
+                return redirect(self::DASHBOARD_COMPANY_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

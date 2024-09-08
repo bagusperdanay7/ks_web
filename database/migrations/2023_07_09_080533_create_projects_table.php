@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('requester')->default("Unknown Google Forms Requester");
+            $table->string('requester')->default('Unknown Google Forms Requester');
             $table->datetime('date')->nullable();
             $table->enum('status',  Status::toArray())->default(Status::PENDING->value);
             $table->string('youtube_id')->nullable();

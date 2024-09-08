@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Album;
 use App\Models\Artist;
-use Illuminate\Contracts\Database\Eloquent\Builder;
 
 class AlbumController extends Controller
 {

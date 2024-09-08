@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class DashboardProjectArtistController extends Controller
 {
-    final public const DASHBOARD_PROJECT_ARTIST_PATH = "/dashboard/project-artist";
+    final public const DASHBOARD_PROJECT_ARTIST_PATH = '/dashboard/project-artist';
     /**
      * Display a listing of the resource.
      */
@@ -30,7 +30,7 @@ class DashboardProjectArtistController extends Controller
     {
         return view('dashboard.project_artist.create', [
             'title' => 'Create Project Artist',
-            'artists' => Artist::orderBy('artist_name')->get(), // TODO: Pakai Where Artis Classification = Group
+            'artists' => Artist::orderBy('artist_name')->where('classification', 'Group')->get(),
             'projects' => Project::orderBy('title')->get(),
         ]);
     }
@@ -49,9 +49,9 @@ class DashboardProjectArtistController extends Controller
 
         try {
             $project->artists()->attach($validateData['artist_id']);
-            return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('success', "The Relation has been created!");
+            return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('success', 'The Relation has been created!');
         } catch (UniqueConstraintViolationException) {
-            return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('warning', "This project has already associated with the artist!");
+            return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('warning', 'This project has already associated with the artist!');
         }
     }
 
@@ -64,6 +64,6 @@ class DashboardProjectArtistController extends Controller
 
         $project->artists()->detach($request->artist_id);
 
-        return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('success', "The Relation has been deleted!");
+        return redirect(self::DASHBOARD_PROJECT_ARTIST_PATH)->with('success', 'The Relation has been deleted!');
     }
 }

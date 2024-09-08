@@ -4,20 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Enums\ArtistRole;
-use App\Models\Album;
-use App\Models\AlbumSong;
 use App\Models\Artist;
 use App\Models\Song;
 
 class DashboardSongArtistController extends Controller
 {
-    const DASHBOARD_SONG_ARTIST_PATH = "/dashboard/song-artist";
+    final public const DASHBOARD_SONG_ARTIST_PATH = '/dashboard/song-artist';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        // $album = Album::with(['songs:id,title', 'artist:id,artist_name'])->orderBy('album_name')->paginate(10);
         $song = Song::with('artists')->orderBy('title')->get();
 
         return view('dashboard.song_artist.index', [
@@ -54,7 +51,7 @@ class DashboardSongArtistController extends Controller
 
         $song->artists()->attach($validateData['artist_id'],  ['role' => $validateData['role']]);
 
-        return redirect(self::DASHBOARD_SONG_ARTIST_PATH)->with('success', "The Relation has been created!");
+        return redirect(self::DASHBOARD_SONG_ARTIST_PATH)->with('success', 'The Relation has been created!');
     }
 
     /**
@@ -66,6 +63,6 @@ class DashboardSongArtistController extends Controller
 
         $song->artists()->detach($request->artist_id);
 
-        return redirect(self::DASHBOARD_SONG_ARTIST_PATH)->with('success', "The Relation has been deleted!");
+        return redirect(self::DASHBOARD_SONG_ARTIST_PATH)->with('success', 'The Relation has been deleted!');
     }
 }

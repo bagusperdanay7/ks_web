@@ -143,6 +143,34 @@
                     </a>
                 </li>
                 <li>
+                    <a href="{{ route('idols.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/idols*') ? 'text-active' : '' }}">
+                        <i class="las la-user-astronaut"></i>
+                        Idols
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('member-group.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/member-group*') ? 'text-active' : '' }}">
+                        <i class="las la-users"></i>
+                        Member Group
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('playlists.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/playlists*') ? 'text-active' : '' }}">
+                        <i class="las la-play-circle"></i>
+                        Playlists
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('playlist-project.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/playlist-project*') ? 'text-active' : '' }}">
+                        <i class="las la-photo-video"></i>
+                        Playlist Project
+                    </a>
+                </li>
+                <li>
                     <a href="{{ route('projects.index') }}"
                         class="menu-nav {{ Request::is('dashboard/projects*') ? 'text-active' : '' }}">
                         <i class="las la-chalkboard"></i>
@@ -175,6 +203,13 @@
                         class="menu-nav {{ Request::is('dashboard/song-artist') ? 'text-active' : '' }}">
                         <i class="las la-user-friends"></i>
                         Song Artist
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('song-genre.index') }}"
+                        class="menu-nav {{ Request::is('dashboard/song-genre*') ? 'text-active' : '' }}">
+                        <i class="las la-music"></i>
+                        Song Genre
                     </a>
                 </li>
             </ul>

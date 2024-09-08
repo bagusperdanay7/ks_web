@@ -12,6 +12,8 @@ use Illuminate\Validation\Rules\Password;
 
 class AccountController extends Controller
 {
+    final public const ACCOUNT_PROFILE_PATH = '/account/profile';
+
     /**
      * Display a listing of the resource.
      */
@@ -27,11 +29,11 @@ class AccountController extends Controller
      */
     public function requests()
     {
-        $myRequestsQuery = Project::orderBy('project_title')->where('requester', Auth::user()->name)->get();
-        $myCompletedRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Completed']])->get();
-        $myOnProcessRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'On Process']])->get();
-        $myPendingRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Pending']])->get();
-        $myRejectedRequestQuery = Project::orderBy('project_title')->where([['requester', Auth::user()->name], ['status', 'Rejected']])->get();
+        $myRequestsQuery = Project::orderBy('title')->where('requester', Auth::user()->name)->get();
+        $myCompletedRequestQuery = Project::orderBy('title')->where([['requester', Auth::user()->name], ['status', 'Completed']])->get();
+        $myOnProcessRequestQuery = Project::orderBy('title')->where([['requester', Auth::user()->name], ['status', 'In Progress']])->get();
+        $myPendingRequestQuery = Project::orderBy('title')->where([['requester', Auth::user()->name], ['status', 'Pending']])->get();
+        $myRejectedRequestQuery = Project::orderBy('title')->where([['requester', Auth::user()->name], ['status', 'Rejected']])->get();
 
         return view('account.requests', [
             'title' => 'My Requests',
@@ -60,7 +62,7 @@ class AccountController extends Controller
 
         $user::where('id', $userId)->update($validateData);
 
-        return redirect('/account/profile')->with('updateSuccess', "The Account Information has been updated!");
+        return redirect('/account/profile')->with('updateSuccess', 'The Account Information has been updated!');
     }
 
     public function updateProfilePicture(Request $request)
@@ -68,10 +70,10 @@ class AccountController extends Controller
         $rules = [
             'profile_picture' => 'required|image|file|max:256',
         ];
-        
+
         $validateData = $request->validate($rules);
 
-        if($request->file('profile_picture')) {
+        if ($request->file('profile_picture')) {
 
             if (Auth::user()->profile_picture !== null) {
                 Storage::delete(Auth::user()->profile_picture);
@@ -84,7 +86,7 @@ class AccountController extends Controller
 
         User::where('id', $userId)->update($validateData);
 
-        return redirect('/account/profile')->with('changeProfileSuccess', "Profile Picture has been updated!");
+        return redirect(self::ACCOUNT_PROFILE_PATH)->with('changeProfileSuccess', 'Profile Picture has been updated!');
     }
 
     public function removeProfilePicture()
@@ -97,7 +99,7 @@ class AccountController extends Controller
 
         User::where('id', $userId)->update(['profile_picture' => null]);
 
-        return redirect('/account/profile')->with('changeProfileSuccess', "Profile Picture has been removed!");
+        return redirect(self::ACCOUNT_PROFILE_PATH)->with('changeProfileSuccess', 'Profile Picture has been removed!');
     }
 
     public function changePassword(Request $request)
@@ -105,28 +107,28 @@ class AccountController extends Controller
         $validatedData = $request->validate([
             'old-password' => 'required',
             'password' => ['required', 'max:191', Password::min(8)->letters()
-                        ->mixedCase()
-                        ->numbers()],
+                ->mixedCase()
+                ->numbers()],
             'confirm-password' => 'required|min:8|same:password'
         ], [
             'confirm-password.same' => 'The Confirm Password does not match password'
         ]);
 
-        
+
         if (!Hash::check($validatedData['old-password'], auth()->user()->password)) {
             return back()->with('errorOldpassword', 'The old password does not match your password!');
         }
-        
+
         if (Hash::check($validatedData['password'], auth()->user()->password)) {
             return back()->with('errorSamePassword', 'New password should be different from your old password!');
         }
-        
+
         $validatedData['password'] = Hash::make($validatedData['password']);
-        
+
         $userId = Auth::id();
 
         User::where('id', $userId)->update(['password' => $validatedData['password']]);
 
-        return redirect('/account/profile')->with('successChangePassword', "Password has been changed!");
+        return redirect(self::ACCOUNT_PROFILE_PATH)->with('successChangePassword', 'Password has been changed!');
     }
 }

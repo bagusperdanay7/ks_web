@@ -11,8 +11,9 @@ use Illuminate\Support\Facades\Storage;
 
 class DashboardAIModelController extends Controller
 {
-    // TODO: Ubah nanti saja
-    // public $maxCharacterValidate = "max:191";
+    final public const MAX_STRING_CHAR_VALIDATION = 'max:191';
+    final public const DASHBOARD_AIMODEL_PATH = '/dashboard/ai-models';
+
     /**
      * Display a listing of the resource.
      */
@@ -32,7 +33,7 @@ class DashboardAIModelController extends Controller
         return view('dashboard.ai_models.create', [
             'title' => 'Create AI Model',
             'statuses' => Status::cases(),
-            'artists' => Artist::all()->sortBy('artist_name'),
+            'artists' => Artist::orderBy('artist_name')->get(),
         ]);
     }
 
@@ -42,8 +43,8 @@ class DashboardAIModelController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'model_name' => ['required', 'max:191'],
-            'url' => ['url', 'max:191'],
+            'model_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
+            'url' => ['url', 'nullable', self::MAX_STRING_CHAR_VALIDATION],
             'status' => ['required'],
             'audio_sample' => [File::types(['mp3', 'wav', 'mp4a'])->max('5mb')],
             'artist_id' => ['required']
@@ -53,11 +54,13 @@ class DashboardAIModelController extends Controller
             $validateData['audio_sample'] = $request->file('audio_sample')->store('audio/ai-models/sample');
         }
 
-        $validateData['description'] = strip_tags($request->description);
+        if ($request->description !== null) {
+            $validateData['description'] = strip_tags($request->description);
+        }
 
         AIModel::create($validateData);
 
-        return redirect('/dashboard/ai-models')->with('success', "New AI Model has been created!");
+        return redirect(self::DASHBOARD_AIMODEL_PATH)->with('success', 'New AI Model has been created!');
     }
 
     /**
@@ -80,7 +83,7 @@ class DashboardAIModelController extends Controller
             'title' => 'Update AI Model',
             'aiModel' => $aiModel,
             'statuses' => Status::cases(),
-            'artists' => Artist::all()->sortBy('artist_name'),
+            'artists' => Artist::orderBy('artist_name')->get(),
         ]);
     }
 
@@ -90,8 +93,8 @@ class DashboardAIModelController extends Controller
     public function update(Request $request, AIModel $aiModel)
     {
         $rules = [
-            'model_name' => ['required', 'max:191'],
-            'url' => ['url', 'max:191'],
+            'model_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
+            'url' => ['url', 'nullable', self::MAX_STRING_CHAR_VALIDATION],
             'status' => ['required'],
             'sample' => [File::types(['mp3', 'wav', 'mp4a'])->max('5mb')],
             'artist_id' => ['required']
@@ -107,11 +110,13 @@ class DashboardAIModelController extends Controller
             $validateData['audio_sample'] = $request->file('audio_sample')->store('audio/ai-models/audio_sample');
         }
 
-        $validateData['description'] = strip_tags($request->description);
+        if ($request->description !== null) {
+            $validateData['description'] = strip_tags($request->description);
+        }
 
         AIModel::where('id', $aiModel->id)->update($validateData);
 
-        return redirect('/dashboard/ai-models')->with('success', "The AI Model has been updated!");
+        return redirect(self::DASHBOARD_AIMODEL_PATH)->with('success', 'The AI Model has been updated!');
     }
 
     /**
@@ -125,6 +130,6 @@ class DashboardAIModelController extends Controller
 
         AIModel::destroy($aiModel->id);
 
-        return redirect('/dashboard/ai-models')->with('success', "The Model has been deleted!");
+        return redirect(self::DASHBOARD_AIMODEL_PATH)->with('success', 'The Model has been deleted!');
     }
 }

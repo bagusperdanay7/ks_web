@@ -39,16 +39,13 @@ class DashboardController extends Controller
 
         $allCategory = Category::all()->load('projects');
 
-        if ($requestTotal === 0) {
-            $progressRequests = 0;
-        } else {
-            $progressRequests = (int) (($completedRequestTotal / $requestTotalWithOutRejected) * 100);
-        }
+        $requestTotal === 0 ? $progressRequests = 0
+            : $progressRequests = (int) (($completedRequestTotal / $requestTotalWithOutRejected) * 100);
 
         return view('dashboard.analytics.index', [
             'title' => 'Dashboard',
-            'requestList' => Project::where('status', 'Pending')->take(10)->get()->sortBy('date'),
-            'upcomings' => Project::where('status', 'In Progress')->take(5)->get()->sortBy('date'),
+            'requestList' => Project::where('status', 'Pending')->orderBy('date')->take(10)->get(),
+            'upcomings' => Project::where('status', 'In Progress')->orderBy('date')->take(5)->get(),
             'totalVideo' => $totalVideo,
             'requests' => $requestTotal,
             'completedRequests' => $completedRequestTotal,

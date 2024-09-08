@@ -9,7 +9,7 @@ use Illuminate\Database\UniqueConstraintViolationException;
 
 class DashboardAlbumArtistController extends Controller
 {
-    final public const DASHBOARD_ALBUM_ARTIST_PATH = "/dashboard/album-artist";
+    final public const DASHBOARD_ALBUM_ARTIST_PATH = '/dashboard/album-artist';
 
     /**
      * Display a listing of the resource.
@@ -50,9 +50,9 @@ class DashboardAlbumArtistController extends Controller
 
         try {
             $album->artists()->attach($validateData['artist_id']);
-            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', "The Relation has been created!");
+            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', 'The Relation has been created!');
         } catch (UniqueConstraintViolationException) {
-            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('warning', "This project has already associated with the artist!");
+            return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('warning', 'This project has already associated with the artist!');
         }
     }
 
@@ -65,6 +65,6 @@ class DashboardAlbumArtistController extends Controller
 
         $album->artists()->detach($request->artist_id);
 
-        return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', "The Relation has been deleted!");
+        return redirect(self::DASHBOARD_ALBUM_ARTIST_PATH)->with('success', 'The Relation has been deleted!');
     }
 }

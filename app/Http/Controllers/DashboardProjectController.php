@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Enums\Status;
-use App\Models\Artist;
 use App\Models\Project;
 use App\Models\Category;
 use App\Models\ProjectType;
@@ -13,6 +12,8 @@ use Illuminate\Database\QueryException;
 
 class DashboardProjectController extends Controller
 {
+    final public const MAX_STRING_CHAR_VALIDATION = 'max:191';
+    final public const DASHBOARD_PROJECT_PATH = '/dashboard/projects';
     /**
      * Display a listing of the resource.
      */
@@ -38,10 +39,9 @@ class DashboardProjectController extends Controller
     {
         return view('dashboard.projects.create', [
             'title' => 'Create Project',
-            'artists' => Artist::all()->sortBy('artist_name'),
             'statuses' => Status::cases(),
-            'categories' => Category::all()->sortBy('category_name'),
-            'types' => ProjectType::all()->sortBy('type_name'),
+            'categories' => Category::orderBy('category_name')->get(),
+            'types' => ProjectType::orderBy('type_name')->get(),
         ]);
     }
 
@@ -53,23 +53,24 @@ class DashboardProjectController extends Controller
         $validateData = $request->validate([
             'category_id' => ['required'],
             'project_type_id' => ['required'],
-            'title' => ['required', 'max:191'],
+            'title' => ['required', self::MAX_STRING_CHAR_VALIDATION],
             'date' => ['nullable', 'date'],
-            'requester' => ['required', 'max:191'],
+            'requester' => ['required', self::MAX_STRING_CHAR_VALIDATION],
             'status' => ['required', Rule::enum(Status::class)],
-            'youtube_id' => ['nullable', 'max:191'],
+            'youtube_id' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'progress' => ['integer'],
             'votes' => ['integer'],
             'exclusive' => ['nullable'],
             'created_at' => ['date']
         ]);
 
-        // TODO: Kalau kosong biarkan
-        $validateData['notes'] = strip_tags($request->notes);
+        if ($request->notes !== null) {
+            $validateData['notes'] = strip_tags($request->notes);
+        }
 
         Project::create($validateData);
 
-        return redirect('/dashboard/projects')->with('success', 'New Project has been created!');
+        return redirect(self::DASHBOARD_PROJECT_PATH)->with('success', 'New Project has been created!');
     }
 
     /**
@@ -92,8 +93,8 @@ class DashboardProjectController extends Controller
             'title' => 'Update Project',
             'project' => $project,
             'statuses' => Status::cases(),
-            'categories' => Category::all()->sortBy('category_name'),
-            'types' => ProjectType::all()->sortBy('type_name'),
+            'categories' => Category::orderBy('category_name')->get(),
+            'types' => ProjectType::orderBy('type_name')->get(),
         ]);
     }
 
@@ -102,15 +103,14 @@ class DashboardProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
-
         $rules = [
             'category_id' => ['required'],
             'project_type_id' => ['required'],
-            'title' => ['required', 'max:191'],
+            'title' => ['required', self::MAX_STRING_CHAR_VALIDATION],
             'date' => ['nullable', 'date'],
-            'requester' => ['required', 'max:191'],
+            'requester' => ['required', self::MAX_STRING_CHAR_VALIDATION],
             'status' => ['required', Rule::enum(Status::class)],
-            'youtube_id' => ['nullable', 'max:191'],
+            'youtube_id' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'progress' => ['integer'],
             'votes' => ['integer'],
             'exclusive' => ['nullable'],
@@ -119,11 +119,13 @@ class DashboardProjectController extends Controller
 
         $validateData = $request->validate($rules);
 
-        $validateData['notes'] = strip_tags($request->notes);
+        if ($request->notes !== null) {
+            $validateData['notes'] = strip_tags($request->notes);
+        }
 
         Project::where('id', $project->id)->update($validateData);
 
-        return redirect('/dashboard/projects')->with('success', 'The Project has been updated!');
+        return redirect(self::DASHBOARD_PROJECT_PATH)->with('success', 'The Project has been updated!');
     }
 
     /**
@@ -131,13 +133,12 @@ class DashboardProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        // TODO: Bikin sesuai laravel try catchnya
         try {
             Project::destroy($project->id);
-            return redirect('/dashboard/projects')->with('success', 'The Project has been deleted!');
+            return redirect(self::DASHBOARD_PROJECT_PATH)->with('success', 'The Project has been deleted!');
         } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                return redirect('/dashboard/projects')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            if ($e->getCode() == '23000') {
+                return redirect(self::DASHBOARD_PROJECT_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

@@ -15,10 +15,10 @@ class CompanySeeder extends Seeder
     {
 
         Company::insert([
-            ["name" => "SM Entertainment", "created_at" => now(), "updated_at" => now()],
-            ["name" => "JYP Entertainement", "created_at" => now(), "updated_at" => now()],
-            ["name" => "YG Entertainment", "created_at" => now(), "updated_at" => now()],
-            ["name" => "WM Entertainment", "created_at" => now(), "updated_at" => now()]
+            ['name' => 'SM Entertainment', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'JYP Entertainement', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'YG Entertainment', 'created_at' => now(), 'updated_at' => now()],
+            ['name' => 'WM Entertainment', 'created_at' => now(), 'updated_at' => now()]
         ]);
 
         Company::factory(6)->create();

@@ -16,6 +16,7 @@ class UtilsController extends Controller
         if ($minutes > 0) {
             $duration[] = ($minutes < 10 ? '0' : '') . $minutes;
         }
+
         if ($remainingSeconds > 0 || empty($duration)) {
             $duration[] = ($remainingSeconds < 10 ? '0' : '') . $remainingSeconds;
         } else {

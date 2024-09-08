@@ -8,6 +8,8 @@ use Illuminate\Database\QueryException;
 
 class DashboardCategoryController extends Controller
 {
+    final public const MAX_STRING_CHAR_VALIDATION = 'max:50';
+    final public const DASHBOARD_CATEGORY_PATH = '/dashboard/categories';
     /**
      * Display a listing of the resource.
      */
@@ -15,7 +17,7 @@ class DashboardCategoryController extends Controller
     {
         return view('dashboard.categories.index', [
             'title' => 'Category Table',
-            'categories' => Category::all()->sortBy('category_name'),
+            'categories' => Category::orderBy('category_name')->get(),
         ]);
     }
 
@@ -35,14 +37,14 @@ class DashboardCategoryController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'category_name' => ['required', 'max:50'],
-            'slug' => ['required', 'unique:categories', 'max:50'],
-            'icon_class' => ['required', 'max:50'],
+            'category_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
+            'slug' => ['required', 'unique:categories', self::MAX_STRING_CHAR_VALIDATION],
+            'icon_class' => ['required', self::MAX_STRING_CHAR_VALIDATION],
         ]);
 
         Category::create($validateData);
 
-        return redirect('/dashboard/categories')->with('success', "New Category has been created!");
+        return redirect(self::DASHBOARD_CATEGORY_PATH)->with('success', 'New Category has been created!');
     }
 
     /**
@@ -73,19 +75,19 @@ class DashboardCategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $rules = [
-            'category_name' => ['required', 'max:50'],
-            'icon_class' => ['required', 'max:50'],
+            'category_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
+            'icon_class' => ['required', self::MAX_STRING_CHAR_VALIDATION],
         ];
 
         if ($request->slug !== $category->slug) {
-            $rules['slug'] = ['required', 'unique:categories', 'max:50'];
+            $rules['slug'] = ['required', 'unique:categories', self::MAX_STRING_CHAR_VALIDATION];
         }
 
         $validateData = $request->validate($rules);
 
         Category::where('id', $category->id)->update($validateData);
 
-        return redirect('/dashboard/categories')->with('success', 'The Category has been updated!');
+        return redirect(self::DASHBOARD_CATEGORY_PATH)->with('success', 'The Category has been updated!');
     }
 
     /**
@@ -93,13 +95,12 @@ class DashboardCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        // TODO: Bikin sesuai laravel try catchnya
         try {
             Category::destroy($category->id);
-            return redirect('/dashboard/categories')->with('success', 'The category has been deleted!');
+            return redirect(self::DASHBOARD_CATEGORY_PATH)->with('success', 'The category has been deleted!');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect('/dashboard/categories')->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
+                return redirect(self::DASHBOARD_CATEGORY_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

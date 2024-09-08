@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardPlaylistProjectController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AlbumController;
@@ -25,12 +26,15 @@ use App\Http\Controllers\DashboardAlbumArtistController;
 use App\Http\Controllers\DashboardProjectController;
 use App\Http\Controllers\DashboardCategoryController;
 use App\Http\Controllers\EmailVerificationController;
-use App\Http\Controllers\DashboardAlbumSongsController;
 use App\Http\Controllers\DashboardCompanyController;
 use App\Http\Controllers\DashboardGenreController;
+use App\Http\Controllers\DashboardIdolController;
+use App\Http\Controllers\DashboardMemberGroupController;
+use App\Http\Controllers\DashboardPlaylistController;
 use App\Http\Controllers\DashboardProjectArtistController;
 use App\Http\Controllers\DashboardProjectTypeController;
 use App\Http\Controllers\DashboardSongArtistController;
+use App\Http\Controllers\DashboardSongGenreController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +78,8 @@ Route::get('/gallery/videos/', function () {
     return redirect()->route('gallery');
 });
 
+// TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
+
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
 Route::get('/about-us', [InformationController::class, 'aboutUs'])->name('about-us');
@@ -93,11 +99,17 @@ Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist'])
 // TODO: Bikin Song Detail Terpisah
 Route::get('/albums/{album:id}', [AlbumController::class, 'show']);
 
-// TODO: Lanjut Sini
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'authenticate'])->name('login-post');
 
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/auth/google/redirect', [LoginController::class, 'googleLoginRedirect'])->name('google.login');
+
+Route::get('/auth/google/callback/', [LoginController::class, 'googleLoginCallback'])->name('google.callback');
+
+// TODO: Need an email
 Route::get('/sign-up', [SignUpController::class, 'index'])->name('sign-up')->middleware('guest');
 
 Route::post('/sign-up', [SignUpController::class, 'store'])->name('sign-up-post');
@@ -110,12 +122,6 @@ Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 've
 
 Route::post('/email/verification-notification', [EmailVerificationController::class, 'resendVerification'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::get('/auth/google/redirect', [LoginController::class, 'googleLoginRedirect'])->name('google.login');
-
-Route::get('/auth/google/callback/', [LoginController::class, 'googleLoginCallback'])->name('google.callback');
-
 Route::get('/forgot-password', [ResetPasswordController::class, 'index'])->middleware('guest')->name('password.request');
 
 Route::post('/forgot-password', [ResetPasswordController::class, 'sendEmail'])->middleware('guest')->name('password.email');
@@ -124,17 +130,20 @@ Route::get('/reset-password/{token}', [ResetPasswordController::class, 'resetPas
 
 Route::post('/reset-password', [ResetPasswordController::class, 'update'])->middleware('guest')->name('password.update');
 
-Route::get('/account/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
+// Account
+Route::prefix('account')->group(function () {
+    Route::get('/profile', [AccountController::class, 'index'])->middleware('auth')->name('profile');
 
-Route::put('/account/profile', [AccountController::class, 'update'])->name('account.update');
+    Route::put('/profile', [AccountController::class, 'update'])->name('account.update');
 
-Route::put('/account/picture', [AccountController::class, 'updateProfilePicture'])->name('account.profile.update');
+    Route::put('/picture', [AccountController::class, 'updateProfilePicture'])->name('account.profile.update');
 
-Route::delete('/account/picture', [AccountController::class, 'removeProfilePicture'])->name('account.profile.remove');
+    Route::delete('/picture', [AccountController::class, 'removeProfilePicture'])->name('account.profile.remove');
 
-Route::get('/account/requests', [AccountController::class, 'requests'])->middleware('auth')->name('my-request');
+    Route::get('/requests', [AccountController::class, 'requests'])->middleware('auth')->name('my-request');
 
-Route::put('/account/password', [AccountController::class, 'changePassword'])->name('password.change');
+    Route::put('/password', [AccountController::class, 'changePassword'])->name('password.change');
+});
 
 // Dashboard
 Route::prefix('dashboard')->group(function () {
@@ -144,6 +153,8 @@ Route::prefix('dashboard')->group(function () {
 
     Route::resource('/albums', DashboardAlbumController::class)->middleware('admin');
 
+    Route::resource('/album-artist', DashboardAlbumArtistController::class)->middleware('admin');
+
     Route::resource('/artists', DashboardArtistController::class)->middleware('admin');
 
     Route::resource('/categories', DashboardCategoryController::class)->middleware('admin');
@@ -152,7 +163,17 @@ Route::prefix('dashboard')->group(function () {
 
     Route::resource('/genres', DashboardGenreController::class)->middleware('admin');
 
+    Route::resource('/idols', DashboardIdolController::class)->middleware('admin');
+
+    Route::resource('/member-group', DashboardMemberGroupController::class)->middleware('admin');
+
+    Route::resource('/playlists', DashboardPlaylistController::class)->middleware('admin');
+
+    Route::resource('/playlist-project', DashboardPlaylistProjectController::class)->middleware('admin');
+
     Route::resource('/projects', DashboardProjectController::class)->middleware('admin');
+
+    Route::resource('/project-artist', DashboardProjectArtistController::class)->middleware('admin');
 
     Route::resource('/project-types', DashboardProjectTypeController::class)->middleware('admin');
 
@@ -160,10 +181,5 @@ Route::prefix('dashboard')->group(function () {
 
     Route::resource('/song-artist', DashboardSongArtistController::class)->middleware('admin');
 
-    Route::resource('/project-artist', DashboardProjectArtistController::class)->middleware('admin');
-
-    Route::resource('/album-artist', DashboardAlbumArtistController::class)->middleware('admin');
-
-    // TODO: Buat Dashboard Idols, Member Group, Playlist Project, Project Artist, Song Genre
-    // TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
+    Route::resource('/song-genre', DashboardSongGenreController::class)->middleware('admin');
 });

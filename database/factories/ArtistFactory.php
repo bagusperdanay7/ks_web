@@ -19,14 +19,14 @@ class ArtistFactory extends Factory
     public function definition(): array
     {
         return [
-            "artist_name" => fake()->name(),
-            "codename" => Str::slug(fake()->unique()->userName()),
-            "classification" => fake()->randomElement(['Group', 'Singer', 'Musician']),
-            "birthdate" => fake()->date(),
-            "origin" => fake()->city(),
-            "fandom" => fake()->catchPhrase(),
-            "about" => fake()->paragraph(),
-            "company_id" => Company::factory()
+            'artist_name' => fake()->name(),
+            'codename' => Str::slug(fake()->unique()->userName()),
+            'classification' => fake()->randomElement(['Group', 'Singer', 'Musician']),
+            'birthdate' => fake()->date(),
+            'origin' => fake()->city(),
+            'fandom' => fake()->catchPhrase(),
+            'about' => fake()->paragraph(),
+            'company_id' => Company::factory()
         ];
     }
 }

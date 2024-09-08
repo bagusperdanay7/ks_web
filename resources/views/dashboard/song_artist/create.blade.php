@@ -1,6 +1,6 @@
 @extends('dashboard.layouts.main')
 @section('content')
-    <section id="album-single-dashboard">
+    <section id="song-artist-single-dashboard">
         <div class="row m-bottom-25 justify-content-center">
             <div class="col-md-8 col-12">
                 <div class="form-container">

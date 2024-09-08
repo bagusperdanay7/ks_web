@@ -11,6 +11,7 @@ use Illuminate\Database\QueryException;
 
 class DashboardSongController extends Controller
 {
+    final public const DASHBOARD_SONG_PATH = '/dashboard/songs';
     /**
      * Display a listing of the resource.
      */
@@ -36,7 +37,7 @@ class DashboardSongController extends Controller
         return view('dashboard.songs.create', [
             'title' => 'Create Song',
             'categories' => SongCategory::cases(),
-            'albums' => Album::all()->sortBy('name'),
+            'albums' => Album::orderBy('name')->get(),
         ]);
     }
 
@@ -56,7 +57,7 @@ class DashboardSongController extends Controller
 
         Song::create($validateData);
 
-        return redirect('/dashboard/songs')->with('success', 'New Song has been created!');
+        return redirect(self::DASHBOARD_SONG_PATH)->with('success', 'New Song has been created!');
     }
 
     /**
@@ -85,7 +86,7 @@ class DashboardSongController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * 
+     *
      */
     public function update(Request $request, Song $song)
     {
@@ -102,7 +103,7 @@ class DashboardSongController extends Controller
 
         Song::where('id', $song->id)->update($validateData);
 
-        return redirect('/dashboard/songs')->with('success', 'The Song has been updated!');
+        return redirect(self::DASHBOARD_SONG_PATH)->with('success', 'The Song has been updated!');
     }
 
     /**
@@ -110,13 +111,12 @@ class DashboardSongController extends Controller
      */
     public function destroy(Song $song)
     {
-        // TODO: Bikin sesuai laravel try catchnya
         try {
             Song::destroy($song->id);
-            return redirect('/dashboard/songs')->with('success', 'The song has been deleted!');
+            return redirect(self::DASHBOARD_SONG_PATH)->with('success', 'The song has been deleted!');
         } catch (QueryException $e) {
-            if ($e->getCode() == "23000") {
-                return redirect('/dashboard/songs')->with('danger', "Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.");
+            if ($e->getCode() == '23000') {
+                return redirect(self::DASHBOARD_SONG_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

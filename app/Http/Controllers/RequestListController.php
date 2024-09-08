@@ -17,7 +17,7 @@ class RequestListController extends Controller
     public function index()
     {
         // $channelResult = $this->getYoutubeAPICURL('https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&forUsername=' . request('') . '&prettyPrint=true&key=[YOUR_API_KEY]' . $apiKey);
-        $endPoint = "https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=";
+        $endPoint = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=';
         $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
         $subscriber = $fetchApiResult['items'][0]['statistics']['subscriberCount'];
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
@@ -130,9 +130,9 @@ class RequestListController extends Controller
         $projectNumber == 0 ? $projectCompletedProgress = 0
             : $projectCompletedProgress = (int) (($projectCompletedNumber / $projectNumberWithOutRejected) * 100);
 
-        $allCategoryQuery = Category::all()->sortBy('category_name');
+        $allCategoryQuery = Category::orderBy('category_name')->get();
 
-        $allTypeQuery = ProjectType::all()->except(['id', '1'])->sortBy('type_name');
+        $allTypeQuery = ProjectType::whereNot('id', 1)->orderBy('type_name')->get();
 
 
         return view('request_list', [
@@ -155,23 +155,23 @@ class RequestListController extends Controller
     public function create()
     {
         return view('request_form', [
-            "title" => "Form Request",
-            "artists" => Artist::orderBy("artist_name")->get(),
-            "categories" => Category::orderBy("category_name")->get(),
+            'title' => 'Form Request',
+            'artists' => Artist::orderBy('artist_name')->get(),
+            'categories' => Category::orderBy('category_name')->get(),
         ]);
     }
 
     public function store(Request $request): RedirectResponse
     {
         $validateData = $request->validate([
-            "category_id" => "required",
-            "title" => "required|max:191",
-            "requester" => "required|max:191",
+            'category_id' => 'required',
+            'title' => 'required|max:191',
+            'requester' => 'required|max:191',
         ]);
 
-        $validateData["notes"] = strip_tags($request->notes);
-        $validateData["project_type_id"] = 1;
-        $validateData["votes"] = 1;
+        $validateData['notes'] = strip_tags($request->notes);
+        $validateData['project_type_id'] = 1;
+        $validateData['votes'] = 1;
 
         Project::create($validateData);
 
@@ -181,6 +181,6 @@ class RequestListController extends Controller
         // return (new RequestProcessed($project))->render(); #debug html
         Mail::to($request->user())->send(new RequestProcessed($project));
 
-        return redirect(route('request-list'))->with('requestSuccess', "We have received your request, we will proceed later. Check your email for further information about your request. Thank you");
+        return redirect(route('request-list'))->with('requestSuccess', 'We have received your request, we will proceed later. Check your email for further information about your request. Thank you');
     }
 }

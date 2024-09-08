@@ -6,8 +6,8 @@ class InformationController extends Controller
 {
     public function aboutUs()
     {
-        $endPoint = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=UCeSgNMXPV1263WUwV-BTkIQ&key=';
-        $endPointLatestVideo = 'https://www.googleapis.com/youtube/v3/search?channelId=UCeSgNMXPV1263WUwV-BTkIQ&part=snippet,id&order=date&maxResults=1&key=';
+        $endPoint = 'https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=' . env('YOUTUBE_ID') . '&key=';
+        $endPointLatestVideo = 'https://www.googleapis.com/youtube/v3/search?channelId=' . env('YOUTUBE_ID') . '&part=snippet,id&order=date&maxResults=1&key=';
 
         $fetchApiResult = PublicAPIController::getYoutubeChannelStatistics($endPoint . env('GOOGLE_API_KEY'));
         $fetchAPIResultLatestVideo = PublicAPIController::getYoutubeChannelStatistics($endPointLatestVideo . env('GOOGLE_API_KEY'));

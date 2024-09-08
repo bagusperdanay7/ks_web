@@ -8,6 +8,9 @@ use Illuminate\Database\QueryException;
 
 class DashboardProjectTypeController extends Controller
 {
+    final public const MAX_STRING_CHAR_VALIDATION = 'max:50';
+    final public const DASHBOARD_PROJECT_TYPE_PATH = '/dashboard/project-types';
+
     /**
      * Display a listing of the resource.
      */
@@ -35,15 +38,15 @@ class DashboardProjectTypeController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'type_name' => ['required', 'max:50'],
-            'slug' => ['required', 'unique:project_types', 'max:50'],
+            'type_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
+            'slug' => ['required', 'unique:project_types', self::MAX_STRING_CHAR_VALIDATION],
         ]);
 
         $validateData['about'] = strip_tags($request->about);
 
         ProjectType::create($validateData);
 
-        return redirect('/dashboard/project-types')->with('success', 'New Type has been created!');
+        return redirect(self::DASHBOARD_PROJECT_TYPE_PATH)->with('success', 'New Type has been created!');
     }
 
     /**
@@ -74,11 +77,11 @@ class DashboardProjectTypeController extends Controller
     public function update(Request $request, ProjectType $projectType)
     {
         $rules = [
-            'type_name' => ['required', 'max:50'],
+            'type_name' => ['required', self::MAX_STRING_CHAR_VALIDATION],
         ];
 
         if ($request->slug !== $projectType->slug) {
-            $rules['slug'] = ['required', 'unique:project_types', 'max:50'];
+            $rules['slug'] = ['required', 'unique:project_types', self::MAX_STRING_CHAR_VALIDATION];
         }
 
         $validateData = $request->validate($rules);
@@ -87,7 +90,7 @@ class DashboardProjectTypeController extends Controller
 
         ProjectType::where('id', $projectType->id)->update($validateData);
 
-        return redirect('/dashboard/project-types')->with('success', 'The Type has been updated!');
+        return redirect(self::DASHBOARD_PROJECT_TYPE_PATH)->with('success', 'The Type has been updated!');
     }
 
     /**
@@ -95,13 +98,12 @@ class DashboardProjectTypeController extends Controller
      */
     public function destroy(ProjectType $projectType)
     {
-        // TODO: Bikin sesuai laravel try catchnya
         try {
             ProjectType::destroy($projectType->id);
-            return redirect('/dashboard/project-types')->with('success', 'The Project Type has been deleted!');
+            return redirect(self::DASHBOARD_PROJECT_TYPE_PATH)->with('success', 'The Project Type has been deleted!');
         } catch (QueryException $e) {
             if ($e->getCode() == '23000') {
-                return redirect('/dashboard/project-types')->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
+                return redirect(self::DASHBOARD_PROJECT_TYPE_PATH)->with('danger', 'Cannot delete this record because it is referenced in a related table. Please remove the related records before attempting to delete this one.');
             }
         }
     }

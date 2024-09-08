@@ -1,7 +1,5 @@
 <!doctype html>
 <html lang="en">
-
-<!-- TODO: Component -> https://www.youtube.com/watch?v=7E76PPoIVW4  -->
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
