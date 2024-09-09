@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col">
                 <h2 class="text-color-100 fw-bold mb-15">Explore</h2>
-                <form class="search-gallery-form" action="/gallery">
+                <form class="search-gallery-form" action="{{ route('gallery') }}">
                     <div class="input-group">
                         <span class="input-group-text" id="search-logo">
                             <i class='bx bx-search fs-18'></i>
@@ -17,7 +17,7 @@
                     @if (request('category') || request('search') || request('type') || request('sort'))
                         <p class="d-block mb-15 fs-14 font-inter fw-medium text-color-secondary mt-10 text-end" id="triggerFilter"
                             data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false"
-                            aria-controls="collapseExample" role="button">
+                            aria-controls="collapseExample">
                             {{ request('category') || request('sort') || request('type') ? 'Hide Advanced Filter' : 'Show Advanced Filter' }}
                         </>
                         <div class="row {{ request('category') || request('sort') || request('type') ? 'show' : '' }} collapse"
@@ -104,7 +104,7 @@
                                 @endif
 
                                 <div class="video-desc-card">
-                                    <a href="gallery?category={{ $gallery->category->slug }}">
+                                    <a href="{{ route('gallery') . '?category=' . $gallery->category->slug }}">
                                         <p @class([
                                             'mb5',
                                             'fs-14',
@@ -130,14 +130,14 @@
                                     <h4>{{ $gallery->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($gallery->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $gallery->projectType->slug }}"
+                                        &#8226; <a href="{{ route('gallery') . '?type=' . $gallery->projectType->slug }}"
                                             class="text-decoration-none m-0 p-0"><span
                                                 class="type-tag">{{ $gallery->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     @if ($gallery->artists->count() > 1)
                                         @foreach ($gallery->artists->sortBy('artist_name') as $galleryArtists)
-                                            <a href="/gallery/artists/{{ $galleryArtists->codename ?? '' }}">
+                                            <a href="{{ route('artist', $galleryArtists->codename ?? '') }}">
                                                 <span class="fw-semibold fs-14 text-color-100 mb-0">
                                                     {{ $galleryArtists->artist_name }}{{ $loop->last ? '' : ',' }}
                                                 </span>
@@ -145,7 +145,7 @@
                                         @endforeach
                                     @elseif ($gallery->artists->count() == 1)
                                         @foreach ($gallery->artists as $galleryArtist)
-                                            <a href="/gallery/artists/{{ $galleryArtist->codename ?? '' }}">
+                                            <a href="{{ route('artist', $galleryArtist->codename ?? '') }}">
                                                 <div class="d-flex align-items-center flex-row">
                                                     <div>
                                                         @if ($galleryArtist->artist_picture)
@@ -208,7 +208,7 @@
                     @forelse ($recommendationVideo as $recVideo)
                         <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                             <div class="video-card">
-                                <a href="/gallery/videos/{{ $recVideo->id }}">
+                                <a href="{{ route('videos', $recVideo->id) }}">
                                     @if ($recVideo->youtube_id)
                                         <img src="{{ 'https://i3.ytimg.com/vi/' . $recVideo->youtube_id . '/maxresdefault.jpg' }}"
                                             class="thumbnail img-fluid m-0 p-0" alt="{{ $recVideo->title }} thumbnail">
@@ -217,7 +217,7 @@
                                             alt="{{ $recVideo->title }} thumbnail">
                                     @endif
                                     <div class="video-desc-card">
-                                        <a href="gallery?category={{ $recVideo->category->slug }}">
+                                        <a href="{{ route('gallery') . '?category=' . $recVideo->category->slug  }}">
                                             <p @class([
                                                 'mb5',
                                                 'fs-14',
@@ -243,14 +243,14 @@
                                         <h4>{{ $recVideo->title }}</h4>
                                         <p class="date-text">
                                             {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                            &#8226; <a href="gallery?type={{ $recVideo->projectType->slug }}"
+                                            &#8226; <a href="{{ route('gallery') . '?type=' . $recVideo->projectType->slug }}"
                                                 class="text-decoration-none m-0 p-0"><span
                                                     class="type-tag">{{ $recVideo->projectType->type_name }}</span>
                                             </a>
                                         </p>
                                         @if ($recVideo->artists->count() > 1)
                                             @foreach ($recVideo->artists->sortBy('artist_name') as $recVideoArtists)
-                                                <a href="/gallery/artists/{{ $recVideoArtists->codename ?? '' }}"
+                                                <a href="{{ route('artist', $recVideoArtists->codename ?? '') }}"
                                                     class="m-t-">
                                                     <span class="fw-semibold fs-14 text-color-100 mb-0">
                                                         {{ $recVideoArtists->artist_name }}{{ $loop->last ? '' : ',' }}
@@ -259,7 +259,7 @@
                                             @endforeach
                                         @elseif ($recVideo->artists->count() == 1)
                                             @foreach ($recVideo->artists as $recVideoArtist)
-                                                <a href="/gallery/artists/{{ $recVideoArtist->codename ?? '' }}">
+                                                <a href="{{ route('artist', $recVideoArtist->codename ?? '') }}">
                                                     <div class="d-flex align-items-center flex-row">
                                                         <div>
                                                             @if ($recVideoArtist->artist_picture)
@@ -329,7 +329,7 @@
             <div class="row">
                 @forelse ($projectCategories as $projectCategory)
                     <div class="col-6 col-xl-3 {{ $loop->iteration > 2 ? '' : 'mb-3' }} mb-xl-0">
-                        <a href="/gallery?category={{ $projectCategory->category->slug }}" class="text-decoration-none">
+                        <a href="{{ route('gallery') . '?category=' . $projectCategory->category->slug }}" class="text-decoration-none">
                             <div @class([
                                 'd-flex',
                                 'flex-column',
@@ -409,7 +409,7 @@
                     <div
                         class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="artist-card">
-                            <a href="/gallery/artists/{{ $artist->codename ?? '' }}">
+                            <a href="{{ route('artist', $artist->codename ?? '') }}">
                                 @if ($artist?->artist_picture)
                                     <img src="{{ asset('storage/' . $artist->artist_picture ?? '') }}"
                                         class="artist-image img-fluid rounded" alt="{{ $artist->artist_name }}">
@@ -441,7 +441,7 @@
                 @forelse ($latestVideo as $latestVid)
                     <div class="col-12 col-md-6 col-lg-4 mb-xl-0 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
-                            <a href="/gallery/videos/{{ $latestVid->id }}">
+                            <a href="{{ route('videos', $latestVid->id) }}">
                                 @if ($latestVid->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $latestVid->youtube_id . '/maxresdefault.jpg' }}"
                                         class="thumbnail img-fluid m-0 p-0" alt="{{ $latestVid->title }} thumbnail">
@@ -450,7 +450,7 @@
                                         alt="{{ $latestVid->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
-                                    <a href="gallery?category={{ $latestVid->category->slug }}">
+                                    <a href="{{ route('gallery') . '?category=' . $latestVid->category->slug }}">
                                         <p @class([
                                             'mb5',
                                             'fs-14',
@@ -476,14 +476,14 @@
                                     <h4>{{ $latestVid->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($latestVid->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $latestVid->projectType->slug }}"
+                                        &#8226; <a href="{{ route('gallery') . '?type=' . $latestVid->projectType->slug }}"
                                             class="text-decoration-none m-0 p-0"><span
                                                 class="type-tag">{{ $latestVid->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     @if ($latestVid->artists->count() > 1)
                                         @foreach ($latestVid->artists->sortBy('artist_name') as $lVArtists)
-                                            <a href="/gallery/artists/{{ $lVArtists->codename ?? '' }}">
+                                            <a href="{{ route('artist', $lVArtists) }}">
                                                 <span class="fw-semibold fs-14 text-color-100 mb-0">
                                                     {{ $lVArtists->artist_name }}{{ $loop->last ? '' : ',' }}
                                                 </span>
@@ -491,7 +491,7 @@
                                         @endforeach
                                     @elseif ($latestVid->artists->count() == 1)
                                         @foreach ($latestVid->artists as $lVArtist)
-                                            <a href="/gallery/artists/{{ $lVArtist->codename ?? '' }}">
+                                            <a href="{{ route('artist', $lVArtist->codename ?? '') }}">
                                                 <div class="d-flex align-items-center flex-row">
                                                     <div>
                                                         @if ($lVArtist->artist_picture)
@@ -549,7 +549,7 @@
                 @forelse ($recommendationVideo as $recVideo)
                     <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
-                            <a href="/gallery/videos/{{ $recVideo->id }}">
+                            <a href="{{ route('videos', $recVideo->id) }}">
                                 @if ($recVideo->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $recVideo->youtube_id . '/maxresdefault.jpg' }}"
                                         class="thumbnail img-fluid m-0 p-0" alt="{{ $recVideo->title }} thumbnail">
@@ -558,7 +558,7 @@
                                         alt="{{ $recVideo->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
-                                    <a href="gallery?category={{ $recVideo->category->slug }}">
+                                    <a href="{{ route('gallery') . '?category=' . $recVideo->category->slug }}">
                                         <p @class([
                                             'mb5',
                                             'fs-14',
@@ -584,14 +584,14 @@
                                     <h4>{{ $recVideo->title }}</h4>
                                     <p class="date-text">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($recVideo->date))->diffForHumans() }}
-                                        &#8226; <a href="gallery?type={{ $recVideo->projectType->slug }}"
+                                        &#8226; <a href="{{ route('gallery') . '?type=' . $recVideo->projectType->slug }}"
                                             class="text-decoration-none m-0 p-0"><span
                                                 class="type-tag">{{ $recVideo->projectType->type_name }}</span>
                                         </a>
                                     </p>
                                     @if ($recVideo->artists->count() > 1)
                                         @foreach ($recVideo->artists->sortBy('artist_name') as $recVideoArtists)
-                                            <a href="/gallery/artists/{{ $recVideoArtists->codename ?? '' }}"
+                                            <a href="{{ route('artist', $recVideoArtists->codename ?? '') }}"
                                                 class="m-t-">
                                                 <span class="fw-semibold fs-14 text-color-100 mb-0">
                                                     {{ $recVideoArtists->artist_name }}{{ $loop->last ? '' : ',' }}
@@ -600,7 +600,7 @@
                                         @endforeach
                                     @elseif ($recVideo->artists->count() == 1)
                                         @foreach ($recVideo->artists as $recVideoArtist)
-                                            <a href="/gallery/artists/{{ $recVideoArtist->codename ?? '' }}">
+                                            <a href="{{ route('artist', $recVideoArtist->codename ?? '') }}">
                                                 <div class="d-flex align-items-center flex-row">
                                                     <div>
                                                         @if ($recVideoArtist->artist_picture)

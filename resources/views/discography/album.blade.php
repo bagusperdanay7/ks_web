@@ -18,7 +18,7 @@
                 <h3 class="fw-bold text-color-100 mb-10">{{ $album->name }}</h3>
                 <h4 class="fw-semibold mb-15">
                     @foreach ($album->artists->sortBy('artist_name') as $albumArtist)
-                        <a href="/artists/{{ $albumArtist->codename }}"
+                        <a href="{{ route('discography-artist', $albumArtist->codename) }}"
                             class="text-underline-hover text-color-primary">{{ $albumArtist->artist_name }}{{ $loop->last ? '' : ',' }}</a>
                     @endforeach
 

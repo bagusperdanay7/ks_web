@@ -38,7 +38,7 @@
     <section id="information-youtube" class="mb-50">
         <div class="row text-center">
             <div class="col-12 col-sm-6 col-md-4 mb-15 mb-sm-0">
-                <h1 class="fw-bold text-color-100">{{ $subscriberCount }}</h1>
+                <h1 class="fw-bold text-color-100">{{ number_format($subscriberCount, 0, '', ',') }}</h1>
                 <p class="fs-18 text-color-100 fw-medium mb-0">subscribers on YouTube</p>
             </div>
             <div class="col-12 col-sm-6 col-md-4 mb-15 mb-md-0">
@@ -67,6 +67,7 @@
                 <h3 class="fw-semibold text-color-100">Our Latest Video</h3>
                 <div class="ratio ratio-16x9">
                     <iframe class="rounded-10" src="https://www.youtube.com/embed/{{ $latestVideo }}"
+                        title="{{ $latestVideoTitle }}"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         allowfullscreen></iframe>
                 </div>

@@ -8,23 +8,6 @@
                     <form method="post" action="{{ route('albums.update', $album->id) }}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
-                        {{-- <div class="m-bottom-15">
-                            <label for="artist"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
-                            <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist" id="artist" name="artist_id">
-                                @foreach ($artists as $artist)
-                                    <option value="{{ $artist->id }}"
-                                        {{ old('artist_id', $album->artist_id) == $artist->id ? ' selected' : ' ' }}>
-                                        {{ $artist->artist_name }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('artist_id')
-                                <div id="artistFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div> --}}
                         <div class="m-bottom-15">
                             <label for="name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Name</label>
                             <input type="text" class="form-control @error('name') is-invalid @enderror"

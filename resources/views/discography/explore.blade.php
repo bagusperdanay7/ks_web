@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col">
                 <h2 class="text-color-100 fw-bold mb-15">Explore</h2>
-                <form class="search-gallery-form" action="/explore" method="GET">
+                <form class="search-gallery-form" action="{{ route('discography-explore') }}" method="GET">
                     <div class="input-group">
                         <span class="input-group-text" id="search-logo">
                             <i class='bx bx-search fs-18'></i>
@@ -37,7 +37,7 @@
                             </span>
                         </div>
                         <div class="filter-clear">
-                            <a href="{{ route('explore-album') }}"
+                            <a href="{{ route('discography-explore') }}"
                                 class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
                                 <i class="las la-times-circle"></i> Clear Filter
                             </a>
@@ -49,7 +49,7 @@
                 @forelse ($searchResults as $result)
                     <div class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="album-card">
-                            <a href="/albums/{{ $result->id ?? '' }}" class="text-decoration-none">
+                            <a href="{{ route('discography-album', $result->id ?? '') }}" class="text-decoration-none">
                                 @if ($result->cover)
                                     <img src="{{ asset('storage/' . $result->cover ?? '') }}"
                                         class="artist-image img-fluid rounded" alt="{{ $result->name }}">
@@ -64,7 +64,7 @@
                                 @if ($result->artists->count() > 1)
                                     <p class="fw-medium text-color-100 mt-0">
                                         @foreach ($result->artists->sortBy('artist_name') as $resultArtist)
-                                            <a href="/artists/{{ $resultArtist->codename }}"
+                                            <a href="{{ route('discography-artist', $resultArtist->codename) }}"
                                                 class="text-underline-hover text-color-100">
                                                 <span>{{ $resultArtist->artist_name }}{{ $loop->last ? '' : ',' }}</span>
                                             </a>
@@ -72,7 +72,7 @@
                                     </p>
                                 @elseif ($result->artists->count() == 1)
                                     @foreach ($result->artists as $resultArtist)
-                                        <a href="/artists/{{ $resultArtist->codename }}"
+                                        <a href="{{ route('discography-artist', $resultArtist->codename) }}"
                                             class="text-underline-hover text-color-100">
                                             <p class="fw-medium text-color-100 mt-0">
                                                 {{ $resultArtist->artist_name }}</p>
@@ -108,7 +108,7 @@
                         <div
                             class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                             <div class="album-card">
-                                <a href="/albums/{{ $album->id ?? '' }}" class="text-decoration-none">
+                                <a href="{{ route('discography-album', $album->id ?? '') }}" class="text-decoration-none">
                                     @if ($album->cover)
                                         <img src="{{ asset('storage/' . $album->cover ?? '') }}"
                                             class="artist-image img-fluid rounded" alt="{{ $album->name }}">
@@ -161,7 +161,7 @@
                     <div
                         class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="artist-card">
-                            <a href="/artists/{{ $artist->codename ?? '' }}">
+                            <a href="{{ route('discography-artist', $artist->codename ?? '') }}">
                                 @if ($artist->artist_picture)
                                     <img src="{{ asset('storage/' . $artist->artist_picture ?? '') }}"
                                         class="artist-image img-fluid rounded" alt="{{ $artist->artist_name }}">
@@ -194,7 +194,7 @@
                     <div
                         class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                         <div class="album-card">
-                            <a href="/albums/{{ $album->id ?? '' }}" class="text-decoration-none">
+                            <a href="{{ route('discography-album', $album->id ?? '') }}" class="text-decoration-none">
                                 @if ($album->cover)
                                     <img src="{{ asset('storage/' . $album->cover ?? '') }}"
                                         class="artist-image img-fluid rounded" alt="{{ $album->name }}">

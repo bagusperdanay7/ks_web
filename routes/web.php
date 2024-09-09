@@ -47,16 +47,15 @@ use App\Http\Controllers\DashboardSongGenreController;
 |
 */
 
-// TODO: Ubah href dan form action menggunakan method route()
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/projects', [ProjectController::class, 'index'])->name('projects');
 
-Route::get('/projects/{project:id}', [ProjectController::class, 'show']);
+Route::get('/projects/{project:id}', [ProjectController::class, 'show'])->name('show-project');
 
 Route::put('/projects/{project:id}', [ProjectController::class, 'upvote'])->middleware(['auth', 'throttle:upvote'])->name('upvote-project');
 
-Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'index']);
+Route::get('/projects-type/{projectType:slug}', [ProjectTypeController::class, 'index'])->name('types');
 
 Route::get('/request-list', [RequestListController::class, 'index'])->name('request-list');
 
@@ -64,21 +63,23 @@ Route::get('/request-list/form', [RequestListController::class, 'create'])->midd
 
 Route::post('/request-list/form', [RequestListController::class, 'store'])->name('request-form-post');
 
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery');
+Route::prefix('gallery')->group(function () {
+    Route::get('/', [GalleryController::class, 'index'])->name('gallery');
 
-Route::get('/gallery/categories', [CategoryController::class, 'index'])->name('categories');
+    Route::get('/categories', [CategoryController::class, 'index'])->name('categories');
 
-Route::get('/gallery/artists', [ArtistController::class, 'index'])->name('artists');
+    Route::get('/artists', [ArtistController::class, 'index'])->name('artists');
 
-Route::get('gallery/artists/{artist:codename}', [ArtistController::class, 'show']);
+    Route::get('/artists/{artist:codename}', [ArtistController::class, 'show'])->name('artist');
 
-Route::get('/gallery/videos/{project:id}', [GalleryController::class, 'show'])->name('videos');
+    Route::get('/videos/{project:id}', [GalleryController::class, 'show'])->name('videos');
 
-Route::get('/gallery/videos/', function () {
-    return redirect()->route('gallery');
+    Route::get('/videos', function () {
+        return redirect()->route('gallery');
+    });
+
+    // TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
 });
-
-// TODO: untuk playlist project mending formnya berbentuk modal, bisa nambah di project detail atau video detail.
 
 Route::get('/ai-models', [AIModelController::class, 'index'])->name('ai-model');
 
@@ -92,12 +93,15 @@ Route::get('/tutorials', [TutorialController::class, 'index'])->name('tutorials'
 
 // TODO: Bikin Halaman Baru (Support Page) tambahkan Button atau widget dari buy me a coffee dan ko-fi
 
-Route::get('/explore', [AlbumController::class, 'index'])->name('explore-album');
+Route::prefix('discography')->group(function () {
+    Route::get('/explore', [AlbumController::class, 'index'])->name('discography-explore');
 
-Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist']);
+    Route::get('/artists/{artist:codename}', [AlbumController::class, 'showArtist'])->name('discography-artist');
 
-// TODO: Bikin Song Detail Terpisah
-Route::get('/albums/{album:id}', [AlbumController::class, 'show']);
+    Route::get('/albums/{album:id}', [AlbumController::class, 'show'])->name('discography-album');
+
+    // TODO: Bikin Song Detail Terpisah
+});
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 

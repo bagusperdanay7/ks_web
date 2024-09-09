@@ -8,7 +8,7 @@
             </div>
             @forelse ($categories as $cat)
                 <div class="col-6 col-xl-3 {{ $loop->last ? '' : 'mb-4' }}">
-                    <a href="/gallery?category={{ $cat->category->slug }}" class="text-decoration-none">
+                    <a href="{{ route('gallery') . '?category=' . $cat->category->slug }}" class="text-decoration-none">
                         <div @class([
                             'd-flex',
                             'flex-column',

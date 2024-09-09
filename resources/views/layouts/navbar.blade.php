@@ -67,7 +67,7 @@
                         <ul class="dropdown-menu dropdown-menu-end rounded-10 bg-second" aria-labelledby="profileDropdown">
                             @can('admin')
                                 <li>
-                                    <a class="dropdown-item fs-14 fw-normal" href="/dashboard">
+                                    <a class="dropdown-item fs-14 fw-normal" href="{{ route('dashboard') }}">
                                         <i class="las la-columns d-inline"></i>
                                         Dashboard
                                     </a>

@@ -60,7 +60,7 @@
                 <div
                     class="col-6 col-md-4 col-lg-3 col-xl-2 mb-xl-0 {{ $loop->last || $loop->iteration == 5 ? '' : 'mb-3' }}">
                     <div class="album-card">
-                        <a href="/albums/{{ $itemAlbum->id ?? '' }}" class="text-decoration-none">
+                        <a href="{{ route('discography-album', $itemAlbum->id ?? '') }}" class="text-decoration-none">
                             @if ($itemAlbum->cover)
                                 <img src="{{ asset('storage/' . $itemAlbum->cover ?? '') }}"
                                     class="rounded artist-image img-fluid" alt="{{ $itemAlbum->name }}">

@@ -1,7 +1,5 @@
 @extends('dashboard.layouts.main')
 
-{{-- TODO: Tambahkan link di upcoming schedule --}}
-
 @section('content')
     <section id="header-analytics">
         <div class="row m-bottom-30">

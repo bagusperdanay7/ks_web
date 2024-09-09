@@ -114,6 +114,7 @@
         </div>
     </div>
 @endif
+
 @section('content')
     <section id="profile" class="mb-50">
         <h2 class="mb-15 fw-bold text-color-100">My Profile</h2>

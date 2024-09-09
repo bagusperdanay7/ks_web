@@ -16,13 +16,15 @@ class InformationController extends Controller
         $totalVideo = $fetchApiResult['items'][0]['statistics']['videoCount'];
         $totalView = $fetchApiResult['items'][0]['statistics']['viewCount'];
         $latestVideoId = $fetchAPIResultLatestVideo['items'][0]['id']['videoId'];
+        $latestVideoTitle = $fetchAPIResultLatestVideo['items'][0]['snippet']['title'];
 
         return view('information.about_us', [
             'title' => 'About Us',
             'subscriberCount' => $subscriberCount,
             'totalVideo' => $totalVideo,
             'totalView' => $totalView,
-            'latestVideo' => $latestVideoId
+            'latestVideo' => $latestVideoId,
+            'latestVideoTitle' => $latestVideoTitle
         ]);
     }
 

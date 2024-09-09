@@ -14,7 +14,7 @@
                 <h4 class="mb-3 fw-bold text-color-100">More Information</h4>
                 <ul>
                     <li class="mb-10"><a href="{{ route('about-us') }}" class="text-decoration-none">About Us </a></li>
-                    <li class="mb-10"><a href="{{ route('explore-album') }}" class="text-decoration-none">Explore Album</a></li>
+                    <li class="mb-10"><a href="{{ route('discography-explore') }}" class="text-decoration-none">Explore Album</a></li>
                     {{-- <li class="mb-10"><a href="" class="text-decoration-none">Tutorials </a></li> --}}
                     <li class="mb-10"><a href="{{ route('privacy-and-policy') }}" class="text-decoration-none">Privacy & Policy </a></li>
                     <li><a href="{{ route('terms-and-conditions') }}" class="text-decoration-none">Terms & Conditions </a></li>

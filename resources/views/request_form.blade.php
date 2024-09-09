@@ -9,17 +9,6 @@
                     <div class="row justify-content-center align-items-center m-0">
                         <form action="{{ route('request-form-post') }}" method="post" class="mt-30 col-12 p-0">
                             @csrf
-                            {{-- <div class="mb-15">
-                                <label for="artist" class="form-label fs-18 fw-medium text-color-100">Artist</label>
-                                <select class="form-select" aria-label="Select Artist" id="artist" name="artist_id">
-                                    @foreach ($artists as $artist)
-                                        <option value="{{ $artist->id }}"
-                                            {{ old('artist_id') == $artist->id ? ' selected' : ' ' }}>
-                                            {{ $artist->artist_name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
                             <div class="mb-15">
                                 <label for="category" class="form-label fs-18 fw-medium text-color-100">Category</label>
                                 <select class="form-select" aria-label="Select Category" id="category" name="category_id">

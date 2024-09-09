@@ -146,7 +146,7 @@
         <div class="row">
             <div class="col">
                 <div class="req-list-section">
-                    <form action="/request-list" name="request-list-filter" method="GET" class="mb-4">
+                    <form action="{{ route('request-list') }}" name="request-list-filter" method="GET" class="mb-4">
                         <div class="filter-group">
                             <div class="row justify-content-between">
                                 <div class="col-12 mb-4 mb-sm-3 mb-xl-0 col-xl-auto">
@@ -317,7 +317,7 @@
                                             </span>
                                         </td>
                                         <td class="align-middle text-color-100">{{ $project->votes }}</td>
-                                        <td class="align-middle"><a href="/projects/{{ $project->project_id }}"
+                                        <td class="align-middle"><a href="{{ route('show-project', $project->project_id) }}"
                                                 class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->title }}"><i
                                                     class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project"></i></a>
@@ -359,7 +359,7 @@
                                                 @endif
                                             </div>
                                             <div>
-                                                <a href="/projects/{{ $project->project_id }}"
+                                                <a href="{{ route('show-project', $project->project_id) }}"
                                                     class="text-decoration-none text-color-primary" aria-label="Show details {{ $project->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>

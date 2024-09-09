@@ -55,7 +55,7 @@
                         Details</a>
                 </div>
                 <div class="col-12 col-lg-6 order-1 order-lg-2 mb-lg-15">
-                    <img src="{{ asset('img/Untitled.png') }}" alt="Banner Image Youtube Comments Project" class="float-end"
+                    <img src="{{ asset('img/Untitled.png') }}" alt="Banner Youtube Comments Project" class="float-end"
                         width="100%">
                 </div>
             </div>
@@ -70,7 +70,7 @@
                         class="d-flex justify-content-between {{ request('status') || request('sort') ? 'mb-2' : 'mb-4' }}">
                         <h3 class="m-0 align-self-center">{{ $projectType->type_name }}</h3>
                         <div>
-                            <form action="/projects-type/{{ $projectType->slug }}" name="type-form-filter">
+                            <form action="{{ route('types', $projectType->slug) }}" name="type-form-filter">
                                 <div class="filter-group">
                                     <div class="row">
                                         <div class="col-auto">
@@ -122,7 +122,7 @@
                                     @if (request('status') || request('sort'))
                                         <div class="row mt-2">
                                             <div class="filter-clear text-end">
-                                                <a href="/projects-type/{{ $projectType->slug }}"
+                                                <a href="{{ route('types', $projectType->slug) }}"
                                                     class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
                                                     <i class="las la-times-circle"></i> Clear Filter
                                                 </a>
@@ -191,7 +191,7 @@
                                             </td>
                                             <td class="align-middle text-color-100">{{ $pro->votes }}</td>
                                             <td class="align-middle">
-                                                <a href="/projects/{{ $pro->id }}"
+                                                <a href="{{ route('show-project', $pro->id) }}"
                                                     class="text-decoration-none text-color-secondary"
                                                     aria-label="Details about {{ $pro->title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
@@ -249,7 +249,7 @@
                                                 </span>
                                             </td>
                                             <td class="align-middle text-color-100">{{ $pro->votes }}</td>
-                                            <td class="align-middle"><a href="/projects/{{ $pro->id }}"
+                                            <td class="align-middle"><a href="{{ route('show-project', $pro->id) }}"
                                                     class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}"><i
                                                         class="las la-external-link-alt" data-bs-toggle="tooltip"
                                                         data-bs-placement="top"
@@ -275,7 +275,7 @@
                             <h3 class="m-0 align-self-center text-color-100 fw-semibold">{{ $projectType->type_name }}
                             </h3>
                             <div class="mt-15 mb-4">
-                                <form action="/projects-type/{{ $projectType->slug }}" name="type-form-filter-mobile">
+                                <form action="{{ route('types', $projectType->slug) }}" name="type-form-filter-mobile">
                                     <div class="filter-group">
                                         <div class="row">
                                             <div class="col-6">
@@ -326,7 +326,7 @@
                                         @if (request('status') || request('sort'))
                                             <div class="row mt-2">
                                                 <div class="filter-clear text-end">
-                                                    <a href="/projects-type/{{ $projectType->slug }}"
+                                                    <a href="{{ route('types', $projectType->slug) }}"
                                                         class="fs-14 font-inter text-decoration-none text-color-100 fw-medium">
                                                         <i class="las la-times-circle"></i> Clear Filter
                                                     </a>
@@ -354,7 +354,7 @@
                                                 </div>
                                             @endif
                                             <div>
-                                                <a href="/projects/{{ $pro->id }}"
+                                                <a href="{{ route('show-project', $pro->id) }}"
                                                     class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>
@@ -418,7 +418,7 @@
                                                 </div>
                                             @endif
                                             <div>
-                                                <a href="/projects/{{ $pro->id }}"
+                                                <a href="{{ route('show-project', $pro->id) }}"
                                                     class="text-decoration-none text-color-primary" aria-label="Details about {{ $pro->title }}">
                                                     <i class="las la-external-link-alt fs-18" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" data-bs-title="Show Detail Project"></i>

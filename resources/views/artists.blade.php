@@ -11,13 +11,13 @@
             @forelse ($artists as $artist)
                 <div class="col-6 col-md-4 col-lg-3 col-xl-2 {{ $loop->last ? '' : 'mb-15' }}">
                     <div class="artist-card">
-                        <a href="/gallery/artists/{{ $artist->codename }}">
+                        <a href="{{ route('artists', $artist->codename) }}">
                             @if ($artist->artist_picture)
                                 <img src="{{ asset('storage/' . $artist->artist_picture) }}"
-                                    class="rounded artist-image img-fluid" alt="{{ $artist->artist_name }} picture">
+                                    class="rounded artist-image img-fluid" alt="{{ $artist->artist_name }}">
                             @else
                                 <img src="{{ asset('img/unknown_artist.jpg') }}" class="rounded artist-image img-fluid"
-                                    alt="{{ $artist->artist_name }} picture">
+                                    alt="{{ $artist->artist_name }}">
                             @endif
                             <p>{{ $artist->artist_name }}</p>
                             <span>{{ $artist->projects->where('status', 'Completed')->where('exclusive', false)->count() }}

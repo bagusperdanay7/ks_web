@@ -285,7 +285,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Close</button>
-                        <form action="{{ route('projects.destroy', $project->id ?? '') }}/dashboard/projects/" method="post"
+                        <form action="{{ route('projects.destroy', $project->id ?? '') }}" method="post"
                             id="deleteForm">
                             @method('delete')
                             @csrf

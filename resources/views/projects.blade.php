@@ -785,7 +785,7 @@
                             @endif
                         </div>
                         <div class="d-flex justify-content-center align-items-center">
-                            <a href="/projects-type/{{ $projectItem->slug ?? '' }}" class="link-show-all">Show
+                            <a href="{{ route('types', $projectItem->slug ?? '') }}" class="link-show-all">Show
                                 All <i class="las la-arrow-right"> </i>
                             </a>
                         </div>

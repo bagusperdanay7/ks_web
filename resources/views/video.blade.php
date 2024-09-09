@@ -4,8 +4,8 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='currentColor'/%3E%3C/svg%3E&#34;);"
         aria-label="breadcrumb" class="space-navbar">
         <ol class="breadcrumb fs-sm-12">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('gallery') }}">Gallery</a></li>
             <li class="breadcrumb-item breadcumb-active text-truncate" aria-current="page">
                 {{ $video->title }}
             </li>
@@ -56,7 +56,7 @@
                     @if ($video->artists->count() >= 1)
                         <div id="projectArtists" class="d-flex flex-column row-gap-2">
                             @foreach ($video->artists->sortBy('artist_name') as $artists)
-                                <a class="text-decoration-none" href="/gallery/artists/{{ $artists->codename ?? '' }}">
+                                <a class="text-decoration-none" href="{{ route('artist', $artists->codename ?? '') }}">
                                     <div class="d-flex align-items-center column-gap-2">
                                         <div>
                                             @if ($artists->artist_picture)
@@ -94,7 +94,7 @@
             <div class="col-12 col-lg-4">
                 <h3 class="fw-medium text-color-100 mb-10">Related</h3>
                 @forelse ($relatedVideo as $related)
-                    <a href="/gallery/videos/{{ $related->id }}" class="text-decoration-none">
+                    <a href="{{ route('videos', $related->id) }}" class="text-decoration-none">
                         <div class="row {{ $loop->last ? '' : 'mb-15' }}">
                             <div class="col-12 col-xl-6 pe-xl-0">
                                 @if ($related->youtube_id)

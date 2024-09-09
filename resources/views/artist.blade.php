@@ -4,9 +4,9 @@
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);"
         aria-label="breadcrumb" class="mb-15">
         <ol class="breadcrumb fs-sm-12">
-            <li class="breadcrumb-item"><a href="/">Home</a></li>
-            <li class="breadcrumb-item"><a href="/gallery">Gallery</a></li>
-            <li class="breadcrumb-item"><a href="/gallery/artists">Artists</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('home') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('gallery') }}">Gallery</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('artists') }}">Artists</a></li>
             <li class="breadcrumb-item breadcumb-active" aria-current="page">{{ $artist->artist_name }}
             </li>
         </ol>
@@ -17,10 +17,10 @@
             <div class="col-12 col-md-6 col-lg-5 col-xl-4 mb-xl-0 mb-15">
                 @if ($artist->artist_picture)
                     <img src="{{ asset('storage/' . $artist->artist_picture) }}"
-                        class="img-square rounded-10 img-fluid w-100 shadow" alt="{{ $artist->artist_pict }} picture">
+                        class="img-square rounded-10 img-fluid w-100 shadow" alt="{{ $artist->artist_name }}">
                 @else
                     <img src="{{ asset('img/unknown_artist.jpg') }}" class="img-square rounded-10 img-fluid w-100 shadow"
-                        alt="{{ $artist->artist_picture }} picture">
+                        alt="{{ $artist->artist_name }}">
                 @endif
             </div>
 
@@ -79,7 +79,7 @@
                 @forelse ($projectByGroup as $project)
                     <div class="col-12 col-md-6 col-lg-4 {{ $loop->last ? '' : 'mb-15' }}">
                         <div class="video-card">
-                            <a href="/gallery/videos/{{ $project->id }}">
+                            <a href="{{ route('videos', $project->id) }}">
                                 @if ($project->youtube_id)
                                     <img src="{{ 'https://i3.ytimg.com/vi/' . $project->youtube_id . '/maxresdefault.jpg' }}" class="thumbnail m-0 p-0 img-fluid"
                                         alt="{{ $project->title }} thumbnail">
@@ -88,7 +88,7 @@
                                         alt="{{ $project->title }} thumbnail">
                                 @endif
                                 <div class="video-desc-card">
-                                    <a href="/gallery?category={{ $project->category->slug }}">
+                                    <a href="{{ route('gallery') . '?category=' . $project->category->slug }}">
                                         <p @class([
                                             'mb5',
                                             'fs-14',
@@ -113,7 +113,7 @@
                                     <h4>{{ $project->title }}</h4>
                                     <p class="date-text mb-0">
                                         {{ \Carbon\Carbon::createFromTimeStamp(strtotime($project->date))->diffForHumans() }}
-                                        &#8226; <a href="/gallery?type={{ $project->projectType->slug }}"
+                                        &#8226; <a href="{{ route('gallery') . '?type=' . $project->projectType->slug }}"
                                             class="p-0 m-0 text-decoration-none"><span
                                                 class="type-tag">{{ $project->projectType->type_name }}</span>
                                         </a>

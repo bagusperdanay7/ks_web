@@ -74,7 +74,7 @@
                                             {{ $request->date === null ? 'Coming Soon' : \Carbon\Carbon::parse($request->date)->format('d F Y, G:i T') }}
                                         </div>
                                         <div class="d-md-none">
-                                            <a href="/projects/{{ $request->id }}"
+                                            <a href="{{ route('show-project', $request->id) }}"
                                                 class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                                 <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -94,7 +94,7 @@
                                         ])>{{ $request->status }}</span>
                                     </div>
                                     <div class="col-md-1 d-none d-md-block order-last">
-                                        <a href="/projects/{{ $request->id }}"
+                                        <a href="{{ route('show-project', $request->id) }}"
                                             class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                             <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -170,7 +170,7 @@
                                             {{ $completedRequest->date === null ? 'Coming Soon' : \Carbon\Carbon::parse($completedRequest->date)->format('d F Y, G:i T') }}
                                         </div>
                                         <div class="d-md-none">
-                                            <a href="/projects/{{ $completedRequest->id }}"
+                                            <a href="{{ route('show-project', $completedRequest->id) }}"
                                                 class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                                 <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -190,7 +190,7 @@
                                         ])>{{ $completedRequest->status }}</span>
                                     </div>
                                     <div class="col-md-1 d-none d-md-block order-last">
-                                        <a href="/projects/{{ $completedRequest->id }}"
+                                        <a href="{{ route('show-project', $completedRequest->id) }}"
                                             class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                             <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -266,7 +266,7 @@
                                             {{ $OnProcessRequest->date === null ? 'Coming Soon' : \Carbon\Carbon::parse($OnProcessRequest->date)->format('d F Y, G:i T') }}
                                         </div>
                                         <div class="d-md-none">
-                                            <a href="/projects/{{ $OnProcessRequest->id }}"
+                                            <a href="{{ route('show-project', $onPrcessRequest->id) }}"
                                                 class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                                 <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -286,7 +286,7 @@
                                         ])>{{ $OnProcessRequest->status }}</span>
                                     </div>
                                     <div class="col-md-1 d-none d-md-block order-last">
-                                        <a href="/projects/{{ $OnProcessRequest->id }}"
+                                        <a href="{{ route('show-project', $OnProcessRequest->id) }}"
                                             class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                             <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -361,7 +361,7 @@
                                             {{ $pendingRequest->date === null ? 'Coming Soon' : \Carbon\Carbon::parse($pendingRequest->date)->format('d F Y, G:i T') }}
                                         </div>
                                         <div class="d-md-none">
-                                            <a href="/projects/{{ $pendingRequest->id }}"
+                                            <a href="{{ route('show-project', $pendingRequest->id) }}"
                                                 class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                                 <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -381,7 +381,7 @@
                                         ])>{{ $pendingRequest->status }}</span>
                                     </div>
                                     <div class="col-md-1 d-none d-md-block order-last">
-                                        <a href="/projects/{{ $pendingRequest->id }}"
+                                        <a href="{{ route('show-project', $pendingRequest->id) }}"
                                             class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                             <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -457,7 +457,7 @@
                                             {{ $rejectedRequest->date === null ? 'Coming Soon' : \Carbon\Carbon::parse($rejectedRequest->date)->format('d F Y, G:i T') }}
                                         </div>
                                         <div class="d-md-none">
-                                            <a href="/projects/{{ $rejectedRequest->id }}"
+                                            <a href="{{ route('show-project', $rejectedRequest->id) }}"
                                                 class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                                 <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                     data-bs-placement="top" data-bs-title="Show Detail Project">
@@ -477,7 +477,7 @@
                                         ])>{{ $rejectedRequest->status }}</span>
                                     </div>
                                     <div class="col-md-1 d-none d-md-block order-last">
-                                        <a href="/projects/{{ $rejectedRequest->id }}"
+                                        <a href="{{ route('show-project', $rejectedRequest->id) }}"
                                             class="text-decoration-none text-color-primary" target="_blank" aria-label="Show Details about project">
                                             <i class="las la-external-link-alt fs-14" data-bs-toggle="tooltip"
                                                 data-bs-placement="top" data-bs-title="Show Detail Project">
