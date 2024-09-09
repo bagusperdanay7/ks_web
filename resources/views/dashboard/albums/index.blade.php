@@ -158,7 +158,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
+                                        <td colspan="7" class="text-center text-color-100">
                                             <i class="las la-compact-disc fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Album Found!</p>
                                         </td>

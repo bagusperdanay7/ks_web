@@ -64,10 +64,10 @@
                                         <td class="align-middle">
                                             @if ($aiModel->artist->artist_picture)
                                                 <img src="{{ asset('storage/' . $aiModel->artist->artist_picture) }}"
-                                                    alt="{{ $aiModel->model_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $aiModel->model_name }}" class="img-fluid img-avatar">
                                             @else
                                                 <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                                    alt="{{ $aiModel->model_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $aiModel->model_name }}" class="img-fluid img-avatar">
                                             @endif
                                         </td>
                                         <td class="align-middle">{{ $aiModel->model_name }}</td>
@@ -113,7 +113,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
+                                        <td colspan="6" class="text-center text-color-100">
                                             <i class="las la-user-slash fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Model Found!</p>
                                         </td>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('ai-models.destroy', $aiModel->id) }}" method="post" id="deleteForm">
+                    <form action="{{ route('ai-models.destroy', $aiModel->id ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

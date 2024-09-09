@@ -14,7 +14,7 @@ class ArtistController extends Controller
         return view('artists', [
             'title' => 'All Artists',
             'artists' => Artist::with('projects')->without('company')->whereHas('projects',  function ($query) {
-                $query->where([['status', 'Completed'], ['exclusive', false]]);
+                $query->where('status', 'Completed');
             }, '>', 0)->orderBy('artist_name')->get(),
         ]);
     }
@@ -24,10 +24,10 @@ class ArtistController extends Controller
      */
     public function show(Artist $artist)
     {
-        $artistQuery = $artist->projects->where('status', 'Completed')->where('exclusive', false)->count();
+        $artistQuery = $artist->projects->where('status', 'Completed')->count();
 
         $artistVideoByGroup = $artist->projects
-            ->where('status', 'Completed')->where('exclusive', false)
+            ->where('status', 'Completed')
             ->sortBy('title')->groupBy('category_id');
 
         return view('artist', [

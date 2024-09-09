@@ -143,13 +143,17 @@
                     <div class="modal-body">
                         <h4 class="fw-semibold mb-15 text-color-100">{{ $trackDetails->title }}</h4>
                         <p class="fw-semibold mb5 text-color-100 fs-14">Genre</p>
-                        <p class="fw-medium mb-15 text-color-80 fs-14">{{ $trackDetails->track_number }}</p>
+                        <p class="fw-medium mb-15 text-color-80 fs-14">
+                            @foreach ($trackDetails->genres->sortBy('name') as $songGenre)
+                                {{ $songGenre->name }}{{ $loop->last ? '' : ',' }}
+                            @endforeach
+                        </p>
                         <p class="fw-semibold mb5 text-color-100 fs-14">Written By</p>
                         <p class="fw-medium mb-15 text-color-80 fs-14">
                             @foreach ($trackDetails->artists as $songArtist)
-                                @if ($songArtist->pivot->role === 'Lyricist')
-                                    {{ $songArtist->artist_name }}
-                                @endif
+                                    @if ($songArtist->pivot->role === 'Lyricist')
+                                        {{ $songArtist->artist_name }}{{ $loop->last ? '' : ',' }}
+                                    @endif
                             @endforeach
                         </p>
                         <p class="fw-semibold mb5 text-color-100 fs-14">Composed By</p>

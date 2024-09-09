@@ -167,16 +167,13 @@
                                             </select>
                                         </div>
                                         <div class="col-12 col-sm-6 col-lg col-xl-auto mb-3 mb-lg-0">
-                                            @php
-                                                $statusProjects = ['Completed', 'In Progress', 'Pending', 'Rejected'];
-                                            @endphp
                                             <label for="status"
                                                 class="form-label fs-14 fw-medium text-color-100 mb5 d-xl-none mb-xl-0">Status</label>
                                             <select class="form-select filter-select" aria-label="Select Status"
                                                 name="status" id="status"
                                                 onchange="if(this.value != '') { this.form.submit(); }">
                                                 <option value="">Status</option>
-                                                @foreach ($statusProjects as $status)
+                                                @foreach ($statuses as $status)
                                                     <option value="{{ $status }}"
                                                         {{ request('status') == $status ? ' selected' : ' ' }}>
                                                         {{ $status }}

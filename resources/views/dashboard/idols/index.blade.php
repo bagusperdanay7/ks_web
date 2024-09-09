@@ -108,10 +108,10 @@
                                         <td class="align-middle">
                                             @if ($idol->artist->artist_picture)
                                                 <img src="{{ asset('storage/' . $idol->artist->artist_picture) }}"
-                                                    alt="{{ $idol->stage_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $idol->stage_name }}" class="img-fluid img-avatar">
                                             @else
                                                 <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                                    alt="{{ $idol->stage_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $idol->stage_name }}" class="img-fluid img-avatar">
                                             @endif
                                         </td>
                                         <td class="align-middle text-color-100">
@@ -154,7 +154,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="10" class="text-center text-color-100">
+                                        <td colspan="7" class="text-center text-color-100">
                                             <i class="las la-user-slash fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Idol Found!</p>
                                         </td>

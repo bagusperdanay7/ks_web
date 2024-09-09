@@ -16,7 +16,7 @@
                     </div>
                     @if (request('category') || request('search') || request('type') || request('sort'))
                         <p class="d-block mb-15 fs-14 font-inter fw-medium text-color-secondary mt-10 text-end" id="triggerFilter"
-                            data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false"
+                            data-bs-toggle="collapse" data-bs-target="#filterGroup" aria-expanded="false" role="button"
                             aria-controls="collapseExample">
                             {{ request('category') || request('sort') || request('type') ? 'Hide Advanced Filter' : 'Show Advanced Filter' }}
                         </>

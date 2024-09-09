@@ -115,7 +115,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
+                                        <td colspan="5" class="text-center text-color-100">
                                             <i class="las la-icons fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Project Type Found!</p>
                                         </td>
@@ -146,7 +146,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('project-types.destroy', $type->slug) }}" method="post" id="deleteForm">
+                    <form action="{{ route('project-types.destroy', $type->slug ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

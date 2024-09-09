@@ -110,7 +110,7 @@
                                     </tr>
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
+                                        <td colspan="3" class="text-center text-color-100">
                                             <i class="las la-play-circle fs-48"></i>
                                             <p class="fs-14 fw-medium mt-1 mb-0">No Playlist Found!</p>
                                         </td>
@@ -128,7 +128,7 @@
     </section>
 
     <!-- Modal Confirm Delete -->
-    <div class="modal fade " id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content rounded-10">
@@ -144,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('playlists.destroy', $playlist->id) }}" method="post" id="deleteForm">
+                    <form action="{{ route('playlists.destroy', $playlist->id ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <button type="submit" class="btn btn-alert-color">Yes, Delete</button>

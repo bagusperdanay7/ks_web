@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Status;
 use App\Http\Controllers\PublicAPIController;
 use App\Models\Artist;
 use App\Models\Project;
@@ -149,6 +150,7 @@ class RequestListController extends Controller
             'categories' => $allCategoryQuery,
             'types' => $allTypeQuery,
             'allProjectTitle' => $requestListTitle,
+            'statuses' => Status::cases()
         ]);
     }
 

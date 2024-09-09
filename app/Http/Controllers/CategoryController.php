@@ -15,7 +15,7 @@ class CategoryController extends Controller
         //     $query->where('status', 'Completed')->where('exclusive', false);
         // }])->having('projects_count', '>', 0)->orderBy('category_name')->get();
 
-        $categories = Project::where([['status', 'Completed'], ['exclusive', false]])
+        $categories = Project::where('status', 'Completed')
             ->groupBy('category_id')
             ->select('category_id', Project::raw('count(*) as total'))
             ->get()

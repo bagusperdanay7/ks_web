@@ -111,10 +111,10 @@
                                         <td class="align-middle">
                                             @if ($artist->artist_picture)
                                                 <img src="{{ asset('storage/' . $artist->artist_picture) }}"
-                                                    alt="{{ $artist->artist_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $artist->artist_name }}" class="img-fluid img-avatar">
                                             @else
                                                 <img src="{{ asset('img/unknown_artist.jpg') }}"
-                                                    alt="{{ $artist->artist_name }} Picture" class="img-fluid img-avatar">
+                                                    alt="{{ $artist->artist_name }}" class="img-fluid img-avatar">
                                             @endif
                                         </td>
                                         <td class="align-middle">{{ $artist->artist_name }}</td>

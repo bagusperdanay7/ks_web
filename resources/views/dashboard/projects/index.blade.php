@@ -243,7 +243,7 @@
                                     </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="10" class="text-color-100 text-center">
+                                            <td colspan="11" class="text-color-100 text-center">
                                                 <svg width="48" height="48" viewBox="0 0 84 84" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <path

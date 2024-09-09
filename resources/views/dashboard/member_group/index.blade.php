@@ -77,13 +77,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $no = 1;
-                                @endphp
                                 @forelse ($memberGroup as $member)
                                     @foreach ($member->groups as $item)
                                         <tr class="fs-12">
-                                            <td class="align-middle">{{ $no++ }}</td>
+                                            <td class="align-middle">{{ $loop->iteration }}</td>
                                             </td>
                                             <td class="align-middle text-color-100">
                                                 {{ $member->stage_name }}
@@ -118,9 +115,9 @@
                                     @endforeach
                                 @empty
                                     <tr>
-                                        <td colspan="8" class="text-center text-color-100">
-                                            <i class="las la-compact-disc fs-48"></i>
-                                            <p class="fs-14 fw-medium mt-1 mb-0">No Datas Found!</p>
+                                        <td colspan="6" class="text-center text-color-100">
+                                            <i class="las la-users fs-48"></i>
+                                            <p class="fs-14 fw-medium mt-1 mb-0">No Member Group Found!</p>
                                         </td>
                                     </tr>
                                 @endforelse
@@ -152,7 +149,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light-border" data-bs-dismiss="modal">Cancel</button>
-                    <form action="{{ route('member-group.destroy', $member->id) }}" method="post" id="deleteForm">
+                    <form action="{{ route('member-group.destroy', $member->id ?? '') }}" method="post" id="deleteForm">
                         @method('delete')
                         @csrf
                         <input type="hidden" name="artist_id" id="artist_id">

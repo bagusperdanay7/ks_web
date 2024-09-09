@@ -19,43 +19,43 @@ class GalleryController extends Controller
     {
         // Match
         $galleryQuery = match (request('sort')) {
-            'title_asc' => Project::orderBy('title')->where([['status', 'Completed'], ['exclusive', false]])
+            'title_asc' => Project::orderBy('title')->where('status', 'Completed')
                 ->filter(request(['search', 'category', 'type']))
                 ->get(),
             'latest' => Project::orderByDesc('date')
-                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->where('status', 'Completed')
                 ->filter(request(['search', 'category', 'type']))
                 ->get(),
             'oldest' => Project::orderBy('date')
-                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->where('status', 'Completed')
                 ->filter(request(['search', 'category', 'type']))
                 ->get(),
             null => Project::latest()
-                ->where([['status', 'Completed'], ['exclusive', false]])
+                ->where('status', 'Completed')
                 ->filter(request(['search', 'category', 'type']))
                 ->get()
         };
 
         $artistWithProjectCount = Artist::with(['projects'])->withCount(['projects' => function (Builder $query) {
-            $query->where('status', 'Completed')->where('exclusive', false);
+            $query->where('status', 'Completed');
         }])->having('projects_count', '>', 0)->inRandomOrder()->take(6)->get();
 
-        $projectCategoriesCount = Project::where([['status', 'Completed'], ['exclusive', false]])
+        $projectCategoriesCount = Project::where('status', 'Completed')
             ->groupBy('category_id')
             ->select('category_id', Project::raw('count(*) as total'))
             ->take(4)
-            ->get()
-            ->sortByDesc('total');
+            ->orderBy('total')
+            ->get();
 
         $latestVideoQuery = Project::orderByDesc('date')
-            ->where([['status', 'Completed'], ['exclusive', false]])
+            ->where('status', 'Completed')
             ->take(3)
             ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status']);
 
-        $recVideoQuery = Project::where([['status', 'completed'], ['exclusive', false]])
+        $recVideoQuery = Project::where('status', 'completed')
+            ->inRandomOrder()
             ->take(6)
-            ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status'])
-            ->shuffle();
+            ->get(['id', 'title', 'category_id', 'date', 'youtube_id', 'project_type_id', 'status']);
 
         $categoriesQuery = Category::orderBy('category_name')->get();
 
@@ -99,12 +99,12 @@ class GalleryController extends Controller
 
 
         // $user->posts()->where('active', 1)->get(); # has many
-        $relatedVideoQ = $project::where([['status', 'Completed'], ['exclusive', false], ['id', '!=', $project->id]])
+        $relatedVideoQ = $project::where([['status', 'Completed'], ['id', '!=', $project->id]])
+            ->inRandomOrder()
             ->limit(6)
-            ->get()
-            ->shuffle();
+            ->get();
 
-        if ($project->status !== 'Completed' || $project->exclusive === true) {
+        if ($project->status !== 'Completed') {
             abort(404);
         }
 
