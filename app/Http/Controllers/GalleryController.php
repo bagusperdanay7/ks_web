@@ -44,7 +44,7 @@ class GalleryController extends Controller
             ->groupBy('category_id')
             ->select('category_id', Project::raw('count(*) as total'))
             ->take(4)
-            ->orderBy('total')
+            ->orderByDesc('total')
             ->get();
 
         $latestVideoQuery = Project::orderByDesc('date')

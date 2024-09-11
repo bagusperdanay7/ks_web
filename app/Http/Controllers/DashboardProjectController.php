@@ -60,7 +60,6 @@ class DashboardProjectController extends Controller
             'youtube_id' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'progress' => ['integer'],
             'votes' => ['integer'],
-            'exclusive' => ['nullable'],
             'created_at' => ['date']
         ]);
 
@@ -113,7 +112,6 @@ class DashboardProjectController extends Controller
             'youtube_id' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'progress' => ['integer'],
             'votes' => ['integer'],
-            'exclusive' => ['nullable'],
             'created_at' => ['date']
         ];
 

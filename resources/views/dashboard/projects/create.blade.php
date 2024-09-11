@@ -75,46 +75,24 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="row m-bottom-15">
-                            <div class="col">
-                                <label for="status"
-                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                                <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
-                                    id="status" name="status">
-                                    @foreach ($statuses as $status)
-                                        <option value="{{ $status->value }}"
-                                            {{ old('status') == $status->value ? ' selected' : ' ' }}>
-                                            {{ $status->value }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('status')
-                                    <div id="statusFeedback" class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div>
-                            <div class="col">
-                                <label for="exclusive"
-                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('exclusive') is-invalid @enderror">Exclusive</label>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveTrue" value="1" @checked(old('exclusive') == 1)>
-                                    <label class="form-check-label" for="exclusiveTrue">
-                                        Yes
-                                    </label>
+                        <div class="m-bottom-15">
+                            <label for="status"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
+                                id="status" name="status">
+                                @foreach ($statuses as $status)
+                                    <option value="{{ $status->value }}"
+                                        {{ old('status') == $status->value ? ' selected' : ' ' }}>
+                                        {{ $status->value }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('status')
+                                <div id="statusFeedback" class="invalid-feedback">
+                                    {{ $message }}
                                 </div>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveFalse" value="0" @checked(old('exclusive') == 0)>
-                                    <label class="form-check-label" for="exclusiveFalse">
-                                        No
-                                    </label>
-                                    @error('exclusive')
-                                        <div class="invalid-feedback" id="exclusiveFeedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
+                            @enderror
+
                         </div>
                         {{-- TODO: Jika Status Completed, disable = false (alpine) --}}
                         <div class="m-bottom-15">

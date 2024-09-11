@@ -4,7 +4,7 @@
         <div class="row m-bottom-25 justify-content-center">
             <div class="col-md-8 col-12">
                 <div class="form-container">
-                    <h4 class="fw-bold m-bottom-30 text-center text-color-100">Update Project Form</h4>
+                    <h4 class="fw-bold m-bottom-30 text-color-100 text-center">Update Project Form</h4>
                     <form method="post" action="{{ route('projects.update', $project->id) }}">
                         @method('put')
                         @csrf
@@ -28,8 +28,8 @@
                         </div>
                         <div class="m-bottom-15">
                             <label for="type" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Type</label>
-                            <select class="form-select @error('project_type_id') is-invalid @enderror" aria-label="Select Type"
-                                id="type" name="project_type_id">
+                            <select class="form-select @error('project_type_id') is-invalid @enderror"
+                                aria-label="Select Type" id="type" name="project_type_id">
                                 @foreach ($types as $type)
                                     <option value="{{ $type->id }}"
                                         {{ old('project_type_id', $project->project_type_id) == $type->id ? ' selected' : ' ' }}>
@@ -46,8 +46,8 @@
                         <div class="m-bottom-15">
                             <label for="title" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Project
                                 Title</label>
-                            <input type="text" class="form-control @error('title') is-invalid @enderror"
-                                name="title" id="title" placeholder="OH MY GIRL - Celebrate"
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" name="title"
+                                id="title" placeholder="OH MY GIRL - Celebrate"
                                 value="{{ old('title', $project->title) }}">
                             @error('title')
                                 <div id="projectTitleFeedback" class="invalid-feedback">
@@ -76,54 +76,30 @@
                                 </div>
                             @enderror
                         </div>
-                        <div class="row m-bottom-15">
-                            <div class="col">
-                                <label for="status"
+                        <div class="m-bottom-15">
+                            <label for="status"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
                             <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
                                 id="status" name="status">
                                 @foreach ($statuses as $status)
-                                <option value="{{ $status->value }}"
-                                    {{ old('status', $project->status) == $status->value ? ' selected' : ' ' }}>
-                                    {{ $status->value }}
-                                </option>
-                            @endforeach
+                                    <option value="{{ $status->value }}"
+                                        {{ old('status', $project->status) == $status->value ? ' selected' : ' ' }}>
+                                        {{ $status->value }}
+                                    </option>
+                                @endforeach
                             </select>
                             @error('status')
                                 <div id="statusFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
-                            </div>
-                            <div class="col">
-                                <label for="exclusive"
-                                    class="form-label text-color-100 m-bottom-10 fs-18 fw-medium @error('exclusive') is-invalid @enderror">Exclusive</label>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveTrue" value="1"
-                                        @checked(old('exclusive', $project->exclusive == 1))
-                                        >
-                                    <label class="form-check-label" for="exclusiveTrue">
-                                        Yes
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input @error('exclusive') is-invalid @enderror" type="radio"
-                                        name="exclusive" id="exclusiveFalse" value="0" @checked(old('exclusive', $project->exclusive == 0))>
-                                    <label class="form-check-label" for="exclusiveFalse">
-                                        No
-                                    </label>
-                                    @error('exclusive')
-                                        <div class="invalid-feedback" id="exclusiveFeedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                            </div>
                         </div>
                         <div class="m-bottom-15">
                             <label for="youtube_id" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Youtube
                                 Id</label>
                             <input type="text" class="form-control @error('youtube_id') is-invalid @enderror"
-                                name="youtube_id" id="youtube_id" maxlength="191" value="{{ old('youtube_id', $project->youtube_id) }}"
+                                name="youtube_id" id="youtube_id" maxlength="191"
+                                value="{{ old('youtube_id', $project->youtube_id) }}"
                                 placeholder="https://www.youtube.com/embed/{VIDEO_ID}" data-bs-toggle="tooltip"
                                 data-bs-placement="bottom"
                                 data-bs-title="Press Alt+C on this Input to copy the example youtube_id">
