@@ -54,7 +54,7 @@ class DashboardAlbumController extends Controller
             'name' => ['required', 'max:191'],
             'type' => ['required', Rule::enum(AlbumType::class)],
             'release' => ['required', 'date'],
-            'cover' => ['image', 'file', 'max:1024', 'nullable'],
+            'cover' => ['image', 'file', 'max:250', 'nullable'],
             'publisher_id' => ['required'],
         ]);
 
@@ -101,7 +101,7 @@ class DashboardAlbumController extends Controller
             'name' => ['required', 'max:191'],
             'type' => ['required', Rule::enum(AlbumType::class)],
             'release' => ['required', 'date'],
-            'cover' => ['image', 'file', 'max:1024', 'nullable'],
+            'cover' => ['image', 'file', 'max:250', 'nullable'],
             'publisher_id' => ['required'],
         ];
 

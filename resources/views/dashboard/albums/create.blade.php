@@ -46,11 +46,12 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="cover" class="form-label text-color-100">Cover</label>
+                            <label for="cover" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Cover</label>
                             <input class="form-control @error('cover') is-invalid @enderror" type="file" id="cover"
                                 accept="image/*" name="cover" onchange="previewPicture()">
+                            <div class="form-text text-color-80 fw-semibold fs-14" id="maxSizeInfoCover">Max Size: 250 KB.</div>
                             @error('cover')
-                                <div id="artistPictFeedback" class="invalid-feedback">
+                                <div id="coverFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror

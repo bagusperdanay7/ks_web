@@ -71,9 +71,10 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="artist_picture" class="form-label text-color-100">Artist Picture</label>
+                            <label for="artist_picture" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist Picture</label>
                             <input class="form-control @error('artist_picture') is-invalid @enderror" type="file"
                                 id="artist_picture" accept="image/*" name="artist_picture" onchange="previewPicture()">
+                            <div class="form-text text-color-80 fw-semibold fs-14" id="maxSizeInfoPicture">Max Size: 500 KB.</div>
                             @error('artist_picture')
                                 <div id="artistPictureFeedback" class="invalid-feedback">
                                     {{ $message }}

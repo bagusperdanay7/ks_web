@@ -108,10 +108,10 @@
                                         <td class="align-middle">
                                             @if ($album->cover)
                                                 <img src="{{ asset('storage/' . $album->cover) }}"
-                                                    alt="{{ $album->name }} Cover" class="img-fluid img-album">
+                                                    alt="{{ $album->name }}" class="img-fluid img-album">
                                             @else
                                                 <img src="{{ asset('img/unknown_album.jpg') }}"
-                                                    alt="{{ $album->name }} Cover" class="img-fluid img-album">
+                                                    alt="{{ $album->name }}" class="img-fluid img-album">
                                             @endif
                                         </td>
                                         <td class="align-middle text-color-100">

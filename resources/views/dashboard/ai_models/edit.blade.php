@@ -80,6 +80,7 @@
                                 class="form-label text-color-100  m-bottom-10 fs-18 fw-medium">Audio Sample</label>
                             <input class="form-control @error('audio_sample') is-invalid @enderror" type="file" id="audio_sample"
                                 accept="audio/*" name="audio_sample" onchange="previewAudio()">
+                            <div class="form-text text-color-80 fw-semibold fs-14" id="maxSizeInfoAudio">Max Size: 5 MB.</div>
                             @error('audio_sample')
                                 <div id="audioSampleFeedback" class="invalid-feedback">
                                     {{ $message }}

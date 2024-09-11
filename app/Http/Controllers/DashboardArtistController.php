@@ -55,7 +55,7 @@ class DashboardArtistController extends Controller
             'classification' => ['required', Rule::enum(ArtistClassification::class)],
             'birthdate' => ['nullable', 'date'],
             'origin' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
-            'artist_picture' => ['image', 'file', 'max:2048'],
+            'artist_picture' => ['image', 'file', 'max:500'],
             'fandom' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'company_id' => ['required'],
         ]);
@@ -107,7 +107,7 @@ class DashboardArtistController extends Controller
             'classification' => ['required', Rule::enum(ArtistClassification::class)],
             'birthdate' => ['nullable', 'date'],
             'origin' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
-            'artist_picture' => ['image', 'file', 'max:2048'],
+            'artist_picture' => ['image', 'file', 'max:500'],
             'fandom' => ['nullable', self::MAX_STRING_CHAR_VALIDATION],
             'company_id' => ['required'],
         ];
