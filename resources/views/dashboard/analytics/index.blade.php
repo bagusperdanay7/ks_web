@@ -134,6 +134,7 @@
                     <div class="analytics-head">
                         <h4 class="fw-semibold m-bottom-10 text-color-100">Progress Project Type</h4>
                     </div>
+                    <x-badge />
                     @forelse ($typeProgress as $type)
                         @php
                             $typeCompletedTotal = $type->where('status', 'Completed')->count();

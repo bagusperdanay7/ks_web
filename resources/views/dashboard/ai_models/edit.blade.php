@@ -8,6 +8,8 @@
                     <form method="post" action="{{ route('ai-models.update', $aiModel->id)}}" enctype="multipart/form-data">
                         @method('put')
                         @csrf
+                        <x-forms.text-input name="model_name" label="Model Name"
+                        placeholder="Jessica Jung (Ex Girls' Generation)" :model="$aiModel->model_name" />
                         <div class="m-bottom-15">
                             <label for="model_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Model
                                 Name</label>

@@ -1,27 +1,18 @@
 @extends('dashboard.layouts.main')
 
 @section('content')
-    <section id="ai-model-single-dashboard">
+    <section id="createModelForm">
         <div class="row m-bottom-25 justify-content-center">
             <div class="col-md-8 col-12">
-                <div class="form-container ">
-                    <h4 class="fw-bold m-bottom-30 text-center text-color-100">Create AI Model Form</h4>
+                <div class="form-container">
+                    <h4 class="fw-bold m-bottom-30 text-color-100 text-center">Create AI Model Form</h4>
                     <form method="post" action="{{ route('ai-models.store') }}" enctype="multipart/form-data">
                         @csrf
+                        <x-forms.text-input name="model_name" label="Model Name"
+                            placeholder="Jessica Jung (Ex Girls' Generation)" />
                         <div class="m-bottom-15">
-                            <label for="model_name" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Model
-                                Name</label>
-                            <input type="text" class="form-control @error('model_name') is-invalid @enderror"
-                                name="model_name" id="model_name" placeholder="Jessica Jung (Ex Girls' Generation)"
-                                value="{{ old('model_name') }}">
-                            @error('model_name')
-                                <div id="modelNameFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="m-bottom-15">
-                            <label for="artist" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
+                            <label for="artist"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Artist</label>
                             <select class="form-select @error('artist_id') is-invalid @enderror" aria-label="Select Artist"
                                 id="artist" name="artist_id">
                                 @foreach ($artists as $artist)
@@ -37,19 +28,13 @@
                                 </div>
                             @enderror
                         </div>
+                        <x-forms.url-input name="url" label="Url"
+                            placeholder="Copy Mega or Hugging face Link" />
                         <div class="m-bottom-15">
-                            <label for="url" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Url</label>
-                            <input type="url" class="form-control @error('url') is-invalid @enderror" name="url"
-                                id="url" value="{{ old('url') }}" placeholder="Copy Mega or Hugging face Link">
-                            @error('url')
-                                <div id="urlFeedback" class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                        <div class="m-bottom-15">
-                            <label for="status" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
-                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status" id="status" name="status">
+                            <label for="status"
+                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Status</label>
+                            <select class="form-select @error('status') is-invalid @enderror" aria-label="Select Status"
+                                id="status" name="status">
                                 @foreach ($statuses as $status)
                                     <option value="{{ $status->value }}"
                                         {{ old('status') == $status->value ? ' selected' : ' ' }}>
@@ -66,8 +51,8 @@
                         <div class="m-bottom-15">
                             <label for="description"
                                 class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Description</label>
-                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3" name="description"
-                                placeholder="Enter the model description">{{ old('description') }}</textarea>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description" rows="3"
+                                name="description" placeholder="Enter the model description">{{ old('description') }}</textarea>
                             @error('description')
                                 <div id="descriptionFeedback" class="invalid-feedback">
                                     {{ $message }}
@@ -75,17 +60,18 @@
                             @enderror
                         </div>
                         <div class="m-bottom-15">
-                            <label for="audio_sample"
-                                class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Audio Sample</label>
-                            <input class="form-control @error('audio_sample') is-invalid @enderror" type="file" id="audio_sample"
-                                accept="audio/*" name="audio_sample" onchange="previewAudio()">
-                            <div class="form-text text-color-80 fw-semibold fs-14" id="maxSizeInfoAudio">Max Size: 5 MB.</div>
+                            <label for="audio_sample" class="form-label text-color-100 m-bottom-10 fs-18 fw-medium">Audio
+                                Sample</label>
+                            <input class="form-control @error('audio_sample') is-invalid @enderror" type="file"
+                                id="audio_sample" accept="audio/*" name="audio_sample" onchange="previewAudio()">
+                            <div class="form-text text-color-80 fw-semibold fs-14" id="maxSizeInfoAudio">Max Size: 5 MB.
+                            </div>
                             @error('audio_sample')
                                 <div id="audio_sampleFeedback" class="invalid-feedback">
                                     {{ $message }}
                                 </div>
                             @enderror
-                            <p class="fs-14 fw-medium m-top-15 mb-0 d-none" id="previewAudio">Audio Preview:</p>
+                            <p class="fs-14 fw-medium m-top-15 d-none mb-0" id="previewAudio">Audio Preview:</p>
                             <audio id="audio" class="col-12 m-top-10 preview-audio d-none" controls>
                             </audio>
                         </div>
