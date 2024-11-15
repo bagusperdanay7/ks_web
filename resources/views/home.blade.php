@@ -58,7 +58,7 @@
                             <img src="{{ asset('img/hero_img1.jpg') }}" class="d-block img-hero img-fluid" alt="hero image">
                         </div>
                         <div class="carousel-item">
-                            <img src="img/hero_img2.png" class="d-block img-hero img-fluid" alt="hero image 2">
+                            <img src="img/hero_img2.jpeg" class="d-block img-hero img-fluid" alt="hero image 2">
                         </div>
                         <div class="carousel-item">
                             <img src="img/hero_img3.png" class="d-block img-hero img-fluid" alt="hero image 3">

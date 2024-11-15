@@ -1,66 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Content Management Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+[**Indonesia Documentation**](/docs/id/README.md)
 
-## About Laravel
+## About Content Management Web Application
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Content Management Web Application** is a full-stack web application for managing YouTube content developed using the Laravel framework with the PHP programming language, and MySQL database. The purpose of this application is to facilitate the creator to manage content, track content requests from subscribers, help subscribers find content created by creator based on content categories, and share AI models created by creators.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The features contained in this web application are as follows:
 
-## Learning Laravel
+-   User and Admin Authentication (creator/owner)
+-   Register and Login
+-   Dashboard Admin
+-   Login with Google Authentication
+-   Reset password
+-   Profile and Account Management (including upload and edit profile picture)
+-   Request Form
+-   Create, Read, Update, and Delete (CRUD) in Models
+-   Vote content
+-   Search and Filter content & request
+-   Content upload schedule
+-   Request list from subscribers
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Team
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+-   Bagus Perdana Yusuf (Full-stack Developer, UI & UX Designer)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tasks and responsibilities (Bagus)
 
-## Laravel Sponsors
+-   Designing the User Journey of the app in Figma (Figjam)
+-   Designing the User Flow of the app in Figma (Figjam)
+-   Make an application sitemap in Figma (Figjam)
+-   Create an app Mindmap with Whimsical
+-   Designing User Interface and User Experience of app with Figma
+-   Design, develop, and maintain web app using PHP programming language, Laravel framework, SASS, Bootstrap framework, and MySQL Database.
+-   Design efficient database structures and optimize queries to ensure applications run quickly and responsively
+-   Implement a secure authentication system using the Laravel framework, including login mechanisms either login with email or login connected to third-party applications (Google), account registration, user session management, account settings and management, and password reset features.
+-   Managing good and efficient CRUD (Create, Read, Update, Delete) and filter features for various types of data, also comes with Role-Based Access Control.
+-   Handle debugging and troubleshooting to ensure applications function properly and are safe from security vulnerabilities.
+-   Deploy the application publicly on web hosting by utilizing Git as a Version Control System and GitHub as a public code storage platform.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## Preview
 
-### Premium Partners
+These previews are taken from development mode, and not all pages can be shown due to client demand.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+### Login Page
 
-## Contributing
+![Login Desktop](docs/images/login-desktop.png)
+![Login Mobile](docs/images/login-mobile.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Home
 
-## Code of Conduct
+![Home Desktop](docs/images/home-desktop.png)
+![Home Mobile](docs/images/home-mobile.png)
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Register
 
-## Security Vulnerabilities
+![Register Desktop](docs/images/register-desktop.png)
+![Register Mobile](docs/images/register-mobile.png)
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Dashboard
 
-## License
+![Dashboard Desktop](docs/images/dashboard-desktop.png)
+![Dashboard Mobile](docs/images/dashboard-mobile.png)
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Projects
+
+![Projects Desktop](docs/images/projects-desktop.png)
+![Projects Mobile](docs/images/projects-mobile.png)
+
+### Project
+
+![Project Desktop](docs/images/project-desktop.png)
+![Project Mobile](docs/images/project-mobile.png)
+
+### Gallery
+
+![Gallery Desktop](docs/images/gallery-desktop.png)
+![Gallery Mobile](docs/images/gallery-mobile.png)
+
+### Request
+
+![Request Desktop](docs/images/rl-desktop.png)
+![Request Mobile](docs/images/rl-mobile.png)
+
+### My Request
+
+![My Request Desktop](docs/images/myreq-desktop.png)
+![My Request Mobile](docs/images/myreq-mobile.png)
+
+### My Profile
+
+![Profile Desktop](docs/images/profile-desktop.png)
+![Profile Mobile](docs/images/profile-mobile.png)
+
+### Project Detail
+
+![Detail Project Desktop](docs/images/detailpro-desktop.png)
+![Detail Project Mobile](docs/images/detailpro-mobile.png)
+
+### Video
+
+![Request Desktop](docs/images/video-desktop.png)
+![Request Mobile](docs/images/video-mobile.png)
+
+### Ai Model
+
+![AI Model Desktop](docs/images/model-list-desktop.png)
+![AI Model Mobile](docs/images/model-list-mobile.png)
+
+## Technology stack & Tools
+
+**This program needs:**
+
+| Tech Stack & Tools                  | Version |
+| ----------------------------------- | ------- |
+| Alpine Js                           | 3.0+    |
+| Bootstrap CSS                       | 5.3.0+  |
+| Box Icon                            | 2.1.4+  |
+| Chart.js                            | 4.4.1+  |
+| Composer                            | 2.20+   |
+| Laravel                             | 8.54+   |
+| Laragon / XAMP (PHP, MySQL, Apache) | 6.0+    |
+| Line Awesome                        | 1.3.0+  |
+| Node.js                             | 18.1+   |
+| PHP                                 | 8.2.0+  |
+| SASS                                | 2.0+    |
+| Visual Studio Code                  | Latest  |
+| Vite                                | 5.0+    |
+
+## Setup
+
+### Customization `.env`
+
+1. Copy .env-example
+2. Rename .env-example copy to .env
+3. Modify the`.env`content
+
+### Install Dependencies
+
+Open terminal, type the following commands:
+
+```shell
+composer update
+npm install
+```
+
+### Run Program
+
+Open terminal, type the following commands:
+
+```shell
+# generate key
+php artisan key:generate
+# migrate
+php artisan migrate --seed
+# run server
+php artisan serve
+# run server node
+npm run dev
+```
