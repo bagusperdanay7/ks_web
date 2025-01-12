@@ -182,7 +182,7 @@
                                                 <span @class([
                                                     'btn',
                                                     'btn-complete' => $pro->status == 'Completed',
-                                                    'btn-onprocess' => $pro->status == 'On Process',
+                                                    'btn-onprocess' => $pro->status == 'In Progress',
                                                     'btn-pending' => $pro->status == 'Pending',
                                                     'btn-rejected' => $pro->status == 'Rejected',
                                                 ]) class="btn btn-complete">
@@ -241,7 +241,7 @@
                                                 <span @class([
                                                     'btn',
                                                     'btn-complete' => $pro->status == 'Completed',
-                                                    'btn-onprocess' => $pro->status == 'On Process',
+                                                    'btn-onprocess' => $pro->status == 'In Progress',
                                                     'btn-pending' => $pro->status == 'Pending',
                                                     'btn-rejected' => $pro->status == 'Rejected',
                                                 ]) class="btn btn-complete">
@@ -365,7 +365,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $pro->status === 'Completed',
-                                                'btn-onprocess' => $pro->status === 'On Process',
+                                                'btn-onprocess' => $pro->status === 'In Progress',
                                                 'btn-pending' => $pro->status === 'Pending',
                                                 'btn-rejected' => $pro->status === 'Rejected',
                                             ])> {{ $pro->status }}</span>
@@ -429,7 +429,7 @@
                                             <span @class([
                                                 'btn',
                                                 'btn-complete' => $pro->status === 'Completed',
-                                                'btn-onprocess' => $pro->status === 'On Process',
+                                                'btn-onprocess' => $pro->status === 'In Progress',
                                                 'btn-pending' => $pro->status === 'Pending',
                                                 'btn-rejected' => $pro->status === 'Rejected',
                                             ])> {{ $pro->status }}</span>

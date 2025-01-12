@@ -1,10 +1,8 @@
 # Aplikasi Web Pengelolaan Konten YouTube
 
-[**Dokumentasi English**](../../README.md)
+[**English Documentation (Dokumentasi Bahasa Inggris)**](../../README.md)
 
-## About Aplikasi Web Pengelolaan Konten YouTube
-
-**Aplikasi Web Pengelolaan Konten YouTube** adalah aplikasi web full-stack untuk pengelolaan konten YouTube di bangun menggunakan framework Laravel dengan bahasa pemrograman PHP, dan database MySQL. Tujuan pembangunan aplikasi ini agar memudahkan sang kreator mengelola konten, melacak permintaan konten dari subscriber, memudahkan subscriber dalam mencari konten yang dibuat kreator berdasarkan kategori konten, dan membagikan model AI yang dibuat oleh kreator.
+**Aplikasi Web Pengelolaan Konten** adalah sebuah aplikasi web untuk pengelolaan konten YouTube dikembangkan menggunakan kerangka kerja Laravel dengan bahasa pemrograman PHP, dan MySQL sebagai basis data relasional. Tujuan aplikasi ini adalah untuk memfasilitasi sang kreator untuk mengelola konten, melacak permintaan konten dari pelanggan-pelanggan, membantu pelanggan temukan konten yang dibuat oleh kreator berdasarkan kategori konten, dan membagikan model AI (Artificial Intelligence) yang dibuat kreator.
 
 ## Features
 
@@ -29,15 +27,16 @@ Fitur-fitur yang terdapat pada aplikasi web ini adalah sebagai berikut:
 
 ### Tasks and responsibilities (Bagus)
 
--   Mendesain User Journey (Perjalanan Pengguna) aplikasi di Figma (Figjam)
--   Mendesain User Flow (Alur pengguna) aplikasi di Figma (Figjam)
--   Membuat Sitemap aplikasi di Figma (Figjam)
--   Membuat Mindmap aplikasi dengan Whimsical
--   Mendesain User Interface dan User Experience aplikasi dengan Figma
--   Merancang, mengembangkan, dan memelihara aplikasi web menggunakan bahasa pemrograman PHP, framework Laravel, SASS, framework Bootstrap, dan MySQL Database.
+-   Membuat mind map menggunakan Whimsical untuk mengorganisasikan gagasan secara terstruktur dengan perencanaan dan spesifikasi secara terperinci.
+-   Menyusun peta perjalanan pengguna menggunakan Figma Jam untuk memetakan langkah-langkah interaksi pengguna dengan produk, guna mengidentifikasi pain points dan meningkatkan pengalaman pengguna yang lebih baik, intuitif, dan efisien sehingga mencapai tujuan yang diinginkan.
+-   Membuat alur pengguna dengan Figma Jam untuk memahami jalur interaksi yang dilalui pengguna, mengidentifikasi titik masalah, serta mengoptimalkan efisiensi desain guna menciptakan pengalaman pengguna yang logis, intuitif, dan mudah dipahami.
+-   Membuat peta situs dengan Figma Jam untuk merancang struktur situs web yang intuitif dan mudah dinavigasi, sehingga meningkatkan pengalaman pengguna dan mengurangi potensi frustrasi akibat navigasi yang rumit.
+-   Mendesain antarmuka pengguna (UI) dan pengalaman pengguna (UX) untuk aplikasi web dan mobile dengan memanfaatkan Figma guna menciptakan desain yang responsif, intuitif, dan menarik.
+-   Merancang sistem desain modular yang mencakup elemen penting seperti skema warna, tipografi dengan ukuran yang bervariasi, dan komponen yang diperlukan guna menciptakan konsistensi desain di seluruh produk. Mendesain kerangka kerja desain, malet, dan purwarupa untuk mengomunikasikan konsep desain secara jelas dan efektif.
+-   Merancang, mengembangkan dan memelihara aplikasi web menggunakan bahasa pemrograman PHP, kerangka kerja Laravel, SASS, kerangka kerja Bootstrap, dan basis data MySQL.
 -   Mendesain struktur basis data yang efisien dan mengoptimalkan query untuk memastikan aplikasi berjalan dengan cepat dan responsif
--   Mengimplementasikan sistem autentikasi yang aman menggunakan framework Laravel, termasuk mekanisme login baik login dengan email maupun login yang terhubung dengan aplikasi pihak ketiga (Google), pendaftaran akun, pengelolaan sesi pengguna, pengaturan dan pengelolaan akun, serta fitur reset password.
--   Mengolah fitur CRUD (Create, Read, Update, Delete) dan filter yang baik dan efisien untuk berbagai jenis data, juga dilengkapi dengan kontrol akses berbasis peran (Role-Based Access Control).
+-   Mengimplementasikan sistem autentikasi yang aman menggunakan framework Laravel, termasuk mekanisme login baik login dengan email maupun login yang terhubung dengan aplikasi pihak ketiga (Google), pendaftaran akun, pengelolaan sesi pengguna, pengaturan dan pengelolaan akun, serta fitur setel ulang kata sandi.
+-   Mengolah fitur CRUD (Create, Read, Update, Delete) dan filter yang baik dan efisien untuk berbagai jenis data, juga dilengkapi dengan kontrol akses berbasis peran (Role Based Access Control).
 -   Menangani debugging dan pemecahan masalah untuk memastikan aplikasi berfungsi dengan baik dan bebas dari kerentanan keamanan.
 -   Menyebarkan (deploy) aplikasi secara publik pada web hosting dengan memanfaatkan Git sebagai Version Control System dan GitHub sebagai wadah penyimpanan kode secara publik.
 

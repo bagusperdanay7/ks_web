@@ -367,6 +367,10 @@ body.body-dark {
   background-color: #a3cfbb;
 }
 
+.bg-warning-10 {
+  background-color: #fff3cd;
+}
+
 .bg-alert-10 {
   background-color: #f8d7da;
 }

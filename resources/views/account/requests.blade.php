@@ -14,7 +14,7 @@
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-onprocess-tab" data-bs-toggle="pill" data-bs-target="#pills-onprocess"
-                    type="button" role="tab" aria-controls="pills-onprocess" aria-selected="false">On Process</button>
+                    type="button" role="tab" aria-controls="pills-onprocess" aria-selected="false">In Progress</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="pills-pending-tab" data-bs-toggle="pill" data-bs-target="#pills-pending"
@@ -88,7 +88,7 @@
                                         <span @class([
                                             'btn',
                                             'btn-complete' => $request->status === 'Completed',
-                                            'btn-onprocess' => $request->status === 'On Process',
+                                            'btn-onprocess' => $request->status === 'In Progress',
                                             'btn-pending' => $request->status === 'Pending',
                                             'btn-rejected' => $request->status === 'Rejected',
                                         ])>{{ $request->status }}</span>
@@ -184,7 +184,7 @@
                                         <span @class([
                                             'btn',
                                             'btn-complete' => $completedRequest->status === 'Completed',
-                                            'btn-onprocess' => $completedRequest->status === 'On Process',
+                                            'btn-onprocess' => $completedRequest->status === 'In Progress',
                                             'btn-pending' => $completedRequest->status === 'Pending',
                                             'btn-rejected' => $completedRequest->status === 'Rejected',
                                         ])>{{ $completedRequest->status }}</span>
@@ -217,7 +217,7 @@
                         </div>
                         <div class="tab-pane fade" id="pills-onprocess" role="tabpanel"
                             aria-labelledby="pills-onprocess-tab" tabindex="0">
-                            <h3 class="fw-semibold text-color-100 mb-24">On Process Request ({{ $myOnProcessRequests->count() }})
+                            <h3 class="fw-semibold text-color-100 mb-24">In Progress Request ({{ $myOnProcessRequests->count() }})
                             </h3>
                             <div class="row fs-14 mb-3 text-color-100 d-none d-md-flex">
                                 <div class="col-3 fw-medium">Project Title</div>
@@ -280,7 +280,7 @@
                                         <span @class([
                                             'btn',
                                             'btn-complete' => $OnProcessRequest->status === 'Completed',
-                                            'btn-onprocess' => $OnProcessRequest->status === 'On Process',
+                                            'btn-onprocess' => $OnProcessRequest->status === 'In Progress',
                                             'btn-pending' => $OnProcessRequest->status === 'Pending',
                                             'btn-rejected' => $OnProcessRequest->status === 'Rejected',
                                         ])>{{ $OnProcessRequest->status }}</span>
@@ -375,7 +375,7 @@
                                         <span @class([
                                             'btn',
                                             'btn-complete' => $pendingRequest->status === 'Completed',
-                                            'btn-onprocess' => $pendingRequest->status === 'On Process',
+                                            'btn-onprocess' => $pendingRequest->status === 'In Progress',
                                             'btn-pending' => $pendingRequest->status === 'Pending',
                                             'btn-rejected' => $pendingRequest->status === 'Rejected',
                                         ])>{{ $pendingRequest->status }}</span>
@@ -471,7 +471,7 @@
                                         <span @class([
                                             'btn',
                                             'btn-complete' => $rejectedRequest->status === 'Completed',
-                                            'btn-onprocess' => $rejectedRequest->status === 'On Process',
+                                            'btn-onprocess' => $rejectedRequest->status === 'In Progress',
                                             'btn-pending' => $rejectedRequest->status === 'Pending',
                                             'btn-rejected' => $rejectedRequest->status === 'Rejected',
                                         ])>{{ $rejectedRequest->status }}</span>

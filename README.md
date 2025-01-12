@@ -1,10 +1,8 @@
 # Content Management Web Application
 
-[**Indonesia Documentation**](/docs/id/README.md)
+[**Dokumentasi Bahasa Indonesia (Indonesia Documentation)**](/docs/id/README.md)
 
-## About Content Management Web Application
-
-**Content Management Web Application** is a full-stack web application for managing YouTube content developed using the Laravel framework with the PHP programming language, and MySQL database. The purpose of this application is to facilitate the creator to manage content, track content requests from subscribers, help subscribers find content created by creator based on content categories, and share AI models created by creators.
+**Content Management Web Application** is a web application for managing YouTube content developed using the Laravel framework with the PHP programming language, and MySQL as a relational database. The purpose of this application is to facilitate the creator in managing content, tracking content requests from subscribers, helping subscribers find content created by the creator based on content categories, and sharing AI (Artificial Intelligence) models produced by creators.
 
 ## Features
 
@@ -29,17 +27,18 @@ The features contained in this web application are as follows:
 
 ### Tasks and responsibilities (Bagus)
 
--   Designing the User Journey of the app in Figma (Figjam)
--   Designing the User Flow of the app in Figma (Figjam)
--   Make an application sitemap in Figma (Figjam)
--   Create an app Mindmap with Whimsical
--   Designing User Interface and User Experience of app with Figma
--   Design, develop, and maintain web app using PHP programming language, Laravel framework, SASS, Bootstrap framework, and MySQL Database.
--   Design efficient database structures and optimize queries to ensure applications run quickly and responsively
--   Implement a secure authentication system using the Laravel framework, including login mechanisms either login with email or login connected to third-party applications (Google), account registration, user session management, account settings and management, and password reset features.
--   Managing good and efficient CRUD (Create, Read, Update, Delete) and filter features for various types of data, also comes with Role-Based Access Control.
--   Handle debugging and troubleshooting to ensure applications function properly and are safe from security vulnerabilities.
--   Deploy the application publicly on web hosting by utilizing Git as a Version Control System and GitHub as a public code storage platform.
+-   Created mind maps using Whimsical to systematically organize ideas, incorporating detailed planning and specifications.
+-   Crafted a user journey map using Figma Jam to outline the steps of user interaction with the product, aiming to identify pain points and enhance the user experience to be more intuitive, efficient, and aligned with the desired goals.
+-   Created user flow diagrams using Figma Jam to comprehend user interaction pathways, identify pain points, and enhance design efficiency, resulting in a logical, intuitive, and user-friendly experience.
+-   Created a sitemap using Figma Jam to design an intuitive and easy-to-navigate website structure, thereby enhancing user experience and minimizing potential frustration caused by complex navigation.
+-   Designed user interfaces (UI) and user experiences (UX) for web and mobile applications using Figma, resulting in responsive, intuitive, and engaging designs.
+-   Devised a modular design system encompassing essential elements like color schemes, typography of various sizes, and crucial components to ensure design consistency across products. Designed wireframes, mockups, and prototypes to effectively communicate design concepts.
+-   Designed, developed, and maintained a web app using the PHP programming language, the Laravel framework, SASS, the Bootstrap framework, and MySQL Database.
+-   Designed efficient database structures and optimized queries to ensure applications run quickly and responsively.
+-   Implemented a secure authentication system using the Laravel framework, including login mechanisms (either login with email or login connected to third-party applications like Google), account registration, user session management, account settings and management, and password reset features.
+-   Managed good and efficient CRUD (Create, Read, Update, Delete) and filter features for various types of data; it also comes with role-based access control.
+-   Conducted debugging and troubleshooting to guarantee the proper functioning of applications and their safety from security vulnerabilities.
+-   Deployed the application publicly on web hosting by utilizing Git as a version control system and GitHub as a public code storage platform.
 
 ## Preview
 

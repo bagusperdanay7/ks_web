@@ -48,7 +48,7 @@
                             <p class="m-bottom-10 text-color-100 fw-medium fs-14">Status</p>
                             @if ($aiModel->status === 'Completed')
                                 <span class="btn btn-completed">{{ $aiModel->status }}</span>
-                            @elseif ($aiModel->status === 'On Process')
+                            @elseif ($aiModel->status === 'In Progress')
                                 <span class="btn btn-onprocess">{{ $aiModel->status }}</span>
                             @elseif ($aiModel->status === 'Pending')
                                 <span class="btn btn-pending">{{ $aiModel->status }}</span>
